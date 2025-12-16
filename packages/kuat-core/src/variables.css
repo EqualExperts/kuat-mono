@@ -4,6 +4,17 @@
 /* Raw brand colors from raw-colors.json - available as CSS variables */
 @layer base {
   :root {
+
+    /* Typography */
+    --font-sans: Lexend, ui-sans-serif, sans-serif, system-ui;
+    --font-serif: Lora, serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    /* Spacing and layout */
+    --radius: 0.3rem;
+    --tracking-normal: 0.01em;
+    --spacing: 0.25rem;
+
     /* Tailwind color scales - for reference in design tokens */
     /* Slate scale */
     --slate-50: oklch(0.978 0.005 240.0); /* #f8fafc */
@@ -132,16 +143,6 @@
     --sidebar-accent-foreground: var(--brand-tech-blue); /* {brand.tech-blue} */
     --sidebar-border: var(--slate-200); /* {slate.200} */
     --sidebar-ring: var(--slate-100); /* {slate.100} */
-
-    /* Typography */
-    --font-sans: Lexend, ui-sans-serif, sans-serif, system-ui;
-    --font-serif: Lora, serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-
-    /* Spacing and layout */
-    --radius: 0.3rem;
-    --tracking-normal: 0.01em;
-    --spacing: 0.25rem;
 
     /* Shadows - keeping existing values, not in JSON */
     --shadow-x: 0px;
