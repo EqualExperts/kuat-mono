@@ -30,10 +30,11 @@ Font families are defined in `@kuat/core/src/variables.css` and available via Ta
 - **Usage:** Decorative text, special emphasis (use sparingly)
 
 ### Monospace
-- **Font Family:** `Fragment Mono`
+- **Font Family:** `JetBrains Mono`
 - **CSS Variable:** `--font-mono`
 - **Tailwind Class:** `font-mono`
 - **Usage:** Code blocks, technical content, data display
+- **Why JetBrains Mono:** A professional monospace font designed specifically for developers, with excellent readability and clear character distinction optimized for coding
 
 ### Usage Examples
 
