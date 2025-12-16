@@ -1,0 +1,16 @@
+{
+  "name": "@kuat/core",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./src/variables.css",
+  "exports": {
+    "./variables.css": "./src/variables.css"
+  },
+  "files": [
+    "src"
+  ],
+  "devDependencies": {
+    "tailwindcss": "^4.0.0"
+  }
+}
+
