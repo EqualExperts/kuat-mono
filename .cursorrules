@@ -1,0 +1,37 @@
+# Kuat Design System - Agent Guidelines
+
+## Project Structure
+This is a monorepo containing:
+- `@kuat/core`: Shared CSS variables and Tailwind configuration
+- `@kuat/react`: React components using shadcn/ui
+- `@kuat/vue`: Vue components using shadcn-vue
+
+## Component Development
+- All components use Tailwind CSS v4
+- CSS variables are defined in `@kuat/core/src/variables.css`
+- Components should follow shadcn/ui patterns
+- Use the `cn()` utility from `@/lib/utils` for className merging
+- Components are installed via CLI: `npx shadcn@latest add [component]` (React) or `npx shadcn-vue@latest add [component]` (Vue)
+
+## Import Patterns
+- React: `import { Component } from "@kuat/react"`
+- Vue: `import { Component } from "@kuat/vue"`
+- Core CSS: `import "@kuat/core/variables.css"`
+
+## Build System
+- Uses Turborepo for monorepo orchestration
+- Uses pnpm workspaces
+- Each package builds independently with Vite
+- TypeScript is used throughout
+
+## Styling
+- Tailwind CSS v4 with `@tailwindcss/vite` plugin
+- CSS variables for theming (light/dark mode support)
+- All design tokens centralized in `@kuat/core`
+
+## Code Style
+- TypeScript strict mode enabled
+- Use path aliases: `@/*` maps to `./src/*`
+- Follow existing component patterns
+- Export components from package `index.ts` files
+

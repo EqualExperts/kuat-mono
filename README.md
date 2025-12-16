@@ -60,3 +60,9 @@ Vue component library built with shadcn-vue, Radix Vue primitives, and Tailwind 
 - **Vue**: shadcn-vue
 - **Build Tool**: Vite
 
+## Documentation
+
+- [Architecture](./ARCHITECTURE.md) - Detailed monorepo architecture
+- [Documentation](./docs/README.md) - Complete documentation index
+- [Agent Guidelines](./docs/agent/usage-guide.md) - Quick reference for AI agents
+
