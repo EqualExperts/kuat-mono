@@ -435,8 +435,8 @@ Typography integrates seamlessly with other design system elements:
 ## Additional Resources
 
 - **Design System Overview:** See [design-system.md](./design-system.md) for complete design system documentation
-- **Component Guidelines:** See [component-guidelines.md](./component-guidelines.md) for component development patterns
-- **Usage Guide:** See [usage-guide.md](./usage-guide.md) for quick reference
+- **Component Guidelines:** See [../technical/component-guidelines.md](../technical/component-guidelines.md) for component development patterns
+- **Usage Guide:** See [../usage-guide.md](../usage-guide.md) for quick reference
 - **shadcn/ui Typography:** [shadcn/ui Typography Documentation](https://ui.shadcn.com/docs/components/typography)
 - **Tailwind Typography:** [Tailwind CSS Typography Documentation](https://tailwindcss.com/docs/font-size)
 

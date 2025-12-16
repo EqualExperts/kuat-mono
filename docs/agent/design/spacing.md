@@ -459,7 +459,7 @@ The spacing scale is built into Tailwind CSS and doesn't require custom configur
 
 - **Design System Overview:** See [design-system.md](./design-system.md) for complete design system documentation
 - **Borders Guide:** See [borders.md](./borders.md) for spacing vs. borders guidance
-- **Component Guidelines:** See [component-guidelines.md](./component-guidelines.md) for component spacing patterns
+- **Component Guidelines:** See [../technical/component-guidelines.md](../technical/component-guidelines.md) for component spacing patterns
 - **shadcn/ui Components:** [shadcn/ui Component Documentation](https://ui.shadcn.com/docs/components)
 - **Tailwind Spacing:** [Tailwind CSS Spacing Documentation](https://tailwindcss.com/docs/padding)
 - **8-Point Grid System:** Industry standard spacing methodology

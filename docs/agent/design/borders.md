@@ -484,7 +484,7 @@ The design system provides the following Tailwind utilities for borders:
 
 - **Design System Overview:** See [design-system.md](./design-system.md) for complete design system documentation
 - **Color Guide:** See [colours.md](./colours.md) for border color tokens and usage
-- **Component Guidelines:** See [component-guidelines.md](./component-guidelines.md) for component border patterns
+- **Component Guidelines:** See [../technical/component-guidelines.md](../technical/component-guidelines.md) for component border patterns
 - **shadcn/ui Borders:** [shadcn/ui Component Documentation](https://ui.shadcn.com/docs/components)
 - **Tailwind Borders:** [Tailwind CSS Border Documentation](https://tailwindcss.com/docs/border-width)
 

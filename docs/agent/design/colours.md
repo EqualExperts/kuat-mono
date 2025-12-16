@@ -506,7 +506,7 @@ To modify colors in the design system:
 
 - **Design System Overview:** See [design-system.md](./design-system.md) for complete design system documentation
 - **Typography Guide:** See [typography.md](./typography.md) for text color usage
-- **Component Guidelines:** See [component-guidelines.md](./component-guidelines.md) for component color patterns
+- **Component Guidelines:** See [../technical/component-guidelines.md](../technical/component-guidelines.md) for component color patterns
 - **shadcn/ui Colors:** [shadcn/ui Theming Documentation](https://ui.shadcn.com/docs/theming)
 - **Tailwind Colors:** [Tailwind CSS Color Documentation](https://tailwindcss.com/docs/customizing-colors)
 
