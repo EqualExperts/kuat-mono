@@ -18,7 +18,7 @@ kuat-mono/
 
 ## Package Details
 
-### @equalexperts/kuat-core
+### @equal-experts/kuat-core
 
 **Purpose**: Centralized design tokens and CSS variables shared across React and Vue packages.
 
@@ -27,54 +27,54 @@ kuat-mono/
 - `tailwind.config.ts` - Base Tailwind configuration
 
 **Exports**:
-- CSS variables via `@equalexperts/kuat-core/variables.css`
+- CSS variables via `@equal-experts/kuat-core/variables.css`
 - Tailwind theme configuration
 
 **Dependencies**: Minimal - only Tailwind CSS v4
 
-### @equalexperts/kuat-react
+### @equal-experts/kuat-react
 
 **Purpose**: React component library built with shadcn/ui.
 
 **Key Files**:
 - `components.json` - shadcn/ui CLI configuration
 - `src/lib/utils.ts` - Utility functions (cn helper)
-- `src/styles.css` - Imports from @equalexperts/kuat-core and Tailwind
+- `src/styles.css` - Imports from @equal-experts/kuat-core and Tailwind
 - `vite.config.ts` - Vite build configuration
 
 **Dependencies**:
 - React 18+
 - Radix UI primitives
 - shadcn/ui components (installed via CLI)
-- `@equalexperts/kuat-core` (workspace dependency)
+- `@equal-experts/kuat-core` (workspace dependency)
 
 **Build**: Vite library mode with TypeScript
 
-### @equalexperts/kuat-vue
+### @equal-experts/kuat-vue
 
 **Purpose**: Vue component library built with shadcn-vue.
 
 **Key Files**:
 - `components.json` - shadcn-vue CLI configuration
 - `src/lib/utils.ts` - Utility functions (cn helper)
-- `src/styles.css` - Imports from @equalexperts/kuat-core and Tailwind
+- `src/styles.css` - Imports from @equal-experts/kuat-core and Tailwind
 - `vite.config.ts` - Vite build configuration
 
 **Dependencies**:
 - Vue 3.4+
 - Radix Vue primitives
 - shadcn-vue components (installed via CLI)
-- `@equalexperts/kuat-core` (workspace dependency)
+- `@equal-experts/kuat-core` (workspace dependency)
 
 **Build**: Vite library mode with TypeScript
 
 ## Design Token Flow
 
 ```
-@equalexperts/kuat-core/src/variables.css
+@equal-experts/kuat-core/src/variables.css
     ↓ (imported via CSS)
-@equalexperts/kuat-react/src/styles.css
-@equalexperts/kuat-vue/src/styles.css
+@equal-experts/kuat-react/src/styles.css
+@equal-experts/kuat-vue/src/styles.css
     ↓ (used in components)
 React/Vue Components
 ```
@@ -86,7 +86,7 @@ Turborepo manages the build pipeline:
 - `dev`: Development mode with watch
 - `lint`: Lints all packages
 
-Dependencies are automatically resolved - `@equalexperts/kuat-react` and `@equalexperts/kuat-vue` depend on `@equalexperts/kuat-core`, so `@equalexperts/kuat-core` builds first.
+Dependencies are automatically resolved - `@equal-experts/kuat-react` and `@equal-experts/kuat-vue` depend on `@equal-experts/kuat-core`, so `@equal-experts/kuat-core` builds first.
 
 ## Technology Stack
 
@@ -120,7 +120,7 @@ Packages reference each other using workspace protocol:
 ```json
 {
   "dependencies": {
-    "@equalexperts/kuat-core": "workspace:*"
+    "@equal-experts/kuat-core": "workspace:*"
   }
 }
 ```

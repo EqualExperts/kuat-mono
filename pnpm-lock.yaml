@@ -132,7 +132,7 @@ importers:
         specifier: ^2.2.1
         version: 2.6.0
     devDependencies:
-      '@equalexperts/kuat-core':
+      '@equal-experts/kuat-core':
         specifier: workspace:*
         version: link:../kuat-core
       '@tailwindcss/vite':
@@ -190,7 +190,7 @@ importers:
         specifier: ^3.4.0
         version: 3.5.25(typescript@5.9.3)
     devDependencies:
-      '@equalexperts/kuat-core':
+      '@equal-experts/kuat-core':
         specifier: workspace:*
         version: link:../kuat-core
       '@tailwindcss/vite':

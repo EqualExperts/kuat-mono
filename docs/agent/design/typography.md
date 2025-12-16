@@ -8,13 +8,13 @@ A guide to using typography in the Kuat Design System. This document helps ensur
 
 The Kuat Design System follows shadcn/ui patterns, which means **typography is handled through Tailwind CSS utility classes** rather than predefined typography components. This approach provides flexibility while maintaining consistency through design tokens.
 
-**Key Principle:** Use Tailwind utility classes for typography styling. All typography values are defined in `@equalexperts/kuat-core` and accessible via Tailwind classes.
+**Key Principle:** Use Tailwind utility classes for typography styling. All typography values are defined in `@equal-experts/kuat-core` and accessible via Tailwind classes.
 
 ---
 
 ## Font Families
 
-Font families are defined in `@equalexperts/kuat-core/src/variables.css` and available via Tailwind utilities.
+Font families are defined in `@equal-experts/kuat-core/src/variables.css` and available via Tailwind utilities.
 
 ### Sans Serif (Default)
 - **Font Family:** `Lexend`
@@ -120,7 +120,7 @@ Font weights use Tailwind's standard weight scale:
 
 ## Text Colors
 
-Text colors use the design system's semantic color tokens from `@equalexperts/kuat-core`. All colors support light and dark modes automatically.
+Text colors use the design system's semantic color tokens from `@equal-experts/kuat-core`. All colors support light and dark modes automatically.
 
 ### Primary Text Colors
 
@@ -340,7 +340,7 @@ Establish clear visual hierarchy using size, weight, and color:
 2. **Maintain consistency**
    - ✅ Use the same typography scale across components
    - ✅ Follow the hierarchy guidelines
-   - ✅ Use design tokens from `@equalexperts/kuat-core`
+   - ✅ Use design tokens from `@equal-experts/kuat-core`
 
 3. **Ensure accessibility**
    - ✅ Use semantic HTML elements (`<h1>`, `<h2>`, `<p>`, etc.)
@@ -428,7 +428,7 @@ Typography integrates seamlessly with other design system elements:
 - **Colors:** Use semantic color tokens (`text-foreground`, `text-primary`, etc.)
 - **Spacing:** Combine with Tailwind spacing utilities (`mb-4`, `mt-2`, etc.)
 - **Components:** All shadcn/ui components accept typography classes
-- **Tokens:** All values come from `@equalexperts/kuat-core/src/variables.css`
+- **Tokens:** All values come from `@equal-experts/kuat-core/src/variables.css`
 
 ---
 
@@ -446,6 +446,6 @@ Typography integrates seamlessly with other design system elements:
 
 - **Consistency is key:** Always use Tailwind utility classes for typography
 - **Semantic HTML first:** Use proper HTML elements, then style with classes
-- **Design tokens:** All typography values reference tokens from `@equalexperts/kuat-core`
+- **Design tokens:** All typography values reference tokens from `@equal-experts/kuat-core`
 - **Flexibility:** shadcn/ui's utility-first approach allows customization while maintaining consistency
 - **Accessibility:** Always verify contrast ratios and use semantic HTML structure

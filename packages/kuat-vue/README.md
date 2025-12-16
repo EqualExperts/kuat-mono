@@ -1,4 +1,4 @@
-# @equalexperts/kuat-vue
+# @equal-experts/kuat-vue
 
 A guide for integrating the Kuat Design System Vue component library into your application.
 
@@ -16,13 +16,13 @@ A guide for integrating the Kuat Design System Vue component library into your a
 
 ```bash
 # Using pnpm (recommended)
-pnpm add @equalexperts/kuat-vue
+pnpm add @equal-experts/kuat-vue
 
 # Using npm
-npm install @equalexperts/kuat-vue
+npm install @equal-experts/kuat-vue
 
 # Using yarn
-yarn add @equalexperts/kuat-vue
+yarn add @equal-experts/kuat-vue
 ```
 
 ### Install Peer Dependencies
@@ -37,7 +37,7 @@ pnpm add vue radix-vue reka-ui
 pnpm add lucide-vue-next
 ```
 
-**Note:** `@equalexperts/kuat-core` is bundled with this package - you don't need to install it separately.
+**Note:** `@equal-experts/kuat-core` is bundled with this package - you don't need to install it separately.
 
 ---
 
@@ -61,7 +61,7 @@ import type { Config } from "tailwindcss";
 const config: Config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,vue}",
-    "./node_modules/@equalexperts/kuat-vue/**/*.{js,ts,vue}", // Include Kuat components
+    "./node_modules/@equal-experts/kuat-vue/**/*.{js,ts,vue}", // Include Kuat components
   ],
   theme: {
     extend: {
@@ -76,7 +76,7 @@ const config: Config = {
           DEFAULT: "var(--secondary)",
           foreground: "var(--secondary-foreground)",
         },
-        // ... other color tokens from @equalexperts/kuat-core
+        // ... other color tokens from @equal-experts/kuat-core
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -117,15 +117,15 @@ Import the Kuat Design System styles in your application's entry point:
 // main.ts
 import { createApp } from "vue";
 import App from "./App.vue";
-import "@equalexperts/kuat-vue/styles";
+import "@equal-experts/kuat-vue/styles";
 
 createApp(App).mount("#app");
 ```
 
-This imports the bundled CSS file which includes all design tokens from `@equalexperts/kuat-core` (no need to install `@equalexperts/kuat-core` separately).
+This imports the bundled CSS file which includes all design tokens from `@equal-experts/kuat-core` (no need to install `@equal-experts/kuat-core` separately).
 
 **Note:** The styles include:
-- Design tokens from `@equalexperts/kuat-core` (colors, spacing, typography)
+- Design tokens from `@equal-experts/kuat-core` (colors, spacing, typography)
 - Tailwind CSS base styles
 - Component-specific styles
 
@@ -150,7 +150,7 @@ If you want to use different fonts or load them differently, you can override th
 ### Import Components
 
 ```typescript
-import { Button } from "@equalexperts/kuat-vue";
+import { Button } from "@equal-experts/kuat-vue";
 ```
 
 ### Use in Your App
@@ -165,7 +165,7 @@ import { Button } from "@equalexperts/kuat-vue";
 </template>
 
 <script setup lang="ts">
-import { Button } from "@equalexperts/kuat-vue";
+import { Button } from "@equal-experts/kuat-vue";
 </script>
 ```
 
@@ -212,7 +212,7 @@ The Button component supports multiple variants and sizes:
 </template>
 
 <script setup lang="ts">
-import { Button } from "@equalexperts/kuat-vue";
+import { Button } from "@equal-experts/kuat-vue";
 
 function handleClick() {
   alert("Clicked!");
@@ -226,7 +226,7 @@ All components are fully typed:
 
 ```vue
 <script setup lang="ts">
-import { Button, type ButtonVariants } from "@equalexperts/kuat-vue";
+import { Button, type ButtonVariants } from "@equal-experts/kuat-vue";
 
 const variant: ButtonVariants["variant"] = "outline";
 const size: ButtonVariants["size"] = "lg";
@@ -346,7 +346,7 @@ Use the `as-child` prop to compose components:
 </template>
 
 <script setup lang="ts">
-import { Button } from "@equalexperts/kuat-vue";
+import { Button } from "@equal-experts/kuat-vue";
 </script>
 ```
 
@@ -362,8 +362,8 @@ Import and use variant functions:
 </template>
 
 <script setup lang="ts">
-import { buttonVariants } from "@equalexperts/kuat-vue";
-import { cn } from "@equalexperts/kuat-vue";
+import { buttonVariants } from "@equal-experts/kuat-vue";
+import { cn } from "@equal-experts/kuat-vue";
 
 const buttonClass = cn(
   buttonVariants({ variant: "outline", size: "lg" }),
@@ -380,7 +380,7 @@ Register components globally if preferred:
 // main.ts
 import { createApp } from "vue";
 import App from "./App.vue";
-import * as KuatComponents from "@equalexperts/kuat-vue";
+import * as KuatComponents from "@equal-experts/kuat-vue";
 
 const app = createApp(App);
 
@@ -408,8 +408,8 @@ Then use without importing:
 
 ### Styles Not Loading
 
-1. **Check import order**: Ensure you import `@equalexperts/kuat-vue/styles` before your own styles
-2. **Verify Tailwind config**: Make sure `@equalexperts/kuat-vue` is included in your `content` paths
+1. **Check import order**: Ensure you import `@equal-experts/kuat-vue/styles` before your own styles
+2. **Verify Tailwind config**: Make sure `@equal-experts/kuat-vue` is included in your `content` paths
 3. **Check build output**: Ensure the CSS file is being included in your build
 4. **Vue SFC**: If using Single File Components, ensure styles are processed correctly
 
@@ -432,7 +432,7 @@ Then use without importing:
 ## Package Structure
 
 ```
-@equalexperts/kuat-vue
+@equal-experts/kuat-vue
 ├── dist/
 │   ├── index.js          # Compiled JavaScript
 │   ├── index.d.ts        # TypeScript definitions

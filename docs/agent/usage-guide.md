@@ -6,21 +6,21 @@
 
 **React:**
 ```tsx
-import { Button } from "@equalexperts/kuat-react"
-import "@equalexperts/kuat-react/styles"
+import { Button } from "@equal-experts/kuat-react"
+import "@equal-experts/kuat-react/styles"
 ```
 
 **Vue:**
 ```vue
 <script setup>
-import { Button } from "@equalexperts/kuat-vue"
-import "@equalexperts/kuat-vue/styles"
+import { Button } from "@equal-experts/kuat-vue"
+import "@equal-experts/kuat-vue/styles"
 </script>
 ```
 
 **Core (CSS Variables):**
 ```css
-@import "@equalexperts/kuat-core/variables.css";
+@import "@equal-experts/kuat-core/variables.css";
 ```
 
 ### Common Tasks
@@ -29,13 +29,13 @@ import "@equalexperts/kuat-vue/styles"
 1. Navigate to `packages/kuat-react`
 2. Run: `npx shadcn@latest add [component-name]`
 3. Export from `src/index.ts`
-4. Component is available via `@equalexperts/kuat-react`
+4. Component is available via `@equal-experts/kuat-react`
 
 #### Adding a Component to Vue Package
 1. Navigate to `packages/kuat-vue`
 2. Run: `npx shadcn-vue@latest add [component-name]`
 3. Export from `src/index.ts`
-4. Component is available via `@equalexperts/kuat-vue`
+4. Component is available via `@equal-experts/kuat-vue`
 
 #### Modifying Design Tokens
 1. Edit `packages/kuat-core/src/variables.css`
@@ -111,8 +111,8 @@ cd packages/kuat-react && pnpm build
 - Ensure package is built: `pnpm build`
 
 ### Styles Not Applying
-- Verify CSS is imported: `import "@equalexperts/kuat-react/styles"`
-- Check that `@equalexperts/kuat-core/variables.css` is imported
+- Verify CSS is imported: `import "@equal-experts/kuat-react/styles"`
+- Check that `@equal-experts/kuat-core/variables.css` is imported
 - Ensure Tailwind is configured correctly
 
 ### Type Errors

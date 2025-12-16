@@ -1,5 +1,5 @@
 {
-  "name": "@equalexperts/kuat-react",
+  "name": "@equal-experts/kuat-react",
   "version": "0.2.0",
   "type": "module",
   "main": "./dist/index.js",
@@ -41,7 +41,7 @@
     "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
-    "@equalexperts/kuat-core": "workspace:*",
+    "@equal-experts/kuat-core": "workspace:*",
     "@tailwindcss/vite": "^4.0.0",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",

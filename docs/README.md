@@ -22,8 +22,8 @@ This directory contains documentation for the Kuat Design System monorepo.
 
 ### Getting Started
 
-- **React Applications**: See [@equalexperts/kuat-react README](../packages/kuat-react/README.md) - How to use `@equalexperts/kuat-react` in your React app
-- **Vue Applications**: See [@equalexperts/kuat-vue README](../packages/kuat-vue/README.md) - How to use `@equalexperts/kuat-vue` in your Vue app
+- **React Applications**: See [@equal-experts/kuat-react README](../packages/kuat-react/README.md) - How to use `@equal-experts/kuat-react` in your React app
+- **Vue Applications**: See [@equal-experts/kuat-vue README](../packages/kuat-vue/README.md) - How to use `@equal-experts/kuat-vue` in your Vue app
 - **Monorepo Development**: See the main [README.md](../README.md) for getting started with the monorepo
 
 ## For AI Agents

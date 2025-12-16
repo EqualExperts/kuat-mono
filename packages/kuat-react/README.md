@@ -1,4 +1,4 @@
-# @equalexperts/kuat-react
+# @equal-experts/kuat-react
 
 A guide for integrating the Kuat Design System React component library into your application.
 
@@ -16,13 +16,13 @@ A guide for integrating the Kuat Design System React component library into your
 
 ```bash
 # Using pnpm (recommended)
-pnpm add @equalexperts/kuat-react
+pnpm add @equal-experts/kuat-react
 
 # Using npm
-npm install @equalexperts/kuat-react
+npm install @equal-experts/kuat-react
 
 # Using yarn
-yarn add @equalexperts/kuat-react
+yarn add @equal-experts/kuat-react
 ```
 
 ### Install Peer Dependencies
@@ -40,7 +40,7 @@ pnpm add @radix-ui/react-slot @radix-ui/react-dialog @radix-ui/react-dropdown-me
 pnpm add lucide-react
 ```
 
-**Note:** `@equalexperts/kuat-core` is bundled with this package - you don't need to install it separately. Only install the Radix UI packages for the components you actually use.
+**Note:** `@equal-experts/kuat-core` is bundled with this package - you don't need to install it separately. Only install the Radix UI packages for the components you actually use.
 
 ---
 
@@ -64,7 +64,7 @@ import type { Config } from "tailwindcss";
 const config: Config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@equalexperts/kuat-react/**/*.{js,ts,jsx,tsx}", // Include Kuat components
+    "./node_modules/@equal-experts/kuat-react/**/*.{js,ts,jsx,tsx}", // Include Kuat components
   ],
   theme: {
     extend: {
@@ -79,7 +79,7 @@ const config: Config = {
           DEFAULT: "var(--secondary)",
           foreground: "var(--secondary-foreground)",
         },
-        // ... other color tokens from @equalexperts/kuat-core
+        // ... other color tokens from @equal-experts/kuat-core
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -118,13 +118,13 @@ Import the Kuat Design System styles in your application's entry point:
 
 ```typescript
 // main.tsx or App.tsx
-import "@equalexperts/kuat-react/styles";
+import "@equal-experts/kuat-react/styles";
 ```
 
-This imports the bundled CSS file which includes all design tokens from `@equalexperts/kuat-core` (no need to install `@equalexperts/kuat-core` separately).
+This imports the bundled CSS file which includes all design tokens from `@equal-experts/kuat-core` (no need to install `@equal-experts/kuat-core` separately).
 
 **Note:** The styles include:
-- Design tokens from `@equalexperts/kuat-core` (colors, spacing, typography)
+- Design tokens from `@equal-experts/kuat-core` (colors, spacing, typography)
 - Tailwind CSS base styles
 - Component-specific styles
 
@@ -149,13 +149,13 @@ If you want to use different fonts or load them differently, you can override th
 ### Import Components
 
 ```typescript
-import { Button } from "@equalexperts/kuat-react";
+import { Button } from "@equal-experts/kuat-react";
 ```
 
 ### Use in Your App
 
 ```tsx
-import { Button } from "@equalexperts/kuat-react";
+import { Button } from "@equal-experts/kuat-react";
 
 function App() {
   return (
@@ -177,7 +177,7 @@ function App() {
 The Button component supports multiple variants and sizes:
 
 ```tsx
-import { Button } from "@equalexperts/kuat-react";
+import { Button } from "@equal-experts/kuat-react";
 
 function ButtonExamples() {
   return (
@@ -218,7 +218,7 @@ function ButtonExamples() {
 All components are fully typed:
 
 ```tsx
-import { Button, type ButtonProps } from "@equalexperts/kuat-react";
+import { Button, type ButtonProps } from "@equal-experts/kuat-react";
 
 // ButtonProps includes all standard button HTML attributes
 const CustomButton: React.FC<ButtonProps> = (props) => {
@@ -307,7 +307,7 @@ Override CSS variables to customize the theme:
 Use the `asChild` prop to compose components:
 
 ```tsx
-import { Button } from "@equalexperts/kuat-react";
+import { Button } from "@equal-experts/kuat-react";
 import { Link } from "react-router-dom";
 
 function NavigationButton() {
@@ -324,8 +324,8 @@ function NavigationButton() {
 Import and use variant functions:
 
 ```tsx
-import { buttonVariants } from "@equalexperts/kuat-react";
-import { cn } from "@equalexperts/kuat-react";
+import { buttonVariants } from "@equal-experts/kuat-react";
+import { cn } from "@equal-experts/kuat-react";
 
 function CustomButton({ className, ...props }) {
   return (
@@ -343,8 +343,8 @@ function CustomButton({ className, ...props }) {
 
 ### Styles Not Loading
 
-1. **Check import order**: Ensure you import `@equalexperts/kuat-react/styles` before your own styles
-2. **Verify Tailwind config**: Make sure `@equalexperts/kuat-react` is included in your `content` paths
+1. **Check import order**: Ensure you import `@equal-experts/kuat-react/styles` before your own styles
+2. **Verify Tailwind config**: Make sure `@equal-experts/kuat-react` is included in your `content` paths
 3. **Check build output**: Ensure the CSS file is being included in your build
 
 ### TypeScript Errors
@@ -364,7 +364,7 @@ function CustomButton({ className, ...props }) {
 ## Package Structure
 
 ```
-@equalexperts/kuat-react
+@equal-experts/kuat-react
 ├── dist/
 │   ├── index.js          # Compiled JavaScript
 │   ├── index.d.ts        # TypeScript definitions

@@ -462,7 +462,7 @@ Error states use colored borders to indicate validation issues.
 
 ### Color Tokens
 
-Borders use the following semantic color tokens from `@equalexperts/kuat-core/src/variables.css`:
+Borders use the following semantic color tokens from `@equal-experts/kuat-core/src/variables.css`:
 
 - **`--border`:** Default border color (slate-200 in light, slate-700 in dark)
 - **`--input`:** Form input border color
