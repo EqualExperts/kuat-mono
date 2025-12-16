@@ -104,7 +104,7 @@ The lack of a centralized design system meant:
 
 ## Our Approach
 
-We implemented the Kuat Design System, providing a unified component library for both React and Vue applications. The system uses shared CSS variables from `@kuat/core`, ensuring visual consistency while allowing framework-specific implementations.
+We implemented the Kuat Design System, providing a unified component library for both React and Vue applications. The system uses shared CSS variables from `@equalexperts/kuat-core`, ensuring visual consistency while allowing framework-specific implementations.
 
 ## The Solution
 

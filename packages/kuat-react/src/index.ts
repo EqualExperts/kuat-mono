@@ -4,7 +4,7 @@ export { cn } from "./lib/utils";
 // Export styles
 import "./styles.css";
 
-// Components will be exported here as they are added
-// Example:
-// export { Button } from "./components/ui/button";
+// Components
+export { Button, buttonVariants } from "./components/ui/button";
+export type { ButtonProps } from "./components/ui/button";
 

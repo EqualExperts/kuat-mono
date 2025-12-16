@@ -1,0 +1,48 @@
+# Source files
+src/
+*.ts
+*.vue
+!*.d.ts
+
+# Build configs
+vite.config.ts
+tsconfig.json
+tsconfig.node.json
+tailwind.config.ts
+
+# Development files
+components.json
+node_modules/
+
+# Development scripts and configs
+.eslintrc*
+.prettierrc*
+.editorconfig
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing
+*.test.ts
+*.test.vue
+*.spec.ts
+*.spec.vue
+
+# Documentation (keep README.md)
+docs/
+*.md
+!README.md
+
+# Other
+.DS_Store
+*.log
+.env*
+

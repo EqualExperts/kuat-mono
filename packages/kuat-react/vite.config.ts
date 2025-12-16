@@ -26,7 +26,13 @@ export default defineConfig({
       fileName: "index",
     },
     rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime"],
+      external: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        /^@radix-ui\/react-/,
+        "lucide-react",
+      ],
       output: {
         globals: {
           react: "React",
@@ -35,6 +41,8 @@ export default defineConfig({
         },
       },
     },
+    cssCodeSplit: false,
+    cssMinify: true,
   },
 });
 

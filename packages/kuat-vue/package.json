@@ -1,7 +1,6 @@
 {
-  "name": "@kuat/vue",
-  "version": "0.0.1",
-  "private": true,
+  "name": "@equalexperts/kuat-vue",
+  "version": "0.2.0",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -11,29 +10,41 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./styles": "./src/styles.css"
+    "./styles": "./dist/style.css"
   },
   "files": [
     "dist",
-    "src"
+    "README.md"
   ],
+  "keywords": [
+    "vue",
+    "vue3",
+    "components",
+    "ui",
+    "design-system",
+    "shadcn-vue",
+    "tailwind"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/kuat-mono.git",
+    "directory": "packages/kuat-vue"
+  },
   "scripts": {
     "build": "vite build",
     "dev": "vite build --watch",
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
-    "@kuat/core": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
-    "lucide-vue-next": "^0.344.0",
-    "radix-vue": "^1.9.0",
-    "tailwind-merge": "^2.2.1",
-    "vue": "^3.4.21"
+    "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.0.4",
+    "@equalexperts/kuat-core": "workspace:*",
     "@tailwindcss/vite": "^4.0.0",
+    "@vitejs/plugin-vue": "^5.0.4",
     "@vue/tsconfig": "^0.5.1",
     "autoprefixer": "^10.4.17",
     "postcss": "^8.4.33",
@@ -44,7 +55,9 @@
     "vue-tsc": "^1.8.27"
   },
   "peerDependencies": {
-    "vue": "^3.4.0"
+    "vue": "^3.4.0",
+    "radix-vue": "^1.9.0",
+    "reka-ui": "^2.6.1",
+    "lucide-vue-next": "^0.344.0"
   }
 }
-

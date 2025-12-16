@@ -436,7 +436,7 @@ shadcn/ui components follow consistent spacing patterns:
 
 ### Spacing Variables
 
-The design system defines a base spacing unit in `@kuat/core/src/variables.css`:
+The design system defines a base spacing unit in `@equalexperts/kuat-core/src/variables.css`:
 
 ```css
 --spacing: 0.25rem; /* 4px base unit */

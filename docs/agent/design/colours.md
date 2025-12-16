@@ -406,7 +406,7 @@ Always test color combinations to ensure they meet accessibility standards. Use 
    - ❌ Don't use brand colors for non-brand purposes
 
 5. **Don't create custom color variations**
-   - ❌ Don't modify color tokens without updating `@kuat/core`
+   - ❌ Don't modify color tokens without updating `@equalexperts/kuat-core`
    - ❌ Don't create new color tokens outside the system
 
 ### Examples
@@ -481,7 +481,7 @@ Always test color combinations to ensure they meet accessibility standards. Use 
 
 To modify colors in the design system:
 
-1. **Edit `@kuat/core/src/variables.css`**
+1. **Edit `@equalexperts/kuat-core/src/variables.css`**
    - Update the oklch values in `:root` (light mode)
    - Update the oklch values in `.dark` (dark mode)
    - Maintain brand color relationships
@@ -515,7 +515,7 @@ To modify colors in the design system:
 ## Notes
 
 - **Color Format:** Colors use oklch format for better color manipulation and consistency
-- **CSS Variables:** All colors are available as CSS variables in `@kuat/core/src/variables.css`
+- **CSS Variables:** All colors are available as CSS variables in `@equalexperts/kuat-core/src/variables.css`
 - **Tailwind Integration:** Colors are exposed via Tailwind utility classes
 - **Dark Mode:** All colors automatically adapt when `.dark` class is applied
 - **Accessibility:** All color combinations are designed to meet WCAG AA standards

@@ -2,11 +2,11 @@
 
 ## Overview
 
-The Kuat Design System is a monorepo containing component libraries for both React and Vue, sharing a common design token system through `@kuat/core`.
+The Kuat Design System is a monorepo containing component libraries for both React and Vue, sharing a common design token system through `@equalexperts/kuat-core`.
 
 ## Design Tokens
 
-All design tokens are centralized in `@kuat/core/src/variables.css`:
+All design tokens are centralized in `@equalexperts/kuat-core/src/variables.css`:
 
 ### Color System
 - Uses HSL color format for better manipulation
