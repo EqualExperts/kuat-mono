@@ -13,7 +13,8 @@ This directory contains documentation for the Kuat Design System monorepo.
     - [`typography.md`](./agent/design/typography.md) - Typography scale and text styling
     - [`spacing.md`](./agent/design/spacing.md) - Spacing scale and patterns
     - [`borders.md`](./agent/design/borders.md) - Border usage and specifications
-  - [`content/`](./agent/content/) - Content and writing guidelines (coming soon)
+  - [`content/`](./agent/content/) - Content and writing guidelines
+    - [`content-guidelines.md`](./agent/content/content-guidelines.md) - Writing principles, voice and tone, content patterns
   - [`technical/`](./agent/technical/) - Technical guidelines and coding standards
     - [`component-guidelines.md`](./agent/technical/component-guidelines.md) - Component development guidelines
 

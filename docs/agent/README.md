@@ -21,8 +21,12 @@ Design tokens, visual guidelines, and design language documentation:
 - **[Borders](./design/borders.md)** - Border usage, specifications, and border radius guidelines
 
 ### 📝 Content
-Content and writing guidelines (coming soon):
-- Writing guides and content standards will be added here
+Content and writing guidelines:
+
+- **[Content Guide](./content/README.md)** - Navigation index and decision tree for content creation
+- **[Content Foundations](./content/content-foundations.md)** - Universal principles for all content
+- **[Marketing & Sales Content](./content/content-marketing-sales.md)** - Guidelines for external-facing content
+- **[Product & UX Content](./content/content-product-ux.md)** - Guidelines for product interface content
 
 ### 🔧 Technical
 Technical guidelines and coding standards:
@@ -48,6 +52,12 @@ Technical guidelines and coding standards:
 1. Start with [Component Guidelines](./technical/component-guidelines.md) for development patterns
 2. See [Design System Overview](./design/design-system.md) for component patterns
 3. See [Usage Guide](./usage-guide.md) for common component tasks
+
+### Writing Content
+1. Start with [Content Guide](./content/README.md) for navigation and decision tree
+2. Read [Content Foundations](./content/content-foundations.md) for universal principles
+3. Choose [Marketing & Sales](./content/content-marketing-sales.md) or [Product & UX](./content/content-product-ux.md) based on content type
+4. Apply content quality checklist before publishing
 
 ### Modifying Design Tokens
 1. See [Design System Overview](./design/design-system.md) for token structure
