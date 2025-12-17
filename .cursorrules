@@ -2,32 +2,53 @@
 
 ## Project Structure
 This is a monorepo containing:
-- `@kuat/core`: Shared CSS variables and Tailwind configuration
-- `@kuat/react`: React components using shadcn/ui
-- `@kuat/vue`: Vue components using shadcn-vue
+- `@equal-experts/kuat-core`: Shared CSS variables and Tailwind configuration
+- `@equal-experts/kuat-react`: React components using shadcn/ui
+- `@equal-experts/kuat-vue`: Vue components using shadcn-vue
+
+## Agent Documentation
+Comprehensive AI-friendly documentation is available in `docs/agent/`:
+- **Design System**: `docs/agent/design/design-system.md` - Complete design system overview
+- **Colors**: `docs/agent/design/colours.md` - Brand colors (EE Blue, Tech Blue, Transform Teal, Equal Ember) and usage guidelines
+- **Typography**: `docs/agent/design/typography.md` - Font scales (Lexend, Lora, JetBrains Mono) and text styling
+- **Spacing**: `docs/agent/design/spacing.md` - 8-point grid system and spacing patterns
+- **Borders**: `docs/agent/design/borders.md` - Border usage and border radius specifications
+- **Component Guidelines**: `docs/agent/technical/component-guidelines.md` - Component development patterns
+- **Content Guidelines**: `docs/agent/content/` - Marketing, sales, and product content writing guidelines
+
+**Always reference these docs when making design decisions or creating content.**
 
 ## Component Development
 - All components use Tailwind CSS v4
-- CSS variables are defined in `@kuat/core/src/variables.css`
+- CSS variables are defined in `@equal-experts/kuat-core/src/variables.css`
+- Use Shadcn/ui MCP to discover component code
 - Components should follow shadcn/ui patterns
+- Always create a React and Vue component when asked to create a component
+- Ask the user if there is a customised version of the component to use in Figma. If there is, use Figma MCP to understand it
 - Use the `cn()` utility from `@/lib/utils` for className merging
 - Components are installed via CLI: `npx shadcn@latest add [component]` (React) or `npx shadcn-vue@latest add [component]` (Vue)
+- Always create supporting Storybook stories in apps/storybook-react and apps/storybook-vue
 
 ## Import Patterns
-- React: `import { Component } from "@kuat/react"`
-- Vue: `import { Component } from "@kuat/vue"`
-- Core CSS: `import "@kuat/core/variables.css"`
+- React: `import { Component } from "@equal-experts/kuat-react"`
+- Vue: `import { Component } from "@equal-experts/kuat-vue"`
+- Core CSS: `import "@equal-experts/kuat-core/variables.css"`
 
 ## Build System
 - Uses Turborepo for monorepo orchestration
 - Uses pnpm workspaces
 - Each package builds independently with Vite
 - TypeScript is used throughout
+- Agent docs are auto-copied to packages during build via `copy-docs` script
 
 ## Styling
 - Tailwind CSS v4 with `@tailwindcss/vite` plugin
 - CSS variables for theming (light/dark mode support)
-- All design tokens centralized in `@kuat/core`
+- All design tokens centralized in `@equal-experts/kuat-core`
+- Brand colors: EE Blue (#0066CC), Tech Blue, Transform Teal, Equal Ember
+- Fonts: Lexend (sans), Lora (serif), JetBrains Mono (mono)
+- Spacing: 8-point grid system (use multiples of 8px)
+- Border radius: 0px default, 6px interactive, 4px inputs
 
 ## Code Style
 - TypeScript strict mode enabled
