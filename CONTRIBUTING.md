@@ -66,6 +66,8 @@ kuat-mono/
 │   │   │   ├── lib/utils.ts    # Utility functions
 │   │   │   ├── styles.css      # Imports core styles
 │   │   │   └── index.ts        # Package exports
+│   │   ├── scripts/
+│   │   │   └── copy-docs.js    # Auto-copies agent docs during build
 │   │   └── components.json     # shadcn CLI config
 │   └── kuat-vue/           # Vue component library
 │       ├── src/
@@ -73,6 +75,8 @@ kuat-mono/
 │       │   ├── lib/utils.ts    # Utility functions
 │       │   ├── styles.css      # Imports core styles
 │       │   └── index.ts        # Package exports
+│       ├── scripts/
+│       │   └── copy-docs.js    # Auto-copies agent docs during build
 │       └── components.json     # shadcn-vue CLI config
 ├── apps/
 │   ├── storybook-react/    # React component documentation
@@ -80,7 +84,10 @@ kuat-mono/
 │   └── storybook-vue/      # Vue component documentation
 │       └── stories/        # Vue component stories
 └── docs/                   # Documentation
+    └── agent/              # AI-friendly documentation (source)
 ```
+
+**Note:** During build, agent documentation from `docs/agent/` is automatically copied to `packages/kuat-react/docs/` and `packages/kuat-vue/docs/` for inclusion in published npm packages. These generated `docs/` folders are git-ignored.
 
 ## Adding Components
 

@@ -447,11 +447,44 @@ Then use without importing:
 
 ## Additional Resources
 
-- **Design System Documentation**: See [../../docs/agent/design/design-system.md](../../docs/agent/design/design-system.md)
-- **Component Guidelines**: See [../../docs/agent/technical/component-guidelines.md](../../docs/agent/technical/component-guidelines.md)
 - **shadcn-vue Documentation**: [https://www.shadcn-vue.com](https://www.shadcn-vue.com)
 - **Tailwind CSS v4**: [https://tailwindcss.com](https://tailwindcss.com)
 - **Vue 3 Documentation**: [https://vuejs.org](https://vuejs.org)
+- **Radix Vue Documentation**: [https://www.radix-vue.com](https://www.radix-vue.com)
+
+---
+
+## AI Agent Documentation
+
+This package includes AI-friendly documentation in the `docs/` directory, optimized for LLM consumption.
+
+### Included Documentation
+
+- **[Design System](./docs/design/)** - Colors, typography, spacing, borders, and design tokens
+- **[Component Guidelines](./docs/components/guidelines.md)** - Component development patterns and best practices
+- **[Content Guidelines](./docs/content/)** - Content writing guidelines for marketing and product UX
+
+### Accessing Documentation
+
+The documentation is available in your `node_modules` after installation:
+
+```
+node_modules/@equal-experts/kuat-vue/docs/
+├── design/              # Design system guidelines
+├── components/          # Component patterns
+└── content/             # Content writing guidelines
+```
+
+### For AI Agents
+
+You can reference this documentation in your `.cursorrules` or similar configuration:
+
+```
+# Kuat Design System Documentation
+- Design tokens: node_modules/@equal-experts/kuat-vue/docs/design/
+- Component patterns: node_modules/@equal-experts/kuat-vue/docs/components/
+- Brand colors available: EE Blue, Tech Blue, Transform Teal, Equal Ember
+```
 
 ---
 

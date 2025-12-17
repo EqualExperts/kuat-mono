@@ -12,6 +12,9 @@ build
 .next
 out
 
+# Generated documentation (copied during build)
+packages/*/docs
+
 # Misc
 .DS_Store
 *.pem

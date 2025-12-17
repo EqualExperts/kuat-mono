@@ -109,7 +109,8 @@ rm equal-experts-kuat-react-*.tgz
 ```
 
 Expected contents:
-- `dist/` directory (compiled code)
+- `dist/` directory (compiled code and styles)
+- `docs/` directory (AI-friendly documentation, auto-generated during build)
 - `README.md`
 - `package.json`
 
