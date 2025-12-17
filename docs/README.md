@@ -18,13 +18,61 @@ This directory contains documentation for the Kuat Design System monorepo.
   - [`technical/`](./agent/technical/) - Technical guidelines and coding standards
     - [`component-guidelines.md`](./agent/technical/component-guidelines.md) - Component development guidelines
 
-## For Developers
+## For Application Developers
 
-### Getting Started
+Using the Kuat Design System in your application:
 
-- **React Applications**: See [@equal-experts/kuat-react README](../packages/kuat-react/README.md) - How to use `@equal-experts/kuat-react` in your React app
-- **Vue Applications**: See [@equal-experts/kuat-vue README](../packages/kuat-vue/README.md) - How to use `@equal-experts/kuat-vue` in your Vue app
-- **Monorepo Development**: See the main [README.md](../README.md) for getting started with the monorepo
+- **React Applications**: See [@equal-experts/kuat-react README](../packages/kuat-react/README.md) - Installation and usage guide for React
+- **Vue Applications**: See [@equal-experts/kuat-vue README](../packages/kuat-vue/README.md) - Installation and usage guide for Vue
+
+## For Contributors
+
+Contributing to the Kuat Design System:
+
+- **[CONTRIBUTING.md](../CONTRIBUTING.md)** - Complete development workflow guide
+  - Environment setup
+  - Adding components
+  - Creating Storybook stories
+  - Testing and submission process
+- **[ARCHITECTURE.md](../ARCHITECTURE.md)** - Monorepo architecture and design decisions
+  - Package structure
+  - Dependency graph
+  - Build system details
+- **Component Guidelines** - See [technical/component-guidelines.md](./agent/technical/component-guidelines.md)
+
+### Quick Start for Contributors
+
+```bash
+# Clone and install
+git clone <repository-url>
+cd kuat-mono
+pnpm install
+
+# Start Storybook
+pnpm --filter storybook-react dev  # React on :6006
+pnpm --filter storybook-vue dev    # Vue on :6007
+
+# Add a component
+cd packages/kuat-react
+npx shadcn@latest add dialog
+
+# Export it
+# Edit src/index.ts to export the new component
+
+# Create a story
+# Add stories/Dialog.stories.tsx in storybook-react
+```
+
+## For Maintainers
+
+Publishing packages to npm:
+
+- **[PUBLISHING.md](../PUBLISHING.md)** - npm publishing guide
+  - Pre-publish checklist
+  - Version management
+  - Publishing process
+  - Troubleshooting
+- **Monorepo Management**: See [README.md](../README.md) for workspace commands
 
 ## For AI Agents
 
