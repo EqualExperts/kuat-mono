@@ -288,6 +288,71 @@
     --tracking-wide: calc(var(--tracking-normal) + 0.025em);
     --tracking-wider: calc(var(--tracking-normal) + 0.05em);
     --tracking-widest: calc(var(--tracking-normal) + 0.1em);
+    
+    /* Brand color palettes - EE Blue */
+    --color-ee-blue-50: var(--ee-blue-50);
+    --color-ee-blue-100: var(--ee-blue-100);
+    --color-ee-blue-200: var(--ee-blue-200);
+    --color-ee-blue-300: var(--ee-blue-300);
+    --color-ee-blue-400: var(--ee-blue-400);
+    --color-ee-blue-500: var(--ee-blue-500);
+    --color-ee-blue-600: var(--ee-blue-600);
+    --color-ee-blue-700: var(--ee-blue-700);
+    --color-ee-blue-800: var(--ee-blue-800);
+    --color-ee-blue-900: var(--ee-blue-900);
+    --color-ee-blue-950: var(--ee-blue-950);
+
+    /* Brand color palettes - Tech Blue */
+    --color-tech-blue-50: var(--tech-blue-50);
+    --color-tech-blue-100: var(--tech-blue-100);
+    --color-tech-blue-200: var(--tech-blue-200);
+    --color-tech-blue-300: var(--tech-blue-300);
+    --color-tech-blue-400: var(--tech-blue-400);
+    --color-tech-blue-500: var(--tech-blue-500);
+    --color-tech-blue-600: var(--tech-blue-600);
+    --color-tech-blue-700: var(--tech-blue-700);
+    --color-tech-blue-800: var(--tech-blue-800);
+    --color-tech-blue-900: var(--tech-blue-900);
+    --color-tech-blue-950: var(--tech-blue-950);
+
+    /* Brand color palettes - Transform Teal */
+    --color-transform-teal-50: var(--transform-teal-50);
+    --color-transform-teal-100: var(--transform-teal-100);
+    --color-transform-teal-200: var(--transform-teal-200);
+    --color-transform-teal-300: var(--transform-teal-300);
+    --color-transform-teal-400: var(--transform-teal-400);
+    --color-transform-teal-500: var(--transform-teal-500);
+    --color-transform-teal-600: var(--transform-teal-600);
+    --color-transform-teal-700: var(--transform-teal-700);
+    --color-transform-teal-800: var(--transform-teal-800);
+    --color-transform-teal-900: var(--transform-teal-900);
+    --color-transform-teal-950: var(--transform-teal-950);
+
+    /* Brand color palettes - Equal Ember */
+    --color-equal-ember-50: var(--equal-ember-50);
+    --color-equal-ember-100: var(--equal-ember-100);
+    --color-equal-ember-200: var(--equal-ember-200);
+    --color-equal-ember-300: var(--equal-ember-300);
+    --color-equal-ember-400: var(--equal-ember-400);
+    --color-equal-ember-500: var(--equal-ember-500);
+    --color-equal-ember-600: var(--equal-ember-600);
+    --color-equal-ember-700: var(--equal-ember-700);
+    --color-equal-ember-800: var(--equal-ember-800);
+    --color-equal-ember-900: var(--equal-ember-900);
+    --color-equal-ember-950: var(--equal-ember-950);
+
+    /* Brand color aliases */
+    --color-brand-ee-blue: var(--brand-ee-blue);
+    --color-brand-tech-blue: var(--brand-tech-blue);
+    --color-brand-transform-teal: var(--brand-transform-teal);
+    --color-brand-equal-ember: var(--brand-equal-ember);
+    --color-brand-dark-data: var(--brand-dark-data);
+    --color-brand-the-cloud: var(--brand-the-cloud);
+    --color-brand-byte-white: var(--brand-byte-white);
+    --color-brand-ee-blue-accent: var(--brand-ee-blue-accent);
+
+    --color-black: var(--black);
+    --color-white: var(--white);
   }
   
   body {
