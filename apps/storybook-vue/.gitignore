@@ -1,0 +1,9 @@
+# Storybook build output
+storybook-static/
+
+# Logs
+*.log
+
+# Dependencies
+node_modules/
+

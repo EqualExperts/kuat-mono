@@ -7,8 +7,12 @@ A monorepo containing shared component libraries built with shadcn/ui (React) an
 ```
 packages/
 ├── kuat-core/     # Shared CSS variables and Tailwind configuration
-├── kuat-react/   # React component library using shadcn/ui
-└── kuat-vue/     # Vue component library using shadcn-vue
+├── kuat-react/    # React component library using shadcn/ui
+└── kuat-vue/      # Vue component library using shadcn-vue
+
+apps/
+├── storybook-react/  # Interactive component documentation for React
+└── storybook-vue/    # Interactive component documentation for Vue
 ```
 
 ## Getting Started
@@ -37,6 +41,22 @@ pnpm build
 pnpm lint
 ```
 
+### Component Development
+
+Use Storybook for interactive component development and documentation:
+
+```bash
+# Start React Storybook (http://localhost:6006)
+pnpm --filter storybook-react dev
+
+# Start Vue Storybook (http://localhost:6007)
+pnpm --filter storybook-vue dev
+
+# Build Storybook for deployment
+pnpm --filter storybook-react build
+pnpm --filter storybook-vue build
+```
+
 ## Packages
 
 ### @equal-experts/kuat-core
@@ -63,6 +83,7 @@ Vue component library built with shadcn-vue, Radix Vue primitives, and Tailwind 
 - **React**: shadcn/ui
 - **Vue**: shadcn-vue
 - **Build Tool**: Vite
+- **Documentation**: Storybook 8
 
 ## Documentation
 

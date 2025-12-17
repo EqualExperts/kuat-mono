@@ -1,0 +1,79 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# Equal Experts Kuat Design System - Vue
+
+Welcome to the Equal Experts Kuat Design System for Vue. This library provides a collection of accessible, customizable components built with shadcn-vue and Tailwind CSS.
+
+## Getting Started
+
+Install the package in your Vue application:
+
+```bash
+npm install @equal-experts/kuat-vue @equal-experts/kuat-core
+```
+
+## Setup
+
+Import the styles in your application's entry point:
+
+```typescript
+// main.ts
+import '@equal-experts/kuat-vue/styles';
+```
+
+Configure Tailwind CSS to extend from the Kuat configuration:
+
+```typescript
+// tailwind.config.ts
+import kuatConfig from '@equal-experts/kuat-core/tailwind.config';
+
+export default {
+  ...kuatConfig,
+  content: [
+    './src/**/*.{vue,js,ts,jsx,tsx}',
+    './node_modules/@equal-experts/kuat-vue/dist/**/*.js',
+  ],
+};
+```
+
+## Usage
+
+Import and use components:
+
+```vue
+<script setup lang="ts">
+import { Button } from '@equal-experts/kuat-vue';
+</script>
+
+<template>
+  <Button>Click me</Button>
+</template>
+```
+
+## Brand Colors
+
+The design system includes brand color palettes that can be used with Tailwind utilities:
+
+- **EE Blue**: `bg-ee-blue-500`, `text-ee-blue-700`, etc.
+- **Tech Blue**: `bg-tech-blue-500`, `text-tech-blue-600`, etc.
+- **Transform Teal**: `bg-transform-teal-500`, `border-transform-teal-400`, etc.
+- **Equal Ember**: `bg-equal-ember-500`, `text-equal-ember-700`, etc.
+
+Brand aliases are also available:
+- `bg-brand-ee-blue`
+- `bg-brand-tech-blue`
+- `bg-brand-transform-teal`
+- `bg-brand-equal-ember`
+
+## Components
+
+Browse the components in the sidebar to see examples, usage, and customization options.
+
+## Resources
+
+- [GitHub Repository](https://github.com/equal-experts/kuat)
+- [Documentation](../../README.md)
+- [shadcn-vue](https://www.shadcn-vue.com/)
+

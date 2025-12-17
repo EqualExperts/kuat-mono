@@ -1,0 +1,109 @@
+import type { Meta, StoryObj } from '@storybook/vue3';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from '@equal-experts/kuat-vue';
+
+const meta: Meta<typeof Accordion> = {
+  title: 'Components/Accordion',
+  component: Accordion,
+  tags: ['autodocs'],
+};
+
+export default meta;
+type Story = StoryObj<typeof Accordion>;
+
+export const Default: Story = {
+  render: () => ({
+    components: { Accordion, AccordionItem, AccordionTrigger, AccordionContent },
+    template: `
+      <Accordion type="single" collapsible class="w-full">
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Is it accessible?</AccordionTrigger>
+          <AccordionContent>
+            Yes. It adheres to the WAI-ARIA design pattern.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger>Is it styled?</AccordionTrigger>
+          <AccordionContent>
+            Yes. It comes with default styles that matches the other components aesthetic.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-3">
+          <AccordionTrigger>Is it animated?</AccordionTrigger>
+          <AccordionContent>
+            Yes. It's animated by default, but you can disable it if you prefer.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    `,
+  }),
+};
+
+export const Multiple: Story = {
+  render: () => ({
+    components: { Accordion, AccordionItem, AccordionTrigger, AccordionContent },
+    template: `
+      <Accordion type="multiple" class="w-full">
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Feature 1</AccordionTrigger>
+          <AccordionContent>
+            This accordion allows multiple items to be open at the same time.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger>Feature 2</AccordionTrigger>
+          <AccordionContent>
+            You can expand multiple sections simultaneously.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-3">
+          <AccordionTrigger>Feature 3</AccordionTrigger>
+          <AccordionContent>
+            Perfect for FAQs and feature lists.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    `,
+  }),
+};
+
+export const WithRichContent: Story = {
+  render: () => ({
+    components: { Accordion, AccordionItem, AccordionTrigger, AccordionContent },
+    template: `
+      <Accordion type="single" collapsible class="w-full">
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Getting Started</AccordionTrigger>
+          <AccordionContent>
+            <div class="space-y-2">
+              <p>Follow these steps to get started:</p>
+              <ol class="list-decimal list-inside space-y-1">
+                <li>Install the package</li>
+                <li>Import the components</li>
+                <li>Start building</li>
+              </ol>
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger>Advanced Usage</AccordionTrigger>
+          <AccordionContent>
+            <div class="space-y-2">
+              <p>For advanced use cases, you can:</p>
+              <ul class="list-disc list-inside space-y-1">
+                <li>Customize with Tailwind classes</li>
+                <li>Use with form validation</li>
+                <li>Integrate with state management</li>
+              </ul>
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    `,
+  }),
+};
+
