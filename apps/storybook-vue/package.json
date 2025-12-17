@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "copy-docs": "echo 'No docs to copy for storybook-vue'",
     "dev": "storybook dev -p 6007",
     "build": "storybook build",
     "build-storybook": "storybook build",

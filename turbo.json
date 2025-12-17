@@ -6,7 +6,7 @@
     },
     "build": {
       "dependsOn": ["^build", "copy-docs"],
-      "outputs": ["dist/**", "docs/**", ".next/**", "!.next/cache/**"]
+      "outputs": ["dist/**", "docs/**", "storybook-static/**", ".next/**", "!.next/cache/**"]
     },
     "dev": {
       "dependsOn": ["^build"],

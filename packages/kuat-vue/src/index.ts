@@ -24,4 +24,6 @@ export {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./components/ui/alert-dialog";
+export { Badge, badgeVariants } from "./components/ui/badge";
+export type { BadgeVariants } from "./components/ui/badge";
 

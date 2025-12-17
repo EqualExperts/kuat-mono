@@ -35,7 +35,6 @@
   },
   "scripts": {
     "copy-docs": "node scripts/copy-docs.js",
-    "prebuild": "pnpm copy-docs",
     "build": "vite build",
     "dev": "vite build --watch",
     "lint": "eslint . --max-warnings 0"
