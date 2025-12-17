@@ -96,3 +96,28 @@ export const WithBrandColors: Story = {
   ),
 };
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <div className="flex gap-4 flex-wrap items-center">
+        <Button variant="default">Default</Button>
+        <Button variant="destructive">Destructive</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="link">Link</Button>
+      </div>
+      <div className="flex gap-4 flex-wrap items-center">
+        <Button size="sm">Small</Button>
+        <Button size="default">Default Size</Button>
+        <Button size="lg">Large</Button>
+        <Button size="icon">→</Button>
+      </div>
+      <div className="flex gap-4 flex-wrap items-center">
+        <Button disabled>Disabled</Button>
+        <Button variant="outline" disabled>Disabled Outline</Button>
+      </div>
+    </div>
+  ),
+};
+
