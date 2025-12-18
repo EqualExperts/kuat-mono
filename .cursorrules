@@ -13,10 +13,24 @@ Comprehensive AI-friendly documentation is available in `docs/agent/`:
 - **Typography**: `docs/agent/design/typography.md` - Font scales (Lexend, Lora, JetBrains Mono) and text styling
 - **Spacing**: `docs/agent/design/spacing.md` - 8-point grid system and spacing patterns
 - **Borders**: `docs/agent/design/borders.md` - Border usage and border radius specifications
+- **Logo**: `docs/agent/design/logo.md` - Equal Experts logo usage and brand guidelines
+- **Layouts**: `docs/agent/design/layouts.md` - Layout templates for marketing and product applications
 - **Component Guidelines**: `docs/agent/technical/component-guidelines.md` - Component development patterns
 - **Content Guidelines**: `docs/agent/content/` - Marketing, sales, and product content writing guidelines
 
 **Always reference these docs when making design decisions or creating content.**
+
+## Layout Templates
+When creating new applications or layouts, **always** follow the layout templates in `docs/agent/design/layouts.md`:
+- **Marketing Layouts**: Use for public-facing websites, landing pages, and marketing content
+- **Product/App Layouts**: Use for internal tools, dashboards, and application interfaces
+  - Choose **dark horizontal navigation** for simpler apps (5-7 nav items)
+  - Choose **dark sidebar navigation** for complex apps (hierarchical navigation)
+- **Logo Placement**: Always include Equal Experts logo correctly placed:
+  - Marketing: Full-color logo on light backgrounds
+  - Product/App: White monochrome logo on dark navigation (Tech Blue)
+- **Color Tokens**: Use sidebar color tokens (`bg-sidebar`, `text-sidebar-foreground`, etc.) for dark navigation
+- **Consistency**: All EE applications must follow these layout templates for brand consistency
 
 ## Component Development
 - All components use Tailwind CSS v4

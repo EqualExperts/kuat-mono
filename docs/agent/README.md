@@ -19,6 +19,8 @@ Design tokens, visual guidelines, and design language documentation:
 - **[Typography](./design/typography.md)** - Font families, typography scale, and text styling
 - **[Spacing](./design/spacing.md)** - Spacing scale, utilities, and spacing patterns
 - **[Borders](./design/borders.md)** - Border usage, specifications, and border radius guidelines
+- **[Logo](./design/logo.md)** - Equal Experts logo usage, specifications, and brand guidelines
+- **[Layouts](./design/layouts.md)** - Layout templates for marketing and product applications
 
 ### 📝 Content
 Content and writing guidelines:
@@ -39,6 +41,7 @@ Technical guidelines and coding standards:
 1. Start with [Colors Guide](./design/colours.md) for brand colors and color tokens
 2. See [Typography](./design/typography.md) for text color usage
 3. See [Borders](./design/borders.md) for border color tokens
+4. See [Logo](./design/logo.md) for logo color variants and usage
 
 ### Working with Typography
 1. See [Typography Guide](./design/typography.md) for complete typography documentation
@@ -47,6 +50,12 @@ Technical guidelines and coding standards:
 ### Working with Spacing
 1. See [Spacing Guide](./design/spacing.md) for spacing scale and patterns
 2. See [Borders Guide](./design/borders.md) for spacing vs. borders guidance
+
+### Creating Application Layouts
+1. See [Layouts Guide](./design/layouts.md) to choose marketing vs. product layout
+2. See [Logo Guide](./design/logo.md) for correct logo placement
+3. Use sidebar color tokens for dark navigation (see [Colors Guide](./design/colours.md))
+4. Follow provided React/Vue templates in [Layouts Guide](./design/layouts.md)
 
 ### Working with Components
 1. Start with [Component Guidelines](./technical/component-guidelines.md) for development patterns
@@ -63,6 +72,11 @@ Technical guidelines and coding standards:
 1. See [Design System Overview](./design/design-system.md) for token structure
 2. See [Colors](./design/colours.md), [Typography](./design/typography.md), [Spacing](./design/spacing.md), or [Borders](./design/borders.md) for specific token documentation
 3. See [Usage Guide](./usage-guide.md) for how to modify tokens
+
+### Working with Brand Assets
+1. See [Logo Guide](./design/logo.md) for logo usage, specifications, and brand guidelines
+2. Always use official logo assets—never recreate or modify
+3. Follow minimum size and clear space requirements
 
 ## File Locations
 

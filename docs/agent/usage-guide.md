@@ -174,6 +174,27 @@ theme: {
 }
 ```
 
+## Design System Documentation
+
+### Design Tokens
+- **[Colors](./design/colours.md)** - Brand colors and color tokens
+- **[Typography](./design/typography.md)** - Font families and text styling
+- **[Spacing](./design/spacing.md)** - Spacing scale and patterns
+- **[Borders](./design/borders.md)** - Border usage and specifications
+- **[Logo](./design/logo.md)** - Equal Experts logo usage and brand guidelines
+- **[Layouts](./design/layouts.md)** - Layout templates for marketing and product applications
+
+### Complete Documentation
+- **[Design System Overview](./design/design-system.md)** - Complete design system guide
+- **[Component Guidelines](./technical/component-guidelines.md)** - Component development patterns
+
+### Creating New Applications
+When creating a new Equal Experts application:
+1. **Choose layout type**: See [Layouts Guide](./design/layouts.md) to determine marketing vs. product layout
+2. **Include logo**: Always place Equal Experts logo correctly (see [Logo Guide](./design/logo.md))
+3. **Use design tokens**: Reference [Colors](./design/colours.md) and [Spacing](./design/spacing.md) guides
+4. **Follow templates**: Use provided React/Vue layout templates from [Layouts Guide](./design/layouts.md)
+
 ## Resources
 
 - [shadcn/ui Documentation](https://ui.shadcn.com)
