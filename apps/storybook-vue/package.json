@@ -13,6 +13,7 @@
   "dependencies": {
     "@equal-experts/kuat-vue": "workspace:*",
     "@equal-experts/kuat-core": "workspace:*",
+    "lucide-vue-next": "^0.344.0",
     "vue": "^3.5.13"
   },
   "devDependencies": {

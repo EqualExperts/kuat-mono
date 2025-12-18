@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { Badge } from "@equal-experts/kuat-vue";
+import { BadgeCheckIcon } from "lucide-vue-next";
 
 const meta: Meta<typeof Badge> = {
   title: "Components/Badge",
@@ -61,11 +62,13 @@ export const AllVariants: Story = {
   render: () => ({
     components: { Badge },
     template: `
-      <div class="flex flex-wrap gap-4">
-        <Badge>Default</Badge>
-        <Badge variant="secondary">Secondary</Badge>
-        <Badge variant="destructive">Destructive</Badge>
-        <Badge variant="outline">Outline</Badge>
+      <div class="flex flex-col items-center gap-2">
+        <div class="flex w-full flex-wrap gap-2">
+          <Badge>Badge</Badge>
+          <Badge variant="secondary">Secondary</Badge>
+          <Badge variant="destructive">Destructive</Badge>
+          <Badge variant="outline">Outline</Badge>
+        </div>
       </div>
     `,
   }),
@@ -73,6 +76,58 @@ export const AllVariants: Story = {
     docs: {
       description: {
         story: "Display all badge variants together for comparison.",
+      },
+    },
+  },
+};
+
+export const WithIcons: Story = {
+  render: () => ({
+    components: { Badge, BadgeCheckIcon },
+    template: `
+      <div class="flex flex-col items-center gap-2">
+        <div class="flex w-full flex-wrap gap-2">
+          <Badge variant="secondary" class="bg-blue-500 text-white dark:bg-blue-600">
+            <BadgeCheckIcon />
+            Verified
+          </Badge>
+          <Badge class="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">
+            8
+          </Badge>
+          <Badge class="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums" variant="destructive">
+            99
+          </Badge>
+          <Badge class="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums" variant="outline">
+            20+
+          </Badge>
+        </div>
+      </div>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story: "Badges with icons and numeric indicators. Icons can be added as children, and badges can be styled as circular indicators.",
+      },
+    },
+  },
+};
+
+export const AsChild: Story = {
+  render: () => ({
+    components: { Badge },
+    template: `
+      <div class="flex flex-wrap gap-2">
+        <Badge as-child>
+          <a href="#" class="hover:underline">Badge Link</a>
+        </Badge>
+      </div>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story: "Use the as-child prop to make another component look like a badge. Here's an example of a link that looks like a badge.",
       },
     },
   },
