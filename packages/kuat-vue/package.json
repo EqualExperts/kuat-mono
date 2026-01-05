@@ -10,6 +10,22 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
+    "./button": {
+      "import": "./dist/button.js",
+      "types": "./dist/button.d.ts"
+    },
+    "./accordion": {
+      "import": "./dist/accordion.js",
+      "types": "./dist/accordion.d.ts"
+    },
+    "./alert-dialog": {
+      "import": "./dist/alert-dialog.js",
+      "types": "./dist/alert-dialog.d.ts"
+    },
+    "./badge": {
+      "import": "./dist/badge.js",
+      "types": "./dist/badge.d.ts"
+    },
     "./styles": "./dist/style.css",
     "./docs/*": "./docs/*"
   },
@@ -59,7 +75,7 @@
     "vue-tsc": "^1.8.27"
   },
   "peerDependencies": {
-    "lucide-vue-next": "^0.344.0",
+    "lucide-vue-next": "^0.344.0 || >=0.400.0",
     "radix-vue": "^1.9.0",
     "reka-ui": "^2.6.1",
     "vue": "^3.4.0"

@@ -42,6 +42,42 @@ pnpm add lucide-react
 
 **Note:** `@equal-experts/kuat-core` is bundled with this package - you don't need to install it separately. Only install the Radix UI packages for the components you actually use.
 
+### Recommended: Use Subpath Imports
+
+To avoid installing all peer dependencies when you only need specific components, use **subpath imports**. This allows you to import only the components you need and only install their required peer dependencies.
+
+**Example: Only using Button**
+
+```bash
+# Only install peer dependencies for Button
+pnpm add react react-dom @radix-ui/react-slot
+```
+
+```tsx
+// Import from subpath - only Button and its dependencies are required
+import { Button } from "@equal-experts/kuat-react/button";
+```
+
+**Component Peer Dependencies:**
+
+- **Button**: `react`, `react-dom`, `@radix-ui/react-slot`
+- **Accordion**: `react`, `react-dom`, `@radix-ui/react-accordion`, `lucide-react`
+- **AlertDialog**: `react`, `react-dom`, `@radix-ui/react-alert-dialog`
+- **Badge**: `react`, `react-dom` (no additional Radix UI dependencies)
+
+**Using Main Export (All Components):**
+
+If you import from the main package, you'll need all peer dependencies:
+
+```tsx
+// This requires ALL peer dependencies to be installed
+import { Button, Accordion, AlertDialog } from "@equal-experts/kuat-react";
+```
+
+**lucide-react Version Support:**
+
+The package supports `lucide-react` versions `^0.344.0 || >=0.400.0`, including the latest versions (0.562.0+).
+
 ---
 
 ## Setup
@@ -148,14 +184,30 @@ If you want to use different fonts or load them differently, you can override th
 
 ### Import Components
 
+You can import components in two ways:
+
+**Option 1: Subpath Import (Recommended for single components)**
+
 ```typescript
+// Import only Button - only requires Button's peer dependencies
+import { Button } from "@equal-experts/kuat-react/button";
+```
+
+**Option 2: Main Package Import**
+
+```typescript
+// Import from main package - requires all peer dependencies
 import { Button } from "@equal-experts/kuat-react";
 ```
 
 ### Use in Your App
 
 ```tsx
-import { Button } from "@equal-experts/kuat-react";
+// Recommended: Subpath import
+import { Button } from "@equal-experts/kuat-react/button";
+
+// Or: Main package import
+// import { Button } from "@equal-experts/kuat-react";
 
 function App() {
   return (

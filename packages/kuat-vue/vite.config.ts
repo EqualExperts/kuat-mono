@@ -20,10 +20,15 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
-      name: "KuatVue",
+      entry: {
+        index: resolve(__dirname, "src/index.ts"),
+        button: resolve(__dirname, "src/button.ts"),
+        accordion: resolve(__dirname, "src/accordion.ts"),
+        "alert-dialog": resolve(__dirname, "src/alert-dialog.ts"),
+        badge: resolve(__dirname, "src/badge.ts"),
+      },
       formats: ["es"],
-      fileName: "index",
+      fileName: (format, entryName) => `${entryName}.js`,
     },
     rollupOptions: {
       external: [

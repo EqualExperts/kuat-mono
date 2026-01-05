@@ -39,6 +39,46 @@ pnpm add lucide-vue-next
 
 **Note:** `@equal-experts/kuat-core` is bundled with this package - you don't need to install it separately.
 
+### Recommended: Use Subpath Imports
+
+To avoid installing all peer dependencies when you only need specific components, use **subpath imports**. This allows you to import only the components you need and only install their required peer dependencies.
+
+**Example: Only using Button**
+
+```bash
+# Only install peer dependencies for Button
+pnpm add vue radix-vue reka-ui
+```
+
+```vue
+<script setup>
+// Import from subpath - only Button and its dependencies are required
+import { Button } from "@equal-experts/kuat-vue/button";
+</script>
+```
+
+**Component Peer Dependencies:**
+
+- **Button**: `vue`, `radix-vue`, `reka-ui`
+- **Accordion**: `vue`, `radix-vue`, `reka-ui`, `lucide-vue-next`
+- **AlertDialog**: `vue`, `radix-vue`, `reka-ui`
+- **Badge**: `vue`, `radix-vue`, `reka-ui`
+
+**Using Main Export (All Components):**
+
+If you import from the main package, you'll need all peer dependencies:
+
+```vue
+<script setup>
+// This requires ALL peer dependencies to be installed
+import { Button, Accordion, AlertDialog } from "@equal-experts/kuat-vue";
+</script>
+```
+
+**lucide-vue-next Version Support:**
+
+The package supports `lucide-vue-next` versions `^0.344.0 || >=0.400.0`, including the latest versions.
+
 ---
 
 ## Setup
@@ -149,7 +189,19 @@ If you want to use different fonts or load them differently, you can override th
 
 ### Import Components
 
+You can import components in two ways:
+
+**Option 1: Subpath Import (Recommended for single components)**
+
 ```typescript
+// Import only Button - only requires Button's peer dependencies
+import { Button } from "@equal-experts/kuat-vue/button";
+```
+
+**Option 2: Main Package Import**
+
+```typescript
+// Import from main package - requires all peer dependencies
 import { Button } from "@equal-experts/kuat-vue";
 ```
 
@@ -165,7 +217,11 @@ import { Button } from "@equal-experts/kuat-vue";
 </template>
 
 <script setup lang="ts">
-import { Button } from "@equal-experts/kuat-vue";
+// Recommended: Subpath import
+import { Button } from "@equal-experts/kuat-vue/button";
+
+// Or: Main package import
+// import { Button } from "@equal-experts/kuat-vue";
 </script>
 ```
 

@@ -10,6 +10,22 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
+    "./button": {
+      "import": "./dist/button.js",
+      "types": "./dist/button.d.ts"
+    },
+    "./accordion": {
+      "import": "./dist/accordion.js",
+      "types": "./dist/accordion.d.ts"
+    },
+    "./alert-dialog": {
+      "import": "./dist/alert-dialog.js",
+      "types": "./dist/alert-dialog.d.ts"
+    },
+    "./badge": {
+      "import": "./dist/badge.js",
+      "types": "./dist/badge.d.ts"
+    },
     "./styles": "./dist/style.css",
     "./docs/*": "./docs/*"
   },
@@ -85,6 +101,6 @@
     "@radix-ui/react-toggle": "^1.0.3",
     "@radix-ui/react-toggle-group": "^1.0.3",
     "@radix-ui/react-tooltip": "^1.0.7",
-    "lucide-react": "^0.344.0"
+    "lucide-react": "^0.344.0 || >=0.400.0"
   }
 }
