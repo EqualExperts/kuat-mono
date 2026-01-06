@@ -28,4 +28,10 @@ export {
 } from "./components/ui/alert-dialog";
 export { Badge, badgeVariants } from "./components/ui/badge";
 export type { BadgeProps } from "./components/ui/badge";
+export {
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+  buttonGroupVariants,
+} from "./components/ui/button-group";
 

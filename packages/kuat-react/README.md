@@ -180,6 +180,70 @@ If you want to use different fonts or load them differently, you can override th
 
 ---
 
+## AI Agent Documentation Setup
+
+The Kuat Design System includes AI-friendly documentation optimized for LLM consumption. This documentation helps AI assistants understand the design system, generate code that follows design patterns, and maintain brand consistency.
+
+### Setup Documentation
+
+To make the agent documentation available in your repository for LLM context (e.g., Cursor), run the setup script:
+
+```bash
+# Using pnpm exec (recommended)
+pnpm exec @equal-experts/kuat-react setup-docs
+
+# Using npm exec
+npm exec @equal-experts/kuat-react setup-docs
+
+# Or if you have the package installed locally
+cd node_modules/@equal-experts/kuat-react && pnpm setup-docs
+```
+
+This will copy the agent documentation to `.cursor/rules/kuat-docs/` in your repository root.
+
+### What Gets Copied
+
+The setup script copies the following documentation:
+
+- **Design System** (`design/`) - Colors, typography, spacing, borders, layouts, logo usage
+- **Component Guidelines** (`components/`) - Component development patterns and best practices
+- **Content Guidelines** (`content/`) - Content writing guidelines for marketing, sales, and product interfaces
+
+### Using the Documentation
+
+Once copied, you can:
+
+1. **Reference in Cursor Rules**: Add references to `.cursor/rules/kuat-docs/` in your `.cursorrules` file
+2. **LLM Context**: The documentation is optimized for LLM consumption and provides context for:
+   - Understanding the design system
+   - Using components correctly
+   - Maintaining brand consistency
+   - Writing appropriate content
+
+### Updating Documentation
+
+After installing a new version of `@equal-experts/kuat-react`, run the setup script again to update the documentation:
+
+```bash
+pnpm exec @equal-experts/kuat-react setup-docs
+```
+
+The script will automatically clean and replace the existing documentation.
+
+### Documentation Location
+
+The documentation is copied to:
+```
+.cursor/rules/kuat-docs/
+```
+
+This location is chosen because:
+- It's within the `.cursor/` directory (typically gitignored)
+- It's in the `rules/` subdirectory where Cursor looks for context files
+- It's clearly namespaced as `kuat-docs/` to avoid conflicts
+
+---
+
 ## Basic Usage
 
 ### Import Components
