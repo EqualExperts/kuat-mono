@@ -230,7 +230,7 @@ importers:
         specifier: ^2.1.0
         version: 2.1.1
       lucide-react:
-        specifier: ^0.344.0
+        specifier: ^0.344.0 || >=0.400.0
         version: 0.344.0(react@18.3.1)
       react:
         specifier: ^18.2.0
@@ -288,14 +288,14 @@ importers:
         specifier: ^2.1.0
         version: 2.1.1
       lucide-vue-next:
-        specifier: ^0.344.0
+        specifier: ^0.344.0 || >=0.400.0
         version: 0.344.0(vue@3.5.25)
       radix-vue:
         specifier: ^1.9.0
         version: 1.9.17(vue@3.5.25)
       reka-ui:
         specifier: ^2.6.1
-        version: 2.6.1(typescript@5.9.3)(vue@3.5.25)
+        version: 2.7.0(typescript@5.9.3)(vue@3.5.25)
       tailwind-merge:
         specifier: ^2.2.1
         version: 2.6.0
@@ -3428,7 +3428,7 @@ packages:
       ts-dedent: 2.2.0
       type-fest: 2.19.0
       vue: 3.5.25(typescript@5.9.3)
-      vue-component-type-helpers: 3.1.8
+      vue-component-type-helpers: 3.2.1
     dev: true
 
   /@swc/helpers@0.5.17:
@@ -7257,6 +7257,28 @@ packages:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - typescript
+    dev: true
+
+  /reka-ui@2.7.0(typescript@5.9.3)(vue@3.5.25):
+    resolution: {integrity: sha512-m+XmxQN2xtFzBP3OAdIafKq7C8OETo2fqfxcIIxYmNN2Ch3r5oAf6yEYCIJg5tL/yJU2mHqF70dCCekUkrAnXA==}
+    peerDependencies:
+      vue: '>= 3.2.0'
+    dependencies:
+      '@floating-ui/dom': 1.7.4
+      '@floating-ui/vue': 1.1.9(vue@3.5.25)
+      '@internationalized/date': 3.10.0
+      '@internationalized/number': 3.6.5
+      '@tanstack/vue-virtual': 3.13.13(vue@3.5.25)
+      '@vueuse/core': 12.8.2(typescript@5.9.3)
+      '@vueuse/shared': 12.8.2(typescript@5.9.3)
+      aria-hidden: 1.2.6
+      defu: 6.1.4
+      ohash: 2.0.11
+      vue: 3.5.25(typescript@5.9.3)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - typescript
+    dev: false
 
   /require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
@@ -8339,8 +8361,8 @@ packages:
     resolution: {integrity: sha512-YbGqHZ5/eW4SnkPNR44mKVc6ZKQoRs/Rux1sxC6rdwXb4qpbOSYfDr9DsTHolOTGmIKgM9j141mZbBeg05R1pw==}
     dev: true
 
-  /vue-component-type-helpers@3.1.8:
-    resolution: {integrity: sha512-oaowlmEM6BaYY+8o+9D9cuzxpWQWHqHTMKakMxXu0E+UCIOMTljyIPO15jcnaCwJtZu/zWDotK7mOIHvWD9mcw==}
+  /vue-component-type-helpers@3.2.1:
+    resolution: {integrity: sha512-gKV7XOkQl4urSuLHNY1tnVQf7wVgtb/mKbRyxSLWGZUY9RK7aDPhBenTjm+i8ZFe0zC2PZeHMPtOZXZfyaFOzQ==}
     dev: true
 
   /vue-demi@0.14.10(vue@3.5.25):

@@ -26,6 +26,7 @@ export default defineConfig({
         accordion: resolve(__dirname, "src/accordion.ts"),
         "alert-dialog": resolve(__dirname, "src/alert-dialog.ts"),
         badge: resolve(__dirname, "src/badge.ts"),
+        "button-group": resolve(__dirname, "src/button-group.ts"),
       },
       formats: ["es"],
       fileName: (format, entryName) => `${entryName}.js`,

@@ -26,4 +26,11 @@ export {
 } from "./components/ui/alert-dialog";
 export { Badge, badgeVariants } from "./components/ui/badge";
 export type { BadgeVariants } from "./components/ui/badge";
+export {
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+  buttonGroupVariants,
+} from "./components/ui/button-group";
+export type { ButtonGroupVariants } from "./components/ui/button-group";
 
