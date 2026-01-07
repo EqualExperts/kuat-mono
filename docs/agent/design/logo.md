@@ -62,31 +62,42 @@ The logo maintains a specific aspect ratio. **Never distort or stretch** the log
 
 ## Color Variants
 
-### Primary (Full Color) - Default
+### Primary (Default) Logos
 
-The full-color logo is the **preferred and default** version for all digital applications.
+The primary logos are the **preferred and default** versions for all digital applications. Choose the correct logo based on background color to ensure contrast ratio compliance.
 
-- **Brand mark**: Blue (#1A9FD9 or similar)
-- **Wordmark**: Dark gray/charcoal
-- **Background**: White or light-colored backgrounds
+**Primary Logo Files:**
+- **[logo-colour.svg](https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-colour.svg)** - Full color logo with blue brand mark and dark wordmark
+  - **Use on**: Light backgrounds (white, light gray, light-colored backgrounds)
+  - **Brand mark**: Blue (#1A9FD9 or similar)
+  - **Wordmark**: Dark gray/charcoal
+  - **Usage**: Default choice for most digital interfaces
 
-**Usage:**
-- Use by default in all digital interfaces
-- Works on white, light gray, and light-colored backgrounds
-- Provides maximum brand recognition
+- **[logo-white-text.svg](https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-white-text.svg)** - Full color logo with blue brand mark and white wordmark
+  - **Use on**: Dark backgrounds that have enough contrast with the blue brand mark
+  - **Brand mark**: Blue (#1A9FD9 or similar)
+  - **Wordmark**: White
+  - **Usage**: Preferred option for dark backgrounds when the blue brand mark maintains sufficient contrast. If there is not enough copntrast, use a monchrome version.
 
-### Monochrome Versions
+**Key Principle:** Always prefer primary logos over monochrome versions. Primary logos provide maximum brand recognition and should be used whenever possible.
 
-White and black monochrome versions are available for specific use cases.
+### Monochrome Versions (Secondary)
+
+Monochrome versions are **secondary** and should only be used when necessary. These are available for specific use cases where primary logos cannot be used.
 
 **Use monochrome versions only when:**
-1. **Contrast requirements**: Background colors would compromise legibility of the full-color version
+1. **Contrast requirements**: Background colors would compromise legibility of the primary logo versions
 2. **Partner requests**: Partner organizations specifically request monochrome usage
 3. **Technical limitations**: Platform or technical constraints prevent full-color usage
 
-**Monochrome Usage Guidelines:**
-- **White logo**: Use on dark backgrounds (dark blue, black, dark gray)
-- **Black logo**: Use on very light backgrounds when full-color isn't available
+**Monochrome Logo Files:**
+- **[logo-monochrome-white.svg](https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-monochrome-white.svg)** - White monochrome logo
+  - **Use on**: Dark backgrounds (dark blue, black, dark gray) when primary logo contrast is insufficient
+  - **Usage**: Secondary option for dark backgrounds
+
+- **[logo-monochrome-black.svg](https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-monochrome-black.svg)** - Black monochrome logo
+  - **Use on**: Very light backgrounds when primary logo isn't available and monochrome is required
+  - **Usage**: Secondary option for light backgrounds when monochrome is specifically needed
 
 ---
 
@@ -104,14 +115,20 @@ The complete logo with both brand mark and wordmark is the **standard and prefer
 
 ### Brand Mark Only
 
-The brand mark (bracket-equals symbol only, without text) should **only** be used when:
+The brand mark is the Equal Experts logo without the company name (bracket-equals symbol only, without text). Brand mark variants should **only** be used when:
 
 1. **Space constraints**: Space is severely limited (e.g., favicons, small icons)
 2. **Shape requirements**: The logo must fit within a square or circular shape
 3. **Decorative use**: Used as a decorative design element in presentations
 4. **Context clarity**: The context makes it clear this represents Equal Experts
 
-**Never use the wordmark alone** (text without the brand mark).
+**Brand Mark Files:**
+All brand mark variants are available in the [GitHub brand-assets repository](https://github.com/EqualExperts/brand-assets/tree/master/logo) with filenames starting with `brand-mark-...`. 
+These include:
+- [White in a blue circle](https://github.com/EqualExperts/brand-assets/blob/master/logo/brand-mark-blue-circle.svg)
+- [Blue in a white circle](https://github.com/EqualExperts/brand-assets/blob/master/logo/brand-mark-blue-over-white-circle.svg)
+- [Blue without circle](https://github.com/EqualExperts/brand-assets/blob/master/logo/brand-mark-blue.svg)
+- [White without circle](https://github.com/EqualExperts/brand-assets/blob/master/logo/brand-mark-monochrome-white.svg)
 
 ---
 
@@ -135,8 +152,9 @@ The brand mark (bracket-equals symbol only, without text) should **only** be use
    - ✅ Avoid placing in corners or edges without adequate padding
 
 4. **Choose appropriate variants**
-   - ✅ Use full-color version by default
-   - ✅ Use monochrome versions only when necessary for contrast
+   - ✅ Use primary logos (`logo-colour.svg` or `logo-white-text.svg`) by default
+   - ✅ Choose logo based on background color to ensure contrast compliance
+   - ✅ Use monochrome versions only when necessary for contrast or when specifically requested
    - ✅ Assess background contrast before choosing variant
 
 5. **Ensure accessibility**
@@ -179,20 +197,31 @@ The brand mark (bracket-equals symbol only, without text) should **only** be use
 ### React Components
 
 ```tsx
-// Header with full-color logo
+// Header with primary logo on light background
 <header className="bg-white p-6">
   <img 
-    src="/logo.svg" 
+    src="https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-colour.svg" 
     alt="Equal Experts" 
     className="w-[120px] min-w-[100px] h-auto" 
   />
 </header>
 
-// Footer with logo (adequate spacing)
+// Footer with primary logo on dark background (white text version)
 <footer className="bg-slate-900 p-8">
   <div className="p-4"> {/* Clear space */}
     <img 
-      src="/logo-white.svg" 
+      src="https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-white-text.svg" 
+      alt="Equal Experts" 
+      className="w-[100px] min-w-[100px] h-auto" 
+    />
+  </div>
+</footer>
+
+// Monochrome logo on dark background (when primary logo contrast is insufficient)
+<footer className="bg-black p-8">
+  <div className="p-4">
+    <img 
+      src="https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-monochrome-white.svg" 
       alt="Equal Experts" 
       className="w-[100px] min-w-[100px] h-auto" 
     />
@@ -202,7 +231,7 @@ The brand mark (bracket-equals symbol only, without text) should **only** be use
 // Brand mark only (when space is limited)
 <div className="w-8 h-8">
   <img 
-    src="/logo-mark-only.svg" 
+    src="https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/brand-mark-colour.svg" 
     alt="Equal Experts" 
     className="w-full h-full" 
   />
@@ -212,20 +241,31 @@ The brand mark (bracket-equals symbol only, without text) should **only** be use
 ### Vue Components
 
 ```vue
-<!-- Header with full-color logo -->
+<!-- Header with primary logo on light background -->
 <header class="bg-white p-6">
   <img 
-    src="/logo.svg" 
+    src="https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-colour.svg" 
     alt="Equal Experts" 
     class="w-[120px] min-w-[100px] h-auto" 
   />
 </header>
 
-<!-- Footer with logo (adequate spacing) -->
+<!-- Footer with primary logo on dark background (white text version) -->
 <footer class="bg-slate-900 p-8">
   <div class="p-4"> <!-- Clear space -->
     <img 
-      src="/logo-white.svg" 
+      src="https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-white-text.svg" 
+      alt="Equal Experts" 
+      class="w-[100px] min-w-[100px] h-auto" 
+    />
+  </div>
+</footer>
+
+<!-- Monochrome logo on dark background (when primary logo contrast is insufficient) -->
+<footer class="bg-black p-8">
+  <div class="p-4">
+    <img 
+      src="https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-monochrome-white.svg" 
       alt="Equal Experts" 
       class="w-[100px] min-w-[100px] h-auto" 
     />
@@ -235,7 +275,7 @@ The brand mark (bracket-equals symbol only, without text) should **only** be use
 <!-- Brand mark only (when space is limited) -->
 <div class="w-8 h-8">
   <img 
-    src="/logo-mark-only.svg" 
+    src="https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/brand-mark-colour.svg" 
     alt="Equal Experts" 
     class="w-full h-full" 
   />
@@ -266,19 +306,23 @@ The brand mark (bracket-equals symbol only, without text) should **only** be use
 ### Background Considerations
 
 1. **Light Backgrounds**
-   - Use full-color logo (default)
+   - Use **[logo-colour.svg](https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-colour.svg)** (primary logo with dark text)
    - Ensure adequate contrast
    - Test readability
+   - Only use monochrome black if specifically required
 
 2. **Dark Backgrounds**
-   - Use white monochrome version
-   - Verify contrast meets accessibility standards
+   - **First choice**: Use **[logo-white-text.svg](https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-white-text.svg)** (primary logo with white text) when the blue brand mark maintains sufficient contrast
+   - **Secondary choice**: Use **[logo-monochrome-white.svg](https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-monochrome-white.svg)** (monochrome white) when primary logo contrast is insufficient
+   - Verify contrast meets accessibility standards (WCAG AA)
    - Test in both light and dark modes
 
 3. **Colored Backgrounds**
    - Assess contrast before choosing variant
-   - Use monochrome if full-color lacks contrast
+   - Prefer primary logos (`logo-colour.svg` or `logo-white-text.svg`) when possible
+   - Use monochrome versions only when primary logos lack sufficient contrast
    - Never compromise legibility
+   - Always ensure contrast ratio compliance
 
 ### Size Considerations
 
@@ -303,11 +347,14 @@ The brand mark (bracket-equals symbol only, without text) should **only** be use
 
 ### Contrast Requirements
 
-The logo must maintain sufficient contrast against its background:
+The logo must maintain sufficient contrast against its background. Choose the correct logo variant to ensure WCAG AA contrast compliance:
 
-- **Full-color logo**: Works on white and light backgrounds
-- **White monochrome**: Use on dark backgrounds (WCAG AA contrast)
-- **Black monochrome**: Use on very light backgrounds
+- **Primary logos**: 
+  - `logo-colour.svg` - Works on white and light backgrounds
+  - `logo-white-text.svg` - Works on dark backgrounds when blue brand mark maintains sufficient contrast
+- **Monochrome logos** (secondary, use only when necessary):
+  - `logo-monochrome-white.svg` - Use on dark backgrounds when primary logo contrast is insufficient (WCAG AA contrast)
+  - `logo-monochrome-black.svg` - Use on very light backgrounds when monochrome is specifically required
 
 ### Alt Text
 
@@ -333,15 +380,39 @@ Always provide descriptive alt text for logo images:
 
 ### Official Logo Assets
 
-- **Primary Logo (SVG)**: [Equal Experts Logo](https://www.equalexperts.com/wp-content/uploads/2024/10/2024-Logo.svg)
-- **Brand Guidelines**: Refer to official Equal Experts brand guidelines for complete specifications
+All logo files are publicly available in the [Equal Experts brand-assets GitHub repository](https://github.com/EqualExperts/brand-assets/tree/master/logo).
+
+#### Primary Logos (Default)
+
+- **[logo-colour.svg](https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-colour.svg)** - Full color logo with blue brand mark and dark wordmark (for light backgrounds)
+- **[logo-white-text.svg](https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-white-text.svg)** - Full color logo with blue brand mark and white wordmark (for dark backgrounds)
+
+#### Monochrome Logos (Secondary)
+
+- **[logo-monochrome-white.svg](https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-monochrome-white.svg)** - White monochrome logo (for dark backgrounds when primary logo contrast is insufficient)
+- **[logo-monochrome-black.svg](https://raw.githubusercontent.com/EqualExperts/brand-assets/master/logo/logo-monochrome-black.svg)** - Black monochrome logo (for light backgrounds when monochrome is specifically required)
+
+#### Brand Marks
+
+All brand mark variants are available in the [logo directory](https://github.com/EqualExperts/brand-assets/tree/master/logo) with filenames starting with `brand-mark-...`. These include:
+- `brand-mark-colour.svg` - Color brand mark
+- `brand-mark-white-text.svg` - Brand mark with white text
+- `brand-mark-monochrome-white.svg` - White monochrome brand mark
+- `brand-mark-monochrome-black.svg` - Black monochrome brand mark
+
+### GitHub Repository
+
+- **Repository**: [EqualExperts/brand-assets](https://github.com/EqualExperts/brand-assets)
+- **Logo Directory**: [logo/](https://github.com/EqualExperts/brand-assets/tree/master/logo)
+- **Direct File Access**: Use `raw.githubusercontent.com` URLs for direct file access in code
 
 ### Implementation Notes
 
 1. **Asset Format**: Prefer SVG for digital use (scalable, crisp at all sizes)
-2. **File Naming**: Use descriptive names (e.g., `logo-full-color.svg`, `logo-white.svg`, `logo-mark-only.svg`)
-3. **Storage**: Store logo assets in project `public/` or `assets/` directory
-4. **Version Control**: Include logo assets in version control or reference from CDN
+2. **File Naming**: Use official file names from the brand-assets repository
+3. **Storage**: Store logo assets in project `public/` or `assets/` directory, or reference directly from GitHub
+4. **Version Control**: Include logo assets in version control or reference from GitHub raw URLs
+5. **CDN Usage**: GitHub raw URLs can be used directly as CDN links in production applications
 
 ---
 
@@ -359,9 +430,9 @@ Logo clear space should align with the design system's 8-point grid:
 
 When placing logos on design system backgrounds:
 
-- **Light backgrounds**: Use `bg-background` or `bg-card` with full-color logo
-- **Dark backgrounds**: Use `bg-slate-900` or `bg-slate-950` with white monochrome logo
-- **Brand backgrounds**: Use EE Blue (`bg-primary`) with white monochrome logo
+- **Light backgrounds**: Use `bg-background` or `bg-card` with `logo-colour.svg` (primary logo)
+- **Dark backgrounds**: Use `bg-slate-900` or `bg-slate-950` with `logo-white-text.svg` (primary logo) or `logo-monochrome-white.svg` (if contrast requires)
+- **Brand backgrounds**: Use EE Blue (`bg-primary`) with `logo-white-text.svg` (primary logo) or `logo-monochrome-white.svg` (if contrast requires)
 
 ---
 
@@ -376,8 +447,10 @@ When placing logos on design system backgrounds:
 
 ## Notes
 
-- **Brand Asset Protection:** The Equal Experts logo is a valuable brand asset—always use official files
-- **Consistency First:** When in doubt, use the full-color logo with adequate clear space
+- **Brand Asset Protection:** The Equal Experts logo is a valuable brand asset—always use official files from the [brand-assets repository](https://github.com/EqualExperts/brand-assets)
+- **Consistency First:** When in doubt, use the primary logo (`logo-colour.svg` or `logo-white-text.svg`) with adequate clear space
+- **Primary Over Monochrome:** Always prefer primary logos over monochrome versions for maximum brand recognition
+- **Background-Based Selection:** Choose the correct logo variant based on background color to ensure contrast compliance
 - **Size Priority:** Never compromise minimum size requirements—use brand mark only if space is constrained
-- **Accessibility Always:** Ensure logo contrast meets WCAG standards in all contexts
-- **Official Assets Only:** Never recreate or modify the logo—always use official brand resources
+- **Accessibility Always:** Ensure logo contrast meets WCAG AA standards in all contexts
+- **Official Assets Only:** Never recreate or modify the logo—always use official brand resources from the GitHub repository
