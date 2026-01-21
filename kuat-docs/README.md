@@ -113,7 +113,7 @@ You MUST reference the Kuat documentation when:
 **Quick reference (when docs unavailable):**
 Semantic tokens only (`bg-primary` not `bg-blue-500`), 8-point spacing grid, 6px radius for interactive elements, WCAG AA contrast.
 
-**Documentation:** https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs
+**Documentation:** https://github.com/equalexperts/kuat-mono/tree/master/kuat-docs
 ```
 
 ### Need Full Documentation Locally?
@@ -121,7 +121,7 @@ Semantic tokens only (`bg-primary` not `bg-blue-500`), 8-point spacing grid, 6px
 For component patterns, layouts, or content guidelines, clone the docs:
 
 ```bash
-git clone --filter=blob:none --sparse https://github.com/equal-experts/kuat-mono.git
+git clone --filter=blob:none --sparse https://github.com/equalexperts/kuat-mono.git
 cd kuat-mono && git sparse-checkout set kuat-docs
 cp -r kuat-docs /path/to/your-project/
 ```

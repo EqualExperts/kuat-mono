@@ -2,7 +2,7 @@
 
 How to integrate the Kuat Design System documentation into your AI agent or IDE.
 
-> **Note for npm consumers:** These docs are not bundled in npm packages. Clone from the [kuat-mono repository](https://github.com/equal-experts/kuat-mono) or copy the snippet below.
+> **Note for npm consumers:** These docs are not bundled in npm packages. Clone from the [kuat-mono repository](https://github.com/equalexperts/kuat-mono) or copy the snippet below.
 
 ---
 
@@ -32,7 +32,7 @@ You MUST reference the Kuat documentation when:
 **Quick reference (when docs unavailable):**
 Semantic tokens only (`bg-primary` not `bg-blue-500`), 8-point spacing grid, 6px radius for interactive elements, WCAG AA contrast.
 
-**Documentation:** https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs
+**Documentation:** https://github.com/equalexperts/kuat-mono/tree/master/kuat-docs
 ```
 
 This tells your agent **when** to use the design system and **how** to behave when making UI decisions.
@@ -50,7 +50,7 @@ I'm using the Kuat Design System. Add a section to my agent rules that:
 - Includes a fallback reference for when docs are unavailable
 - Links to the full documentation
 
-Reference: https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs
+Reference: https://github.com/equalexperts/kuat-mono/tree/master/kuat-docs
 ```
 
 ---
@@ -61,7 +61,7 @@ If you need the agent to reference full documentation (component patterns, layou
 
 ```bash
 # Clone only the docs (sparse checkout)
-git clone --filter=blob:none --sparse https://github.com/equal-experts/kuat-mono.git
+git clone --filter=blob:none --sparse https://github.com/equalexperts/kuat-mono.git
 cd kuat-mono
 git sparse-checkout set kuat-docs
 

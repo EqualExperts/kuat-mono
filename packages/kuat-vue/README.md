@@ -37,7 +37,7 @@ pnpm add vue radix-vue reka-ui
 pnpm add lucide-vue-next
 ```
 
-**Note:** `@equal-experts/kuat-core` is bundled with this package. You don't need to install it separately when using kuat-vue. However, if you want to use design tokens without Vue components, you can install [`@equal-experts/kuat-core`](https://www.npmjs.com/package/@equal-experts/kuat-core) standalone. See the [kuat-core documentation](https://github.com/equalexperts/kuat-mono/tree/main/packages/kuat-core) for framework-agnostic usage.
+**Note:** `@equal-experts/kuat-core` is bundled with this package. You don't need to install it separately when using kuat-vue. However, if you want to use design tokens without Vue components, you can install [`@equal-experts/kuat-core`](https://www.npmjs.com/package/@equal-experts/kuat-core) standalone. See the [kuat-core documentation](https://github.com/equalexperts/kuat-mono/tree/master/packages/kuat-core) for framework-agnostic usage.
 
 ### Using Design Tokens Without Components
 
@@ -57,7 +57,7 @@ import '@equal-experts/kuat-core/variables.css';
 import kuatPreset from '@equal-experts/kuat-core';
 ```
 
-See the [kuat-core documentation](https://github.com/equalexperts/kuat-mono/tree/main/packages/kuat-core) for detailed usage with Svelte, Angular, Astro, and other frameworks.
+See the [kuat-core documentation](https://github.com/equalexperts/kuat-mono/tree/master/packages/kuat-core) for detailed usage with Svelte, Angular, Astro, and other frameworks.
 
 ### Recommended: Use Subpath Imports
 
@@ -560,7 +560,7 @@ You MUST reference the Kuat documentation when:
 **Quick reference (when docs unavailable):**
 Semantic tokens only (`bg-primary` not `bg-blue-500`), 8-point spacing grid, 6px radius for interactive elements, WCAG AA contrast.
 
-**Documentation:** https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs
+**Documentation:** https://github.com/equalexperts/kuat-mono/tree/master/kuat-docs
 ```
 
 ### Need Full Documentation Locally?
@@ -568,7 +568,7 @@ Semantic tokens only (`bg-primary` not `bg-blue-500`), 8-point spacing grid, 6px
 For component patterns, layouts, or content guidelines, clone the docs:
 
 ```bash
-git clone --filter=blob:none --sparse https://github.com/equal-experts/kuat-mono.git
+git clone --filter=blob:none --sparse https://github.com/equalexperts/kuat-mono.git
 cd kuat-mono && git sparse-checkout set kuat-docs
 cp -r kuat-docs /path/to/your-project/
 ```
