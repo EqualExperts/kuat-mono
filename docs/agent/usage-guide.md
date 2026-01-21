@@ -18,9 +18,25 @@ import "@equal-experts/kuat-vue/styles"
 </script>
 ```
 
-**Core (CSS Variables):**
+**Core (CSS Variables Only):**
 ```css
 @import "@equal-experts/kuat-core/variables.css";
+```
+
+**Core (Standalone with Tailwind Preset):**
+```typescript
+// tailwind.config.ts
+import kuatPreset from '@equal-experts/kuat-core';
+
+export default {
+  presets: [kuatPreset],
+  content: ['./src/**/*.{html,js,ts,jsx,tsx,vue,svelte}'],
+};
+```
+
+```typescript
+// main.ts - Import CSS variables
+import '@equal-experts/kuat-core/variables.css';
 ```
 
 ### Common Tasks
@@ -173,6 +189,93 @@ theme: {
   },
 }
 ```
+
+## Framework-Agnostic Patterns
+
+Use `@equal-experts/kuat-core` directly when building with frameworks other than React or Vue.
+
+### Using kuat-core with Svelte
+
+```typescript
+// tailwind.config.ts
+import kuatPreset from '@equal-experts/kuat-core';
+
+export default {
+  presets: [kuatPreset],
+  content: ['./src/**/*.{html,js,svelte,ts}'],
+};
+```
+
+```svelte
+<!-- src/routes/+layout.svelte -->
+<script>
+  import '@equal-experts/kuat-core/variables.css';
+</script>
+
+<div class="bg-background text-foreground">
+  <slot />
+</div>
+```
+
+### Using kuat-core with Angular
+
+```typescript
+// angular.json - add to styles array
+{
+  "styles": [
+    "node_modules/@equal-experts/kuat-core/src/variables.css",
+    "src/styles.css"
+  ]
+}
+```
+
+```css
+/* src/styles.css */
+@import 'tailwindcss';
+```
+
+### Using kuat-core with Vanilla JS
+
+```html
+<!-- index.html -->
+<link rel="stylesheet" href="node_modules/@equal-experts/kuat-core/src/variables.css">
+```
+
+```css
+/* styles.css - Use CSS variables directly */
+.my-button {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border-radius: var(--radius);
+}
+```
+
+### Using kuat-core with Astro
+
+```typescript
+// tailwind.config.ts
+import kuatPreset from '@equal-experts/kuat-core';
+
+export default {
+  presets: [kuatPreset],
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+};
+```
+
+```astro
+---
+// src/layouts/Layout.astro
+import '@equal-experts/kuat-core/variables.css';
+---
+
+<html>
+  <body class="bg-background text-foreground">
+    <slot />
+  </body>
+</html>
+```
+
+See [kuat-core Integration Guide](./technical/kuat-core-integration.md) for detailed framework-specific documentation.
 
 ## Design System Documentation
 

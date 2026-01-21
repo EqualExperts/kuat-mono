@@ -40,7 +40,27 @@ pnpm add @radix-ui/react-slot @radix-ui/react-dialog @radix-ui/react-dropdown-me
 pnpm add lucide-react
 ```
 
-**Note:** `@equal-experts/kuat-core` is bundled with this package - you don't need to install it separately. Only install the Radix UI packages for the components you actually use.
+**Note:** `@equal-experts/kuat-core` is bundled with this package. You don't need to install it separately when using kuat-react. However, if you want to use design tokens without React components, you can install [`@equal-experts/kuat-core`](https://www.npmjs.com/package/@equal-experts/kuat-core) standalone. See the [kuat-core documentation](https://github.com/equalexperts/kuat-mono/tree/main/packages/kuat-core) for framework-agnostic usage.
+
+### Using Design Tokens Without Components
+
+If you only need design tokens (CSS variables, Tailwind preset) without React components, install `@equal-experts/kuat-core` instead:
+
+```bash
+pnpm add @equal-experts/kuat-core
+```
+
+Then import the CSS variables and optionally use the Tailwind preset:
+
+```typescript
+// Import CSS variables
+import '@equal-experts/kuat-core/variables.css';
+
+// Or use as a Tailwind preset
+import kuatPreset from '@equal-experts/kuat-core';
+```
+
+See the [kuat-core documentation](https://github.com/equalexperts/kuat-mono/tree/main/packages/kuat-core) for detailed usage with Svelte, Angular, Astro, and other frameworks.
 
 ### Recommended: Use Subpath Imports
 

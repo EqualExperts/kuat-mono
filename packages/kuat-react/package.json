@@ -1,6 +1,6 @@
 {
   "name": "@equal-experts/kuat-react",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -66,7 +66,7 @@
     "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
-    "@equal-experts/kuat-core": "workspace:*",
+    "@equal-experts/kuat-core": "^0.3.0",
     "@tailwindcss/vite": "^4.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",

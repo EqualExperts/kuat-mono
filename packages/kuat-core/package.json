@@ -1,16 +1,52 @@
 {
   "name": "@equal-experts/kuat-core",
-  "version": "0.2.6",
-  "private": true,
-  "main": "./src/variables.css",
+  "version": "0.3.0",
+  "description": "Core design tokens and CSS variables for the Kuat Design System",
+  "license": "MIT",
+  "author": "Equal Experts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/equalexperts/kuat-mono.git",
+    "directory": "packages/kuat-core"
+  },
+  "keywords": [
+    "design-system",
+    "design-tokens",
+    "css-variables",
+    "tailwind",
+    "equal-experts",
+    "kuat"
+  ],
+  "type": "module",
+  "main": "./tailwind.config.ts",
+  "types": "./tailwind.config.d.ts",
   "exports": {
-    "./variables.css": "./src/variables.css"
+    ".": {
+      "types": "./tailwind.config.d.ts",
+      "default": "./tailwind.config.ts"
+    },
+    "./variables.css": "./src/variables.css",
+    "./tailwind-preset": {
+      "types": "./tailwind.config.d.ts",
+      "default": "./tailwind.config.ts"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
-    "src"
+    "src",
+    "tailwind.config.ts",
+    "tailwind.config.d.ts",
+    "README.md"
   ],
   "devDependencies": {
     "tailwindcss": "^4.0.0"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
   }
 }
-

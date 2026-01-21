@@ -1,6 +1,6 @@
 {
   "name": "@equal-experts/kuat-vue",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -68,7 +68,7 @@
     "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
-    "@equal-experts/kuat-core": "workspace:*",
+    "@equal-experts/kuat-core": "^0.3.0",
     "@tailwindcss/vite": "^4.0.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/tsconfig": "^0.5.1",
