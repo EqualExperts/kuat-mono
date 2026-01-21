@@ -147,6 +147,41 @@ Test your setup with these prompts:
 
 ---
 
+## For Application Developers
+
+Using the Kuat Design System in your application:
+
+- **React Applications**: See [@equal-experts/kuat-react README](../packages/kuat-react/README.md)
+- **Vue Applications**: See [@equal-experts/kuat-vue README](../packages/kuat-vue/README.md)
+- **Any Framework**: See [kuat-core-integration.md](./setup/kuat-core-integration.md)
+
+---
+
+## For Contributors
+
+- **[CONTRIBUTING.md](../CONTRIBUTING.md)** - Development workflow
+- **[ARCHITECTURE.md](../ARCHITECTURE.md)** - Monorepo architecture
+
+### Quick Start
+
+```bash
+git clone <repository-url>
+cd kuat-mono
+pnpm install
+
+# Start Storybook
+pnpm --filter storybook-react dev  # React on :6006
+pnpm --filter storybook-vue dev    # Vue on :6007
+```
+
+---
+
+## For Maintainers
+
+- **[PUBLISHING.md](../PUBLISHING.md)** - npm publishing guide
+
+---
+
 ## Related Documentation
 
 - [Setup Guide](./setup/integration.md) - Integration instructions

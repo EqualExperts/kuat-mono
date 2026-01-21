@@ -134,7 +134,7 @@ Vue component library built with shadcn-vue, Radix Vue primitives, and Tailwind 
 
 - **[@equal-experts/kuat-react README](./packages/kuat-react/README.md)** - How to use the React library in your application
 - **[@equal-experts/kuat-vue README](./packages/kuat-vue/README.md)** - How to use the Vue library in your application
-- [Complete Documentation](./docs/README.md) - Full documentation index
+- [Design System Documentation](./kuat-docs/README.md) - Full documentation index
 
 ### For Contributors
 
