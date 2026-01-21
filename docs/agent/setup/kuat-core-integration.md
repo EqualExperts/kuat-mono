@@ -516,52 +516,6 @@ function setTheme(theme: 'light' | 'dark' | 'system') {
 }
 ```
 
-### Svelte Dark Mode Store
-
-```typescript
-// stores/theme.ts
-import { writable } from 'svelte/store';
-import { browser } from '$app/environment';
-
-type Theme = 'light' | 'dark' | 'system';
-
-function createThemeStore() {
-  const { subscribe, set } = writable<Theme>('system');
-
-  return {
-    subscribe,
-    set: (theme: Theme) => {
-      if (browser) {
-        localStorage.setItem('theme', theme);
-        applyTheme(theme);
-      }
-      set(theme);
-    },
-    init: () => {
-      if (browser) {
-        const saved = localStorage.getItem('theme') as Theme | null;
-        const theme = saved || 'system';
-        applyTheme(theme);
-        set(theme);
-      }
-    },
-  };
-}
-
-function applyTheme(theme: Theme) {
-  if (theme === 'dark') {
-    document.documentElement.classList.add('dark');
-  } else if (theme === 'light') {
-    document.documentElement.classList.remove('dark');
-  } else {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.classList.toggle('dark', prefersDark);
-  }
-}
-
-export const theme = createThemeStore();
-```
-
 ---
 
 ## Troubleshooting
@@ -647,7 +601,8 @@ When using the preset, these utilities are available:
 
 ## Related Documentation
 
-- [Usage Guide](../usage-guide.md) - Quick reference for AI agents
-- [Colors](../design/colours.md) - Brand color specifications
-- [Typography](../design/typography.md) - Font families and text styling
-- [Component Guidelines](./component-guidelines.md) - Component development patterns
+- [Integration Guide](./integration.md) - General integration patterns
+- [Verification Guide](./verification.md) - Test your setup
+- [Colors](../rules/design/colours.md) - Brand color specifications
+- [Typography](../rules/design/typography.md) - Font families and text styling
+- [Component Patterns](../rules/components/patterns.md) - Component development patterns

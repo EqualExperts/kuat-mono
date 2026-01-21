@@ -4,41 +4,47 @@ This directory contains documentation for the Kuat Design System monorepo.
 
 ## Structure
 
-- [`agent/`](./agent/) - Documentation for AI agents and automated tools
-  - [`README.md`](./agent/README.md) - Navigation index for all agent documentation
-  - [`usage-guide.md`](./agent/usage-guide.md) - Quick reference and common tasks
-  - [`design/`](./agent/design/) - Design system documentation
-    - [`design-system.md`](./agent/design/design-system.md) - Design system overview and patterns
-    - [`colours.md`](./agent/design/colours.md) - Brand colors and color usage guidelines
-    - [`typography.md`](./agent/design/typography.md) - Typography scale and text styling
-    - [`spacing.md`](./agent/design/spacing.md) - Spacing scale and patterns
-    - [`borders.md`](./agent/design/borders.md) - Border usage and specifications
-  - [`content/`](./agent/content/) - Content and writing guidelines
-    - [`content-guidelines.md`](./agent/content/content-guidelines.md) - Writing principles, voice and tone, content patterns
-  - [`technical/`](./agent/technical/) - Technical guidelines and coding standards
-    - [`component-guidelines.md`](./agent/technical/component-guidelines.md) - Component development guidelines
+- [`agent/`](./agent/) - AI-friendly documentation
+  - [`rules/`](./agent/rules/) - Design language (no code)
+    - [`design/`](./agent/rules/design/) - Colors, typography, spacing, borders, layouts, logo
+    - [`content/`](./agent/rules/content/) - Voice, tone, UX writing
+    - [`components/`](./agent/rules/components/) - Component patterns
+  - [`examples/`](./agent/examples/) - Framework code (react/, vue/, css/)
+  - [`setup/`](./agent/setup/) - Integration guides
+
+## For AI Agents
+
+**Start here:** [`agent/README.md`](./agent/README.md)
+
+**Load docs based on task:**
+
+| Task | Load |
+|------|------|
+| Design decisions | `agent/rules/design/{topic}.md` |
+| Layout creation | `agent/rules/design/layouts.md` + `agent/examples/{framework}/layouts.md` |
+| Component creation | `agent/rules/components/patterns.md` + `agent/examples/{framework}/components.md` |
+| Content writing | `agent/rules/content/` |
+| Framework setup | `agent/setup/kuat-core-integration.md` |
 
 ## For Application Developers
 
 Using the Kuat Design System in your application:
 
-- **React Applications**: See [@equal-experts/kuat-react README](../packages/kuat-react/README.md) - Installation and usage guide for React
-- **Vue Applications**: See [@equal-experts/kuat-vue README](../packages/kuat-vue/README.md) - Installation and usage guide for Vue
+- **React Applications**: See [@equal-experts/kuat-react README](../packages/kuat-react/README.md)
+- **Vue Applications**: See [@equal-experts/kuat-vue README](../packages/kuat-vue/README.md)
+- **Any Framework**: See [`agent/setup/kuat-core-integration.md`](./agent/setup/kuat-core-integration.md)
 
 ## For Contributors
 
-Contributing to the Kuat Design System:
-
-- **[CONTRIBUTING.md](../CONTRIBUTING.md)** - Complete development workflow guide
+- **[CONTRIBUTING.md](../CONTRIBUTING.md)** - Development workflow
   - Environment setup
   - Adding components
   - Creating Storybook stories
   - Testing and submission process
-- **[ARCHITECTURE.md](../ARCHITECTURE.md)** - Monorepo architecture and design decisions
+- **[ARCHITECTURE.md](../ARCHITECTURE.md)** - Monorepo architecture
   - Package structure
   - Dependency graph
   - Build system details
-- **Component Guidelines** - See [technical/component-guidelines.md](./agent/technical/component-guidelines.md)
 
 ### Quick Start for Contributors
 
@@ -65,32 +71,12 @@ npx shadcn@latest add dialog
 
 ## For Maintainers
 
-Publishing packages to npm:
-
 - **[PUBLISHING.md](../PUBLISHING.md)** - npm publishing guide
   - Pre-publish checklist
   - Version management
   - Publishing process
   - Troubleshooting
-- **Monorepo Management**: See [README.md](../README.md) for workspace commands
-
-## For AI Agents
-
-**Start here:** [`agent/README.md`](./agent/README.md) - Complete navigation index
-
-**Quick start:** [`agent/usage-guide.md`](./agent/usage-guide.md) - Quick reference and common tasks
-
-**Design system:**
-- [`agent/design/design-system.md`](./agent/design/design-system.md) - Design system overview
-- [`agent/design/colours.md`](./agent/design/colours.md) - Color tokens and usage
-- [`agent/design/typography.md`](./agent/design/typography.md) - Typography guidelines
-- [`agent/design/spacing.md`](./agent/design/spacing.md) - Spacing system
-- [`agent/design/borders.md`](./agent/design/borders.md) - Border guidelines
-
-**Technical:**
-- [`agent/technical/component-guidelines.md`](./agent/technical/component-guidelines.md) - Component patterns
 
 ## Architecture
 
 See [`../ARCHITECTURE.md`](../ARCHITECTURE.md) for detailed monorepo architecture documentation.
-

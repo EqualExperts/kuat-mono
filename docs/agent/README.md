@@ -1,97 +1,155 @@
-# Agent Documentation
+# Kuat Design System - Agent Documentation
 
-Documentation for AI agents and automated tools working with the Kuat Design System.
+Technology-agnostic design language documentation optimized for AI agents and LLMs.
+
+---
 
 ## Quick Start
 
-**New to the system?** Start with [`usage-guide.md`](./usage-guide.md) for quick reference and common tasks.
+**For design rules only (recommended):**
+Load `rules/` directory
+
+**For framework examples:**
+Also load `examples/react/` or `examples/vue/`
+
+**For setup/integration:**
+See `setup/integration.md`
+
+---
 
 ## Documentation Structure
 
-### 📚 Quick Reference
-- **[Usage Guide](./usage-guide.md)** - Quick reference, common tasks, file locations, and troubleshooting
+### Rules (Pure Design Language - No Code)
 
-### 🎨 Design System
-Design tokens, visual guidelines, and design language documentation:
+Technology-agnostic design specifications:
 
-- **[Design System Overview](./design/design-system.md)** - Complete design system overview and patterns
-- **[Colors](./design/colours.md)** - Brand colors, color tokens, and color usage guidelines
-- **[Typography](./design/typography.md)** - Font families, typography scale, and text styling
-- **[Spacing](./design/spacing.md)** - Spacing scale, utilities, and spacing patterns
-- **[Borders](./design/borders.md)** - Border usage, specifications, and border radius guidelines
-- **[Logo](./design/logo.md)** - Equal Experts logo usage, specifications, and brand guidelines
-- **[Layouts](./design/layouts.md)** - Layout templates for marketing and product applications
+| Directory | Description |
+|-----------|-------------|
+| [rules/design/](./rules/design/) | Colors, typography, spacing, borders, layouts, logo |
+| [rules/content/](./rules/content/) | Voice, tone, marketing, UX writing |
+| [rules/components/](./rules/components/) | Naming, variants, accessibility patterns |
 
-### 📝 Content
-Content and writing guidelines:
+**Key files:**
+- `rules/design/colours.md` - Brand colors and semantic tokens
+- `rules/design/typography.md` - Fonts and type scale
+- `rules/design/spacing.md` - 8-point grid system
+- `rules/design/borders.md` - Border philosophy and radius
+- `rules/design/layouts.md` - Page layouts and navigation
+- `rules/design/logo.md` - Logo usage guidelines
+- `rules/content/foundations.md` - Universal content principles
+- `rules/components/patterns.md` - Component development rules
 
-- **[Content Guide](./content/README.md)** - Navigation index and decision tree for content creation
-- **[Content Foundations](./content/content-foundations.md)** - Universal principles for all content
-- **[Marketing & Sales Content](./content/content-marketing-sales.md)** - Guidelines for external-facing content
-- **[Product & UX Content](./content/content-product-ux.md)** - Guidelines for product interface content
+### Examples (Framework-Specific Code)
 
-### 🔧 Technical
-Technical guidelines and coding standards:
+Implementation code for specific frameworks:
 
-- **[Component Guidelines](./technical/component-guidelines.md)** - Component development patterns, best practices, and code examples
+| Directory | Description |
+|-----------|-------------|
+| [examples/react/](./examples/react/) | React/JSX implementation examples |
+| [examples/vue/](./examples/vue/) | Vue SFC implementation examples |
+| [examples/css/](./examples/css/) | Vanilla CSS examples |
 
-## Navigation by Topic
+### Setup (Integration Guides)
 
-### Working with Colors
-1. Start with [Colors Guide](./design/colours.md) for brand colors and color tokens
-2. See [Typography](./design/typography.md) for text color usage
-3. See [Borders](./design/borders.md) for border color tokens
-4. See [Logo](./design/logo.md) for logo color variants and usage
+How to integrate into your environment:
 
-### Working with Typography
-1. See [Typography Guide](./design/typography.md) for complete typography documentation
-2. See [Colors Guide](./design/colours.md) for text color tokens
+| File | Description |
+|------|-------------|
+| [setup/integration.md](./setup/integration.md) | Integration patterns for IDEs and agents |
+| [setup/verification.md](./setup/verification.md) | Testing your setup |
+| [setup/kuat-core-integration.md](./setup/kuat-core-integration.md) | Framework setup code |
 
-### Working with Spacing
-1. See [Spacing Guide](./design/spacing.md) for spacing scale and patterns
-2. See [Borders Guide](./design/borders.md) for spacing vs. borders guidance
+---
 
-### Creating Application Layouts
-1. See [Layouts Guide](./design/layouts.md) to choose marketing vs. product layout
-2. See [Logo Guide](./design/logo.md) for correct logo placement
-3. Use sidebar color tokens for dark navigation (see [Colors Guide](./design/colours.md))
-4. Follow provided React/Vue templates in [Layouts Guide](./design/layouts.md)
+## For AI Agents
 
-### Working with Components
-1. Start with [Component Guidelines](./technical/component-guidelines.md) for development patterns
-2. See [Design System Overview](./design/design-system.md) for component patterns
-3. See [Usage Guide](./usage-guide.md) for common component tasks
+### Context Loading Strategies
 
-### Writing Content
-1. Start with [Content Guide](./content/README.md) for navigation and decision tree
-2. Read [Content Foundations](./content/content-foundations.md) for universal principles
-3. Choose [Marketing & Sales](./content/content-marketing-sales.md) or [Product & UX](./content/content-product-ux.md) based on content type
-4. Apply content quality checklist before publishing
+**Minimal (design decisions):**
+```
+Load: rules/design/{topic}.md
+Size: ~150 lines per file
+```
 
-### Modifying Design Tokens
-1. See [Design System Overview](./design/design-system.md) for token structure
-2. See [Colors](./design/colours.md), [Typography](./design/typography.md), [Spacing](./design/spacing.md), or [Borders](./design/borders.md) for specific token documentation
-3. See [Usage Guide](./usage-guide.md) for how to modify tokens
+**Standard (design + examples):**
+```
+Load: rules/ + examples/{framework}/
+Size: ~2000 lines total
+```
 
-### Working with Brand Assets
-1. See [Logo Guide](./design/logo.md) for logo usage, specifications, and brand guidelines
-2. Always use official logo assets—never recreate or modify
-3. Follow minimum size and clear space requirements
+**Full context:**
+```
+Load: docs/agent/
+Size: ~4000 lines total
+```
 
-## File Locations
+### Task-Based Loading
 
-All design tokens are centralized in:
-- **`packages/kuat-core/src/variables.css`** - CSS variables and design tokens
+| Task | Load |
+|------|------|
+| Color decisions | `rules/design/colours.md` |
+| Typography | `rules/design/typography.md` |
+| Layout creation | `rules/design/layouts.md` + `examples/{framework}/layouts.md` |
+| Component creation | `rules/components/patterns.md` + `examples/{framework}/components.md` |
+| Content writing | `rules/content/` |
 
-Component libraries:
-- **React:** `packages/kuat-react/`
-- **Vue:** `packages/kuat-vue/`
+### Verification Prompts
 
-## Additional Resources
+Test your setup with these prompts:
 
-- **Main Documentation:** [../README.md](../README.md) - Complete documentation index
-- **Architecture:** [../../ARCHITECTURE.md](../../ARCHITECTURE.md) - Monorepo architecture
-- **shadcn/ui:** [shadcn/ui Documentation](https://ui.shadcn.com)
-- **shadcn-vue:** [shadcn-vue Documentation](https://www.shadcn-vue.com)
-- **Tailwind CSS:** [Tailwind CSS Documentation](https://tailwindcss.com)
+- "What is the primary brand color?" → EE Blue (#0066CC)
+- "What border radius for a button?" → 6px
+- "What font for code?" → JetBrains Mono
+- "What spacing between form fields?" → space-y-4 (16px)
 
+---
+
+## Quick Reference
+
+### Brand Colors
+
+| Color | Value | Usage |
+|-------|-------|-------|
+| EE Blue | `#0066CC` | Primary actions, brand |
+| Transform Teal | `oklch(0.645 0.120 185.0)` | Secondary actions |
+| Tech Blue | `oklch(0.435 0.090 240.0)` | Sidebar, navigation |
+| Equal Ember | `oklch(0.625 0.200 65.0)` | Warnings, highlights |
+
+### Typography
+
+| Element | Specification |
+|---------|---------------|
+| Sans | Lexend (`font-sans`) |
+| Mono | JetBrains Mono (`font-mono`) |
+| Serif | Lora (`font-serif`) |
+
+### Spacing
+
+4px base unit (0.25rem). Use scale: 4, 8, 12, 16, 24, 32, 48px.
+
+### Border Radius
+
+| Element | Radius |
+|---------|--------|
+| Static content | 0px |
+| Interactive (buttons) | 6px |
+| Form inputs | 4px |
+
+---
+
+## Package Reference
+
+| Package | Description |
+|---------|-------------|
+| `@equal-experts/kuat-core` | CSS variables and Tailwind preset |
+| `@equal-experts/kuat-react` | React components |
+| `@equal-experts/kuat-vue` | Vue components |
+
+---
+
+## Related Documentation
+
+- [Setup Guide](./setup/integration.md) - Integration instructions
+- [Verification Guide](./setup/verification.md) - Test your setup
+- [Rules](./rules/) - Design language documentation
+- [Examples](./examples/) - Framework-specific code
