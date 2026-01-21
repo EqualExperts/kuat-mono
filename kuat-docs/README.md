@@ -94,35 +94,31 @@ Most developers already have `.cursorrules`, `CLAUDE.md`, or similar agent confi
 ```markdown
 ## Kuat Design System
 
-This project uses the Kuat Design System. When working on UI:
+This project uses the Kuat Design System for all UI work.
 
-**Design tokens:**
-- Primary: EE Blue (#0066CC), Secondary: Transform Teal, Accent: Equal Ember
-- Fonts: Lexend (UI), JetBrains Mono (code), Lora (editorial)
-- Spacing: 8-point grid (4px base unit)
-- Border radius: 0px static | 6px interactive | 4px inputs
+**What it provides:**
+Design tokens, component patterns, layout guidance, and content guidelines for building consistent, accessible interfaces.
 
-**Principles (in priority order):**
-1. Accessibility first (WCAG AA minimum)
-2. Use semantic tokens (`bg-primary` not `bg-blue-500`)
-3. Check shadcn/ui before creating custom components
+**When to use it:**
+You MUST reference the Kuat documentation when:
+- Creating or modifying UI components
+- Making color, typography, spacing, or layout decisions
+- Writing user-facing content
 
-**Full docs:** https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs
+**How to use it:**
+1. Check the documentation before making design decisions
+2. Follow existing patterns; do not invent new ones
+3. If the documentation doesn't cover your case, ask before proceeding
+
+**Quick reference (when docs unavailable):**
+Semantic tokens only (`bg-primary` not `bg-blue-500`), 8-point spacing grid, 6px radius for interactive elements, WCAG AA contrast.
+
+**Documentation:** https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs
 ```
 
-### Alternative: Generation Prompt
+### Need Full Documentation Locally?
 
-If you prefer your agent to customize the integration:
-
-```
-I'm using the Kuat Design System. Add a section to my agent rules that includes
-key design tokens, core principles, and a link to the full documentation.
-Reference: https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs
-```
-
-### Need More Detail?
-
-For full documentation (component patterns, layouts, content guidelines), clone locally:
+For component patterns, layouts, or content guidelines, clone the docs:
 
 ```bash
 git clone --filter=blob:none --sparse https://github.com/equal-experts/kuat-mono.git
@@ -130,24 +126,22 @@ cd kuat-mono && git sparse-checkout set kuat-docs
 cp -r kuat-docs /path/to/your-project/
 ```
 
-Then add to your rules: `When working on UI, follow rules in kuat-docs/rules/`
+Then update your snippet: `Check the documentation in kuat-docs/rules/ before making design decisions`
 
 ### Context Loading Strategies
 
 | Level | What | Size |
 |-------|------|------|
-| Minimal | Snippet above | ~15 lines |
+| Minimal | Snippet above | ~20 lines |
 | Standard | `rules/` directory | ~1500 lines |
 | Full | `rules/` + `examples/{framework}/` | ~2500 lines |
 
-### Verification Prompts
+### Verification
 
-Test your setup:
-
-- "What is the primary brand color?" → EE Blue (#0066CC)
-- "What border radius for a button?" → 6px
-- "What font for code?" → JetBrains Mono
-- "What spacing between form fields?" → space-y-4 (16px)
+Test your setup with these prompts:
+- "Create a card component" → Agent should reference Kuat docs
+- "What color for the primary button?" → Agent should check docs or use semantic tokens
+- "Add spacing between form fields" → Agent should reference spacing rules
 
 ---
 

@@ -193,10 +193,10 @@ def get_kuat_context(task: str, framework: str = None) -> str:
 
 Test your setup with these prompts:
 
-- "What is the primary brand color?" → EE Blue (#0066CC)
-- "What border radius for a button?" → 6px
-- "What font for code?" → JetBrains Mono
-- "What spacing between form fields?" → 16px (space-y-4)
+- "Create a card component" → Agent should reference Kuat docs
+- "What color for the primary button?" → Agent should check docs or use semantic tokens
+- "Add spacing between form fields" → Agent should reference spacing rules
+- "Fix this JavaScript bug" → Agent should NOT invoke Kuat rules (not UI work)
 
 See [verification.md](./verification.md) for comprehensive tests.
 
