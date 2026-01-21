@@ -1,20 +1,83 @@
 # Integration Guide
 
-How to integrate the Kuat Design System documentation into your tools, IDEs, and agent pipelines.
+How to integrate the Kuat Design System documentation into your AI agent or IDE.
 
-> **Note for npm consumers:** These paths refer to the [kuat-mono repository](https://github.com/equal-experts/kuat-mono). If you installed `@equal-experts/kuat-react` or `@equal-experts/kuat-vue` via npm, clone the docs separately using the instructions in the package README.
+> **Note for npm consumers:** These docs are not bundled in npm packages. Clone from the [kuat-mono repository](https://github.com/equal-experts/kuat-mono) or copy the snippet below.
 
 ---
 
-## Overview
+## Quick Start: Add to Your Existing Rules
 
-The design rules are structured for maximum flexibility:
+Most developers already have `.cursorrules`, `CLAUDE.md`, or similar agent configuration. **Copy this snippet** into your existing file:
 
-- **`rules/`** - Pure design language (technology-agnostic, no code)
-- **`examples/`** - Framework-specific code examples
-- **`setup/`** - Integration and verification guides
+```markdown
+## Kuat Design System
 
-**Load only what you need** for optimal context usage.
+This project uses the Kuat Design System for all UI work.
+
+**What it provides:**
+Design tokens, component patterns, layout guidance, and content guidelines for building consistent, accessible interfaces.
+
+**When to use it:**
+You MUST reference the Kuat documentation when:
+- Creating or modifying UI components
+- Making color, typography, spacing, or layout decisions
+- Writing user-facing content
+
+**How to use it:**
+1. Check the documentation before making design decisions
+2. Follow existing patterns; do not invent new ones
+3. If the documentation doesn't cover your case, ask before proceeding
+
+**Quick reference (when docs unavailable):**
+Semantic tokens only (`bg-primary` not `bg-blue-500`), 8-point spacing grid, 6px radius for interactive elements, WCAG AA contrast.
+
+**Documentation:** https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs
+```
+
+This tells your agent **when** to use the design system and **how** to behave when making UI decisions.
+
+---
+
+## Alternative: Generation Prompt
+
+If you prefer your agent to customize the integration, use this prompt:
+
+```
+I'm using the Kuat Design System. Add a section to my agent rules that:
+- Defines when the agent must reference Kuat documentation
+- Specifies behavioral expectations (check docs first, follow patterns)
+- Includes a fallback reference for when docs are unavailable
+- Links to the full documentation
+
+Reference: https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs
+```
+
+---
+
+## For Deeper Integration
+
+If you need the agent to reference full documentation (component patterns, layouts, content guidelines), clone the docs locally:
+
+```bash
+# Clone only the docs (sparse checkout)
+git clone --filter=blob:none --sparse https://github.com/equal-experts/kuat-mono.git
+cd kuat-mono
+git sparse-checkout set kuat-docs
+
+# Copy to your project
+cp -r kuat-docs /path/to/your-project/
+```
+
+Then update your rules snippet to reference local files:
+
+```markdown
+## Kuat Design System
+
+When working on UI, reference the design rules in `kuat-docs/rules/`.
+
+For implementation examples, see `kuat-docs/examples/{react|vue|css}/`.
+```
 
 ---
 
@@ -22,273 +85,137 @@ The design rules are structured for maximum flexibility:
 
 ```
 kuat-docs/
-├── rules/                 # Pure design language
-│   ├── design/            # Visual design rules
-│   ├── content/           # Content writing rules
-│   └── components/        # Component patterns
-├── examples/              # Code examples
-│   ├── react/             # React/JSX
-│   ├── vue/               # Vue SFC
-│   └── css/               # Vanilla CSS
-└── setup/                 # This directory
+├── rules/                 # Pure design language (no code)
+│   ├── design/            # Colors, typography, spacing, borders, layouts
+│   ├── content/           # Voice, tone, marketing, UX writing
+│   └── components/        # Naming, variants, accessibility patterns
+├── examples/              # Framework-specific code
+│   ├── react/             # React/JSX examples
+│   ├── vue/               # Vue SFC examples
+│   └── css/               # Vanilla CSS examples
+└── setup/                 # Integration guides (this directory)
 ```
 
 ---
 
 ## Context Loading Strategies
 
-### Minimal (Rules Only)
+### Minimal (Snippet Only)
 
-**Best for:** Design reviews, content writing, general guidance
+**Best for:** Most projects
 
-**Load:** `kuat-docs/rules/` directory only (~1500 lines)
+Use the snippet above. Your agent has the key values and can reference the GitHub docs when needed.
 
-**What you get:**
-- All design specifications
-- Content guidelines
-- Component patterns
-- No framework-specific code
+### Standard (Local Rules)
 
-### Framework-Specific
+**Best for:** Heavy design system usage
 
-**Best for:** Development tasks in a specific framework
+Clone `kuat-docs/rules/` locally (~1500 lines, ~12K tokens).
 
-**Load:** `rules/` + `examples/{framework}/`
+### Full (Rules + Examples)
 
-| Framework | Additional Load |
-|-----------|-----------------|
-| React | `examples/react/` (~800 lines) |
-| Vue | `examples/vue/` (~800 lines) |
-| CSS | `examples/css/` (~400 lines) |
+**Best for:** Component development
 
-### Task-Specific
+Clone `kuat-docs/` and load `rules/` + `examples/{framework}/` (~2500 lines).
 
-**Best for:** Focused tasks
+### Task-Specific Loading
 
 | Task | Load |
 |------|------|
 | Color decisions | `rules/design/colours.md` |
 | Typography | `rules/design/typography.md` |
-| Layout decisions | `rules/design/layouts.md` |
+| Layout design | `rules/design/layouts.md` |
 | Content writing | `rules/content/` |
-| Component creation | `rules/components/` + `examples/{framework}/components.md` |
+| Component creation | `rules/components/patterns.md` + `examples/{framework}/components.md` |
 
 ---
 
-## Integration Patterns
+## IDE-Specific Instructions
 
 ### Cursor IDE
 
-**Option 1: Project Rules (.cursorrules)**
+Add the snippet to your `.cursorrules` file in the project root.
 
-Add to your `.cursorrules` file:
+### Claude Code / CLAUDE.md
 
-```
-# Kuat Design System
-
-When working on UI, follow the design rules in kuat-docs/rules/
-
-Key principles:
-- Use semantic color tokens (bg-primary, text-foreground)
-- Follow 8-point spacing grid (p-4, p-6, gap-4)
-- Border radius: 0px static, 6px interactive, 4px inputs
-- Use Lexend font for UI, JetBrains Mono for code
-```
-
-**Option 2: Include Documentation**
-
-Reference specific files in your rules:
-
-```
-When creating components, reference:
-- kuat-docs/rules/design/colours.md
-- kuat-docs/rules/design/spacing.md
-- kuat-docs/rules/components/patterns.md
-```
+Add the snippet to your `CLAUDE.md` file in the project root.
 
 ### GitHub Copilot
 
-**Workspace Instructions**
-
-Create `.github/copilot-instructions.md`:
-
-```markdown
-# Design System Instructions
-
-This project uses the Kuat Design System. Reference documentation in kuat-docs/rules/.
-
-Key design tokens:
-- Colors: Use semantic tokens (primary, secondary, background, foreground)
-- Spacing: 8-point grid (4px base unit)
-- Typography: Lexend (sans), JetBrains Mono (mono)
-- Border radius: 0px default, 6px interactive, 4px inputs
-```
+Add the snippet to `.github/copilot-instructions.md`.
 
 ### Claude Projects
 
-**Knowledge Base Upload**
+Upload the snippet as a knowledge file, or upload specific rule files from `kuat-docs/rules/`.
 
-Upload these files to your Claude Project knowledge base:
+### Windsurf / Other IDEs
 
-**Essential (for design tasks):**
-- `kuat-docs/rules/design/` (all files)
-- `kuat-docs/rules/components/patterns.md`
+Add the snippet to your IDE's agent configuration file.
 
-**For content tasks:**
-- `kuat-docs/rules/content/` (all files)
+---
 
-**For development:**
-- Add `kuat-docs/examples/{framework}/` as needed
+## Advanced: Custom Agents / API
 
-### Custom Agents / API
-
-**Context Injection Pattern**
+For programmatic access:
 
 ```python
-def get_design_context(task_type: str, framework: str = None) -> str:
-    """Load appropriate design context for a task."""
-    
-    base_path = "kuat-docs/"
-    files = []
-    
-    # Always load relevant rules
-    if task_type == "design":
-        files.extend([
-            f"{base_path}rules/design/colours.md",
-            f"{base_path}rules/design/typography.md",
-            f"{base_path}rules/design/spacing.md",
-            f"{base_path}rules/design/borders.md",
-        ])
-    elif task_type == "content":
-        files.extend([
-            f"{base_path}rules/content/foundations.md",
-        ])
-    elif task_type == "component":
-        files.extend([
-            f"{base_path}rules/components/patterns.md",
-        ])
-    
-    # Add framework examples if specified
+def get_kuat_context(task: str, framework: str = None) -> str:
+    """Load Kuat design context for a task."""
+    base = "kuat-docs/"
+    files = {
+        "design": ["rules/design/colours.md", "rules/design/spacing.md"],
+        "content": ["rules/content/foundations.md"],
+        "component": ["rules/components/patterns.md"],
+    }
+    result = [load(f"{base}{f}") for f in files.get(task, [])]
     if framework:
-        files.append(f"{base_path}examples/{framework}/")
-    
-    return load_files(files)
-```
-
-### CLI Tools
-
-**Context File Generation**
-
-Create a script to bundle docs for your use case:
-
-```bash
-#!/bin/bash
-# generate-context.sh
-
-OUTPUT="design-context.md"
-
-echo "# Kuat Design System Context" > $OUTPUT
-echo "" >> $OUTPUT
-
-# Add rules
-for file in kuat-docs/rules/design/*.md; do
-  echo "## $(basename $file)" >> $OUTPUT
-  cat "$file" >> $OUTPUT
-  echo "" >> $OUTPUT
-done
-
-echo "Context generated: $OUTPUT"
+        result.append(load(f"{base}examples/{framework}/"))
+    return "\n".join(result)
 ```
 
 ---
 
-## Selective Loading
+## Context Size Reference
 
-### By Task Type
-
-| Task | Required Files |
-|------|----------------|
-| UI Design | `rules/design/` |
-| Component Creation | `rules/design/` + `rules/components/` + `examples/{framework}/` |
-| Content Writing | `rules/content/` |
-| Layout Design | `rules/design/layouts.md` + `examples/{framework}/layouts.md` |
-| Color Decisions | `rules/design/colours.md` |
-| Typography | `rules/design/typography.md` |
-
-### By Audience
-
-| Audience | Files |
-|----------|-------|
-| Developers | `rules/design/` + `rules/components/` + `examples/` |
-| Designers | `rules/design/` |
-| Content Writers | `rules/content/` |
-| Full-stack | All files |
-
----
-
-## Context Size Optimization
-
-### File Sizes (Approximate)
-
-| Directory | Lines | Tokens (~) |
-|-----------|-------|------------|
+| What | Lines | Tokens (~) |
+|------|-------|------------|
+| Snippet only | 15 | 150 |
 | `rules/design/` | 900 | 7,000 |
 | `rules/content/` | 500 | 4,000 |
 | `rules/components/` | 200 | 1,500 |
-| `examples/react/` | 800 | 6,000 |
-| `examples/vue/` | 800 | 6,000 |
-| `examples/css/` | 400 | 3,000 |
+| `examples/{framework}/` | 800 | 6,000 |
 
-### Optimization Tips
-
-1. **Load rules, not examples** - Rules contain the essential information
-2. **Load task-specific files** - Don't load typography when working on layouts
-3. **Use examples as reference** - Load examples only when generating code
-4. **Chunk large files** - If context is limited, load sections
+**Tip:** Start with the snippet. Only clone full docs if your agent needs detailed component patterns or content guidelines.
 
 ---
 
-## Keeping Updated
+## Verification
 
-### Sync Strategy
+Test your setup with these prompts:
 
-1. **Pin to version** - Reference a specific release tag
-2. **Regular sync** - Pull latest docs periodically
-3. **Watch for changes** - Monitor changelog for breaking changes
+- "What is the primary brand color?" → EE Blue (#0066CC)
+- "What border radius for a button?" → 6px
+- "What font for code?" → JetBrains Mono
+- "What spacing between form fields?" → 16px (space-y-4)
 
-### Version Compatibility
-
-These docs are designed for:
-- `@equal-experts/kuat-core` >= 0.3.0
-- `@equal-experts/kuat-react` >= 0.1.0
-- `@equal-experts/kuat-vue` >= 0.1.0
+See [verification.md](./verification.md) for comprehensive tests.
 
 ---
 
 ## Troubleshooting
 
-### Context Too Large
+**Agent not following rules?**
+1. Verify snippet is in the correct config file for your IDE
+2. Test with verification prompts above
+3. For detailed rules, clone docs locally
 
-**Solution:** Load only the files relevant to your current task
-
-### Agent Not Following Rules
-
-**Solution:**
-1. Verify files are loaded correctly
-2. Add explicit instructions referencing specific rules
-3. Use verification prompts (see [verification.md](./verification.md))
-
-### Outdated Information
-
-**Solution:**
-1. Check you're using the latest docs
-2. Verify package versions match doc requirements
-3. Report issues to the design system team
+**Need more detail?**
+Clone `kuat-docs/rules/` for full specifications.
 
 ---
 
-## Related Documentation
+## Related
 
-- [Verification Guide](./verification.md) - Test your setup
-- [Rules](../rules/) - Design language documentation
-- [Examples](../examples/) - Framework-specific code
+- [Verification Guide](./verification.md) - Full test suite
+- [Rules](../rules/) - Design specifications
+- [Examples](../examples/) - Code examples

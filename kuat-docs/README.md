@@ -87,39 +87,62 @@ How to integrate into your environment:
 
 ## For AI Agents
 
+### Quick Setup: Add to Your Existing Rules
+
+Most developers already have `.cursorrules`, `CLAUDE.md`, or similar agent configuration. **Copy this snippet** into your existing file:
+
+```markdown
+## Kuat Design System
+
+This project uses the Kuat Design System. When working on UI:
+
+**Design tokens:**
+- Primary: EE Blue (#0066CC), Secondary: Transform Teal, Accent: Equal Ember
+- Fonts: Lexend (UI), JetBrains Mono (code), Lora (editorial)
+- Spacing: 8-point grid (4px base unit)
+- Border radius: 0px static | 6px interactive | 4px inputs
+
+**Principles (in priority order):**
+1. Accessibility first (WCAG AA minimum)
+2. Use semantic tokens (`bg-primary` not `bg-blue-500`)
+3. Check shadcn/ui before creating custom components
+
+**Full docs:** https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs
+```
+
+### Alternative: Generation Prompt
+
+If you prefer your agent to customize the integration:
+
+```
+I'm using the Kuat Design System. Add a section to my agent rules that includes
+key design tokens, core principles, and a link to the full documentation.
+Reference: https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs
+```
+
+### Need More Detail?
+
+For full documentation (component patterns, layouts, content guidelines), clone locally:
+
+```bash
+git clone --filter=blob:none --sparse https://github.com/equal-experts/kuat-mono.git
+cd kuat-mono && git sparse-checkout set kuat-docs
+cp -r kuat-docs /path/to/your-project/
+```
+
+Then add to your rules: `When working on UI, follow rules in kuat-docs/rules/`
+
 ### Context Loading Strategies
 
-**Minimal (design decisions):**
-```
-Load: rules/design/{topic}.md
-Size: ~150 lines per file
-```
-
-**Standard (design + examples):**
-```
-Load: rules/ + examples/{framework}/
-Size: ~2000 lines total
-```
-
-**Full context:**
-```
-Load: kuat-docs/
-Size: ~4000 lines total
-```
-
-### Task-Based Loading
-
-| Task | Load |
-|------|------|
-| Color decisions | `rules/design/colours.md` |
-| Typography | `rules/design/typography.md` |
-| Layout creation | `rules/design/layouts.md` + `examples/{framework}/layouts.md` |
-| Component creation | `rules/components/patterns.md` + `examples/{framework}/components.md` |
-| Content writing | `rules/content/` |
+| Level | What | Size |
+|-------|------|------|
+| Minimal | Snippet above | ~15 lines |
+| Standard | `rules/` directory | ~1500 lines |
+| Full | `rules/` + `examples/{framework}/` | ~2500 lines |
 
 ### Verification Prompts
 
-Test your setup with these prompts:
+Test your setup:
 
 - "What is the primary brand color?" → EE Blue (#0066CC)
 - "What border radius for a button?" → 6px

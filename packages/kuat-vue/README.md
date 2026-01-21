@@ -534,55 +534,53 @@ Then use without importing:
 
 The Kuat Design System includes LLM-optimized documentation for AI assistants.
 
-### Quick Setup (Cursor IDE)
+### Quick Setup
 
-**Option 1: Clone docs into your project**
+Add this snippet to your existing `.cursorrules`, `CLAUDE.md`, or agent config:
+
+```markdown
+## Kuat Design System
+
+This project uses the Kuat Design System for all UI work.
+
+**What it provides:**
+Design tokens, component patterns, layout guidance, and content guidelines for building consistent, accessible interfaces.
+
+**When to use it:**
+You MUST reference the Kuat documentation when:
+- Creating or modifying UI components
+- Making color, typography, spacing, or layout decisions
+- Writing user-facing content
+
+**How to use it:**
+1. Check the documentation before making design decisions
+2. Follow existing patterns; do not invent new ones
+3. If the documentation doesn't cover your case, ask before proceeding
+
+**Quick reference (when docs unavailable):**
+Semantic tokens only (`bg-primary` not `bg-blue-500`), 8-point spacing grid, 6px radius for interactive elements, WCAG AA contrast.
+
+**Documentation:** https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs
+```
+
+### Need Full Documentation Locally?
+
+For component patterns, layouts, or content guidelines, clone the docs:
 
 ```bash
-# From your project root
-git clone --depth 1 --filter=blob:none --sparse \
-  https://github.com/equal-experts/kuat-mono.git .kuat-docs-temp
-cd .kuat-docs-temp && git sparse-checkout set kuat-docs && cd ..
-mv .kuat-docs-temp/kuat-docs ./kuat-docs
-rm -rf .kuat-docs-temp
+git clone --filter=blob:none --sparse https://github.com/equal-experts/kuat-mono.git
+cd kuat-mono && git sparse-checkout set kuat-docs
+cp -r kuat-docs /path/to/your-project/
 ```
 
-Then add to `.cursorrules`:
-
-```
-# Kuat Design System
-When working on UI, follow rules in kuat-docs/rules/
-```
-
-**Option 2: Inline key rules in .cursorrules**
-
-```
-# Kuat Design System
-
-Design tokens:
-- Primary color: EE Blue (#0066CC)
-- Fonts: Lexend (sans), JetBrains Mono (mono), Lora (serif)
-- Spacing: 8-point grid (4px base unit)
-- Border radius: 0px static | 6px interactive | 4px inputs
-
-For full rules: https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs
-```
-
-### Documentation Links
-
-| Resource | URL |
-|----------|-----|
-| Full Documentation | https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs |
-| Design Rules | https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs/rules |
-| Vue Examples | https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs/examples/vue |
-| Integration Guide | https://github.com/equal-experts/kuat-mono/blob/main/kuat-docs/setup/integration.md |
+Then update your snippet: `Check the documentation in kuat-docs/rules/ before making design decisions`
 
 ### Verification
 
-Test your setup:
-- "What is the primary brand color?" → EE Blue (#0066CC)
-- "What border radius for buttons?" → 6px
-- "What font for code?" → JetBrains Mono
+Test your setup with these prompts:
+- "Create a card component" → Agent should reference Kuat docs
+- "What color for the primary button?" → Agent should check docs or use semantic tokens
+- "Add spacing between form fields" → Agent should reference spacing rules
 
 ---
 
