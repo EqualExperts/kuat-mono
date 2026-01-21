@@ -1,12 +1,9 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
-    "copy-docs": {
-      "cache": false
-    },
     "build": {
-      "dependsOn": ["^build", "copy-docs"],
-      "outputs": ["dist/**", "docs/**", "storybook-static/**", ".next/**", "!.next/cache/**"]
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "storybook-static/**", ".next/**", "!.next/cache/**"]
     },
     "dev": {
       "dependsOn": ["^build"],

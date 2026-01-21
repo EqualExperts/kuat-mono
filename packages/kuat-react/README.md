@@ -200,70 +200,6 @@ If you want to use different fonts or load them differently, you can override th
 
 ---
 
-## AI Agent Documentation Setup
-
-The Kuat Design System includes AI-friendly documentation optimized for LLM consumption. This documentation helps AI assistants understand the design system, generate code that follows design patterns, and maintain brand consistency.
-
-### Setup Documentation
-
-To make the agent documentation available in your repository for LLM context (e.g., Cursor), run the setup script:
-
-```bash
-# Using pnpm exec (recommended)
-pnpm exec @equal-experts/kuat-react setup-docs
-
-# Using npm exec
-npm exec @equal-experts/kuat-react setup-docs
-
-# Or if you have the package installed locally
-cd node_modules/@equal-experts/kuat-react && pnpm setup-docs
-```
-
-This will copy the agent documentation to `.cursor/rules/kuat-docs/` in your repository root.
-
-### What Gets Copied
-
-The setup script copies the following documentation:
-
-- **Design System** (`design/`) - Colors, typography, spacing, borders, layouts, logo usage
-- **Component Guidelines** (`components/`) - Component development patterns and best practices
-- **Content Guidelines** (`content/`) - Content writing guidelines for marketing, sales, and product interfaces
-
-### Using the Documentation
-
-Once copied, you can:
-
-1. **Reference in Cursor Rules**: Add references to `.cursor/rules/kuat-docs/` in your `.cursorrules` file
-2. **LLM Context**: The documentation is optimized for LLM consumption and provides context for:
-   - Understanding the design system
-   - Using components correctly
-   - Maintaining brand consistency
-   - Writing appropriate content
-
-### Updating Documentation
-
-After installing a new version of `@equal-experts/kuat-react`, run the setup script again to update the documentation:
-
-```bash
-pnpm exec @equal-experts/kuat-react setup-docs
-```
-
-The script will automatically clean and replace the existing documentation.
-
-### Documentation Location
-
-The documentation is copied to:
-```
-.cursor/rules/kuat-docs/
-```
-
-This location is chosen because:
-- It's within the `.cursor/` directory (typically gitignored)
-- It's in the `rules/` subdirectory where Cursor looks for context files
-- It's clearly namespaced as `kuat-docs/` to avoid conflicts
-
----
-
 ## Basic Usage
 
 ### Import Components
@@ -521,37 +457,57 @@ function CustomButton({ className, ...props }) {
 
 ---
 
-## AI Agent Documentation
+## Documentation for AI Agents
 
-This package includes AI-friendly documentation in the `docs/` directory, optimized for LLM consumption.
+The Kuat Design System includes LLM-optimized documentation for AI assistants.
 
-### Included Documentation
+### Quick Setup
 
-- **[Design System](./docs/design/)** - Colors, typography, spacing, borders, and design tokens
-- **[Component Guidelines](./docs/components/guidelines.md)** - Component development patterns and best practices
-- **[Content Guidelines](./docs/content/)** - Content writing guidelines for marketing and product UX
+Add this snippet to your existing `.cursorrules`, `CLAUDE.md`, or agent config:
 
-### Accessing Documentation
+```markdown
+## Kuat Design System
 
-The documentation is available in your `node_modules` after installation:
+This project uses the Kuat Design System for all UI work.
 
+**What it provides:**
+Design tokens, component patterns, layout guidance, and content guidelines for building consistent, accessible interfaces.
+
+**When to use it:**
+You MUST reference the Kuat documentation when:
+- Creating or modifying UI components
+- Making color, typography, spacing, or layout decisions
+- Writing user-facing content
+
+**How to use it:**
+1. Check the documentation before making design decisions
+2. Follow existing patterns; do not invent new ones
+3. If the documentation doesn't cover your case, ask before proceeding
+
+**Quick reference (when docs unavailable):**
+Semantic tokens only (`bg-primary` not `bg-blue-500`), 8-point spacing grid, 6px radius for interactive elements, WCAG AA contrast.
+
+**Documentation:** https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs
 ```
-node_modules/@equal-experts/kuat-react/docs/
-├── design/              # Design system guidelines
-├── components/          # Component patterns
-└── content/             # Content writing guidelines
+
+### Need Full Documentation Locally?
+
+For component patterns, layouts, or content guidelines, clone the docs:
+
+```bash
+git clone --filter=blob:none --sparse https://github.com/equal-experts/kuat-mono.git
+cd kuat-mono && git sparse-checkout set kuat-docs
+cp -r kuat-docs /path/to/your-project/
 ```
 
-### For AI Agents
+Then update your snippet: `Check the documentation in kuat-docs/rules/ before making design decisions`
 
-You can reference this documentation in your `.cursorrules` or similar configuration:
+### Verification
 
-```
-# Kuat Design System Documentation
-- Design tokens: node_modules/@equal-experts/kuat-react/docs/design/
-- Component patterns: node_modules/@equal-experts/kuat-react/docs/components/
-- Brand colors available: EE Blue, Tech Blue, Transform Teal, Equal Ember
-```
+Test your setup with these prompts:
+- "Create a card component" → Agent should reference Kuat docs
+- "What color for the primary button?" → Agent should check docs or use semantic tokens
+- "Add spacing between form fields" → Agent should reference spacing rules
 
 ---
 

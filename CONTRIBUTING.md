@@ -66,8 +66,6 @@ kuat-mono/
 │   │   │   ├── lib/utils.ts    # Utility functions
 │   │   │   ├── styles.css      # Imports core styles
 │   │   │   └── index.ts        # Package exports
-│   │   ├── scripts/
-│   │   │   └── copy-docs.js    # Auto-copies agent docs during build
 │   │   └── components.json     # shadcn CLI config
 │   └── kuat-vue/           # Vue component library
 │       ├── src/
@@ -75,19 +73,20 @@ kuat-mono/
 │       │   ├── lib/utils.ts    # Utility functions
 │       │   ├── styles.css      # Imports core styles
 │       │   └── index.ts        # Package exports
-│       ├── scripts/
-│       │   └── copy-docs.js    # Auto-copies agent docs during build
 │       └── components.json     # shadcn-vue CLI config
 ├── apps/
 │   ├── storybook-react/    # React component documentation
 │   │   └── stories/        # React component stories
 │   └── storybook-vue/      # Vue component documentation
 │       └── stories/        # Vue component stories
-└── docs/                   # Documentation
-    └── agent/              # AI-friendly documentation (source)
+├── docs/                   # Documentation
+└── kuat-docs/              # AI-friendly design documentation
+    ├── rules/              # Pure design language (no code)
+    ├── examples/           # Framework code examples
+    └── setup/              # Integration guides
 ```
 
-**Note:** During build, agent documentation from `docs/agent/` is automatically copied to `packages/kuat-react/docs/` and `packages/kuat-vue/docs/` for inclusion in published npm packages. These generated `docs/` folders are git-ignored.
+**Note:** The `kuat-docs/` directory is placed at the repository root so npm consumers can easily clone it into their projects without conflicts.
 
 ## Adding Components
 
@@ -497,7 +496,7 @@ Types:
 ## Getting Help
 
 - Check the [Architecture documentation](./ARCHITECTURE.md)
-- Review [Component Guidelines](./docs/agent/technical/component-guidelines.md)
+- Review [Component Guidelines](./kuat-docs/rules/components/patterns.md)
 - Look at existing components for patterns
 - Ask questions in pull requests or issues
 

@@ -134,13 +134,13 @@ Vue component library built with shadcn-vue, Radix Vue primitives, and Tailwind 
 
 - **[@equal-experts/kuat-react README](./packages/kuat-react/README.md)** - How to use the React library in your application
 - **[@equal-experts/kuat-vue README](./packages/kuat-vue/README.md)** - How to use the Vue library in your application
-- [Complete Documentation](./docs/README.md) - Full documentation index
+- [Design System Documentation](./kuat-docs/README.md) - Full documentation index
 
 ### For Contributors
 
 - [CONTRIBUTING.md](./CONTRIBUTING.md) - Development workflow and component guidelines
 - [ARCHITECTURE.md](./ARCHITECTURE.md) - Monorepo architecture and design decisions
-- [Component Guidelines](./docs/agent/technical/component-guidelines.md) - Component development patterns
+- [Component Guidelines](./kuat-docs/rules/components/patterns.md) - Component development patterns
 
 ### For Maintainers
 
@@ -149,8 +149,9 @@ Vue component library built with shadcn-vue, Radix Vue primitives, and Tailwind 
 
 ### For AI Agents
 
-- [Agent Documentation](./docs/agent/README.md) - Navigation index for AI agent documentation
-- [Agent Quick Reference](./docs/agent/usage-guide.md) - Quick reference and common tasks
+- [Agent Documentation](./kuat-docs/README.md) - Navigation index for AI agent documentation
+- [Design Rules](./kuat-docs/rules/) - Pure design language (no code)
+- [Integration Guide](./kuat-docs/setup/integration.md) - How to integrate docs into your project
 
 ## Contributing
 
