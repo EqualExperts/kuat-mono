@@ -37,7 +37,27 @@ pnpm add vue radix-vue reka-ui
 pnpm add lucide-vue-next
 ```
 
-**Note:** `@equal-experts/kuat-core` is bundled with this package - you don't need to install it separately.
+**Note:** `@equal-experts/kuat-core` is bundled with this package. You don't need to install it separately when using kuat-vue. However, if you want to use design tokens without Vue components, you can install [`@equal-experts/kuat-core`](https://www.npmjs.com/package/@equal-experts/kuat-core) standalone. See the [kuat-core documentation](https://github.com/equalexperts/kuat-mono/tree/main/packages/kuat-core) for framework-agnostic usage.
+
+### Using Design Tokens Without Components
+
+If you only need design tokens (CSS variables, Tailwind preset) without Vue components, install `@equal-experts/kuat-core` instead:
+
+```bash
+pnpm add @equal-experts/kuat-core
+```
+
+Then import the CSS variables and optionally use the Tailwind preset:
+
+```typescript
+// Import CSS variables
+import '@equal-experts/kuat-core/variables.css';
+
+// Or use as a Tailwind preset
+import kuatPreset from '@equal-experts/kuat-core';
+```
+
+See the [kuat-core documentation](https://github.com/equalexperts/kuat-mono/tree/main/packages/kuat-core) for detailed usage with Svelte, Angular, Astro, and other frameworks.
 
 ### Recommended: Use Subpath Imports
 
