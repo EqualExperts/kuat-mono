@@ -1,6 +1,30 @@
-# Kuat Design System - Agent Documentation
+# Kuat Design System
 
-Technology-agnostic design language documentation optimized for AI agents and LLMs.
+Equal Experts' design system for building consistent, accessible, and brand-aligned digital experiences.
+
+## What is Kuat?
+
+Kuat provides descriptive design language, design tokens, component, patterns, and content guidelines. Using these ensure visual and behavioral consistency across any web-based experiences. Kuat includes React and Vue framework packages
+
+## Design Principles
+
+When making decisions, apply these principles in order:
+
+1. **Accessibility first** - WCAG AA minimum, keyboard navigable, screen reader compatible
+2. **Consistency over creativity** - Use existing tokens and patterns before creating new ones
+3. **Semantic over literal** - Use `bg-primary` not `bg-blue-500`; meaning over appearance
+4. **Progressive enhancement** - Core functionality works without JS; enhance with interactivity
+5. **Content-driven** - Design serves content; never decorate at the expense of clarity
+
+## Decision Framework
+
+| Question | Answer |
+|----------|--------|
+| Should I create a custom color? | No. Use semantic tokens (`primary`, `secondary`, `accent`) |
+| Which border radius? | 0px static, 6px interactive, 4px inputs |
+| How much spacing? | Use 8-point grid (multiples of 4px) |
+| Which font? | Lexend (UI), JetBrains Mono (code), Lora (editorial) |
+| Custom component or existing? | Check shadcn/ui first, then extend |
 
 ---
 
