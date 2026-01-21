@@ -34,5 +34,5 @@ Guides for integrating the Kuat Design System documentation into your tools, IDE
 - ~2000 lines total
 
 **For full context:**
-- Load everything in `docs/agent/`
+- Load everything in `kuat-docs/`
 - ~4000 lines total

@@ -532,14 +532,57 @@ Then use without importing:
 
 ## Documentation for AI Agents
 
-Design system documentation optimized for LLM consumption is available in the repository:
+The Kuat Design System includes LLM-optimized documentation for AI assistants.
 
-- **Repository:** https://github.com/equal-experts/kuat-mono/tree/main/docs/agent
-- **Design Rules:** `docs/agent/rules/` - Colors, typography, spacing, components
-- **Framework Examples:** `docs/agent/examples/vue/` - Vue code examples
-- **Setup Guide:** `docs/agent/setup/integration.md` - IDE integration instructions
+### Quick Setup (Cursor IDE)
 
-For Cursor IDE, add the docs to your project by cloning or referencing the repository docs.
+**Option 1: Clone docs into your project**
+
+```bash
+# From your project root
+git clone --depth 1 --filter=blob:none --sparse \
+  https://github.com/equal-experts/kuat-mono.git .kuat-docs-temp
+cd .kuat-docs-temp && git sparse-checkout set kuat-docs && cd ..
+mv .kuat-docs-temp/kuat-docs ./kuat-docs
+rm -rf .kuat-docs-temp
+```
+
+Then add to `.cursorrules`:
+
+```
+# Kuat Design System
+When working on UI, follow rules in kuat-docs/rules/
+```
+
+**Option 2: Inline key rules in .cursorrules**
+
+```
+# Kuat Design System
+
+Design tokens:
+- Primary color: EE Blue (#0066CC)
+- Fonts: Lexend (sans), JetBrains Mono (mono), Lora (serif)
+- Spacing: 8-point grid (4px base unit)
+- Border radius: 0px static | 6px interactive | 4px inputs
+
+For full rules: https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs
+```
+
+### Documentation Links
+
+| Resource | URL |
+|----------|-----|
+| Full Documentation | https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs |
+| Design Rules | https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs/rules |
+| Vue Examples | https://github.com/equal-experts/kuat-mono/tree/main/kuat-docs/examples/vue |
+| Integration Guide | https://github.com/equal-experts/kuat-mono/blob/main/kuat-docs/setup/integration.md |
+
+### Verification
+
+Test your setup:
+- "What is the primary brand color?" → EE Blue (#0066CC)
+- "What border radius for buttons?" → 6px
+- "What font for code?" → JetBrains Mono
 
 ---
 

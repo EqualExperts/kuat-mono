@@ -604,6 +604,6 @@ If you see Vue warnings in console:
 - [Storybook Documentation](https://storybook.js.org/docs/vue/get-started/introduction)
 - [Storybook Vue3 Guide](https://storybook.js.org/docs/vue/writing-stories/introduction)
 - [Vue 3 Composition API](https://vuejs.org/guide/extras/composition-api-faq.html)
-- [Component Guidelines](../../docs/agent/technical/component-guidelines.md)
+- [Component Guidelines](../../kuat-docs/rules/components/patterns.md)
 - [shadcn-vue Documentation](https://www.shadcn-vue.com)
 

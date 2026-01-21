@@ -518,6 +518,6 @@ const meta: Meta<ButtonProps> = {
 
 - [Storybook Documentation](https://storybook.js.org/docs/react/get-started/introduction)
 - [Storybook Addons](https://storybook.js.org/addons/)
-- [Component Guidelines](../../docs/agent/technical/component-guidelines.md)
+- [Component Guidelines](../../kuat-docs/rules/components/patterns.md)
 - [shadcn/ui Documentation](https://ui.shadcn.com)
 

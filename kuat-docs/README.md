@@ -79,7 +79,7 @@ Size: ~2000 lines total
 
 **Full context:**
 ```
-Load: docs/agent/
+Load: kuat-docs/
 Size: ~4000 lines total
 ```
 

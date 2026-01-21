@@ -2,6 +2,8 @@
 
 How to integrate the Kuat Design System documentation into your tools, IDEs, and agent pipelines.
 
+> **Note for npm consumers:** These paths refer to the [kuat-mono repository](https://github.com/equal-experts/kuat-mono). If you installed `@equal-experts/kuat-react` or `@equal-experts/kuat-vue` via npm, clone the docs separately using the instructions in the package README.
+
 ---
 
 ## Overview
@@ -19,7 +21,7 @@ The design rules are structured for maximum flexibility:
 ## Directory Structure
 
 ```
-docs/agent/
+kuat-docs/
 ├── rules/                 # Pure design language
 │   ├── design/            # Visual design rules
 │   ├── content/           # Content writing rules
@@ -39,7 +41,7 @@ docs/agent/
 
 **Best for:** Design reviews, content writing, general guidance
 
-**Load:** `docs/agent/rules/` directory only (~1500 lines)
+**Load:** `kuat-docs/rules/` directory only (~1500 lines)
 
 **What you get:**
 - All design specifications
@@ -84,7 +86,7 @@ Add to your `.cursorrules` file:
 ```
 # Kuat Design System
 
-When working on UI, follow the design rules in docs/agent/rules/
+When working on UI, follow the design rules in kuat-docs/rules/
 
 Key principles:
 - Use semantic color tokens (bg-primary, text-foreground)
@@ -99,9 +101,9 @@ Reference specific files in your rules:
 
 ```
 When creating components, reference:
-- docs/agent/rules/design/colours.md
-- docs/agent/rules/design/spacing.md
-- docs/agent/rules/components/patterns.md
+- kuat-docs/rules/design/colours.md
+- kuat-docs/rules/design/spacing.md
+- kuat-docs/rules/components/patterns.md
 ```
 
 ### GitHub Copilot
@@ -113,7 +115,7 @@ Create `.github/copilot-instructions.md`:
 ```markdown
 # Design System Instructions
 
-This project uses the Kuat Design System. Reference documentation in docs/agent/rules/.
+This project uses the Kuat Design System. Reference documentation in kuat-docs/rules/.
 
 Key design tokens:
 - Colors: Use semantic tokens (primary, secondary, background, foreground)
@@ -129,14 +131,14 @@ Key design tokens:
 Upload these files to your Claude Project knowledge base:
 
 **Essential (for design tasks):**
-- `docs/agent/rules/design/` (all files)
-- `docs/agent/rules/components/patterns.md`
+- `kuat-docs/rules/design/` (all files)
+- `kuat-docs/rules/components/patterns.md`
 
 **For content tasks:**
-- `docs/agent/rules/content/` (all files)
+- `kuat-docs/rules/content/` (all files)
 
 **For development:**
-- Add `docs/agent/examples/{framework}/` as needed
+- Add `kuat-docs/examples/{framework}/` as needed
 
 ### Custom Agents / API
 
@@ -146,7 +148,7 @@ Upload these files to your Claude Project knowledge base:
 def get_design_context(task_type: str, framework: str = None) -> str:
     """Load appropriate design context for a task."""
     
-    base_path = "docs/agent/"
+    base_path = "kuat-docs/"
     files = []
     
     # Always load relevant rules
@@ -189,7 +191,7 @@ echo "# Kuat Design System Context" > $OUTPUT
 echo "" >> $OUTPUT
 
 # Add rules
-for file in docs/agent/rules/design/*.md; do
+for file in kuat-docs/rules/design/*.md; do
   echo "## $(basename $file)" >> $OUTPUT
   cat "$file" >> $OUTPUT
   echo "" >> $OUTPUT

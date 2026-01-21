@@ -7,7 +7,7 @@ Monorepo with three packages:
 - `@equal-experts/kuat-react` - React components (shadcn/ui)
 - `@equal-experts/kuat-vue` - Vue components (shadcn-vue)
 
-## Documentation (`docs/agent/`)
+## Documentation (`kuat-docs/`)
 
 **Load docs based on task:**
 

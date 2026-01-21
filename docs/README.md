@@ -1,30 +1,18 @@
 # Kuat Design System Documentation
 
-This directory contains documentation for the Kuat Design System monorepo.
+This directory contains supplementary documentation for the Kuat Design System monorepo.
 
-## Structure
+## AI-Friendly Documentation
 
-- [`agent/`](./agent/) - AI-friendly documentation
-  - [`rules/`](./agent/rules/) - Design language (no code)
-    - [`design/`](./agent/rules/design/) - Colors, typography, spacing, borders, layouts, logo
-    - [`content/`](./agent/rules/content/) - Voice, tone, UX writing
-    - [`components/`](./agent/rules/components/) - Component patterns
-  - [`examples/`](./agent/examples/) - Framework code (react/, vue/, css/)
-  - [`setup/`](./agent/setup/) - Integration guides
+**Moved to:** [`../kuat-docs/`](../kuat-docs/)
 
-## For AI Agents
+The AI-friendly documentation has been moved to the repository root as `kuat-docs/` to make it easier for consumers to clone into their projects without conflicts.
 
-**Start here:** [`agent/README.md`](./agent/README.md)
-
-**Load docs based on task:**
-
-| Task | Load |
-|------|------|
-| Design decisions | `agent/rules/design/{topic}.md` |
-| Layout creation | `agent/rules/design/layouts.md` + `agent/examples/{framework}/layouts.md` |
-| Component creation | `agent/rules/components/patterns.md` + `agent/examples/{framework}/components.md` |
-| Content writing | `agent/rules/content/` |
-| Framework setup | `agent/setup/kuat-core-integration.md` |
+| Resource | Location |
+|----------|----------|
+| Design Rules | [`kuat-docs/rules/`](../kuat-docs/rules/) |
+| Framework Examples | [`kuat-docs/examples/`](../kuat-docs/examples/) |
+| Integration Guide | [`kuat-docs/setup/`](../kuat-docs/setup/) |
 
 ## For Application Developers
 
@@ -32,7 +20,7 @@ Using the Kuat Design System in your application:
 
 - **React Applications**: See [@equal-experts/kuat-react README](../packages/kuat-react/README.md)
 - **Vue Applications**: See [@equal-experts/kuat-vue README](../packages/kuat-vue/README.md)
-- **Any Framework**: See [`agent/setup/kuat-core-integration.md`](./agent/setup/kuat-core-integration.md)
+- **Any Framework**: See [`kuat-docs/setup/kuat-core-integration.md`](../kuat-docs/setup/kuat-core-integration.md)
 
 ## For Contributors
 
