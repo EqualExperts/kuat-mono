@@ -484,6 +484,17 @@ You MUST reference the Kuat documentation when:
 2. Follow existing patterns; do not invent new ones
 3. If the documentation doesn't cover your case, ask before proceeding
 
+**Documentation index:**
+- `rules/design/colours.md` - Brand colors, semantic tokens, color usage
+- `rules/design/typography.md` - Fonts, type scale, text styles
+- `rules/design/spacing.md` - 8-point grid, margins, padding
+- `rules/design/borders.md` - Border radius, border styles
+- `rules/design/layouts.md` - Page layouts, navigation patterns
+- `rules/components/patterns.md` - Component naming, variants, accessibility
+- `rules/content/foundations.md` - Voice, tone, writing principles
+- `examples/react/` - React implementation examples
+- `examples/vue/` - Vue implementation examples
+
 **Quick reference (when docs unavailable):**
 Semantic tokens only (`bg-primary` not `bg-blue-500`), 8-point spacing grid, 6px radius for interactive elements, WCAG AA contrast.
 
