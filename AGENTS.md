@@ -61,12 +61,19 @@ Guide consumers to:
 
 ## Contributing to Kuat
 
-For adding components to Kuat packages, see `CONTRIBUTING.md` in the repository root.
+For adding components to Kuat packages:
+
+1. Read `CONTRIBUTING.md` for high-level process and decision tree
+2. Use shadcn MCP tools to verify component doesn't exist in shadcn
+3. Follow framework guides in `contribution-docs/`:
+   - `contribution-docs/react.md` - React implementation
+   - `contribution-docs/vue.md` - Vue implementation
 
 **Key rules:**
-- Follow Component Decision Framework before adding components
 - Do NOT add shadcn components to Kuat packages
-- Create both React and Vue versions for custom components
+- Require Figma design before implementation
+- Create both React and Vue versions
+- Add documentation to `kuat-docs/` for new components
 
 ## Verification
 

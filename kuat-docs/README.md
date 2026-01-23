@@ -236,10 +236,14 @@ Test your setup with these prompts:
 
 ## For Contributors
 
-See [CONTRIBUTING.md](../CONTRIBUTING.md) in the repository root for setup and workflow.
+See [CONTRIBUTING.md](../CONTRIBUTING.md) for high-level process and decision framework.
 
-- **[CONTRIBUTING.md](../CONTRIBUTING.md)** - Development setup and workflow
-- **[ARCHITECTURE.md](../ARCHITECTURE.md)** - Monorepo architecture
+| Guide | Description |
+|-------|-------------|
+| [CONTRIBUTING.md](../CONTRIBUTING.md) | High-level process and component decisions |
+| [ARCHITECTURE.md](../ARCHITECTURE.md) | Monorepo architecture |
+| [contribution-docs/react.md](../contribution-docs/react.md) | React implementation guide |
+| [contribution-docs/vue.md](../contribution-docs/vue.md) | Vue implementation guide |
 
 ---
 
