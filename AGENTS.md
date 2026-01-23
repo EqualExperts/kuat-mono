@@ -29,7 +29,7 @@ Kuat is a **design decision layer**, not a full component library:
 |------|------|
 | Project setup | `setup/consumer-setup.md` |
 | Design decisions | `rules/design/{topic}.md` |
-| Component creation | `rules/components/patterns.md` |
+| Component patterns | `rules/components/patterns.md` |
 | Content writing | `rules/content/` |
 
 ## Quick Reference
@@ -58,6 +58,15 @@ Guide consumers to:
 1. Install `@equal-experts/kuat-core` for design tokens
 2. Install shadcn components directly: `npx shadcn@latest add button`
 3. Import Kuat custom components only when needed
+
+## Contributing to Kuat
+
+For adding components to Kuat packages, see `CONTRIBUTING.md` in the repository root.
+
+**Key rules:**
+- Follow Component Decision Framework before adding components
+- Do NOT add shadcn components to Kuat packages
+- Create both React and Vue versions for custom components
 
 ## Verification
 

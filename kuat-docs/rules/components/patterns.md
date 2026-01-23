@@ -23,15 +23,6 @@ When building UI, follow this priority order:
 | 3 | **shadcn Components** | Standard UI components, themed via kuat-core |
 | 4 | **Custom Build** | Only when none of the above fit your needs |
 
-### When to Create a Kuat Component
-
-Create a component in `kuat-react` or `kuat-vue` when:
-
-- The component **doesn't exist in shadcn** (e.g., ButtonGroup)
-- The component is a **composition/block** of multiple shadcn components
-- The component has **brand-specific behavior** beyond styling
-- The component is **reused across multiple projects**
-
 ### When to Use shadcn Directly
 
 Install components via shadcn CLI when:
@@ -39,6 +30,8 @@ Install components via shadcn CLI when:
 - The component **exists in shadcn** (Button, Dialog, etc.)
 - You only need **theming changes** (handled by kuat-core CSS variables)
 - You need to **customize the component code** for your specific app
+
+> **For contributors:** See [CONTRIBUTING.md](../../../CONTRIBUTING.md) for when to add components to Kuat packages.
 
 ---
 

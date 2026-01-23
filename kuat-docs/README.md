@@ -236,20 +236,10 @@ Test your setup with these prompts:
 
 ## For Contributors
 
-- **[CONTRIBUTING.md](../CONTRIBUTING.md)** - Development workflow
+See [CONTRIBUTING.md](../CONTRIBUTING.md) in the repository root for setup and workflow.
+
+- **[CONTRIBUTING.md](../CONTRIBUTING.md)** - Development setup and workflow
 - **[ARCHITECTURE.md](../ARCHITECTURE.md)** - Monorepo architecture
-
-### Quick Start
-
-```bash
-git clone <repository-url>
-cd kuat-mono
-pnpm install
-
-# Start Storybook
-pnpm --filter storybook-react dev  # React on :6006
-pnpm --filter storybook-vue dev    # Vue on :6007
-```
 
 ---
 
