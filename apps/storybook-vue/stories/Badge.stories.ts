@@ -1,9 +1,20 @@
+/**
+ * @deprecated This component import is deprecated.
+ *
+ * For new projects, install Badge directly via shadcn-vue CLI:
+ * ```bash
+ * npx shadcn-vue@latest add badge
+ * ```
+ *
+ * The component will be themed automatically when using kuat-core.
+ * This story demonstrates the Badge styling that kuat-core provides.
+ */
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { Badge } from "@equal-experts/kuat-vue";
 import { BadgeCheckIcon } from "lucide-vue-next";
 
 const meta: Meta<typeof Badge> = {
-  title: "Components/Badge",
+  title: "Components/Badge (Deprecated)",
   component: Badge,
   tags: ["autodocs"],
   argTypes: {

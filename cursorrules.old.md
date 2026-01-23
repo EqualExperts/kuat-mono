@@ -1,0 +1,73 @@
+# Kuat Design System - Agent Guidelines
+
+## Project Structure
+
+Monorepo with three packages:
+- `@equal-experts/kuat-core` - CSS variables, Tailwind preset
+- `@equal-experts/kuat-react` - React components (shadcn/ui)
+- `@equal-experts/kuat-vue` - Vue components (shadcn-vue)
+
+## Documentation (`kuat-docs/`)
+
+**Load docs based on task:**
+
+| Task | Load |
+|------|------|
+| Design decisions | `rules/design/{topic}.md` |
+| Layout creation | `rules/design/layouts.md` + `examples/{framework}/layouts.md` |
+| Component creation | `rules/components/patterns.md` + `examples/{framework}/components.md` |
+| Content writing | `rules/content/` |
+| Framework setup | `setup/kuat-core-integration.md` |
+
+**Structure:**
+- `rules/` - Pure design specs (no code)
+- `examples/` - Framework code (react/, vue/, css/)
+- `setup/` - Integration guides
+
+## Quick Reference
+
+**Colors:** EE Blue (#0066CC), Tech Blue, Transform Teal, Equal Ember  
+**Fonts:** Lexend (sans), JetBrains Mono (mono), Lora (serif)  
+**Spacing:** 8-point grid (4px base unit)  
+**Border radius:** 0px static | 6px interactive | 4px inputs
+
+## Component Development
+
+1. Follow `rules/components/patterns.md`
+2. Use Tailwind CSS v4 + design tokens from `@equal-experts/kuat-core`
+3. Create both React and Vue versions
+4. Add Storybook stories in `apps/storybook-{react,vue}`
+5. Use `cn()` from `@/lib/utils` for className merging
+6. Use Shadcn/ui MCP to discover component code
+7. Ask user about Figma customizations; use Figma MCP if available
+
+**Install components:**
+- React: `npx shadcn@latest add [component]`
+- Vue: `npx shadcn-vue@latest add [component]`
+
+## Import Patterns
+
+```ts
+// React
+import { Component } from "@equal-experts/kuat-react"
+
+// Vue
+import { Component } from "@equal-experts/kuat-vue"
+
+// Core CSS (any framework)
+import "@equal-experts/kuat-core/variables.css"
+```
+
+## Build System
+
+- Turborepo + pnpm workspaces
+- Vite builds, TypeScript strict mode
+- Path alias: `@/*` → `./src/*`
+- Export components from package `index.ts` files
+
+## Verification
+
+To verify rules are loaded correctly, test with:
+- "What is the primary brand color?" → EE Blue (#0066CC)
+- "What border radius for buttons?" → 6px
+- "What font for code?" → JetBrains Mono

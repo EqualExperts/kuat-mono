@@ -1,8 +1,19 @@
+/**
+ * @deprecated This component import is deprecated.
+ *
+ * For new projects, install Button directly via shadcn CLI:
+ * ```bash
+ * npx shadcn@latest add button
+ * ```
+ *
+ * The component will be themed automatically when using kuat-core.
+ * This story demonstrates the Button styling that kuat-core provides.
+ */
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '@equal-experts/kuat-react';
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'Components/Button (Deprecated)',
   component: Button,
   tags: ['autodocs'],
   argTypes: {

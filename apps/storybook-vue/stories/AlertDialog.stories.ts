@@ -1,3 +1,14 @@
+/**
+ * @deprecated This component import is deprecated.
+ *
+ * For new projects, install AlertDialog directly via shadcn-vue CLI:
+ * ```bash
+ * npx shadcn-vue@latest add alert-dialog
+ * ```
+ *
+ * The component will be themed automatically when using kuat-core.
+ * This story demonstrates the AlertDialog styling that kuat-core provides.
+ */
 import type { Meta, StoryObj } from '@storybook/vue3';
 import {
   AlertDialog,
@@ -13,7 +24,7 @@ import {
 } from '@equal-experts/kuat-vue';
 
 const meta: Meta<typeof AlertDialog> = {
-  title: 'Components/AlertDialog',
+  title: 'Components/AlertDialog (Deprecated)',
   component: AlertDialog,
   tags: ['autodocs'],
 };
