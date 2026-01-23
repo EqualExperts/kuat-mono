@@ -35,8 +35,11 @@ You MUST reference the Kuat documentation when:
 - `rules/design/spacing.md` - 8-point grid, margins, padding
 - `rules/design/borders.md` - Border radius, border styles
 - `rules/design/layouts.md` - Page layouts, navigation patterns
+- `rules/design/logo.md` - Logo usage and placement
 - `rules/components/patterns.md` - Component naming, variants, accessibility
-- `rules/content/foundations.md` - Voice, tone, writing principles
+- `rules/content/foundations.md` - Voice, tone, universal writing principles
+- `rules/content/product-ux.md` - Product and UX writing guidelines
+- `rules/content/marketing-sales.md` - Marketing content guidelines
 - `examples/react/` - React implementation examples
 - `examples/vue/` - Vue implementation examples
 

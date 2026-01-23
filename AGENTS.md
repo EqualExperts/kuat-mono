@@ -30,7 +30,9 @@ Kuat is a **design decision layer**, not a full component library:
 | Project setup | `setup/consumer-setup.md` |
 | Design decisions | `rules/design/{topic}.md` |
 | Component patterns | `rules/components/patterns.md` |
-| Content writing | `rules/content/` |
+| Content review | `rules/content/foundations.md` + specific guide below |
+| Product/UX content | `rules/content/product-ux.md` |
+| Marketing content | `rules/content/marketing-sales.md` |
 
 ## Quick Reference
 
@@ -80,3 +82,4 @@ For adding components to Kuat packages:
 - "Primary brand color?" → EE Blue (#0066CC)
 - "Border radius for buttons?" → 6px
 - "Where do Button components come from?" → shadcn (installed directly)
+- "Review content guidelines?" → Load `rules/content/foundations.md` first
