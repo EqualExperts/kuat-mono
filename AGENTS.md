@@ -29,9 +29,8 @@ Kuat is a **design decision layer**, not a full component library:
 |------|------|
 | Project setup | `setup/consumer-setup.md` |
 | Design decisions | `rules/design/{topic}.md` |
-| Component creation | `rules/components/patterns.md` |
+| Component patterns | `rules/components/patterns.md` |
 | Content writing | `rules/content/` |
-| Contributing | `contributing.md` |
 
 ## Quick Reference
 
@@ -63,12 +62,18 @@ Guide consumers to:
 ## Contributing to Kuat
 
 For adding components to Kuat packages:
-1. Read `kuat-docs/contributing.md` for setup and workflow
-2. Follow Component Decision Framework in `rules/components/patterns.md`
-3. Create both React and Vue versions for custom components
-4. Add Storybook stories in `apps/storybook-{react,vue}/`
 
-**Important:** Do NOT add shadcn components to Kuat packages.
+1. Read `CONTRIBUTING.md` for high-level process and decision tree
+2. Use shadcn MCP tools to verify component doesn't exist in shadcn
+3. Follow framework guides in `contribution-docs/`:
+   - `contribution-docs/react.md` - React implementation
+   - `contribution-docs/vue.md` - Vue implementation
+
+**Key rules:**
+- Do NOT add shadcn components to Kuat packages
+- Require Figma design before implementation
+- Create both React and Vue versions
+- Add documentation to `kuat-docs/` for new components
 
 ## Verification
 

@@ -12,6 +12,84 @@ These rules ensure consistent, accessible, maintainable components across React 
 
 ---
 
+## Component Decision Framework
+
+When building UI, follow this priority order:
+
+| Priority | Source | When to Use |
+|----------|--------|-------------|
+| 1 | **Kuat Blocks** | Pre-built compositions (header, footer, search patterns) |
+| 2 | **Kuat Components** | Custom components not in shadcn (ButtonGroup) |
+| 3 | **shadcn Components** | Standard UI components, themed via kuat-core |
+| 4 | **Custom Build** | Only when none of the above fit your needs |
+
+### When to Use shadcn Directly
+
+Install components via shadcn CLI when:
+
+- The component **exists in shadcn** (Button, Dialog, etc.)
+- You only need **theming changes** (handled by kuat-core CSS variables)
+- You need to **customize the component code** for your specific app
+
+> **For contributors:** See [CONTRIBUTING.md](../../../CONTRIBUTING.md) for when to add components to Kuat packages.
+
+---
+
+## Kuat Component Namespace
+
+Components unique to Kuat use the "Kuat" namespace to distinguish them from shadcn components.
+
+### Naming Pattern
+
+| Type | Naming | Example |
+|------|--------|---------|
+| Custom components | No prefix needed | `ButtonGroup`, `Separator` |
+| Blocks (compositions) | `Kuat` prefix | `KuatHeader`, `KuatFooter`, `KuatSearchPattern` |
+| Kuat-specific variants | `kuat-` prefix in variant name | `variant="kuat-cta"` |
+
+### Custom Variants
+
+When shadcn's default variants don't meet brand requirements, add kuat-namespaced variants:
+
+```tsx
+// Example: Adding a brand-specific CTA variant to Button
+const buttonVariants = cva(
+  "...", // base classes
+  {
+    variants: {
+      variant: {
+        // Standard shadcn variants
+        default: "bg-primary text-primary-foreground",
+        secondary: "bg-secondary text-secondary-foreground",
+        // Kuat-specific variant
+        "kuat-cta": "bg-equal-ember-500 text-white font-bold uppercase tracking-wide",
+      },
+    },
+  }
+)
+```
+
+### Block Structure
+
+Blocks are pre-built compositions that combine multiple components:
+
+```tsx
+// Example block structure
+export function KuatHeader({ logo, navigation, actions }: KuatHeaderProps) {
+  return (
+    <header className="bg-sidebar text-sidebar-foreground">
+      <div className="container flex items-center justify-between py-4">
+        <Logo variant={logo} />
+        <nav>{/* Navigation items */}</nav>
+        <div className="flex gap-2">{actions}</div>
+      </div>
+    </header>
+  );
+}
+```
+
+---
+
 ## Naming Conventions
 
 ### Components
@@ -260,6 +338,7 @@ For code examples implementing these patterns:
 
 ## Related Documentation
 
+- [Consumer Setup Guide](../../setup/consumer-setup.md) - Recommended project setup
 - [Design Overview](../design/overview.md) - Design system principles
 - [Colours](../design/colours.md) - Color tokens
 - [Typography](../design/typography.md) - Font specifications

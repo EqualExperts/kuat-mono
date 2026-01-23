@@ -1,6 +1,6 @@
 # Framework-Agnostic kuat-core Integration
 
-This guide covers using `@equal-experts/kuat-core` design tokens without React or Vue components. Use this package when building applications with Svelte, Angular, Astro, vanilla JavaScript, or any other framework.
+This guide covers using `@equal-experts/kuat-core` design tokens. This is the foundation of the Kuat Design System and works with any framework.
 
 ## Overview
 
@@ -9,6 +9,52 @@ This guide covers using `@equal-experts/kuat-core` design tokens without React o
 - **CSS Variables** - All design tokens as CSS custom properties
 - **Tailwind CSS Preset** - Pre-configured theme extensions
 - **Dark Mode Support** - Automatic light/dark mode via `.dark` class
+
+---
+
+## Recommended: kuat-core + shadcn
+
+The recommended architecture for React and Vue applications is to use **kuat-core for theming** combined with **shadcn components installed directly**.
+
+This approach:
+- Gives you full control over component code
+- Automatically themes components via CSS variables
+- Reduces dependency on wrapper packages
+- Follows shadcn's "copy into your project" philosophy
+
+### Quick Setup (React)
+
+```bash
+# 1. Install kuat-core
+pnpm add @equal-experts/kuat-core
+
+# 2. Initialize shadcn
+npx shadcn@latest init
+
+# 3. Install components as needed
+npx shadcn@latest add button dialog
+```
+
+```typescript
+// tailwind.config.ts
+import kuatPreset from '@equal-experts/kuat-core';
+
+export default {
+  presets: [kuatPreset],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+};
+```
+
+```typescript
+// main.tsx - Import design tokens
+import '@equal-experts/kuat-core/variables.css';
+```
+
+Components installed via shadcn CLI will automatically use Kuat's brand colors, typography, and spacing.
+
+**For the complete setup guide, see [Consumer Setup Guide](./consumer-setup.md).**
+
+---
 
 ## Installation
 
@@ -601,6 +647,7 @@ When using the preset, these utilities are available:
 
 ## Related Documentation
 
+- [Consumer Setup Guide](./consumer-setup.md) - Recommended kuat-core + shadcn setup
 - [Integration Guide](./integration.md) - General integration patterns
 - [Verification Guide](./verification.md) - Test your setup
 - [Colors](../rules/design/colours.md) - Brand color specifications

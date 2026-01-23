@@ -1,512 +1,197 @@
 # Contributing to Kuat Design System
 
-Thank you for your interest in contributing to the Kuat Design System! This guide will help you set up your development environment and understand our workflow.
+Guide for contributing to the Kuat Design System packages.
 
-## Table of Contents
+---
 
-- [Development Environment Setup](#development-environment-setup)
-- [Project Structure](#project-structure)
-- [Adding Components](#adding-components)
-- [Development Workflow](#development-workflow)
-- [Testing](#testing)
-- [Code Style](#code-style)
-- [Submitting Changes](#submitting-changes)
-
-## Development Environment Setup
+## Quick Start
 
 ### Prerequisites
 
-Before you begin, ensure you have the following installed:
-
 - **Node.js** >= 18.0.0
-- **pnpm** >= 8.0.0 (recommended package manager)
+- **pnpm** >= 8.0.0
 - **Git**
 
-### Initial Setup
+### Setup
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd kuat-mono
-   ```
+1. Clone the repository
+2. Run `pnpm install`
+3. Run `pnpm build`
+4. Start Storybook: `pnpm --filter storybook-react dev` or `pnpm --filter storybook-vue dev`
 
-2. **Install dependencies**
-   ```bash
-   pnpm install
-   ```
+---
 
-3. **Build all packages**
-   ```bash
-   pnpm build
-   ```
+## Architecture Overview
 
-4. **Verify the setup**
-   ```bash
-   # Start React Storybook
-   pnpm --filter storybook-react dev
-   
-   # In another terminal, start Vue Storybook
-   pnpm --filter storybook-vue dev
-   ```
+See [ARCHITECTURE.md](./ARCHITECTURE.md) for detailed system documentation.
 
-Visit http://localhost:6006 (React) and http://localhost:6007 (Vue) to see Storybook running.
+**Repository Structure:**
 
-## Project Structure
+| Directory | Purpose |
+|-----------|---------|
+| `packages/kuat-core` | Design tokens, CSS variables, Tailwind preset |
+| `packages/kuat-react` | Custom React components and blocks |
+| `packages/kuat-vue` | Custom Vue components and blocks |
+| `apps/storybook-react` | React component documentation |
+| `apps/storybook-vue` | Vue component documentation |
+| `kuat-docs/` | Consumer-facing design documentation |
+
+---
+
+## Component Decision Tree
+
+Before creating a component, determine where it belongs:
 
 ```
-kuat-mono/
-├── packages/
-│   ├── kuat-core/          # Shared design tokens and CSS variables
-│   │   ├── src/
-│   │   │   └── variables.css  # All CSS custom properties
-│   │   └── tailwind.config.ts
-│   ├── kuat-react/         # React component library
-│   │   ├── src/
-│   │   │   ├── components/ui/  # shadcn/ui components
-│   │   │   ├── lib/utils.ts    # Utility functions
-│   │   │   ├── styles.css      # Imports core styles
-│   │   │   └── index.ts        # Package exports
-│   │   └── components.json     # shadcn CLI config
-│   └── kuat-vue/           # Vue component library
-│       ├── src/
-│       │   ├── components/ui/  # shadcn-vue components
-│       │   ├── lib/utils.ts    # Utility functions
-│       │   ├── styles.css      # Imports core styles
-│       │   └── index.ts        # Package exports
-│       └── components.json     # shadcn-vue CLI config
-├── apps/
-│   ├── storybook-react/    # React component documentation
-│   │   └── stories/        # React component stories
-│   └── storybook-vue/      # Vue component documentation
-│       └── stories/        # Vue component stories
-├── docs/                   # Documentation
-└── kuat-docs/              # AI-friendly design documentation
-    ├── rules/              # Pure design language (no code)
-    ├── examples/           # Framework code examples
-    └── setup/              # Integration guides
+Need a UI element?
+    │
+    ├─ Exists in shadcn? ─── YES ──→ Consumer installs directly
+    │                                (Do NOT add to Kuat packages)
+    │
+    └─ NO
+        │
+        ├─ Composition of multiple components? ─── YES ──→ Create Kuat Block
+        │                                                  (e.g., KuatHeader)
+        │
+        └─ NO
+            │
+            └─ Unique behavior / reused across projects? ─── YES ──→ Create Kuat Component
+                                                                     (e.g., ButtonGroup)
+                │
+                └─ NO ──→ Build custom in consumer app
 ```
 
-**Note:** The `kuat-docs/` directory is placed at the repository root so npm consumers can easily clone it into their projects without conflicts.
+**Key Rules:**
+- Do NOT add shadcn components to Kuat packages
+- Consumers install shadcn components directly via CLI
+- kuat-core automatically themes shadcn components
 
-## Adding Components
+---
 
-### Adding a React Component
+## Using shadcn MCP
 
-1. **Navigate to the React package**
-   ```bash
-   cd packages/kuat-react
-   ```
+The shadcn MCP tools help discover existing components before creating new ones.
 
-2. **Add the component using shadcn CLI**
-   ```bash
-   npx shadcn@latest add dialog
-   ```
-   
-   This will:
-   - Install required dependencies
-   - Add the component to `src/components/ui/`
-   - Configure types and utilities
+**Before creating a component:**
+1. Use `search_items_in_registries` to check if it exists in shadcn
+2. Use `view_items_in_registries` to see component implementation details
+3. Use `get_item_examples_from_registries` for usage patterns
 
-3. **Export the component**
-   
-   Edit `src/index.ts` to export the new component:
-   ```typescript
-   export {
-     Dialog,
-     DialogPortal,
-     DialogOverlay,
-     DialogClose,
-     DialogTrigger,
-     DialogContent,
-     DialogHeader,
-     DialogFooter,
-     DialogTitle,
-     DialogDescription,
-   } from "./components/ui/dialog";
-   ```
+Only create a Kuat component if the component does NOT exist in shadcn.
 
-4. **Create a Storybook story**
-   
-   Create `apps/storybook-react/stories/Dialog.stories.tsx`:
-   ```typescript
-   import type { Meta, StoryObj } from '@storybook/react';
-   import {
-     Dialog,
-     DialogTrigger,
-     DialogContent,
-     DialogHeader,
-     DialogTitle,
-     DialogDescription,
-     Button,
-   } from '@equal-experts/kuat-react';
-   
-   const meta: Meta<typeof Dialog> = {
-     title: 'Components/Dialog',
-     component: Dialog,
-     tags: ['autodocs'],
-   };
-   
-   export default meta;
-   type Story = StoryObj<typeof Dialog>;
-   
-   export const Default: Story = {
-     render: () => (
-       <Dialog>
-         <DialogTrigger asChild>
-           <Button variant="outline">Open Dialog</Button>
-         </DialogTrigger>
-         <DialogContent>
-           <DialogHeader>
-             <DialogTitle>Are you sure?</DialogTitle>
-             <DialogDescription>
-               This action cannot be undone.
-             </DialogDescription>
-           </DialogHeader>
-         </DialogContent>
-       </Dialog>
-     ),
-   };
-   ```
+---
 
-5. **Test in Storybook**
-   ```bash
-   cd ../..
-   pnpm --filter storybook-react dev
-   ```
-   
-   Navigate to the new Dialog story and verify it works correctly.
+## Creating New Components or Blocks
 
-### Adding a Vue Component
+### Requirements
 
-The process is similar for Vue components:
+1. **Design Reference Required**
+   - Obtain Figma design or design specification before implementation
+   - Reference design rules in `kuat-docs/rules/design/`
+   - Follow spacing, color, and typography guidelines
 
-1. **Navigate to the Vue package**
-   ```bash
-   cd packages/kuat-vue
-   ```
+2. **Check shadcn Registry**
+   - Verify component does NOT exist in shadcn
+   - Use shadcn MCP tools or browse [ui.shadcn.com](https://ui.shadcn.com)
 
-2. **Add the component using shadcn-vue CLI**
-   ```bash
-   npx shadcn-vue@latest add dialog
-   ```
+3. **Create Both Framework Versions**
+   - React version in `packages/kuat-react`
+   - Vue version in `packages/kuat-vue`
+   - See framework-specific guides below
 
-3. **Export the component**
-   
-   Edit `src/index.ts`:
-   ```typescript
-   export {
-     Dialog,
-     DialogClose,
-     DialogContent,
-     DialogDescription,
-     DialogFooter,
-     DialogHeader,
-     DialogTitle,
-     DialogTrigger,
-   } from "./components/ui/dialog";
-   ```
+4. **Add Storybook Stories**
+   - React: `apps/storybook-react/stories/`
+   - Vue: `apps/storybook-vue/stories/`
 
-4. **Create a Storybook story**
-   
-   Create `apps/storybook-vue/stories/Dialog.stories.ts`:
-   ```typescript
-   import type { Meta, StoryObj } from '@storybook/vue3';
-   import {
-     Dialog,
-     DialogTrigger,
-     DialogContent,
-     DialogHeader,
-     DialogTitle,
-     DialogDescription,
-     Button,
-   } from '@equal-experts/kuat-vue';
-   
-   const meta: Meta<typeof Dialog> = {
-     title: 'Components/Dialog',
-     component: Dialog,
-     tags: ['autodocs'],
-   };
-   
-   export default meta;
-   type Story = StoryObj<typeof Dialog>;
-   
-   export const Default: Story = {
-     render: () => ({
-       components: {
-         Dialog,
-         DialogTrigger,
-         DialogContent,
-         DialogHeader,
-         DialogTitle,
-         DialogDescription,
-         Button,
-       },
-       template: `
-         <Dialog>
-           <DialogTrigger as-child>
-             <Button variant="outline">Open Dialog</Button>
-           </DialogTrigger>
-           <DialogContent>
-             <DialogHeader>
-               <DialogTitle>Are you sure?</DialogTitle>
-               <DialogDescription>
-                 This action cannot be undone.
-               </DialogDescription>
-             </DialogHeader>
-           </DialogContent>
-         </Dialog>
-       `,
-     }),
-   };
-   ```
+5. **Document in kuat-docs**
+   - Add usage documentation describing when and how to use the component
+   - Include examples in `kuat-docs/examples/react/` and `kuat-docs/examples/vue/`
 
-5. **Test in Storybook**
-   ```bash
-   cd ../..
-   pnpm --filter storybook-vue dev
-   ```
+### Framework-Specific Guides
+
+Detailed implementation guides with code examples:
+
+- **React**: [contribution-docs/react.md](./contribution-docs/react.md)
+- **Vue**: [contribution-docs/vue.md](./contribution-docs/vue.md)
+
+---
 
 ## Development Workflow
 
-### Daily Development
+1. **Start Storybook** for your target framework
+2. **Create/edit components** following framework-specific guide
+3. **Test in Storybook** - verify all variants, light/dark mode
+4. **Build**: `pnpm build`
+5. **Lint**: `pnpm lint`
 
-1. **Start Storybook for the framework you're working with**
-   ```bash
-   # For React development
-   pnpm --filter storybook-react dev
-   
-   # For Vue development
-   pnpm --filter storybook-vue dev
-   ```
-
-2. **Make your changes**
-   - Edit component code in `packages/kuat-react/src/` or `packages/kuat-vue/src/`
-   - Update stories in `apps/storybook-react/stories/` or `apps/storybook-vue/stories/`
-   - Storybook will hot-reload automatically
-
-3. **Build to verify**
-   ```bash
-   pnpm build
-   ```
-
-### Testing Changes in a Real Application
-
-To test your changes in an actual application:
-
-1. **Build the packages**
-   ```bash
-   pnpm build
-   ```
-
-2. **Link the package globally**
-   ```bash
-   cd packages/kuat-react  # or kuat-vue
-   pnpm link --global
-   ```
-
-3. **Link in your test app**
-   ```bash
-   cd /path/to/your/test/app
-   pnpm link --global @equal-experts/kuat-react
-   ```
-
-4. **Or use file protocol in package.json**
-   ```json
-   {
-     "dependencies": {
-       "@equal-experts/kuat-react": "file:../kuat-mono/packages/kuat-react"
-     }
-   }
-   ```
-
-### Working with Design Tokens
-
-If you need to add or modify design tokens (colors, spacing, typography):
-
-1. **Edit the core variables**
-   ```bash
-   # Edit CSS variables
-   vim packages/kuat-core/src/variables.css
-   ```
-
-2. **Rebuild packages**
-   ```bash
-   pnpm build
-   ```
-
-3. **Test in Storybook**
-   
-   Changes to design tokens will automatically reflect in all components.
-
-## Testing
-
-### Visual Testing with Storybook
-
-Storybook provides comprehensive visual testing:
-
-1. **Test all variants**
-   - Use the Controls panel to test different props
-   - Toggle between light and dark themes
-   - Test different viewport sizes
-
-2. **Accessibility testing**
-   - Use Storybook's accessibility addon
-   - Check contrast ratios
-   - Verify keyboard navigation
-
-3. **Interactive testing**
-   - Test user interactions
-   - Verify state changes
-   - Check animations and transitions
-
-### Build Testing
-
-Before submitting changes, ensure everything builds:
-
-```bash
-# Clean build
-rm -rf packages/*/dist apps/*/dist
-
-# Full build
-pnpm build
-
-# Build Storybook
-pnpm --filter storybook-react build
-pnpm --filter storybook-vue build
-```
-
-## Code Style
-
-### TypeScript
-
-- Use strict TypeScript types
-- Export types alongside components
-- Use explicit return types for functions
-
-```typescript
-// Good
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'default' | 'destructive' | 'outline';
-}
-
-export const Button: React.FC<ButtonProps> = ({ variant = 'default', ...props }) => {
-  return <button {...props} />;
-};
-
-// Export the type
-export type { ButtonProps };
-```
-
-### Component Structure
-
-- Keep components focused and single-purpose
-- Use composition over complexity
-- Follow shadcn/ui patterns
-
-### Styling
-
-- Use Tailwind utility classes
-- Reference CSS variables for colors
-- Use the `cn()` utility for conditional classes
-
-```typescript
-import { cn } from "@/lib/utils";
-
-const buttonVariants = cva(
-  "inline-flex items-center justify-center",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground",
-        destructive: "bg-destructive text-destructive-foreground",
-      },
-    },
-  }
-);
-```
-
-### Documentation
-
-- Add JSDoc comments for exported functions and types
-- Create comprehensive Storybook stories
-- Include usage examples in stories
+---
 
 ## Submitting Changes
 
-### Before Submitting
-
-1. **Run linting**
-   ```bash
-   pnpm lint
-   ```
-
-2. **Build all packages**
-   ```bash
-   pnpm build
-   ```
-
-3. **Test in Storybook**
-   
-   Verify your component works in both light and dark themes.
-
-4. **Check exports**
-   
-   Ensure your component is properly exported from `index.ts`.
-
 ### Branch Naming
 
-Use descriptive branch names:
-
 ```
-feature/add-dialog-component
+feature/add-button-group
 fix/button-hover-state
-docs/update-contributing-guide
+docs/update-contributing
 chore/upgrade-dependencies
 ```
 
 ### Commit Messages
 
-Follow conventional commits format:
+Follow conventional commits:
 
 ```
-feat: add Dialog component to React library
-fix: correct Button hover state in dark mode
+feat: add ButtonGroup component
+fix: correct hover state in dark mode
 docs: update component guidelines
 chore: upgrade Tailwind to v4.1
 ```
 
-Types:
-- `feat`: New feature
-- `fix`: Bug fix
-- `docs`: Documentation changes
-- `style`: Code style changes (formatting)
-- `refactor`: Code refactoring
-- `test`: Adding or updating tests
-- `chore`: Maintenance tasks
+### Before Submitting
+
+1. Run `pnpm lint`
+2. Run `pnpm build`
+3. Verify components work in light and dark themes
+4. Ensure both React and Vue versions exist (for components)
 
 ### Pull Request Process
 
-1. **Create a pull request** with a clear title and description
-2. **Link related issues** if applicable
-3. **Provide screenshots** or GIFs for UI changes
-4. **Include Storybook links** if possible
-5. **Wait for review** from maintainers
-6. **Address feedback** and update as needed
+1. Create PR with clear title and description
+2. Link related issues if applicable
+3. Provide screenshots for UI changes
+4. Include Figma/design reference
+5. Wait for review and address feedback
 
-## Getting Help
+---
 
-- Check the [Architecture documentation](./ARCHITECTURE.md)
-- Review [Component Guidelines](./kuat-docs/rules/components/patterns.md)
-- Look at existing components for patterns
-- Ask questions in pull requests or issues
+## New Component Checklist
 
-## Additional Resources
+- [ ] Figma design or design spec obtained
+- [ ] Verified component does NOT exist in shadcn
+- [ ] Reviewed design rules in `kuat-docs/rules/design/`
+- [ ] Created React version
+- [ ] Created Vue version
+- [ ] Added Storybook stories (both frameworks)
+- [ ] Added documentation to `kuat-docs/`
+- [ ] Tested light and dark mode
+- [ ] PR includes screenshots
 
-- [shadcn/ui documentation](https://ui.shadcn.com)
-- [shadcn-vue documentation](https://www.shadcn-vue.com)
-- [Tailwind CSS v4 documentation](https://tailwindcss.com)
-- [Storybook documentation](https://storybook.js.org)
-- [Radix UI documentation](https://www.radix-ui.com)
+---
 
-Thank you for contributing to the Kuat Design System!
+## Resources
 
+### Internal
+
+- [Architecture](./ARCHITECTURE.md) - System overview
+- [React Guide](./contribution-docs/react.md) - React-specific contribution guide
+- [Vue Guide](./contribution-docs/vue.md) - Vue-specific contribution guide
+- [Design Rules](./kuat-docs/rules/design/) - Colors, spacing, typography
+- [Component Patterns](./kuat-docs/rules/components/patterns.md) - Naming, accessibility
+
+### External
+
+- [shadcn/ui](https://ui.shadcn.com) - React component registry
+- [shadcn-vue](https://www.shadcn-vue.com) - Vue component registry
+- [Tailwind CSS](https://tailwindcss.com) - Utility framework
+- [Storybook](https://storybook.js.org) - Component documentation

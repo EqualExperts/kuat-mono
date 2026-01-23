@@ -1,8 +1,19 @@
+/**
+ * @deprecated This component import is deprecated.
+ *
+ * For new projects, install Button directly via shadcn-vue CLI:
+ * ```bash
+ * npx shadcn-vue@latest add button
+ * ```
+ *
+ * The component will be themed automatically when using kuat-core.
+ * This story demonstrates the Button styling that kuat-core provides.
+ */
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { Button } from '@equal-experts/kuat-vue';
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'Components/Button (Deprecated)',
   component: Button,
   tags: ['autodocs'],
   argTypes: {

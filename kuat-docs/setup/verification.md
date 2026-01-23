@@ -20,6 +20,8 @@ Ask your agent these questions and verify the expected answers:
 | "What font should I use for code?" | JetBrains Mono (font-mono) |
 | "What border radius for a button?" | 6px (interactive element) |
 | "What spacing between form fields?" | space-y-4 (16px) |
+| "Where should I get Button components?" | shadcn CLI (installed directly, themed by kuat-core) |
+| "What Kuat components are available?" | ButtonGroup, and blocks (KuatHeader, etc.) |
 
 If answers match, basic integration is working.
 
@@ -300,8 +302,104 @@ def test_design_system_integration():
 
 ---
 
+## Architecture Verification
+
+### Test Consumer App
+
+A minimal test app is available at `apps/test-consumer-react/` that demonstrates:
+
+1. kuat-core design tokens loading correctly
+2. shadcn Button themed by kuat-core CSS variables
+3. Kuat ButtonGroup working alongside shadcn components
+4. Dark mode functioning
+5. Typography loading (Lexend, Lora, JetBrains Mono)
+
+**Run the test app:**
+
+```bash
+cd apps/test-consumer-react
+pnpm install
+pnpm dev
+```
+
+### Architecture Tests
+
+#### Component Source Test
+
+**Prompt:** "I need a Button component for my React app using Kuat. Where should I get it?"
+
+**Expected:**
+- Install via shadcn CLI: `npx shadcn@latest add button`
+- Theme will be applied automatically via kuat-core CSS variables
+- Import from local: `import { Button } from "@/components/ui/button"`
+
+**Not expected:**
+- Import from `@equal-experts/kuat-react` (deprecated for Button)
+
+**Verification:**
+- [ ] Recommends shadcn CLI installation
+- [ ] Mentions kuat-core theming
+- [ ] Does NOT suggest importing Button from kuat-react
+
+---
+
+#### Kuat Components Test
+
+**Prompt:** "What components should I import from @equal-experts/kuat-react?"
+
+**Expected:**
+- ButtonGroup (custom component not in shadcn)
+- Future blocks: KuatHeader, KuatFooter, etc.
+- Utilities: `cn()`
+
+**Not expected:**
+- Button, Dialog, Accordion, Badge (use shadcn directly)
+
+**Verification:**
+- [ ] Lists ButtonGroup as primary export
+- [ ] Does NOT list standard shadcn components
+- [ ] Mentions blocks (coming soon)
+
+---
+
+#### Setup Test
+
+**Prompt:** "How do I set up a new React project with Kuat?"
+
+**Expected:**
+1. Install `@equal-experts/kuat-core`
+2. Configure Tailwind with kuat preset
+3. Import `@equal-experts/kuat-core/variables.css`
+4. Initialize shadcn CLI
+5. Install shadcn components as needed
+6. Optionally install `@equal-experts/kuat-react` for custom components
+
+**Verification:**
+- [ ] Mentions kuat-core as foundation
+- [ ] Includes shadcn CLI initialization
+- [ ] Shows correct import order
+
+---
+
+#### Decision Priority Test
+
+**Prompt:** "I need a search form with a text input and submit button. What should I use?"
+
+**Expected:**
+1. Check if Kuat has a block (KuatSearchPattern) - use if available
+2. Otherwise use shadcn components (Input, Button) themed by kuat-core
+3. Compose them following Kuat patterns
+
+**Verification:**
+- [ ] Checks Kuat blocks first
+- [ ] Falls back to shadcn components
+- [ ] Mentions kuat-core theming
+
+---
+
 ## Related Documentation
 
+- [Consumer Setup Guide](./consumer-setup.md) - Recommended project setup
 - [Integration Guide](./integration.md) - Setup instructions
 - [Rules](../rules/) - Design language documentation
 - [Examples](../examples/) - Framework-specific code

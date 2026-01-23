@@ -1,9 +1,20 @@
+/**
+ * @deprecated This component import is deprecated.
+ *
+ * For new projects, install Badge directly via shadcn CLI:
+ * ```bash
+ * npx shadcn@latest add badge
+ * ```
+ *
+ * The component will be themed automatically when using kuat-core.
+ * This story demonstrates the Badge styling that kuat-core provides.
+ */
 import type { Meta, StoryObj } from "@storybook/react";
 import { Badge } from "@equal-experts/kuat-react";
 import { BadgeCheckIcon } from "lucide-react";
 
 const meta: Meta<typeof Badge> = {
-  title: "Components/Badge",
+  title: "Components/Badge (Deprecated)",
   component: Badge,
   tags: ["autodocs"],
   argTypes: {

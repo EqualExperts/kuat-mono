@@ -62,6 +62,22 @@ I'm using the Kuat Design System. Add a section to my agent rules that:
 - Links to the full documentation
 
 Reference: https://github.com/equalexperts/kuat-mono/tree/master/kuat-docs
+
+**Documentation index:**
+- `rules/design/overview.md` - Design system principles and philosophy
+- `rules/design/colours.md` - Brand colors, semantic tokens, color usage
+- `rules/design/typography.md` - Fonts, type scale, text styles
+- `rules/design/spacing.md` - 8-point grid, margins, padding
+- `rules/design/borders.md` - Border radius, border styles
+- `rules/design/layouts.md` - Page layouts, navigation patterns
+- `rules/design/logo.md` - Logo usage and placement guidelines
+- `rules/components/patterns.md` - Component naming, variants, accessibility
+- `rules/content/foundations.md` - Voice, tone, writing principles
+- `rules/content/product-ux.md` - Product and UX writing guidelines
+- `rules/content/marketing-sales.md` - Marketing content guidelines
+- `examples/react/` - React implementation examples
+- `examples/vue/` - Vue implementation examples
+- `examples/css/` - Vanilla CSS examples
 ```
 
 ---

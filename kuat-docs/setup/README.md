@@ -8,9 +8,10 @@ Guides for integrating the Kuat Design System documentation into your tools, IDE
 
 | File | Description |
 |------|-------------|
-| [integration.md](./integration.md) | How to integrate docs into different environments |
+| [consumer-setup.md](./consumer-setup.md) | Recommended project setup for consumers |
+| [kuat-core-integration.md](./kuat-core-integration.md) | Framework-agnostic token usage |
+| [integration.md](./integration.md) | How to integrate docs into IDEs and agents |
 | [verification.md](./verification.md) | Testing your setup works correctly |
-| [kuat-core-integration.md](./kuat-core-integration.md) | Framework-specific code examples |
 
 ---
 
