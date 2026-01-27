@@ -96,4 +96,3 @@ export {
 export { Badge, badgeVariants } from "./components/ui/badge";
 /** @deprecated */
 export type { BadgeVariants } from "./components/ui/badge";
-
