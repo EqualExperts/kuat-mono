@@ -1,143 +1,260 @@
-# Layout Rules
+# Layout Primitives
 
-Pure layout specifications for the Kuat Design System. This document defines layout types, navigation patterns, and structural guidelines - independent of framework.
+Reusable layout building blocks for the Kuat Design System. This document defines layout types, content regions, and structural guidelines - independent of framework.
+
+For scenario-specific guidance (dashboards, authentication, marketing pages), see [Scenarios](../scenarios/).
 
 ---
 
 ## Overview
 
-All Equal Experts applications should follow consistent layout patterns for brand recognition and cohesive user experience.
+Layouts are the structural foundation of every page. Kuat provides five layout primitives that can be combined and configured for different use cases.
 
-**Two primary layout categories:**
-1. **Marketing Layouts** - Public-facing websites, landing pages, marketing content
-2. **Product/App Layouts** - Internal tools, dashboards, application interfaces
+**Key principle:** Choose the layout primitive that best supports your content and navigation needs, then configure it for your specific scenario.
 
 ---
 
-## Layout Decision Tree
+## Layout Types
 
-### Choose Marketing Layout When:
+### 1. Horizontal Navigation Layout
 
-- Public-facing website or landing page
-- Marketing content or promotional materials
-- External audience (customers, prospects, public)
-- Content-focused (blog, documentation, marketing)
-- No complex navigation or application features
-
-### Choose Product/App Layout When:
-
-- Internal tools or dashboards
-- Application interfaces with complex navigation
-- Data-heavy or interactive interfaces
-- Requires persistent navigation
-- User workflows and task completion
-
----
-
-## Marketing Layouts
-
-### Structure
+Header bar with navigation, full-width content below.
 
 ```
 ┌─────────────────────────────────────────┐
-│ Header (Light background)               │
-│ [Logo]              [Navigation Links]  │
+│ Header Bar                              │
+│ [Logo]    [Nav Items]    [Actions]      │
 ├─────────────────────────────────────────┤
 │                                         │
-│         Main Content Area               │
-│         (Full width, spacious)          │
+│           Main Content Area             │
+│           (Full width)                  │
 │                                         │
 ├─────────────────────────────────────────┤
-│ Footer (Light background)               │
-│ [Logo]              [Links/Info]        │
+│ Footer (optional)                       │
 └─────────────────────────────────────────┘
 ```
 
-### Header Specifications
-
-| Property | Value |
-|----------|-------|
-| Background | Light (`bg-background` or white) |
-| Logo | Full-color, left-aligned |
-| Logo size | 120-150px (min 100px) |
-| Navigation | Horizontal, right-aligned or centered |
-| Height | 64-80px |
-| Padding | 16-24px horizontal, 16px vertical |
-
-### Footer Specifications
-
-| Property | Value |
-|----------|-------|
-| Background | Light (`bg-muted` or light gray) |
-| Logo | Full-color, 100-120px |
-| Padding | 32-48px vertical, 24px horizontal |
-
----
-
-## Product/App Layouts
-
-Product layouts use **dark navigation** for clear visual hierarchy. Choose one of two patterns:
-
-### Option 1: Dark Horizontal Navigation
-
-Use when: Limited navigation items (5-7 items)
-
-```
-┌─────────────────────────────────────────┐
-│ Dark Navigation Bar (Tech Blue)         │
-│ [Logo]    [Nav Items]    [User Menu]    │
-├─────────────────────────────────────────┤
-│                                         │
-│         Main Content Area               │
-│         (Light background)              │
-│                                         │
-└─────────────────────────────────────────┘
-```
+**Use when:**
+- Limited navigation items (5-7 max)
+- Content is the primary focus
+- Simple information architecture
 
 **Specifications:**
 
 | Property | Value |
 |----------|-------|
-| Background | `bg-sidebar` (Tech Blue) |
-| Logo | White monochrome, left-aligned |
-| Logo size | 120-150px (min 100px) |
-| Height | 64-72px fixed |
-| Nav items | Horizontal, left-aligned after logo |
-| User menu | Right-aligned |
+| Header height | 64-80px |
+| Header padding | 16-24px horizontal, 16px vertical |
+| Content max-width | 1200-1400px (or full width) |
+| Content padding | 24-32px |
 
-### Option 2: Dark Sidebar Navigation
+**Variants:**
+- Light header (`bg-background`) - Marketing, public-facing
+- Dark header (`bg-sidebar`) - Applications, dashboards
 
-Use when: Complex navigation, hierarchical structure, 8+ items
+---
+
+### 2. Sidebar Navigation Layout
+
+Fixed or collapsible sidebar with content area.
 
 ```
 ┌──────┬──────────────────────────────────┐
-│      │ Top Bar (Light)                  │
-│ Dark │ [Breadcrumbs]    [User Menu]     │
-│ Side │──────────────────────────────────┤
-│ bar  │                                  │
-│      │   Main Content Area              │
-│ [Logo│   (Light background)             │
-│ Nav] │                                  │
+│      │ Top Bar (optional)               │
+│ Side │ [Breadcrumbs]      [Actions]     │
+│ bar  │──────────────────────────────────┤
 │      │                                  │
+│ [Logo│       Main Content Area          │
+│ Nav  │                                  │
+│ Items│                                  │
+│     ]│                                  │
 └──────┴──────────────────────────────────┘
 ```
+
+**Use when:**
+- Complex navigation (8+ items)
+- Hierarchical structure
+- Persistent navigation needed
+- Application interfaces
 
 **Specifications:**
 
 | Property | Value |
 |----------|-------|
-| Sidebar background | `bg-sidebar` (Tech Blue) |
-| Sidebar width | 240-280px (collapsible to 64px) |
-| Logo | White monochrome, top of sidebar |
-| Logo size | 120-150px (min 100px) |
-| Top bar background | `bg-background` (light) |
-| Content area | Light background, full remaining width |
+| Sidebar width | 240-280px expanded |
+| Sidebar collapsed | 64px (icons only) |
+| Top bar height | 48-64px |
+| Content padding | 24-32px |
+
+**Variants:**
+- Dark sidebar (`bg-sidebar`) - Standard for apps
+- Light sidebar (`bg-muted`) - Documentation sites
+
+---
+
+### 3. Single Column Layout
+
+Centered content with no persistent navigation.
+
+```
+┌─────────────────────────────────────────┐
+│              [Logo] (optional)          │
+├─────────────────────────────────────────┤
+│                                         │
+│     ┌─────────────────────────┐         │
+│     │                         │         │
+│     │    Centered Content     │         │
+│     │    (max-width card)     │         │
+│     │                         │         │
+│     └─────────────────────────┘         │
+│                                         │
+├─────────────────────────────────────────┤
+│         Footer (minimal/optional)       │
+└─────────────────────────────────────────┘
+```
+
+**Use when:**
+- Focused single task (login, registration)
+- Error pages (404, 500)
+- Confirmation/success pages
+- Minimal distraction needed
+
+**Specifications:**
+
+| Property | Value |
+|----------|-------|
+| Content max-width | 400-480px |
+| Content padding | 24-32px |
+| Vertical alignment | Centered (min-height: 100vh) |
+| Background | `bg-background` or `bg-muted` |
+
+---
+
+### 4. Multi-Column Layout
+
+Grid-based content regions for complex pages.
+
+```
+┌─────────────────────────────────────────┐
+│ Header                                  │
+├─────────────────────────────────────────┤
+│ ┌─────────┐ ┌─────────┐ ┌─────────┐    │
+│ │ Column  │ │ Column  │ │ Column  │    │
+│ │   1     │ │   2     │ │   3     │    │
+│ └─────────┘ └─────────┘ └─────────┘    │
+│                                         │
+│ ┌───────────────────┐ ┌───────────────┐│
+│ │    Column 1       │ │   Column 2    ││
+│ └───────────────────┘ └───────────────┘│
+├─────────────────────────────────────────┤
+│ Footer                                  │
+└─────────────────────────────────────────┘
+```
+
+**Use when:**
+- Dashboard overviews
+- Feature/comparison pages
+- Card-based content displays
+
+**Column Configurations:**
+
+| Configuration | Use Case |
+|---------------|----------|
+| 2 columns (50/50) | Comparison, side-by-side |
+| 2 columns (66/33) | Main content + sidebar info |
+| 3 columns (equal) | Feature grids, card displays |
+| 4 columns (equal) | KPI dashboards, metrics |
+
+**Specifications:**
+
+| Property | Value |
+|----------|-------|
+| Column gap | 16-24px |
+| Row gap | 16-24px |
+| Container max-width | 1200-1400px |
+
+---
+
+### 5. Split Layout
+
+Two-panel layout for focused comparison or workflow.
+
+```
+┌────────────────────┬────────────────────┐
+│                    │                    │
+│    Left Panel      │    Right Panel     │
+│                    │                    │
+│                    │                    │
+│                    │                    │
+└────────────────────┴────────────────────┘
+```
+
+**Use when:**
+- Side-by-side comparison
+- Code editor + preview
+- List + detail view
+- Documentation with table of contents
+
+**Split Ratios:**
+
+| Ratio | Use Case |
+|-------|----------|
+| 50/50 | Equal comparison |
+| 60/40 | Primary + secondary |
+| 70/30 | Main content + table of contents |
+| 33/67 | Navigation + main content |
+
+**Specifications:**
+
+| Property | Value |
+|----------|-------|
+| Divider | 1px border or resizable handle |
+| Min panel width | 240px |
+| Panel padding | 16-24px |
+
+---
+
+## Content Regions
+
+### Header Region
+
+| Property | Light Variant | Dark Variant |
+|----------|---------------|--------------|
+| Background | `bg-background` | `bg-sidebar` |
+| Text | `text-foreground` | `text-sidebar-foreground` |
+| Logo | Full-color | White monochrome |
+| Height | 64-80px | 64-72px |
+
+### Footer Region
+
+| Property | Value |
+|----------|-------|
+| Background | `bg-muted` or `bg-background` |
+| Padding | 32-48px vertical |
+| Content | Logo, links, legal text |
+
+### Main Content Region
+
+| Property | Value |
+|----------|-------|
+| Background | `bg-background` |
+| Padding | 24-32px |
+| Max-width | Varies by layout (1200-1400px typical) |
+
+### Sidebar Region
+
+| Property | Value |
+|----------|-------|
+| Background | `bg-sidebar` (dark) or `bg-muted` (light) |
+| Width | 240-280px expanded, 64px collapsed |
+| Padding | 16px |
+| Scroll | Independent scroll from main content |
 
 ---
 
 ## Navigation Color Tokens
 
-For dark navigation (horizontal or sidebar):
+For dark navigation (horizontal bar or sidebar):
 
 | Token | Purpose |
 |-------|---------|
@@ -152,26 +269,6 @@ For dark navigation (horizontal or sidebar):
 
 ---
 
-## Logo Placement
-
-### Marketing Layouts
-
-| Location | Logo Variant | Size |
-|----------|--------------|------|
-| Header | Full-color | 120-150px |
-| Footer | Full-color | 100-120px |
-
-### Product/App Layouts
-
-| Location | Logo Variant | Size |
-|----------|--------------|------|
-| Horizontal nav | White monochrome | 120-150px |
-| Sidebar (top) | White monochrome | 120-150px |
-
-**Never use full-color logo on dark backgrounds.**
-
----
-
 ## Spacing Guidelines
 
 Follow the 8-point grid system:
@@ -181,23 +278,61 @@ Follow the 8-point grid system:
 | Navigation height | 64-80px (multiples of 8) |
 | Sidebar width | 240-280px (multiples of 8) |
 | Padding | 16px, 24px, 32px (multiples of 8) |
-| Content padding | 24-32px |
+| Content gap | 16px, 24px (multiples of 8) |
+
+---
+
+## Layout Accessibility
+
+**Reference:** [accessibility/technical.md](../accessibility/technical.md)
+
+### Landmark Roles
+
+Every layout must include proper landmarks:
+
+| Region | HTML Element | Role |
+|--------|--------------|------|
+| Header | `<header>` | banner |
+| Navigation | `<nav>` | navigation |
+| Main content | `<main>` | main |
+| Sidebar | `<aside>` | complementary |
+| Footer | `<footer>` | contentinfo |
+
+### Skip Links
+
+For layouts with significant navigation, include a skip link:
+
+```html
+<a href="#main-content" class="sr-only focus:not-sr-only">
+  Skip to main content
+</a>
+```
+
+### Focus Order
+
+- Focus order must follow visual order
+- Sidebar navigation focuses before main content
+- Modal/drawer navigation traps focus when open
+
+### Keyboard Navigation
+
+- All navigation items reachable via Tab
+- Arrow keys for navigating within menus
+- Escape closes mobile/overlay navigation
 
 ---
 
 ## Responsive Behavior
 
-### Marketing Layouts
+### Breakpoints
 
-| Breakpoint | Behavior |
-|------------|----------|
-| Mobile | Stack logo/nav vertically, or hamburger menu |
-| Tablet | Horizontal with adjusted spacing |
-| Desktop | Full horizontal layout |
+| Breakpoint | Width | Typical Use |
+|------------|-------|-------------|
+| Mobile | < 640px | Single column, overlay nav |
+| Tablet | 640-1024px | Collapsed sidebar, simplified nav |
+| Desktop | > 1024px | Full layout with all features |
 
-### Product/App Layouts
-
-**Horizontal Navigation:**
+### Horizontal Navigation
 
 | Breakpoint | Behavior |
 |------------|----------|
@@ -205,7 +340,7 @@ Follow the 8-point grid system:
 | Tablet | Show primary nav, hide secondary |
 | Desktop | Full navigation visible |
 
-**Sidebar Navigation:**
+### Sidebar Navigation
 
 | Breakpoint | Behavior |
 |------------|----------|
@@ -213,31 +348,33 @@ Follow the 8-point grid system:
 | Tablet | Collapsible (default collapsed) |
 | Desktop | Full sidebar visible (240-280px) |
 
+### Content Grids
+
+| Breakpoint | Columns |
+|------------|---------|
+| Mobile | 1 column (stacked) |
+| Tablet | 2 columns |
+| Desktop | 3-4 columns |
+
 ---
 
-## Usage Guidelines
+## Applied Patterns
 
-### Do's
+For scenario-specific guidance on how to use these layout primitives:
 
-1. **Always include the logo** - Prominently placed, appropriate variant
-2. **Choose right layout type** - Marketing vs Product based on purpose
-3. **Use color tokens** - `bg-sidebar` for dark nav, `bg-background` for content
-4. **Ensure responsive design** - Test all breakpoints
-5. **Follow spacing** - 8-point grid, consistent padding
-
-### Don'ts
-
-1. **Don't mix layout types** - Marketing for marketing, product for apps
-2. **Don't compromise logo** - Wrong variant, wrong size, wrong placement
-3. **Don't hardcode colors** - Use design tokens
-4. **Don't ignore mobile** - All layouts must work on small screens
-5. **Don't combine nav patterns** - Choose horizontal OR sidebar, not both
+| Scenario | Recommended Layout | Reference |
+|----------|-------------------|-----------|
+| Authentication | Single Column | [scenarios/authentication.md](../scenarios/authentication.md) |
+| Dashboards | Sidebar Navigation | [scenarios/dashboards.md](../scenarios/dashboards.md) |
+| Forms & Settings | Sidebar or Single Column | [scenarios/forms.md](../scenarios/forms.md) |
+| Documentation | Sidebar + Split | [scenarios/documentation.md](../scenarios/documentation.md) |
+| Marketing Pages | Horizontal Navigation | [scenarios/marketing-pages.md](../scenarios/marketing-pages.md) |
 
 ---
 
 ## Implementation Examples
 
-For code examples implementing these rules:
+For code examples implementing these layouts:
 
 | Framework | Guide |
 |-----------|-------|
@@ -245,7 +382,11 @@ For code examples implementing these rules:
 | Vue | [examples/vue/layouts.md](../../examples/vue/layouts.md) |
 | Other | [setup/kuat-core-integration.md](../../setup/kuat-core-integration.md) |
 
-**Framework-agnostic usage:**
-- Use semantic color tokens for backgrounds
-- Apply consistent spacing with Tailwind utilities
-- Follow responsive patterns with breakpoint modifiers
+---
+
+## Related Documentation
+
+- [Spacing](./spacing.md) - 8-point grid system
+- [Colours](./colours.md) - Color tokens
+- [Logo](./logo.md) - Logo usage and variants
+- [Accessibility](../accessibility/technical.md) - Technical accessibility

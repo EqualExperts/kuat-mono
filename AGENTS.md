@@ -29,10 +29,22 @@ Kuat is a **design decision layer**, not a full component library:
 |------|------|
 | Project setup | `setup/consumer-setup.md` |
 | Design decisions | `rules/design/{topic}.md` |
+| Accessibility | `rules/accessibility/{area}.md` |
 | Component patterns | `rules/components/patterns.md` |
+| Scenario patterns | `rules/scenarios/{scenario}.md` |
 | Content review | `rules/content/foundations.md` + specific guide below |
 | Product/UX content | `rules/content/product-ux.md` |
 | Marketing content | `rules/content/marketing-sales.md` |
+
+### Scenario Files
+
+| Scenario | Use For |
+|----------|---------|
+| `authentication.md` | Login, registration, password flows |
+| `dashboards.md` | Analytics, data tables, metrics |
+| `forms.md` | Settings, multi-step forms, data entry |
+| `documentation.md` | Docs sites, knowledge bases |
+| `marketing-pages.md` | Landing pages, pricing, features |
 
 ## Quick Reference
 
