@@ -1,7 +1,7 @@
 # Dependencies
 node_modules
 .pnp
-.pnp-store
+.pnpm-store
 .pnp.js
 
 # Testing
