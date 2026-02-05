@@ -39,7 +39,17 @@ export type { ButtonGroupVariants } from "./components/ui/button-group";
 // KUAT BLOCKS (Composed Patterns)
 // Pre-built compositions of components for common patterns
 // =============================================================================
-// Coming soon: KuatHeader, KuatFooter, KuatSearchPattern, etc.
+export { KuatHeader, kuatHeaderVariants, EELogo } from "./components/ui/kuat-header";
+export type { KuatHeaderVariants } from "./components/ui/kuat-header";
+
+export {
+  KuatCarousel,
+  KuatCarouselContent,
+  KuatCarouselItem,
+  KuatCarouselPrevious,
+  KuatCarouselNext,
+} from "./components/ui/kuat-carousel";
+export type { KuatCarouselSlidesPerView } from "./components/ui/kuat-carousel";
 
 // =============================================================================
 // DEPRECATED EXPORTS

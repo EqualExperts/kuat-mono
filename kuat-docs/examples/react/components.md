@@ -219,3 +219,34 @@ export type { ButtonProps } from "./components/ui/button"
 
 export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./components/ui/card"
 ```
+
+---
+
+## Kuat Carousel
+
+Use the Kuat Carousel block for testimonials, image galleries, or any content that benefits from 1, 2, or 3 visible slides and top-right navigation. See [rules/components/carousel.md](../../rules/components/carousel.md).
+
+```tsx
+import {
+  KuatCarousel,
+  KuatCarouselContent,
+  KuatCarouselItem,
+  KuatCarouselPrevious,
+  KuatCarouselNext,
+} from "@equal-experts/kuat-react"
+
+// One slide visible (default)
+<KuatCarousel slidesPerView={1} className="w-full max-w-sm">
+  <KuatCarouselContent>
+    {items.map((item) => (
+      <KuatCarouselItem key={item.id}>
+        <div className="rounded-[6px] shadow-sm p-4">{item.content}</div>
+      </KuatCarouselItem>
+    ))}
+  </KuatCarouselContent>
+  <KuatCarouselPrevious />
+  <KuatCarouselNext />
+</KuatCarousel>
+
+// Two or three slides: set slidesPerView={2} or slidesPerView={3}
+```

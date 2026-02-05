@@ -38,7 +38,23 @@ export {
 // KUAT BLOCKS (Composed Patterns)
 // Pre-built compositions of components for common patterns
 // =============================================================================
-// Coming soon: KuatHeader, KuatFooter, KuatSearchPattern, etc.
+export { KuatHeader, kuatHeaderVariants, EELogo } from "./components/ui/kuat-header";
+export type { KuatHeaderProps, EELogoProps } from "./components/ui/kuat-header";
+
+export {
+  KuatCarousel,
+  KuatCarouselContent,
+  KuatCarouselItem,
+  KuatCarouselPrevious,
+  KuatCarouselNext,
+  useKuatCarousel,
+} from "./components/ui/kuat-carousel";
+export type {
+  KuatCarouselSlidesPerView,
+  KuatCarouselProps,
+  KuatCarouselContentProps,
+  KuatCarouselItemProps,
+} from "./components/ui/kuat-carousel";
 
 // =============================================================================
 // DEPRECATED EXPORTS

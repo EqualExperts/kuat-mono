@@ -243,6 +243,32 @@ const email = ref('')
 
 ---
 
+## Kuat Carousel
+
+Use the Kuat Carousel block for testimonials, image galleries, or any content that benefits from 1, 2, or 3 visible slides and top-right navigation. See [rules/components/carousel.md](../../rules/components/carousel.md). Vue uses named slots: `#content` and `#controls`.
+
+```vue
+<template>
+  <KuatCarousel :slides-per-view="1" class="w-full max-w-sm">
+    <template #content>
+      <KuatCarouselContent>
+        <KuatCarouselItem v-for="item in items" :key="item.id">
+          <div class="rounded-[6px] shadow-sm p-4">{{ item.content }}</div>
+        </KuatCarouselItem>
+      </KuatCarouselContent>
+    </template>
+    <template #controls>
+      <KuatCarouselPrevious />
+      <KuatCarouselNext />
+    </template>
+  </KuatCarousel>
+</template>
+```
+
+Use `:slides-per-view="2"` or `3` for two or three visible slides.
+
+---
+
 ## Export Pattern
 
 ```ts

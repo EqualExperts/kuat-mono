@@ -9,6 +9,7 @@ Component development patterns for the Kuat Design System. These rules define ho
 | File | Description |
 |------|-------------|
 | [patterns.md](./patterns.md) | Naming conventions, variant architecture, accessibility, testing |
+| [carousel.md](./carousel.md) | Kuat Carousel block: when to use, API, packages |
 
 ---
 

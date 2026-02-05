@@ -147,6 +147,16 @@
     --sidebar-border: var(--slate-200); /* {slate.200} */
     --sidebar-ring: var(--slate-100); /* {slate.100} */
 
+    /* Kuat Header - Default variant (light) */
+    --kuat-header-default-background: var(--white);
+    --kuat-header-default-foreground: var(--slate-700); /* #334155 */
+    --kuat-header-default-foreground-secondary: var(--slate-500); /* #94a3b8 */
+
+    /* Kuat Header - Bold variant (dark header on light page) */
+    --kuat-header-bold-background: var(--tech-blue-500); /* #22567c */
+    --kuat-header-bold-foreground: var(--slate-100); /* #f1f5f9 */
+    --kuat-header-bold-foreground-secondary: var(--slate-300); /* #cbd5e1 */
+
     /* Shadows - keeping existing values, not in JSON */
     --shadow-x: 0px;
     --shadow-y: 4px;
@@ -206,6 +216,12 @@
     --sidebar-accent-foreground: var(--brand-tech-blue); /* {brand.tech-blue} */
     --sidebar-border: var(--slate-200); /* {slate.200} */
     --sidebar-ring: var(--slate-100); /* {slate.100} */
+
+    /* Kuat Header - Default variant adapts to dark mode */
+    --kuat-header-default-background: var(--slate-900);
+    --kuat-header-default-foreground: var(--slate-100);
+    --kuat-header-default-foreground-secondary: var(--slate-400);
+    /* Bold variant typically remains unchanged in dark mode */
 
     /* Typography - same as light mode */
     --font-sans: Lexend, ui-sans-serif, sans-serif, system-ui;
@@ -267,6 +283,14 @@
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
+
+    /* Kuat Header colors */
+    --color-kuat-header-default-background: var(--kuat-header-default-background);
+    --color-kuat-header-default-foreground: var(--kuat-header-default-foreground);
+    --color-kuat-header-default-foreground-secondary: var(--kuat-header-default-foreground-secondary);
+    --color-kuat-header-bold-background: var(--kuat-header-bold-background);
+    --color-kuat-header-bold-foreground: var(--kuat-header-bold-foreground);
+    --color-kuat-header-bold-foreground-secondary: var(--kuat-header-bold-foreground-secondary);
   
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
