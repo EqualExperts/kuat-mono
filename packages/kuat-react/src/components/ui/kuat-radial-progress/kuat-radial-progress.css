@@ -34,6 +34,11 @@
   line-height: 1.75rem;
 }
 
+/* Track (full circle) – visible grey oval; token with fallback when theme not applied */
+.kuat-radial-progress [data-kuat-radial-progress-track] {
+  stroke: var(--kuat-radial-progress-background-bar, var(--muted, #e5e7eb));
+}
+
 /* Progress arc and label layout */
 .kuat-radial-progress__svg {
   position: absolute;
@@ -54,9 +59,9 @@
   color: var(--foreground);
 }
 
-/* Color modifiers – set stroke on the progress arc */
+/* Color modifiers – set stroke on the progress arc. Default = EE Blue. */
 .kuat-radial-progress--default [data-kuat-radial-progress-arc] {
-  stroke: var(--kuat-radial-progress-foreground-bar);
+  stroke: var(--ee-blue-500, #0066cc);
 }
 
 .kuat-radial-progress--primary [data-kuat-radial-progress-arc] {

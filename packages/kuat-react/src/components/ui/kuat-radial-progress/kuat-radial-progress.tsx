@@ -95,7 +95,7 @@ const KuatRadialProgress = React.forwardRef<HTMLDivElement, KuatRadialProgressPr
               cy={CENTER}
               r={RADIUS}
               fill="none"
-              stroke="var(--kuat-radial-progress-background-bar)"
+              stroke="var(--kuat-radial-progress-background-bar, var(--muted, #e5e7eb))"
               style={{ strokeWidth: "var(--kuat-radial-progress-stroke, 4)" }}
             />
             <circle
@@ -106,7 +106,7 @@ const KuatRadialProgress = React.forwardRef<HTMLDivElement, KuatRadialProgressPr
               fill="none"
               strokeDasharray={CIRCUMFERENCE}
               strokeDashoffset={strokeDashoffset}
-              strokeLinecap="round"
+              strokeLinecap="butt"
               style={{
                 strokeWidth: "var(--kuat-radial-progress-stroke, 4)",
                 transition: animate ? "stroke-dashoffset 0.6s ease-out" : undefined,

@@ -83,7 +83,7 @@ const rootClasses = computed(() =>
           :cy="CENTER"
           :r="RADIUS"
           fill="none"
-          stroke="var(--kuat-radial-progress-background-bar)"
+          stroke="var(--kuat-radial-progress-background-bar, var(--muted, #e5e7eb))"
           :style="{ strokeWidth: 'var(--kuat-radial-progress-stroke, 4)' }"
         />
         <circle
@@ -94,7 +94,7 @@ const rootClasses = computed(() =>
           fill="none"
           :stroke-dasharray="CIRCUMFERENCE"
           :stroke-dashoffset="strokeDashoffset"
-          stroke-linecap="round"
+          stroke-linecap="butt"
           :style="{
             strokeWidth: 'var(--kuat-radial-progress-stroke, 4)',
             ...(progressTransition ? { transition: progressTransition } : {}),
@@ -146,6 +146,11 @@ const rootClasses = computed(() =>
   line-height: 1.75rem;
 }
 
+/* Track (full circle) – visible grey oval; token with fallback when theme not applied */
+.kuat-radial-progress :deep([data-kuat-radial-progress-track]) {
+  stroke: var(--kuat-radial-progress-background-bar, var(--muted, #e5e7eb));
+}
+
 .kuat-radial-progress__svg {
   position: absolute;
   inset: 0;
@@ -165,8 +170,9 @@ const rootClasses = computed(() =>
   color: var(--foreground);
 }
 
+/* Default = EE Blue */
 .kuat-radial-progress--default :deep([data-kuat-radial-progress-arc]) {
-  stroke: var(--kuat-radial-progress-foreground-bar);
+  stroke: var(--ee-blue-500, #0066cc);
 }
 
 .kuat-radial-progress--primary :deep([data-kuat-radial-progress-arc]) {
