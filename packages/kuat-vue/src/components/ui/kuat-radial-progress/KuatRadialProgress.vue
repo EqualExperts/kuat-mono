@@ -2,25 +2,13 @@
 import type { HTMLAttributes } from "vue"
 import { computed, onMounted, ref, watch } from "vue"
 import { cn } from "@/lib/utils"
+import type { KuatRadialProgressColor, KuatRadialProgressSize } from "./constants"
 
 const VIEWBOX_SIZE = 100
 const STROKE_WIDTH = 4
 const RADIUS = (VIEWBOX_SIZE - STROKE_WIDTH) / 2
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 const CENTER = VIEWBOX_SIZE / 2
-
-export const KUAT_RADIAL_PROGRESS_SIZES = ["mini", "small", "medium", "large"] as const
-export const KUAT_RADIAL_PROGRESS_COLORS = [
-  "default",
-  "primary",
-  "ee-blue",
-  "tech-blue",
-  "transform-teal",
-  "equal-ember",
-] as const
-
-export type KuatRadialProgressSize = (typeof KUAT_RADIAL_PROGRESS_SIZES)[number]
-export type KuatRadialProgressColor = (typeof KUAT_RADIAL_PROGRESS_COLORS)[number]
 
 const props = withDefaults(
   defineProps<{
