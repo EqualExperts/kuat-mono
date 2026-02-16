@@ -46,6 +46,7 @@ import type { Config } from "tailwindcss";
  * - `chart-1` through `chart-5` - Chart/data visualization colors
  *
  * ### Border Radius
+ * - `rounded-xs` - Extra small (2px, e.g. icon buttons)
  * - `rounded-sm` - Small radius
  * - `rounded-md` - Medium radius
  * - `rounded-lg` - Large radius
@@ -145,8 +146,10 @@ const config: Config = {
        *
        * Based on the --radius CSS variable (default: 0.3rem).
        * Use `rounded-lg` for interactive elements, `rounded-sm` for inputs.
+       * Use `rounded-xs` for compact icon buttons (e.g. carousel nav).
        */
       borderRadius: {
+        xs: "var(--radius-xs)",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",

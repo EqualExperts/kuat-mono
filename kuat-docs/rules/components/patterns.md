@@ -88,6 +88,15 @@ export function KuatHeader({ logo, navigation, actions }: KuatHeaderProps) {
 }
 ```
 
+### CSS-first component structure
+
+Kuat components use a **CSS-first** structure so that variants and state are defined by classes in CSS, not by JS maps of CSS variable names.
+
+- **React:** Each component lives in a **directory** with a `.tsx` file (logic and class composition only) and a `.css` file (all styles and variant classes, e.g. BEM-style `componentName--variant`). The component script maps props to class names; the CSS file defines what those classes do. Design tokens (`var(--...)`) from kuat-core are used in the CSS file, not in JS objects.
+- **Vue:** Use a **single .vue file** per component. Put variant and state styles in `<style>` (scoped or BEM). The template composes class names from props; the style block defines what those classes do. Do not use JS objects that map prop values to CSS variable names or `var(...)` strings.
+
+See `.cursorrules`, `CLAUDE.md`, and `AGENTS.md` in the repo root for the canonical implementation rules.
+
 ---
 
 ## Naming Conventions

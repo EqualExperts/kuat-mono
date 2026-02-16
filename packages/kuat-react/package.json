@@ -30,6 +30,10 @@
       "import": "./dist/button-group.js",
       "types": "./dist/button-group.d.ts"
     },
+    "./kuat-radial-progress": {
+      "import": "./dist/kuat-radial-progress.js",
+      "types": "./dist/kuat-radial-progress.d.ts"
+    },
     "./styles": "./dist/style.css"
   },
   "files": [

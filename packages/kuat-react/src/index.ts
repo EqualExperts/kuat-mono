@@ -13,10 +13,11 @@
  */
 
 // =============================================================================
-// STYLES
+// STYLES: Each component imports its own CSS. Consumers should import
+// @equal-experts/kuat-core/variables.css once for design tokens.
+// For deprecated components (Button, etc.) that use Tailwind, import
+// "@equal-experts/kuat-react/styles" or ensure your app has Tailwind.
 // =============================================================================
-// Bundled design tokens from @equal-experts/kuat-core
-import "./styles.css";
 
 // =============================================================================
 // UTILITIES
@@ -55,6 +56,17 @@ export type {
   KuatCarouselContentProps,
   KuatCarouselItemProps,
 } from "./components/ui/kuat-carousel";
+
+export {
+  KuatRadialProgress,
+  KUAT_RADIAL_PROGRESS_SIZES,
+  KUAT_RADIAL_PROGRESS_COLORS,
+} from "./components/ui/kuat-radial-progress";
+export type {
+  KuatRadialProgressProps,
+  KuatRadialProgressSize,
+  KuatRadialProgressColor,
+} from "./components/ui/kuat-radial-progress";
 
 // =============================================================================
 // DEPRECATED EXPORTS

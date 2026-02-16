@@ -51,6 +51,16 @@ export {
 } from "./components/ui/kuat-carousel";
 export type { KuatCarouselSlidesPerView } from "./components/ui/kuat-carousel";
 
+export {
+  KuatRadialProgress,
+  KUAT_RADIAL_PROGRESS_SIZES,
+  KUAT_RADIAL_PROGRESS_COLORS,
+} from "./components/ui/kuat-radial-progress";
+export type {
+  KuatRadialProgressSize,
+  KuatRadialProgressColor,
+} from "./components/ui/kuat-radial-progress";
+
 // =============================================================================
 // DEPRECATED EXPORTS
 // These components are re-exports of shadcn-vue components.

@@ -104,9 +104,11 @@ export default {
 ### Step 3: Import Styles
 
 ```typescript
-// main.tsx
+// main.tsx – design tokens (required once per app)
 import '@equal-experts/kuat-core/variables.css';
 ```
+
+Each Kuat component (e.g. `KuatRadialProgress`) includes its own CSS when you import it. To load only a specific component and its CSS, use a subpath: `import { KuatRadialProgress } from '@equal-experts/kuat-react/kuat-radial-progress'`.
 
 ### Step 4: Install shadcn Components
 

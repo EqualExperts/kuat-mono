@@ -27,6 +27,7 @@ export default defineConfig({
         "alert-dialog": resolve(__dirname, "src/alert-dialog.ts"),
         badge: resolve(__dirname, "src/badge.ts"),
         "button-group": resolve(__dirname, "src/button-group.ts"),
+        "kuat-radial-progress": resolve(__dirname, "src/kuat-radial-progress.ts"),
       },
       formats: ["es"],
       fileName: (format, entryName) => `${entryName}.js`,
@@ -47,7 +48,7 @@ export default defineConfig({
         },
       },
     },
-    cssCodeSplit: false,
+    cssCodeSplit: true,
     cssMinify: true,
   },
 });

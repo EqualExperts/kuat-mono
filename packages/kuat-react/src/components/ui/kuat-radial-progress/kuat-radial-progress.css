@@ -1,0 +1,80 @@
+/* Kuat Radial Progress – CSS-first variants. Tokens from @equal-experts/kuat-core. */
+
+.kuat-radial-progress {
+  position: relative;
+  display: inline-block;
+}
+
+/* Size modifiers */
+.kuat-radial-progress--mini {
+  width: var(--kuat-radial-progress-size-mini, 48px);
+  height: var(--kuat-radial-progress-size-mini, 48px);
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.kuat-radial-progress--small {
+  width: var(--kuat-radial-progress-size-small, 64px);
+  height: var(--kuat-radial-progress-size-small, 64px);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.kuat-radial-progress--medium {
+  width: var(--kuat-radial-progress-size-medium, 96px);
+  height: var(--kuat-radial-progress-size-medium, 96px);
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.kuat-radial-progress--large {
+  width: var(--kuat-radial-progress-size-large, 128px);
+  height: var(--kuat-radial-progress-size-large, 128px);
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+/* Progress arc and label layout */
+.kuat-radial-progress__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.kuat-radial-progress__label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  line-height: 1rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--foreground);
+}
+
+/* Color modifiers – set stroke on the progress arc */
+.kuat-radial-progress--default [data-kuat-radial-progress-arc] {
+  stroke: var(--kuat-radial-progress-foreground-bar);
+}
+
+.kuat-radial-progress--primary [data-kuat-radial-progress-arc] {
+  stroke: var(--primary);
+}
+
+.kuat-radial-progress--ee-blue [data-kuat-radial-progress-arc] {
+  stroke: var(--ee-blue-500);
+}
+
+.kuat-radial-progress--tech-blue [data-kuat-radial-progress-arc] {
+  stroke: var(--tech-blue-500);
+}
+
+.kuat-radial-progress--transform-teal [data-kuat-radial-progress-arc] {
+  stroke: var(--transform-teal-500);
+}
+
+.kuat-radial-progress--equal-ember [data-kuat-radial-progress-arc] {
+  stroke: var(--equal-ember-500);
+}

@@ -1,3 +1,13 @@
 @import "@equal-experts/kuat-core/variables.css";
+
+/* Radial progress size variables: defined here so they are always available when using this package.
+   Values match @equal-experts/kuat-core; load variables.css first to override via design tokens. */
+:root {
+  --kuat-radial-progress-size-mini: 48px;
+  --kuat-radial-progress-size-small: 64px;
+  --kuat-radial-progress-size-medium: 96px;
+  --kuat-radial-progress-size-large: 128px;
+}
+
 @import "tailwindcss";
 

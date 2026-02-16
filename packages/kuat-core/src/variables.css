@@ -8,6 +8,14 @@
   --font-serif: Lora, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
+  /* Kuat Radial Progress - sizes and stroke (unlayered so they always apply) */
+  --kuat-radial-progress-size-mini: 48px;
+  --kuat-radial-progress-size-small: 64px;
+  --kuat-radial-progress-size-medium: 96px;
+  --kuat-radial-progress-size-large: 128px;
+  /* Ring stroke width; aligns with Figma borderWidth/border4 */
+  --kuat-radial-progress-stroke: 4;
+
 }
 /* Raw brand colors from raw-colors.json - available as CSS variables */
 @layer base {
@@ -157,6 +165,10 @@
     --kuat-header-bold-foreground: var(--slate-100); /* #f1f5f9 */
     --kuat-header-bold-foreground-secondary: var(--slate-300); /* #cbd5e1 */
 
+    /* Kuat Radial Progress - bar colours (light mode) */
+    --kuat-radial-progress-background-bar: var(--muted);
+    --kuat-radial-progress-foreground-bar: var(--ee-blue-500);
+
     /* Shadows - keeping existing values, not in JSON */
     --shadow-x: 0px;
     --shadow-y: 4px;
@@ -222,6 +234,10 @@
     --kuat-header-default-foreground: var(--slate-100);
     --kuat-header-default-foreground-secondary: var(--slate-400);
     /* Bold variant typically remains unchanged in dark mode */
+
+    /* Kuat Radial Progress - bar colours (dark mode) */
+    --kuat-radial-progress-background-bar: var(--slate-700);
+    --kuat-radial-progress-foreground-bar: var(--ee-blue-400);
 
     /* Typography - same as light mode */
     --font-sans: Lexend, ui-sans-serif, sans-serif, system-ui;
@@ -291,7 +307,16 @@
     --color-kuat-header-bold-background: var(--kuat-header-bold-background);
     --color-kuat-header-bold-foreground: var(--kuat-header-bold-foreground);
     --color-kuat-header-bold-foreground-secondary: var(--kuat-header-bold-foreground-secondary);
+
+    /* Kuat Radial Progress - sizes and bar colours */
+    --kuat-radial-progress-size-mini: 48px;
+    --kuat-radial-progress-size-small: 64px;
+    --kuat-radial-progress-size-medium: 96px;
+    --kuat-radial-progress-size-large: 128px;
+    --color-kuat-radial-progress-background-bar: var(--kuat-radial-progress-background-bar);
+    --color-kuat-radial-progress-foreground-bar: var(--kuat-radial-progress-foreground-bar);
   
+    --radius-xs: 2px;
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);

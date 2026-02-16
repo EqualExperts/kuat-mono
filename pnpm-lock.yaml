@@ -69,6 +69,9 @@ importers:
       '@storybook/test':
         specifier: ^8.4.7
         version: 8.6.14(storybook@8.6.14)
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.1.18(vite@6.4.1)
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.27
@@ -78,6 +81,9 @@ importers:
       storybook:
         specifier: ^8.4.7
         version: 8.6.14(prettier@3.7.4)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.1.18
       typescript:
         specifier: ^5.6.3
         version: 5.9.3
@@ -102,7 +108,7 @@ importers:
     devDependencies:
       '@storybook/addon-essentials':
         specifier: ^8.4.7
-        version: 8.6.14(@types/react@18.3.27)(storybook@8.6.14)
+        version: 8.6.14(@types/react@19.2.13)(storybook@8.6.14)
       '@storybook/addon-interactions':
         specifier: ^8.4.7
         version: 8.6.14(storybook@8.6.14)
@@ -124,12 +130,18 @@ importers:
       '@storybook/vue3-vite':
         specifier: ^8.4.7
         version: 8.6.14(storybook@8.6.14)(vite@6.4.1)(vue@3.5.25)
+      '@tailwindcss/vite':
+        specifier: ^4.0.0
+        version: 4.1.18(vite@6.4.1)
       '@vitejs/plugin-vue':
         specifier: ^5.2.1
         version: 5.2.4(vite@6.4.1)(vue@3.5.25)
       storybook:
         specifier: ^8.4.7
         version: 8.6.14(prettier@3.7.4)
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.1.18
       typescript:
         specifier: ^5.6.3
         version: 5.9.3
@@ -1483,6 +1495,17 @@ packages:
     dependencies:
       '@types/mdx': 2.0.13
       '@types/react': 18.3.27
+      react: 18.3.1
+    dev: true
+
+  /@mdx-js/react@3.1.1(@types/react@19.2.13)(react@18.3.1):
+    resolution: {integrity: sha512-f++rKLQgUVYDAtECQ6fn/is15GkEH9+nZPM3MS0RcxVqoTfawHvDlSCH7JbMhAM6uJ32v3eXLvLmLvjGu7PTQw==}
+    peerDependencies:
+      '@types/react': '>=16'
+      react: '>=16'
+    dependencies:
+      '@types/mdx': 2.0.13
+      '@types/react': 19.2.13
       react: 18.3.1
     dev: true
 
@@ -3168,6 +3191,23 @@ packages:
       - '@types/react'
     dev: true
 
+  /@storybook/addon-docs@8.6.14(@types/react@19.2.13)(storybook@8.6.14):
+    resolution: {integrity: sha512-Obpd0OhAF99JyU5pp5ci17YmpcQtMNgqW2pTXV8jAiiipWpwO++hNDeQmLmlSXB399XjtRDOcDVkoc7rc6JzdQ==}
+    peerDependencies:
+      storybook: ^8.6.14
+    dependencies:
+      '@mdx-js/react': 3.1.1(@types/react@19.2.13)(react@18.3.1)
+      '@storybook/blocks': 8.6.14(react-dom@18.3.1)(react@18.3.1)(storybook@8.6.14)
+      '@storybook/csf-plugin': 8.6.14(storybook@8.6.14)
+      '@storybook/react-dom-shim': 8.6.14(react-dom@18.3.1)(react@18.3.1)(storybook@8.6.14)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      storybook: 8.6.14(prettier@3.7.4)
+      ts-dedent: 2.2.0
+    transitivePeerDependencies:
+      - '@types/react'
+    dev: true
+
   /@storybook/addon-essentials@8.6.14(@types/react@18.3.27)(storybook@8.6.14):
     resolution: {integrity: sha512-5ZZSHNaW9mXMOFkoPyc3QkoNGdJHETZydI62/OASR0lmPlJ1065TNigEo5dJddmZNn0/3bkE8eKMAzLnO5eIdA==}
     peerDependencies:
@@ -3177,6 +3217,26 @@ packages:
       '@storybook/addon-backgrounds': 8.6.14(storybook@8.6.14)
       '@storybook/addon-controls': 8.6.14(storybook@8.6.14)
       '@storybook/addon-docs': 8.6.14(@types/react@18.3.27)(storybook@8.6.14)
+      '@storybook/addon-highlight': 8.6.14(storybook@8.6.14)
+      '@storybook/addon-measure': 8.6.14(storybook@8.6.14)
+      '@storybook/addon-outline': 8.6.14(storybook@8.6.14)
+      '@storybook/addon-toolbars': 8.6.14(storybook@8.6.14)
+      '@storybook/addon-viewport': 8.6.14(storybook@8.6.14)
+      storybook: 8.6.14(prettier@3.7.4)
+      ts-dedent: 2.2.0
+    transitivePeerDependencies:
+      - '@types/react'
+    dev: true
+
+  /@storybook/addon-essentials@8.6.14(@types/react@19.2.13)(storybook@8.6.14):
+    resolution: {integrity: sha512-5ZZSHNaW9mXMOFkoPyc3QkoNGdJHETZydI62/OASR0lmPlJ1065TNigEo5dJddmZNn0/3bkE8eKMAzLnO5eIdA==}
+    peerDependencies:
+      storybook: ^8.6.14
+    dependencies:
+      '@storybook/addon-actions': 8.6.14(storybook@8.6.14)
+      '@storybook/addon-backgrounds': 8.6.14(storybook@8.6.14)
+      '@storybook/addon-controls': 8.6.14(storybook@8.6.14)
+      '@storybook/addon-docs': 8.6.14(@types/react@19.2.13)(storybook@8.6.14)
       '@storybook/addon-highlight': 8.6.14(storybook@8.6.14)
       '@storybook/addon-measure': 8.6.14(storybook@8.6.14)
       '@storybook/addon-outline': 8.6.14(storybook@8.6.14)
