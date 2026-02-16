@@ -16,10 +16,22 @@ const delegatedProps = reactiveOmit(props, "class")
     v-bind="delegatedProps"
     :class="cn(
       buttonVariants({ variant: 'outline' }),
-      'mt-2 sm:mt-0',
+      'alert-dialog-cancel',
       props.class,
     )"
   >
     <slot />
   </AlertDialogCancel>
 </template>
+
+<style scoped>
+.alert-dialog-cancel {
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .alert-dialog-cancel {
+    margin-top: 0;
+  }
+}
+</style>

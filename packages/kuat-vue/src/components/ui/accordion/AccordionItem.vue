@@ -15,8 +15,15 @@ const forwardedProps = useForwardProps(delegatedProps)
 <template>
   <AccordionItem
     v-bind="forwardedProps"
-    :class="cn('border-b', props.class)"
+    :class="cn('accordion-item', props.class)"
   >
     <slot />
   </AccordionItem>
 </template>
+
+<style scoped>
+.accordion-item {
+  border-bottom-width: 1px;
+  border-color: var(--border);
+}
+</style>

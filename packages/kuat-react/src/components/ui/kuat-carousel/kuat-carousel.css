@@ -1,0 +1,95 @@
+/* KuatCarousel – CSS-first. Tokens from @equal-experts/kuat-core. */
+
+.kuat-carousel {
+  position: relative;
+  width: 100%;
+}
+
+.kuat-carousel__viewport {
+  overflow: hidden;
+}
+
+.kuat-carousel__content {
+  display: flex;
+}
+
+.kuat-carousel__content--horizontal {
+  margin-left: -0.5rem;
+}
+
+.kuat-carousel__content--vertical {
+  margin-top: -0.5rem;
+  flex-direction: column;
+}
+
+.kuat-carousel__item {
+  min-width: 0;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.kuat-carousel__item--horizontal {
+  padding-left: 0.5rem;
+}
+
+.kuat-carousel__item--vertical {
+  padding-top: 0.5rem;
+}
+
+.kuat-carousel__item--basis-1 {
+  flex-basis: 100%;
+}
+
+.kuat-carousel__item--basis-2 {
+  flex-basis: 50%;
+}
+
+.kuat-carousel__item--basis-3 {
+  flex-basis: 33.333333%;
+}
+
+.kuat-carousel__prev,
+.kuat-carousel__next {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.125rem;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  transition-property: opacity;
+  transition-timing-function: default;
+  transition-duration: 150ms;
+}
+
+.kuat-carousel__prev:disabled,
+.kuat-carousel__next:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.kuat-carousel__prev:hover:not(:disabled),
+.kuat-carousel__next:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--primary) 90%, transparent);
+}
+
+.kuat-carousel__prev {
+  right: 2rem;
+}
+
+.kuat-carousel__next {
+  right: 0;
+}
+
+.kuat-carousel__prev svg,
+.kuat-carousel__next svg {
+  height: 1rem;
+  width: 1rem;
+}

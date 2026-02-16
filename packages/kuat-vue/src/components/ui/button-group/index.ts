@@ -1,25 +1,17 @@
-import type { VariantProps } from "class-variance-authority"
-import { cva } from "class-variance-authority"
+import { cn } from "@/lib/utils"
+import type { ButtonGroupOrientation } from "./constants"
 
 export { default as ButtonGroup } from "./ButtonGroup.vue"
 export { default as ButtonGroupSeparator } from "./ButtonGroupSeparator.vue"
 export { default as ButtonGroupText } from "./ButtonGroupText.vue"
+export { BUTTON_GROUP_ORIENTATIONS } from "./constants"
+export type { ButtonGroupOrientation } from "./constants"
+export type ButtonGroupVariants = { orientation?: ButtonGroupOrientation }
 
-export const buttonGroupVariants = cva(
-  "flex w-fit items-stretch [&>*:focus-visible]:z-10 [&>*:focus-visible]:relative [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md has-[>[data-slot=button-group]]:gap-2",
-  {
-    variants: {
-      orientation: {
-        horizontal:
-          "[&>*:not(:first-child)]:rounded-l-none [&>*:not(:first-child)]:border-l-0 [&>*:not(:last-child)]:rounded-r-none",
-        vertical:
-          "flex-col [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none",
-      },
-    },
-    defaultVariants: {
-      orientation: "horizontal",
-    },
-  },
-)
-
-export type ButtonGroupVariants = VariantProps<typeof buttonGroupVariants>
+/** Returns class string for button group (backward compatibility). */
+export function buttonGroupVariants(options?: {
+  orientation?: ButtonGroupOrientation
+}) {
+  const o = options?.orientation ?? "horizontal"
+  return cn("button-group", `button-group--${o}`)
+}

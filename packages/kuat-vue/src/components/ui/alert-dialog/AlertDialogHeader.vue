@@ -8,9 +8,22 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div
-    :class="cn('flex flex-col gap-y-2 text-center sm:text-left', props.class)"
-  >
+  <div :class="cn('alert-dialog-header', props.class)">
     <slot />
   </div>
 </template>
+
+<style scoped>
+.alert-dialog-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .alert-dialog-header {
+    text-align: left;
+  }
+}
+</style>

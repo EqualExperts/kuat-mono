@@ -6,34 +6,33 @@ Guide for contributing Vue components to `@equal-experts/kuat-vue`.
 
 ## Architecture
 
-### File Structure
+### File Structure (CSS-first)
+
+Each component lives in a **directory** under `packages/kuat-vue/src/components/ui/`. Variants and state are expressed as **class names** in the template; the SFC `<style>` block (or a shared CSS file) defines what those classes do. Do not use CVA or JS maps from props to CSS variable names.
 
 ```
 packages/kuat-vue/
 ├── src/
 │   ├── components/
 │   │   └── ui/
-│   │       ├── button-group/       # Component directory
-│   │       │   ├── ButtonGroup.vue
-│   │       │   ├── ButtonGroupText.vue
-│   │       │   └── index.ts
-│   │       └── kuat-header/        # Block directory
-│   │           ├── KuatHeader.vue
-│   │           └── index.ts
+│   │       ├── badge/
+│   │       │   ├── Badge.vue        # Template + script + <style>
+│   │       │   ├── constants.ts    # Variant types/arrays
+│   │       │   └── index.ts        # Re-exports, optional badgeVariants()
+│   │       ├── button-group/
+│   │       └── kuat-header/
 │   ├── lib/
 │   │   └── utils.ts                # cn() utility
-│   ├── index.ts                    # Package exports
-│   └── styles.css                  # Global styles
+│   └── index.ts                    # Package exports
 ├── components.json                 # shadcn-vue CLI config
-├── tailwind.config.ts
-└── vite.config.ts
+└── ...
 ```
 
 ### Naming Conventions
 
 | Type | Directory | Component Name |
 |------|-----------|----------------|
-| Component | `button-group/` | `ButtonGroup.vue` |
+| Component | `badge/` | `Badge.vue` |
 | Block | `kuat-header/` | `KuatHeader.vue` |
 
 ---
@@ -64,63 +63,77 @@ pnpm lint
 
 ## Creating a Component
 
-### Step 1: Create Component Directory
+### Step 1: Create Component Directory (CSS-first)
 
-Create `packages/kuat-vue/src/components/ui/my-component/`:
+Create `packages/kuat-vue/src/components/ui/my-component/`.
+
+**constants.ts:**
+
+```ts
+export const MY_COMPONENT_VARIANTS = ["default", "outline"] as const
+export const MY_COMPONENT_SIZES = ["default", "sm", "lg"] as const
+export type MyComponentVariant = (typeof MY_COMPONENT_VARIANTS)[number]
+export type MyComponentSize = (typeof MY_COMPONENT_SIZES)[number]
+```
 
 **MyComponent.vue:**
 
 ```vue
 <script setup lang="ts">
-import { computed, type HTMLAttributes } from "vue";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import type { HTMLAttributes } from "vue"
+import type { MyComponentVariant, MyComponentSize } from "./constants"
+import { cn } from "@/lib/utils"
 
-const myComponentVariants = cva(
-  "inline-flex items-center justify-center rounded-[6px]",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground",
-        outline: "border border-input bg-background",
-      },
-      size: {
-        default: "h-10 px-4",
-        sm: "h-9 px-3",
-        lg: "h-11 px-6",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-);
-
-type MyComponentVariants = VariantProps<typeof myComponentVariants>;
-
-interface Props extends /* @vue-ignore */ HTMLAttributes {
-  variant?: MyComponentVariants["variant"];
-  size?: MyComponentVariants["size"];
-  class?: string;
+interface Props {
+  variant?: MyComponentVariant
+  size?: MyComponentSize
+  class?: HTMLAttributes["class"]
 }
 
 const props = withDefaults(defineProps<Props>(), {
   variant: "default",
   size: "default",
-});
-
-const classes = computed(() =>
-  cn(myComponentVariants({ variant: props.variant, size: props.size }), props.class)
-);
+})
 </script>
 
 <template>
-  <div :class="classes">
+  <div
+    :class="cn(
+      'my-component',
+      `my-component--${props.variant}`,
+      `my-component--size-${props.size}`,
+      props.class
+    )"
+  >
     <slot />
   </div>
 </template>
+
+<style scoped>
+.my-component {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.my-component--default {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.my-component--outline {
+  border: 1px solid var(--input);
+  background-color: var(--background);
+}
+
+.my-component--size-default { height: 2.5rem; padding: 0 1rem; }
+.my-component--size-sm { height: 2.25rem; padding: 0 0.75rem; }
+.my-component--size-lg { height: 2.75rem; padding: 0 1.5rem; }
+</style>
 ```
+
+**index.ts:** Export the component, constants, types, and optionally a `myComponentVariants()` helper for backward compatibility.
 
 **index.ts:**
 

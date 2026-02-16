@@ -1,35 +1,7 @@
-<script setup lang="ts">
-import type { PrimitiveProps } from "reka-ui"
-import type { HTMLAttributes } from "vue"
-import type { BadgeVariant } from "./constants"
-import { Primitive } from "reka-ui"
-import { cn } from "@/lib/utils"
+/* Badge – CSS-first variants. Tokens from @equal-experts/kuat-core. */
 
-interface Props extends PrimitiveProps {
-  variant?: BadgeVariant
-  class?: HTMLAttributes["class"]
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  as: "div",
-  variant: "default",
-})
-</script>
-
-<template>
-  <Primitive
-    :as="as"
-    :as-child="asChild"
-    :class="cn('badge', `badge--${props.variant}`, props.class)"
-  >
-    <slot />
-  </Primitive>
-</template>
-
-<style scoped>
 .badge {
   display: inline-flex;
-  gap: 0.25rem;
   align-items: center;
   border-radius: 9999px;
   border-width: 1px;
@@ -69,4 +41,3 @@ const props = withDefaults(defineProps<Props>(), {
 .badge--outline {
   color: var(--foreground);
 }
-</style>

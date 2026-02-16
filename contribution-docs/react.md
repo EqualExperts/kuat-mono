@@ -6,30 +6,40 @@ Guide for contributing React components to `@equal-experts/kuat-react`.
 
 ## Architecture
 
-### File Structure
+### File Structure (CSS-first)
+
+Each component lives in a **directory** under `packages/kuat-react/src/components/ui/`:
 
 ```
 packages/kuat-react/
 ├── src/
 │   ├── components/
 │   │   └── ui/
-│   │       ├── button-group.tsx    # Component file
-│   │       └── kuat-header.tsx     # Block file
+│   │       ├── badge/
+│   │       │   ├── badge.tsx       # Logic and class composition
+│   │       │   ├── badge.css       # All styles and variants (BEM)
+│   │       │   └── index.ts        # Re-exports
+│   │       ├── button-group/
+│   │       ├── kuat-header/
+│   │       └── ...
 │   ├── lib/
 │   │   └── utils.ts                # cn() utility
-│   ├── index.ts                    # Package exports
-│   └── styles.css                  # Global styles
+│   └── index.ts                    # Package exports
 ├── components.json                 # shadcn CLI config
 ├── tailwind.config.ts
 └── vite.config.ts
 ```
 
+- **ComponentName.tsx** – Logic and class composition only (e.g. `cn("base", \`base--${variant}\`, className)`). No inline Tailwind or style maps.
+- **ComponentName.css** – All styles and variants in BEM form. Use design tokens (`var(--primary)`, etc.) from kuat-core.
+- **index.ts** – Re-exports the component, types, and optional helpers (e.g. `badgeVariants()` for backward compatibility).
+
 ### Naming Conventions
 
-| Type | File Name | Component Name |
-|------|-----------|----------------|
-| Component | `button-group.tsx` | `ButtonGroup` |
-| Block | `kuat-header.tsx` | `KuatHeader` |
+| Type | Directory | Main File | Component Name |
+|------|-----------|-----------|----------------|
+| Component | `badge/` | `badge.tsx` | `Badge` |
+| Block | `kuat-header/` | `kuat-header.tsx` | `KuatHeader` |
 
 ---
 
@@ -39,7 +49,7 @@ packages/kuat-react/
 
 - Use strict TypeScript
 - Export prop types alongside components
-- Use `VariantProps` for CVA variants
+- Define variant types explicitly (e.g. `type BadgeVariant = "default" | "secondary" | ...`) or from a constants array; do not use CVA or `VariantProps`
 
 ### Component Patterns
 
@@ -59,61 +69,92 @@ pnpm lint
 
 ## Creating a Component
 
-### Step 1: Create Component File
+### Step 1: Create Component Directory and Files
 
-Create `packages/kuat-react/src/components/ui/my-component.tsx`:
+Create a directory and three files.
+
+**packages/kuat-react/src/components/ui/my-component/my-component.tsx**
 
 ```tsx
+"use client";
+
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import "./my-component.css";
 
-const myComponentVariants = cva(
-  // Base classes
-  "inline-flex items-center justify-center rounded-[6px]",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground",
-        outline: "border border-input bg-background",
-      },
-      size: {
-        default: "h-10 px-4",
-        sm: "h-9 px-3",
-        lg: "h-11 px-6",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-);
+export const MY_COMPONENT_VARIANTS = ["default", "outline"] as const;
+export const MY_COMPONENT_SIZES = ["default", "sm", "lg"] as const;
+export type MyComponentVariant = (typeof MY_COMPONENT_VARIANTS)[number];
+export type MyComponentSize = (typeof MY_COMPONENT_SIZES)[number];
 
-export interface MyComponentProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof myComponentVariants> {}
+export interface MyComponentProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: MyComponentVariant;
+  size?: MyComponentSize;
+}
 
 const MyComponent = React.forwardRef<HTMLDivElement, MyComponentProps>(
-  ({ className, variant, size, ...props }, ref) => (
+  ({ className, variant = "default", size = "default", ...props }, ref) => (
     <div
       ref={ref}
-      className={cn(myComponentVariants({ variant, size, className }))}
+      className={cn(
+        "my-component",
+        `my-component--${variant}`,
+        `my-component--size-${size}`,
+        className
+      )}
       {...props}
     />
   )
 );
 MyComponent.displayName = "MyComponent";
 
-export { MyComponent, myComponentVariants };
+export function myComponentVariants(options?: { variant?: MyComponentVariant; size?: MyComponentSize }) {
+  const v = options?.variant ?? "default";
+  const s = options?.size ?? "default";
+  return cn("my-component", `my-component--${v}`, `my-component--size-${s}`);
+}
+
+export { MyComponent };
 ```
 
-### Step 2: Export from Index
+**packages/kuat-react/src/components/ui/my-component/my-component.css**
+
+```css
+/* Use design tokens from @equal-experts/kuat-core */
+.my-component {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.my-component--default {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.my-component--outline {
+  border: 1px solid var(--input);
+  background-color: var(--background);
+}
+
+.my-component--size-default { height: 2.5rem; padding: 0 1rem; }
+.my-component--size-sm { height: 2.25rem; padding: 0 0.75rem; }
+.my-component--size-lg { height: 2.75rem; padding: 0 1.5rem; }
+```
+
+**packages/kuat-react/src/components/ui/my-component/index.ts**
+
+```ts
+export { MyComponent, myComponentVariants, MY_COMPONENT_VARIANTS, MY_COMPONENT_SIZES } from "./my-component";
+export type { MyComponentProps, MyComponentVariant, MyComponentSize } from "./my-component";
+```
+
+### Step 2: Export from Package Index
 
 Edit `packages/kuat-react/src/index.ts`:
 
 ```tsx
-// KUAT CUSTOM COMPONENTS
 export { MyComponent, myComponentVariants } from "./components/ui/my-component";
 export type { MyComponentProps } from "./components/ui/my-component";
 ```
@@ -175,44 +216,9 @@ export const Sizes: Story = {
 
 Blocks are compositions that combine multiple components.
 
-### Step 1: Create Block File
+### Step 1: Create Block Directory and Files
 
-Create `packages/kuat-react/src/components/ui/kuat-header.tsx`:
-
-```tsx
-import * as React from "react";
-import { cn } from "@/lib/utils";
-
-export interface KuatHeaderProps extends React.HTMLAttributes<HTMLElement> {
-  logo?: React.ReactNode;
-  navigation?: React.ReactNode;
-  actions?: React.ReactNode;
-}
-
-const KuatHeader = React.forwardRef<HTMLElement, KuatHeaderProps>(
-  ({ className, logo, navigation, actions, ...props }, ref) => (
-    <header
-      ref={ref}
-      className={cn(
-        "bg-sidebar text-sidebar-foreground border-b",
-        className
-      )}
-      {...props}
-    >
-      <div className="container flex items-center justify-between py-4">
-        <div className="flex items-center gap-6">
-          {logo}
-          <nav className="flex items-center gap-4">{navigation}</nav>
-        </div>
-        <div className="flex items-center gap-2">{actions}</div>
-      </div>
-    </header>
-  )
-);
-KuatHeader.displayName = "KuatHeader";
-
-export { KuatHeader };
-```
+Create `packages/kuat-react/src/components/ui/kuat-header/` with `kuat-header.tsx`, `kuat-header.css`, and `index.ts`. Use the same CSS-first pattern: class names in TS (e.g. `kuat-header`, `kuat-header--default`), all layout and variant styles in the CSS file using design tokens.
 
 ### Step 2: Export and Create Story
 

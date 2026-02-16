@@ -1,26 +1,13 @@
-import type { VariantProps } from "class-variance-authority"
-import { cva } from "class-variance-authority"
+import { cn } from "@/lib/utils"
+import type { BadgeVariant } from "./constants"
 
 export { default as Badge } from "./Badge.vue"
+export { BADGE_VARIANTS } from "./constants"
+export type { BadgeVariant } from "./constants"
+export type BadgeVariants = { variant?: BadgeVariant }
 
-export const badgeVariants = cva(
-  "inline-flex gap-1 items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-  {
-    variants: {
-      variant: {
-        default:
-          "border-transparent bg-primary text-primary-foreground",
-        secondary:
-          "border-transparent bg-secondary text-secondary-foreground",
-        destructive:
-          "border-transparent bg-destructive text-destructive-foreground",
-        outline: "text-foreground",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
-  },
-)
-
-export type BadgeVariants = VariantProps<typeof badgeVariants>
+/** Returns class string for badge variant (backward compatibility). */
+export function badgeVariants(options?: { variant?: BadgeVariant }) {
+  const v = options?.variant ?? "default"
+  return cn("badge", `badge--${v}`)
+}

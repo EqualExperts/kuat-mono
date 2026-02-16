@@ -1,39 +1,5 @@
-<script setup lang="ts">
-import type { PrimitiveProps } from "reka-ui"
-import type { HTMLAttributes } from "vue"
-import type { ButtonVariant, ButtonSize } from "./constants"
-import { Primitive } from "reka-ui"
-import { cn } from "@/lib/utils"
+/* Button – CSS-first variants. Tokens from @equal-experts/kuat-core. */
 
-interface Props extends PrimitiveProps {
-  variant?: ButtonVariant
-  size?: ButtonSize
-  class?: HTMLAttributes["class"]
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  as: "button",
-  variant: "default",
-  size: "default",
-})
-</script>
-
-<template>
-  <Primitive
-    :as="as"
-    :as-child="asChild"
-    :class="cn(
-      'button',
-      `button--variant-${props.variant}`,
-      `button--size-${props.size}`,
-      props.class
-    )"
-  >
-    <slot />
-  </Primitive>
-</template>
-
-<style scoped>
 .button {
   display: inline-flex;
   align-items: center;
@@ -60,13 +26,15 @@ const props = withDefaults(defineProps<Props>(), {
   opacity: 0.5;
 }
 
-.button :deep(svg) {
+.button [data-slot="icon"],
+.button svg {
   pointer-events: none;
   width: 1rem;
   height: 1rem;
   flex-shrink: 0;
 }
 
+/* Variant modifiers */
 .button--variant-default {
   background-color: var(--primary);
   color: var(--primary-foreground);
@@ -119,6 +87,7 @@ const props = withDefaults(defineProps<Props>(), {
   text-decoration: underline;
 }
 
+/* Size modifiers */
 .button--size-default {
   height: 2.5rem;
   padding: 0.5rem 1rem;
@@ -140,14 +109,3 @@ const props = withDefaults(defineProps<Props>(), {
   height: 2.5rem;
   width: 2.5rem;
 }
-
-.button--size-icon-sm {
-  height: 2.25rem;
-  width: 2.25rem;
-}
-
-.button--size-icon-lg {
-  height: 2.75rem;
-  width: 2.75rem;
-}
-</style>

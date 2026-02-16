@@ -17,8 +17,8 @@ const orientation = computed(() => carousel?.orientation?.value ?? "horizontal")
 
 const contentClass = computed(() =>
   cn(
-    "flex",
-    orientation.value === "horizontal" ? "-ml-2" : "-mt-2 flex-col",
+    "kuat-carousel__content",
+    `kuat-carousel__content--${orientation.value}`,
     props.class
   )
 )

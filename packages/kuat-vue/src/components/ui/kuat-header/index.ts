@@ -1,26 +1,15 @@
-import type { VariantProps } from "class-variance-authority"
-import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
+import type { KuatHeaderVariant } from "./constants"
 
 export { default as KuatHeader } from "./KuatHeader.vue"
 export { default as EELogo } from "./EELogo.vue"
 export { cn }
+export { KUAT_HEADER_VARIANTS, EE_LOGO_TEXT_COLORS } from "./constants"
+export type { KuatHeaderVariant, EELogoTextColor } from "./constants"
+export type KuatHeaderVariants = { variant?: KuatHeaderVariant }
 
-export const kuatHeaderVariants = cva(
-  "relative w-full border-b",
-  {
-    variants: {
-      variant: {
-        default:
-          "bg-[var(--kuat-header-default-background)] text-[var(--kuat-header-default-foreground)] border-border",
-        bold:
-          "bg-[var(--kuat-header-bold-background)] text-[var(--kuat-header-bold-foreground)] border-[var(--kuat-header-bold-foreground-secondary)]/20",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-)
-
-export type KuatHeaderVariants = VariantProps<typeof kuatHeaderVariants>
+/** Returns class string for header variant (backward compatibility). */
+export function kuatHeaderVariants(options?: { variant?: KuatHeaderVariant }) {
+  const v = options?.variant ?? "default"
+  return cn("kuat-header", `kuat-header--${v}`)
+}

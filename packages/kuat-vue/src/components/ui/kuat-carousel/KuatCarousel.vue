@@ -3,6 +3,7 @@ import type { HTMLAttributes } from "vue"
 import { ref, computed, watch, provide } from "vue"
 import useEmblaCarousel from "embla-carousel-vue"
 import { cn } from "@/lib/utils"
+import "./kuat-carousel.css"
 
 export type KuatCarouselSlidesPerView = 1 | 2 | 3
 
@@ -63,13 +64,13 @@ provide("kuatCarousel", {
 })
 
 const rootClass = computed(() =>
-  cn("relative w-full", props.class)
+  cn("kuat-carousel", props.class)
 )
 </script>
 
 <template>
   <div :class="rootClass">
-    <div ref="emblaRef" class="overflow-hidden">
+    <div ref="emblaRef" class="kuat-carousel__viewport">
       <slot name="content" />
     </div>
     <slot name="controls" />

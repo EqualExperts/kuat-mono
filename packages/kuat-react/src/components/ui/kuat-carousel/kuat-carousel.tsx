@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -6,17 +8,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
+import "./kuat-carousel.css"
+
 type KuatCarouselApi = UseEmblaCarouselType[1]
 type KuatCarouselOptions = UseEmblaCarouselType[0]
 type KuatCarouselOrientation = "horizontal" | "vertical"
 
 export type KuatCarouselSlidesPerView = 1 | 2 | 3
-
-const BASIS_MAP: Record<KuatCarouselSlidesPerView, string> = {
-  1: "basis-full",
-  2: "basis-1/2",
-  3: "basis-1/3",
-}
 
 interface KuatCarouselContextValue {
   api: KuatCarouselApi
@@ -82,7 +80,8 @@ const KuatCarousel = React.forwardRef<HTMLDivElement, KuatCarouselProps>(
       api?.scrollNext()
     }, [api])
 
-    const onSelect = React.useCallback((api: KuatCarouselApi) => {
+    const onSelect = React.useCallback((api: KuatCarouselApi | undefined) => {
+      if (!api) return
       setCanScrollPrev(api.canScrollPrev())
       setCanScrollNext(api.canScrollNext())
     }, [])
@@ -124,10 +123,10 @@ const KuatCarousel = React.forwardRef<HTMLDivElement, KuatCarouselProps>(
       <KuatCarouselContext.Provider value={contextValue}>
         <div
           ref={ref}
-          className={cn("relative w-full", className)}
+          className={cn("kuat-carousel", className)}
           {...props}
         >
-          <div ref={emblaRef} className="overflow-hidden">
+          <div ref={emblaRef} className="kuat-carousel__viewport">
             {content}
           </div>
           {controls}
@@ -151,8 +150,8 @@ const KuatCarouselContent = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "flex",
-        orientation === "horizontal" ? "-ml-2" : "-mt-2 flex-col",
+        "kuat-carousel__content",
+        `kuat-carousel__content--${orientation}`,
         className
       )}
       {...props}
@@ -169,15 +168,14 @@ const KuatCarouselItem = React.forwardRef<
   KuatCarouselItemProps
 >(({ className, ...props }, ref) => {
   const { slidesPerView, orientation } = useKuatCarousel()
-  const basis = BASIS_MAP[slidesPerView]
 
   return (
     <div
       ref={ref}
       className={cn(
-        "min-w-0 shrink-0 grow-0",
-        orientation === "horizontal" ? `pl-2 ${basis}` : `pt-2 ${basis}`,
-        "rounded-[6px] shadow-sm",
+        "kuat-carousel__item",
+        `kuat-carousel__item--${orientation}`,
+        `kuat-carousel__item--basis-${slidesPerView}`,
         className
       )}
       {...props}
@@ -196,10 +194,7 @@ const KuatCarouselPrevious = React.forwardRef<
     <button
       ref={ref}
       type="button"
-      className={cn(
-        "absolute top-0 right-8 z-10 flex h-8 w-8 items-center justify-center rounded-xs bg-primary text-primary-foreground shadow-sm transition-opacity disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90",
-        className
-      )}
+      className={cn("kuat-carousel__prev", className)}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       aria-label="Previous slide"
@@ -221,10 +216,7 @@ const KuatCarouselNext = React.forwardRef<
     <button
       ref={ref}
       type="button"
-      className={cn(
-        "absolute top-0 right-0 z-10 flex h-8 w-8 items-center justify-center rounded-xs bg-primary text-primary-foreground shadow-sm transition-opacity disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90",
-        className
-      )}
+      className={cn("kuat-carousel__next", className)}
       disabled={!canScrollNext}
       onClick={scrollNext}
       aria-label="Next slide"
