@@ -11,16 +11,16 @@ Monorepo with three packages:
 
 Kuat is a **design decision layer**, not a full component library:
 - **kuat-core**: Design tokens for any framework
-- **kuat-react/vue**: Custom components (ButtonGroup) and blocks
-- **shadcn**: Standard UI components installed directly by consumers
+- **kuat-react/vue**: Custom components (ButtonGroup), blocks, and local UI components
+- Prefer **local components from Kuat packages**; use **shadcn registry** (CLI) only when no local version exists
 
 ## Component Decision Priority
 
 | Priority | Source | When to Use |
 |----------|--------|-------------|
 | 1 | Kuat Blocks | Pre-built compositions (header, footer, search) |
-| 2 | Kuat Components | Custom components not in shadcn (ButtonGroup) |
-| 3 | shadcn | Standard UI (Button, Dialog) - installed directly |
+| 2 | Kuat Components | Local UI components from Kuat packages (Button, Dialog, ButtonGroup, etc.) |
+| 3 | shadcn registry | When no local version in Kuat (install via CLI in consumer project) |
 | 4 | Custom | Only when none of the above fit |
 
 ## Documentation (`kuat-docs/`)
@@ -46,19 +46,19 @@ Kuat is a **design decision layer**, not a full component library:
 // Design tokens (any framework)
 import "@equal-experts/kuat-core/variables.css"
 
-// Kuat custom components
-import { ButtonGroup } from "@equal-experts/kuat-react"
+// Prefer: components from Kuat when they exist there
+import { ButtonGroup, Button } from "@equal-experts/kuat-react"
 
-// shadcn components (consumer's local installation)
-import { Button } from "@/components/ui/button"
+// Fallback: when component is not in Kuat, use consumer's local shadcn install
+import { Dialog } from "@/components/ui/dialog"
 ```
 
 ## For Consumer Projects
 
 Guide consumers to:
 1. Install `@equal-experts/kuat-core` for design tokens
-2. Install shadcn components directly: `npx shadcn@latest add button`
-3. Import Kuat custom components only when needed
+2. Prefer Kuat packages for UI components; use shadcn CLI only for components not provided by Kuat
+3. Import from Kuat when a local version exists; otherwise install via shadcn CLI and import locally
 
 ## Contributing to Kuat
 
@@ -68,7 +68,7 @@ For adding components to Kuat packages:
 3. Create both React and Vue versions for custom components
 4. Add Storybook stories in `apps/storybook-{react,vue}/`
 
-**Important:** Do NOT add shadcn components to Kuat packages.
+**Important:** Prefer adding local versions of needed UI components to Kuat packages so consumers can use them from Kuat; if a component is not in Kuat, consumers use the shadcn registry.
 
 ## Component architecture – CSS-first
 
@@ -87,4 +87,4 @@ When adding or modifying components in Kuat packages, use a CSS-first structure 
 
 - "Primary brand color?" → EE Blue (#0066CC)
 - "Border radius for buttons?" → 6px
-- "Where do Button components come from?" → shadcn (installed directly)
+- "Where do Button components come from?" → From Kuat package if a local version exists; otherwise from shadcn (registry/CLI)

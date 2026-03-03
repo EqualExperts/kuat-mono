@@ -19,17 +19,17 @@ When building UI, follow this priority order:
 | Priority | Source | When to Use |
 |----------|--------|-------------|
 | 1 | **Kuat Blocks** | Pre-built compositions (header, footer, search patterns) |
-| 2 | **Kuat Components** | Custom components not in shadcn (ButtonGroup) |
-| 3 | **shadcn Components** | Standard UI components, themed via kuat-core |
+| 2 | **Kuat Components** | Local versions of UI components from Kuat packages (Button, Dialog, ButtonGroup, etc.) |
+| 3 | **shadcn registry** | When no local version in Kuat (install via CLI in consumer project) |
 | 4 | **Custom Build** | Only when none of the above fit your needs |
 
-### When to Use shadcn Directly
+### When to use the shadcn registry
 
-Install components via shadcn CLI when:
+Use the shadcn CLI when the component **does not exist as a local version** in Kuat packages. When it does exist in Kuat, import from Kuat first.
 
-- The component **exists in shadcn** (Button, Dialog, etc.)
-- You only need **theming changes** (handled by kuat-core CSS variables)
-- You need to **customize the component code** for your specific app
+- Install via shadcn CLI when the component is not provided by Kuat
+- Theming is handled by kuat-core CSS variables for both Kuat local components and shadcn-installed components
+- For app-specific customizations, you can use either a Kuat local component or a shadcn-installed copy
 
 > **For contributors:** See [CONTRIBUTING.md](../../../CONTRIBUTING.md) for when to add components to Kuat packages.
 
@@ -37,7 +37,7 @@ Install components via shadcn CLI when:
 
 ## Kuat Component Namespace
 
-Components unique to Kuat use the "Kuat" namespace to distinguish them from shadcn components.
+Components unique to Kuat use the "Kuat" namespace to distinguish them from shadcn components. Kuat may ship local versions of common UI components (shadcn-style); those count as Kuat local components for the decision order above.
 
 ### Naming Pattern
 
@@ -71,7 +71,7 @@ const buttonVariants = cva(
 
 ### Block Structure
 
-Blocks are pre-built compositions that combine multiple components:
+Blocks are pre-built compositions that combine multiple components. Available blocks include **KuatHeader** and **KuatLogoLockup** (EE logo + service/demo title). See [logo-lockup.md](./logo-lockup.md) for the Logo Lockup block.
 
 ```tsx
 // Example block structure

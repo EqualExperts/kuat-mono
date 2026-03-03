@@ -45,26 +45,30 @@ Before creating a component, determine where it belongs:
 ```
 Need a UI element?
     │
-    ├─ Exists in shadcn? ─── YES ──→ Consumer installs directly
-    │                                (Do NOT add to Kuat packages)
+    ├─ Exists in Kuat (local version)? ─── YES ──→ Use from Kuat package
     │
     └─ NO
         │
-        ├─ Composition of multiple components? ─── YES ──→ Create Kuat Block
-        │                                                  (e.g., KuatHeader)
+        ├─ Exists in shadcn? ─── YES ──→ Prefer adding local version to Kuat
+        │                                when needed across consumers;
+        │                                otherwise consumer installs via shadcn CLI
         │
         └─ NO
             │
-            └─ Unique behavior / reused across projects? ─── YES ──→ Create Kuat Component
-                                                                     (e.g., ButtonGroup)
+            ├─ Composition of multiple components? ─── YES ──→ Create Kuat Block
+            │                                                  (e.g., KuatHeader)
+            │
+            └─ NO
                 │
-                └─ NO ──→ Build custom in consumer app
+                └─ Unique behavior / reused across projects? ─── YES ──→ Create Kuat Component
+                                                                         (e.g., ButtonGroup)
+                    │
+                    └─ NO ──→ Build custom in consumer app
 ```
 
 **Key Rules:**
-- Do NOT add shadcn components to Kuat packages
-- Consumers install shadcn components directly via CLI
-- kuat-core automatically themes shadcn components
+- Prefer adding local versions of UI components to Kuat when they are needed across consumers; otherwise consumers use the shadcn registry
+- kuat-core automatically themes both Kuat local components and shadcn-installed components
 
 ---
 
@@ -73,11 +77,12 @@ Need a UI element?
 The shadcn MCP tools help discover existing components before creating new ones.
 
 **Before creating a component:**
-1. Use `search_items_in_registries` to check if it exists in shadcn
-2. Use `view_items_in_registries` to see component implementation details
-3. Use `get_item_examples_from_registries` for usage patterns
+1. Check if Kuat already has a local version of the component
+2. Use `search_items_in_registries` to check if it exists in the shadcn registry
+3. Use `view_items_in_registries` to see component implementation details
+4. Use `get_item_examples_from_registries` for usage patterns
 
-Only create a Kuat component if the component does NOT exist in shadcn.
+If not in Kuat, either add a local version to Kuat or recommend installing from the shadcn registry. Prefer using the Kuat local version when it exists; when adding new components, you can add a local version to Kuat or use the shadcn registry.
 
 ---
 
@@ -90,9 +95,10 @@ Only create a Kuat component if the component does NOT exist in shadcn.
    - Reference design rules in `kuat-docs/rules/design/`
    - Follow spacing, color, and typography guidelines
 
-2. **Check shadcn Registry**
-   - Verify component does NOT exist in shadcn
-   - Use shadcn MCP tools or browse [ui.shadcn.com](https://ui.shadcn.com)
+2. **Check Kuat first, then shadcn registry**
+   - Check whether Kuat already has a local version of the component
+   - If not, check the shadcn registry via shadcn MCP tools or [ui.shadcn.com](https://ui.shadcn.com)
+   - If the component exists in shadcn but not in Kuat, you can add a local version to Kuat or document registry usage
 
 3. **Create Both Framework Versions**
    - React version in `packages/kuat-react`
