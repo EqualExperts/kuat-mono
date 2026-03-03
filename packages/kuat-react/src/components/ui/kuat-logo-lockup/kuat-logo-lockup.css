@@ -1,0 +1,150 @@
+/* KuatLogoLockup – CSS-first. Tokens from @equal-experts/kuat-core. */
+
+.kuat-logo-lockup {
+  container-type: inline-size;
+  container-name: logo-lockup;
+}
+
+/* ---- Mode: light ---- */
+.kuat-logo-lockup--light {
+  color: var(--kuat-header-default-foreground);
+}
+
+.kuat-logo-lockup--light .kuat-logo-lockup__service-name,
+.kuat-logo-lockup--light .kuat-logo-lockup__demo-title,
+.kuat-logo-lockup--light .kuat-logo-lockup__demo-by {
+  color: var(--kuat-header-default-foreground);
+}
+
+/* ---- Mode: dark ---- */
+.kuat-logo-lockup--dark {
+  color: var(--kuat-header-bold-foreground);
+}
+
+.kuat-logo-lockup--dark .kuat-logo-lockup__service-name,
+.kuat-logo-lockup--dark .kuat-logo-lockup__demo-title,
+.kuat-logo-lockup--dark .kuat-logo-lockup__demo-by {
+  color: var(--kuat-header-bold-foreground);
+}
+
+/* ---- Use: Service (responsive) ---- */
+.kuat-logo-lockup--service .kuat-logo-lockup__service-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(2 * var(--spacing));
+}
+
+.kuat-logo-lockup__separator {
+  display: none;
+  height: calc(6 * var(--spacing));
+  width: 1px;
+  flex-shrink: 0;
+}
+
+.kuat-logo-lockup--light .kuat-logo-lockup__separator {
+  background-color: var(--border);
+}
+
+.kuat-logo-lockup--dark .kuat-logo-lockup__separator {
+  background-color: color-mix(
+    in srgb,
+    var(--kuat-header-bold-foreground-secondary) 30%,
+    transparent
+  );
+}
+
+@container logo-lockup (min-width: 320px) {
+  .kuat-logo-lockup--service .kuat-logo-lockup__service-inner {
+    flex-direction: row;
+    align-items: center;
+    gap: calc(4 * var(--spacing));
+  }
+
+  .kuat-logo-lockup__separator {
+    display: block;
+  }
+}
+
+@supports not (container-type: inline-size) {
+  @media (min-width: 768px) {
+    .kuat-logo-lockup--service .kuat-logo-lockup__service-inner {
+      flex-direction: row;
+      align-items: center;
+      gap: calc(4 * var(--spacing));
+    }
+
+    .kuat-logo-lockup__separator {
+      display: block;
+    }
+  }
+}
+
+/* Service name: heading 2 scale (3xl), 8pt grid */
+.kuat-logo-lockup__service-name {
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  font-family: var(--font-sans);
+}
+
+.kuat-logo-lockup__logo-wrap,
+.kuat-logo-lockup__logo-icon {
+  flex-shrink: 0;
+}
+
+.kuat-logo-lockup__logo.kuat-logo-lockup__logo--demo {
+  height: calc(6 * var(--spacing));
+  width: auto;
+}
+
+.kuat-logo-lockup__logo:not(.kuat-logo-lockup__logo--demo) {
+  height: 50px;
+  width: 188px;
+}
+
+.kuat-logo-lockup__logo-icon {
+  height: calc(10 * var(--spacing));
+  width: 43px;
+}
+
+/* ---- Use: Demo ---- */
+.kuat-logo-lockup--demo .kuat-logo-lockup__demo-title {
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
+  font-family: var(--font-sans);
+  margin: 0 0 calc(2 * var(--spacing)) 0;
+}
+
+.kuat-logo-lockup__demo-attribution {
+  display: flex;
+  align-items: center;
+  gap: calc(2 * var(--spacing));
+}
+
+/* Demo byline: xs scale (labels/captions) */
+.kuat-logo-lockup__demo-by {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: var(--tracking-normal);
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+.kuat-logo-lockup__demo-logo-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.kuat-logo-lockup__demo-logo-wrap .kuat-logo-lockup__logo {
+  height: calc(5 * var(--spacing));
+  width: auto;
+}
+
+.kuat-logo-lockup__demo-logo-wrap .kuat-logo-lockup__logo-icon {
+  height: calc(5 * var(--spacing));
+  width: 22px;
+}

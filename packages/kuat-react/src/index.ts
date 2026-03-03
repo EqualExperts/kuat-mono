@@ -68,6 +68,20 @@ export type {
   KuatRadialProgressColor,
 } from "./components/ui/kuat-radial-progress";
 
+export {
+  KuatLogoLockup,
+  KUAT_LOGO_LOCKUP_USE,
+  KUAT_LOGO_LOCKUP_MODE,
+} from "./components/ui/kuat-logo-lockup";
+export type {
+  KuatLogoLockupProps,
+  KuatLogoLockupUse,
+  KuatLogoLockupMode,
+} from "./components/ui/kuat-logo-lockup";
+
+export { EELogoIcon } from "./components/ui/ee-logo-icon";
+export type { EELogoIconProps } from "./components/ui/ee-logo-icon";
+
 // =============================================================================
 // DEPRECATED EXPORTS
 // These components are re-exports of shadcn components.
