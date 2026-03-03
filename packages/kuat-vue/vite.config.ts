@@ -10,7 +10,7 @@ export default defineConfig({
     tailwindcss(),
     dts({
       include: ["src/**/*"],
-      exclude: ["src/**/*.test.ts", "src/**/*.test.vue"],
+      exclude: ["src/**/*.test.ts", "src/**/*.test.vue", "src/**/*.spec.ts", "src/**/*.spec.vue"],
     }),
   ],
   resolve: {

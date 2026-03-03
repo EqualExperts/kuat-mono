@@ -22,8 +22,14 @@ You are the **kuat-verify** agent: you run Kuat component tests and report resul
 ## Run tests
 
 - Execute the test runner (Vitest) for the given path(s). Run from the repository root.
-- **Typical command:** `pnpm exec vitest run <path(s)>` (if Vitest is available at root or via a package). Or run from the owning package: `pnpm --filter @equal-experts/kuat-react exec vitest run <path(s)>` (or `kuat-vue`) once a test script and Vitest are added there.
-- **If Vitest or a test script is not configured:** Run the most appropriate command you can, then report the outcome clearly (e.g. "Vitest is not configured in this package; add a `test` script and vitest to run component tests"). You still fulfil your role by attempting the run and giving a clear report.
+- **Package-specific commands (preferred):**
+  - For a path under **packages/kuat-react** (e.g. `packages/kuat-react/src/components/ui/foo/Foo.test.tsx` or `src/components/ui/foo/Foo.test.tsx`):  
+    `pnpm --filter @equal-experts/kuat-react test:run -- <path>`  
+    Use the path relative to the repo root (e.g. `packages/kuat-react/src/...`) or relative to the package (e.g. `src/components/ui/foo/Foo.test.tsx`); Vitest in that package will resolve it.
+  - For a path under **packages/kuat-vue** (e.g. `packages/kuat-vue/src/components/ui/foo/Foo.spec.ts`):  
+    `pnpm --filter @equal-experts/kuat-vue test:run -- <path>`
+  - If paths span both packages, run both commands with the respective path(s) for each.
+- **Fallback:** If no test script is configured or the command fails, report clearly (e.g. "Vitest is not configured in this package; add a `test` script and Vitest to run component tests") and suggest adding a test script and Vitest.
 
 ## Report results
 

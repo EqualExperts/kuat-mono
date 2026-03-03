@@ -13,6 +13,12 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
+    "test": {
+      "dependsOn": []
+    },
+    "test:run": {
+      "dependsOn": []
+    },
     "build-storybook": {
       "dependsOn": ["^build"],
       "outputs": ["storybook-static/**"]

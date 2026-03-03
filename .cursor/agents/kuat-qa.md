@@ -23,7 +23,7 @@ The purpose of these tests is to **ensure the component works as expected**: fun
 1. **Runnable test file(s)** (Vitest + Testing Library) – the primary deliverable.
 2. **Optional short spec summary** – e.g. markdown or comments at the top of the test file (component name, framework, type custom vs localized, test areas, Kuat-specific requirements or variations).
 
-Both can be passed directly to the implementation agent. The **verification agent** receives the same test file(s) to run (e.g. `pnpm exec vitest run path/to/test`).
+Both can be passed directly to the implementation agent. The **verification agent** receives the same test file(s) to run (e.g. `pnpm --filter @equal-experts/kuat-react test:run -- <path>` or `pnpm --filter @equal-experts/kuat-vue test:run -- <path>`).
 
 ## Workflow
 
@@ -39,8 +39,8 @@ Both can be passed directly to the implementation agent. The **verification agen
   - A brief comment or markdown block describing the component under test and any variations (for localized shadcn).
   - `describe` / `it` (or `test`) blocks that are self-contained and runnable with Vitest + Testing Library.
 - **Conventions:**
-  - **React:** `@testing-library/react`, `userEvent` where needed; render from `@equal-experts/kuat-react` (or local path). Path convention: `packages/kuat-react/src/components/ui/<name>/<Name>.test.tsx`.
-  - **Vue:** `@vue/test-utils` and Testing Library for Vue (or project standard); component from `@equal-experts/kuat-vue`. Path convention: `packages/kuat-vue/src/components/ui/<name>/<Name>.spec.ts` (or equivalent).
+  - **React:** The project has Vitest, `@testing-library/react`, `@testing-library/user-event`, and `@testing-library/jest-dom` in **packages/kuat-react**. Use these in generated tests; an optional setup file imports jest-dom so matchers are available globally. Path convention: `packages/kuat-react/src/components/ui/<name>/<Name>.test.tsx`. Run tests via `pnpm --filter @equal-experts/kuat-react test:run` (or from that package: `pnpm test:run`).
+  - **Vue:** The project has Vitest, `@vue/test-utils`, and `@testing-library/vue` in **packages/kuat-vue**. Use these in generated tests; optional `@testing-library/jest-dom` setup is available. Path convention: `packages/kuat-vue/src/components/ui/<name>/<Name>.spec.ts` (or equivalent). Run tests via `pnpm --filter @equal-experts/kuat-vue test:run` (or from that package: `pnpm test:run`).
   - Tests should be **framework-agnostic in intent**: same scenarios for React and Vue; only the mounting and DOM queries differ.
 - Do **not** run the tests; the verification agent does that.
 
