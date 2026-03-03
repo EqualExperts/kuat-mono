@@ -15,4 +15,6 @@ When adding or modifying components in Kuat packages, use a CSS-first structure 
 
 **New components:** Follow this structure by default. Variants and states are expressed as **class names**; the CSS file (or SFC `<style>`) defines what those classes do.
 
+When adding or changing components, prefer the Kuat component workflow agents when available (`.cursor/agents/`): **kuat-qa** (plan and write test specs and test code), **kuat-component-dev** (implement and add Storybook stories), **kuat-verify** (run tests and report pass/fail). See `.cursor/agents/kuat-qa.md`, `.cursor/agents/kuat-component-dev.md`, and `.cursor/agents/kuat-verify.md`.
+
 For full project structure, contributing, and verification, see `.cursorrules` and `AGENTS.md`.

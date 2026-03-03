@@ -68,6 +68,8 @@ For adding components to Kuat packages:
 3. Create both React and Vue versions for custom components
 4. Add Storybook stories in `apps/storybook-{react,vue}/`
 
+**Using Kuat agents:** When adding or changing components, prefer using the Kuat agents if available (e.g. in Cursor with .cursor/agents/): use kuat-qa to plan and write test specs and test code, kuat-component-dev to implement and add Storybook stories, and kuat-verify to run tests. This keeps a test-driven flow and consistent quality.
+
 **Important:** Prefer adding local versions of needed UI components to Kuat packages so consumers can use them from Kuat; if a component is not in Kuat, consumers use the shadcn registry.
 
 ## Component architecture – CSS-first

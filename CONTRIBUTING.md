@@ -113,6 +113,8 @@ If not in Kuat, either add a local version to Kuat or recommend installing from 
    - Add usage documentation describing when and how to use the component
    - Include examples in `kuat-docs/examples/react/` and `kuat-docs/examples/vue/`
 
+When the Kuat agents are available in your environment (e.g. Cursor with `.cursor/agents/`), prefer the test-driven flow: run **kuat-qa** to generate tests and specs, then **kuat-component-dev** to implement and add stories, then **kuat-verify** to run tests. See [Development Workflow](#development-workflow) above for details.
+
 ### Framework-Specific Guides
 
 Detailed implementation guides with code examples:
@@ -129,6 +131,8 @@ Detailed implementation guides with code examples:
 3. **Test in Storybook** - verify all variants, light/dark mode
 4. **Build**: `pnpm build`
 5. **Lint**: `pnpm lint`
+
+We encourage using the Kuat agents when they are available (e.g. in Cursor with `.cursor/agents/`). For new or changed components, prefer this test-driven flow: the **Kuat QA agent** (`.cursor/agents/kuat-qa.md`) plans test specs and generates runnable test code; the **component development agent** (`.cursor/agents/kuat-component-dev.md`) implements the component and adds Storybook stories; **kuat-verify** (`.cursor/agents/kuat-verify.md`) runs the tests and reports pass/fail.
 
 ---
 
@@ -182,6 +186,7 @@ chore: upgrade Tailwind to v4.1
 - [ ] Added documentation to `kuat-docs/`
 - [ ] Tested light and dark mode
 - [ ] PR includes screenshots
+- [ ] (If using Kuat agents) Used kuat-qa → kuat-component-dev → kuat-verify for test-driven implementation
 
 ---
 
