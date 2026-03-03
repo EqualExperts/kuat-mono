@@ -82,6 +82,14 @@ export type {
 export { EELogoIcon } from "./components/ui/ee-logo-icon";
 export type { EELogoIconProps } from "./components/ui/ee-logo-icon";
 
+// Accordion (localized UI component – import from Kuat)
+export {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "./components/ui/accordion";
+
 // =============================================================================
 // DEPRECATED EXPORTS
 // These components are re-exports of shadcn components.
@@ -102,17 +110,6 @@ export type { EELogoIconProps } from "./components/ui/ee-logo-icon";
 export { Button, buttonVariants } from "./components/ui/button";
 /** @deprecated */
 export type { ButtonProps } from "./components/ui/button";
-
-/**
- * @deprecated Install directly via `npx shadcn@latest add accordion`.
- * The component will be themed automatically when using kuat-core.
- */
-export {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "./components/ui/accordion";
 
 /**
  * @deprecated Install directly via `npx shadcn@latest add alert-dialog`.

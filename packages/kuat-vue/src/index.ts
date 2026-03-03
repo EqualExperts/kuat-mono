@@ -72,6 +72,14 @@ export type {
   KuatLogoLockupMode,
 } from "./components/ui/kuat-logo-lockup";
 
+// Accordion (localized UI component – import from Kuat)
+export {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "./components/ui/accordion";
+
 // =============================================================================
 // DEPRECATED EXPORTS
 // These components are re-exports of shadcn-vue components.
@@ -92,17 +100,6 @@ export type {
 export { Button, buttonVariants } from "./components/ui/button";
 /** @deprecated */
 export type { ButtonVariants } from "./components/ui/button";
-
-/**
- * @deprecated Install directly via `npx shadcn-vue@latest add accordion`.
- * The component will be themed automatically when using kuat-core.
- */
-export {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "./components/ui/accordion";
 
 /**
  * @deprecated Install directly via `npx shadcn-vue@latest add alert-dialog`.

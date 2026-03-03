@@ -1,13 +1,6 @@
 /**
- * @deprecated This component import is deprecated.
- *
- * For new projects, install Accordion directly via shadcn CLI:
- * ```bash
- * npx shadcn@latest add accordion
- * ```
- *
- * The component will be themed automatically when using kuat-core.
- * This story demonstrates the Accordion styling that kuat-core provides.
+ * Accordion – localized UI component. Import from @equal-experts/kuat-react.
+ * Styling uses design tokens from kuat-core.
  */
 import type { Meta, StoryObj } from '@storybook/react';
 import {
@@ -18,7 +11,7 @@ import {
 } from '@equal-experts/kuat-react';
 
 const meta: Meta<typeof Accordion> = {
-  title: 'Components/Accordion (Deprecated)',
+  title: 'Components/Accordion',
   component: Accordion,
   tags: ['autodocs'],
 };

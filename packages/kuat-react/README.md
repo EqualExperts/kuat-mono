@@ -233,7 +233,6 @@ The following exports are deprecated and will be removed in the next major versi
 | Component | Replacement |
 |-----------|-------------|
 | `Button` | `npx shadcn@latest add button` |
-| `Accordion` | `npx shadcn@latest add accordion` |
 | `AlertDialog` | `npx shadcn@latest add alert-dialog` |
 | `Badge` | `npx shadcn@latest add badge` |
 

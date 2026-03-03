@@ -349,15 +349,17 @@ pnpm dev
 
 **Expected:**
 - ButtonGroup (custom component not in shadcn)
+- Accordion (localized UI component – import from Kuat)
 - Future blocks: KuatHeader, KuatFooter, etc.
 - Utilities: `cn()`
 
 **Not expected:**
-- Button, Dialog, Accordion, Badge (use shadcn directly)
+- Button, Dialog, Badge (use shadcn directly)
 
 **Verification:**
 - [ ] Lists ButtonGroup as primary export
-- [ ] Does NOT list standard shadcn components
+- [ ] Lists Accordion as available from Kuat
+- [ ] Does NOT list Button, Dialog, Badge as Kuat exports
 - [ ] Mentions blocks (coming soon)
 
 ---

@@ -26,11 +26,13 @@
   text-decoration: underline;
 }
 
-.accordion-trigger[data-state="open"] > svg {
+.accordion-trigger[data-state="open"] > svg,
+.accordion-trigger[data-state="open"] .accordion-trigger__icon {
   transform: rotate(180deg);
 }
 
-.accordion-trigger svg {
+.accordion-trigger svg,
+.accordion-trigger__icon {
   height: 1rem;
   width: 1rem;
   flex-shrink: 0;

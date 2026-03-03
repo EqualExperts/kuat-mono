@@ -248,7 +248,6 @@ The following exports are deprecated and will be removed in the next major versi
 | Component | Replacement |
 |-----------|-------------|
 | `Button` | `npx shadcn-vue@latest add button` |
-| `Accordion` | `npx shadcn-vue@latest add accordion` |
 | `AlertDialog` | `npx shadcn-vue@latest add alert-dialog` |
 | `Badge` | `npx shadcn-vue@latest add badge` |
 
