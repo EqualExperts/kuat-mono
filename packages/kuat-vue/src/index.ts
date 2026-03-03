@@ -80,6 +80,19 @@ export {
   AccordionContent,
 } from "./components/ui/accordion";
 
+// AlertDialog (localized UI component – import from Kuat)
+export {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "./components/ui/alert-dialog";
+
 // =============================================================================
 // DEPRECATED EXPORTS
 // These components are re-exports of shadcn-vue components.
@@ -100,22 +113,6 @@ export {
 export { Button, buttonVariants } from "./components/ui/button";
 /** @deprecated */
 export type { ButtonVariants } from "./components/ui/button";
-
-/**
- * @deprecated Install directly via `npx shadcn-vue@latest add alert-dialog`.
- * The component will be themed automatically when using kuat-core.
- */
-export {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "./components/ui/alert-dialog";
 
 /**
  * @deprecated Install directly via `npx shadcn-vue@latest add badge`.

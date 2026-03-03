@@ -248,7 +248,6 @@ The following exports are deprecated and will be removed in the next major versi
 | Component | Replacement |
 |-----------|-------------|
 | `Button` | `npx shadcn-vue@latest add button` |
-| `AlertDialog` | `npx shadcn-vue@latest add alert-dialog` |
 | `Badge` | `npx shadcn-vue@latest add badge` |
 
 These components are still exported for backward compatibility but will be themed correctly only when using kuat-core.
