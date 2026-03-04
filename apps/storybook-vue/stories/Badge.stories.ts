@@ -1,27 +1,24 @@
 /**
- * @deprecated This component import is deprecated.
- *
- * For new projects, install Badge directly via shadcn-vue CLI:
- * ```bash
- * npx shadcn-vue@latest add badge
- * ```
- *
- * The component will be themed automatically when using kuat-core.
- * This story demonstrates the Badge styling that kuat-core provides.
+ * Badge – localized UI component. Non-interactive label/tag. Variants and roundness per Figma.
  */
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { Badge } from "@equal-experts/kuat-vue";
 import { BadgeCheckIcon } from "lucide-vue-next";
 
 const meta: Meta<typeof Badge> = {
-  title: "Components/Badge (Deprecated)",
+  title: "Components/Badge",
   component: Badge,
   tags: ["autodocs"],
   argTypes: {
     variant: {
       control: "select",
-      options: ["default", "secondary", "destructive", "outline"],
+      options: ["default", "secondary", "destructive", "outline", "ghost"],
       description: "The visual style variant of the badge",
+    },
+    roundness: {
+      control: "select",
+      options: ["default", "round"],
+      description: "Border radius: default (6px) or round (pill)",
     },
   },
 };
@@ -69,6 +66,40 @@ export const Outline: Story = {
   }),
 };
 
+export const Ghost: Story = {
+  render: () => ({
+    components: { Badge },
+    template: '<Badge variant="ghost">Ghost</Badge>',
+  }),
+};
+
+export const RoundnessComparison: Story = {
+  render: () => ({
+    components: { Badge },
+    template: `
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="w-24 text-sm text-muted-foreground">Default (6px):</span>
+          <Badge roundness="default">Label</Badge>
+          <Badge roundness="default" variant="secondary">Label</Badge>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="w-24 text-sm text-muted-foreground">Round (pill):</span>
+          <Badge roundness="round">Label</Badge>
+          <Badge roundness="round" variant="secondary">Label</Badge>
+        </div>
+      </div>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story: "Roundness: default (6px radius) vs round (pill).",
+      },
+    },
+  },
+};
+
 export const AllVariants: Story = {
   render: () => ({
     components: { Badge },
@@ -79,6 +110,7 @@ export const AllVariants: Story = {
           <Badge variant="secondary">Secondary</Badge>
           <Badge variant="destructive">Destructive</Badge>
           <Badge variant="outline">Outline</Badge>
+          <Badge variant="ghost">Ghost</Badge>
         </div>
       </div>
     `,
@@ -102,13 +134,13 @@ export const WithIcons: Story = {
             <BadgeCheckIcon />
             Verified
           </Badge>
-          <Badge class="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">
+          <Badge roundness="round" class="h-5 min-w-5 px-1 font-mono tabular-nums">
             8
           </Badge>
-          <Badge class="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums" variant="destructive">
+          <Badge roundness="round" class="h-5 min-w-5 px-1 font-mono tabular-nums" variant="destructive">
             99
           </Badge>
-          <Badge class="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums" variant="outline">
+          <Badge roundness="round" class="h-5 min-w-5 px-1 font-mono tabular-nums" variant="outline">
             20+
           </Badge>
         </div>
@@ -118,7 +150,7 @@ export const WithIcons: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Badges with icons and numeric indicators. Icons can be added as children, and badges can be styled as circular indicators.",
+        story: "Badges with icons and numeric indicators. Icons can be added as children, and badges can be styled as circular indicators using roundness=\"round\".",
       },
     },
   },
@@ -153,6 +185,7 @@ export const LightMode: Story = {
         <Badge variant="secondary">Secondary</Badge>
         <Badge variant="destructive">Destructive</Badge>
         <Badge variant="outline">Outline</Badge>
+        <Badge variant="ghost">Ghost</Badge>
       </div>
     `,
   }),
@@ -175,6 +208,7 @@ export const DarkMode: Story = {
         <Badge variant="secondary">Secondary</Badge>
         <Badge variant="destructive">Destructive</Badge>
         <Badge variant="outline">Outline</Badge>
+        <Badge variant="ghost">Ghost</Badge>
       </div>
     `,
   }),
@@ -208,6 +242,10 @@ export const WithStatus: Story = {
         <div class="flex items-center gap-2">
           <span>Draft:</span>
           <Badge variant="outline">Draft</Badge>
+        </div>
+        <div class="flex items-center gap-2">
+          <span>Muted:</span>
+          <Badge variant="ghost">Muted</Badge>
         </div>
       </div>
     `,

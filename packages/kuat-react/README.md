@@ -201,7 +201,7 @@ If you were importing standard components from this package, migrate to direct s
 ### Before (Deprecated)
 
 ```tsx
-import { Button, Dialog, Badge } from '@equal-experts/kuat-react';
+import { Button, Dialog } from '@equal-experts/kuat-react';
 ```
 
 ### After (Recommended)
@@ -210,19 +210,18 @@ import { Button, Dialog, Badge } from '@equal-experts/kuat-react';
 // Standard components from your local shadcn installation
 import { Button } from '@/components/ui/button';
 import { Dialog } from '@/components/ui/dialog';
-import { Badge } from '@/components/ui/badge';
 
-// Kuat-specific components from this package
-import { ButtonGroup } from '@equal-experts/kuat-react';
+// Kuat-specific components from this package (including Badge)
+import { ButtonGroup, Badge } from '@equal-experts/kuat-react';
 ```
 
 ### Migration Steps
 
 1. Ensure `@equal-experts/kuat-core` is installed
 2. Initialize shadcn: `npx shadcn@latest init`
-3. Install needed components: `npx shadcn@latest add button dialog badge`
+3. Install needed components: `npx shadcn@latest add button dialog`
 4. Update imports to use local components
-5. Keep imports for Kuat-specific components (ButtonGroup, etc.)
+5. Keep imports for Kuat-specific components (ButtonGroup, Badge, etc.)
 
 ---
 
@@ -233,7 +232,6 @@ The following exports are deprecated and will be removed in the next major versi
 | Component | Replacement |
 |-----------|-------------|
 | `Button` | `npx shadcn@latest add button` |
-| `Badge` | `npx shadcn@latest add badge` |
 
 These components are still exported for backward compatibility but will be themed correctly only when using kuat-core.
 

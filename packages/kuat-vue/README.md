@@ -213,7 +213,7 @@ If you were importing standard components from this package, migrate to direct s
 
 ```vue
 <script setup lang="ts">
-import { Button, Dialog, Badge } from '@equal-experts/kuat-vue';
+import { Button, Dialog } from '@equal-experts/kuat-vue';
 </script>
 ```
 
@@ -224,10 +224,9 @@ import { Button, Dialog, Badge } from '@equal-experts/kuat-vue';
 // Standard components from your local shadcn-vue installation
 import { Button } from '@/components/ui/button';
 import { Dialog } from '@/components/ui/dialog';
-import { Badge } from '@/components/ui/badge';
 
-// Kuat-specific components from this package
-import { ButtonGroup } from '@equal-experts/kuat-vue';
+// Kuat-specific components from this package (including Badge)
+import { ButtonGroup, Badge } from '@equal-experts/kuat-vue';
 </script>
 ```
 
@@ -235,9 +234,9 @@ import { ButtonGroup } from '@equal-experts/kuat-vue';
 
 1. Ensure `@equal-experts/kuat-core` is installed
 2. Initialize shadcn-vue: `npx shadcn-vue@latest init`
-3. Install needed components: `npx shadcn-vue@latest add button dialog badge`
+3. Install needed components: `npx shadcn-vue@latest add button dialog`
 4. Update imports to use local components
-5. Keep imports for Kuat-specific components (ButtonGroup, etc.)
+5. Keep imports for Kuat-specific components (ButtonGroup, Badge, etc.)
 
 ---
 
@@ -248,7 +247,6 @@ The following exports are deprecated and will be removed in the next major versi
 | Component | Replacement |
 |-----------|-------------|
 | `Button` | `npx shadcn-vue@latest add button` |
-| `Badge` | `npx shadcn-vue@latest add badge` |
 
 These components are still exported for backward compatibility but will be themed correctly only when using kuat-core.
 

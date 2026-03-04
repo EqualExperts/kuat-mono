@@ -1,9 +1,8 @@
-/* Badge – CSS-first variants. Tokens from @equal-experts/kuat-core. */
+/* Badge – CSS-first variants. Tokens from @equal-experts/kuat-core. Non-interactive (no focus state). */
 
 .badge {
   display: inline-flex;
   align-items: center;
-  border-radius: 9999px;
   border-width: 1px;
   padding: 0.125rem 0.625rem;
   font-size: 0.75rem;
@@ -12,12 +11,14 @@
   transition-property: color, background-color, border-color;
   transition-timing-function: default;
   transition-duration: 150ms;
-  outline: none;
 }
 
-.badge:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+.badge--roundness-default {
+  border-radius: 0px;
+}
+
+.badge--roundness-round {
+  border-radius: 9999px;
 }
 
 .badge--default {
@@ -39,5 +40,11 @@
 }
 
 .badge--outline {
+  color: var(--foreground);
+}
+
+.badge--ghost {
+  border-color: transparent;
+  background-color: transparent;
   color: var(--foreground);
 }

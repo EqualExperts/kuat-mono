@@ -105,6 +105,10 @@ export {
   AlertDialogCancel,
 } from "./components/ui/alert-dialog";
 
+// Badge (localized UI component – import from Kuat)
+export { Badge, badgeVariants, BADGE_VARIANTS, BADGE_ROUNDNESS } from "./components/ui/badge";
+export type { BadgeProps, BadgeVariant, BadgeRoundness } from "./components/ui/badge";
+
 // =============================================================================
 // DEPRECATED EXPORTS
 // These components are re-exports of shadcn components.
@@ -125,12 +129,4 @@ export {
 export { Button, buttonVariants } from "./components/ui/button";
 /** @deprecated */
 export type { ButtonProps } from "./components/ui/button";
-
-/**
- * @deprecated Install directly via `npx shadcn@latest add badge`.
- * The component will be themed automatically when using kuat-core.
- */
-export { Badge, badgeVariants } from "./components/ui/badge";
-/** @deprecated */
-export type { BadgeProps } from "./components/ui/badge";
 
