@@ -109,6 +109,23 @@ export {
 export { Badge, badgeVariants, BADGE_VARIANTS, BADGE_ROUNDNESS } from "./components/ui/badge";
 export type { BadgeProps, BadgeVariant, BadgeRoundness } from "./components/ui/badge";
 
+// Breadcrumb (localized UI component – import from Kuat)
+export {
+  Breadcrumb,
+  BreadcrumbRoot,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+} from "./components/ui/breadcrumb";
+export type {
+  BreadcrumbProps,
+  BreadcrumbItemEntry,
+  BreadcrumbLinkProps,
+} from "./components/ui/breadcrumb";
+
 // =============================================================================
 // DEPRECATED EXPORTS
 // These components are re-exports of shadcn components.

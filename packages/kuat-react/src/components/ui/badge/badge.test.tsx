@@ -21,6 +21,33 @@ describe("Badge", () => {
     });
   });
 
+  describe("with icons", () => {
+    it("renders badge with icon and text as children", () => {
+      const Icon = () => <span data-testid="badge-icon" aria-hidden>✓</span>;
+      render(
+        <Badge variant="secondary">
+          <Icon />
+          Verified
+        </Badge>
+      );
+      const badge = screen.getByText("Verified").closest(".badge");
+      expect(badge).toBeInTheDocument();
+      expect(screen.getByTestId("badge-icon")).toBeInTheDocument();
+      expect(screen.getByTestId("badge-icon").parentElement).toBe(badge);
+    });
+
+    it("renders badge with only numeric content as count-style badge", () => {
+      render(
+        <Badge roundness="round" variant="destructive">
+          99
+        </Badge>
+      );
+      const el = screen.getByText("99");
+      expect(el).toBeInTheDocument();
+      expect(el).toHaveClass("badge--roundness-round", "badge--destructive");
+    });
+  });
+
   describe("variants", () => {
     it.each(BADGE_VARIANTS)("applies variant class badge--%s", (variant) => {
       render(<Badge variant={variant}>Label</Badge>);

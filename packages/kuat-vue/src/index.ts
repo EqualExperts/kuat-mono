@@ -97,6 +97,10 @@ export {
 export { Badge, badgeVariants, BADGE_VARIANTS, BADGE_ROUNDNESS } from "./components/ui/badge";
 export type { BadgeVariants, BadgeVariant, BadgeRoundness } from "./components/ui/badge";
 
+// Breadcrumb (localized UI component – import from Kuat)
+export { Breadcrumb } from "./components/ui/breadcrumb";
+export type { BreadcrumbItemEntry } from "./components/ui/breadcrumb";
+
 // =============================================================================
 // DEPRECATED EXPORTS
 // These components are re-exports of shadcn-vue components.

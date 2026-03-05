@@ -1,0 +1,135 @@
+/* Breadcrumb – CSS-first. Tokens from @equal-experts/kuat-core. */
+
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breadcrumb-link {
+  color: var(--foreground);
+  text-decoration: none;
+  transition-property: color;
+  transition-duration: 150ms;
+  transition-timing-function: default;
+}
+
+.breadcrumb-link:hover {
+  color: var(--foreground);
+  text-decoration: underline;
+}
+
+.breadcrumb-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.breadcrumb-page {
+  color: var(--muted-foreground);
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.breadcrumb-separator {
+  display: inline-flex;
+  color: var(--muted-foreground);
+  user-select: none;
+}
+
+.breadcrumb-separator__icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.breadcrumb-dropdown-trigger {
+  background: none;
+  border: none;
+  color: var(--foreground);
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 150ms;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.breadcrumb-dropdown-trigger:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-dropdown-trigger:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.breadcrumb-dropdown-trigger__icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.breadcrumb-dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 50;
+  min-width: 8rem;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  padding: 0.25rem;
+  margin-top: 0.25rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.breadcrumb-dropdown-item {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  border-radius: 4px;
+  padding: 0.375rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-decoration: none;
+  color: var(--foreground);
+  transition: background-color 0.15s;
+}
+
+.breadcrumb-dropdown-item:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.breadcrumb-ellipsis-trigger {
+  padding: 0;
+  line-height: 1;
+}
+
+/* Screen-reader only – visually hidden but accessible to assistive technology */
+.breadcrumb .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border-width: 0;
+}

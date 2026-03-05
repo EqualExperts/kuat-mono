@@ -2,6 +2,7 @@
  * Badge – Kuat Vue (localized UI component). Non-interactive; variants and roundness per Figma.
  */
 import { describe, it, expect } from "vitest";
+import { h } from "vue";
 import { render, screen } from "@testing-library/vue";
 import Badge from "./Badge.vue";
 import { badgeVariants, BADGE_VARIANTS } from "./index";
@@ -21,6 +22,34 @@ describe("Badge", () => {
         slots: { default: "Label" },
       });
       expect(screen.getByText("Label")).toHaveClass("custom");
+    });
+  });
+
+  describe("with icons", () => {
+    it("renders badge with icon and text in default slot", () => {
+      render(Badge, {
+        props: { variant: "secondary" },
+        slots: {
+          default: () => [
+            h("span", { "data-testid": "badge-icon", "aria-hidden": "true" }, "✓"),
+            " Verified",
+          ],
+        },
+      });
+      const badge = screen.getByText(/Verified/).closest(".badge");
+      expect(badge).toBeInTheDocument();
+      expect(screen.getByTestId("badge-icon")).toBeInTheDocument();
+      expect(screen.getByTestId("badge-icon").parentElement).toBe(badge);
+    });
+
+    it("renders badge with only numeric content as count-style badge", () => {
+      render(Badge, {
+        props: { roundness: "round", variant: "destructive" },
+        slots: { default: "99" },
+      });
+      const el = screen.getByText("99");
+      expect(el).toBeInTheDocument();
+      expect(el).toHaveClass("badge--roundness-round", "badge--destructive");
     });
   });
 
