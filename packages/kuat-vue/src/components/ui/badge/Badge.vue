@@ -36,10 +36,6 @@ const props = withDefaults(defineProps<Props>(), {
   @apply inline-flex items-center gap-1 border px-2.5 py-0.5 text-xs font-semibold leading-4 transition-colors;
 }
 
-.badge--roundness-default {
-  @apply rounded-md;
-}
-
 .badge--roundness-round {
   @apply rounded-full;
 }
