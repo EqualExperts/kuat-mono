@@ -1,15 +1,15 @@
+@reference "../../../styles.css";
+
 /* KuatHeader – CSS-first. Tokens from @equal-experts/kuat-core. */
 
 .kuat-header {
-  position: relative;
-  width: 100%;
-  border-bottom-width: 1px;
+  @apply relative w-full border-b;
 }
 
 .kuat-header--default {
+  @apply border-border;
   background-color: var(--kuat-header-default-background);
   color: var(--kuat-header-default-foreground);
-  border-color: var(--border);
 }
 
 .kuat-header--bold {
@@ -19,24 +19,17 @@
 }
 
 .kuat-header__desktop {
-  display: none;
+  @apply hidden;
 }
 
 @media (min-width: 768px) {
   .kuat-header__desktop {
-    display: flex;
-    height: 98px;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    @apply flex h-[98px] items-center justify-between px-6;
   }
 }
 
 .kuat-header__desktop-left {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
+  @apply flex items-center gap-5;
 }
 
 .kuat-header__desktop-title {
@@ -56,34 +49,26 @@
 }
 
 .kuat-header__desktop-right {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+  @apply flex items-center gap-8;
 }
 
 .kuat-header__mobile {
-  display: flex;
-  min-height: 103px;
+  @apply flex min-h-[103px] justify-between px-3 py-4;
   align-items: flex-start;
-  justify-content: space-between;
-  padding: 1rem 0.75rem;
 }
 
 @media (min-width: 768px) {
   .kuat-header__mobile {
-    display: none;
+    @apply hidden;
   }
 }
 
 .kuat-header__mobile-left {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  @apply flex flex-col gap-2;
 }
 
 .kuat-header__mobile-title {
-  font-size: 1rem;
-  font-weight: 600;
+  @apply text-base font-semibold;
 }
 
 .kuat-header--default .kuat-header__mobile-title {
@@ -100,7 +85,7 @@
 }
 
 .kuat-header--default .kuat-header__separator {
-  background-color: var(--border);
+  @apply bg-border;
 }
 
 .kuat-header--bold .kuat-header__separator {
@@ -109,7 +94,7 @@
 
 /* EELogo */
 .ee-logo__text {
-  fill: currentColor;
+  @apply fill-current;
 }
 
 .ee-logo--grey {

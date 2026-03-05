@@ -14,16 +14,15 @@ const props = defineProps<{
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .alert-dialog-header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  text-align: center;
+  @apply flex flex-col gap-2 text-center;
 }
 
 @media (min-width: 640px) {
   .alert-dialog-header {
-    text-align: left;
+    @apply text-left;
   }
 }
 </style>

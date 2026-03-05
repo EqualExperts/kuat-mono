@@ -17,41 +17,24 @@ const delegatedProps = reactiveOmit(props, "class")
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .alert-dialog-cancel {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  white-space: nowrap;
-  border-radius: 0.375rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 500;
-  transition-property: color, background-color, border-color, opacity;
+  @apply mt-2 inline-flex h-10 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-md border border-input bg-background px-4 py-2 text-sm font-medium leading-5 text-foreground outline-none transition-colors;
   transition-duration: 150ms;
-  outline: none;
-  cursor: pointer;
-  border: 1px solid var(--input);
-  background-color: var(--background);
-  color: var(--foreground);
-  height: 2.5rem;
-  padding: 0.5rem 1rem;
-  margin-top: 0.5rem;
 }
 
 .alert-dialog-cancel:hover {
-  background-color: var(--accent);
-  color: var(--accent-foreground);
+  @apply bg-accent text-accent-foreground;
 }
 
 .alert-dialog-cancel:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
 }
 
 @media (min-width: 640px) {
   .alert-dialog-cancel {
-    margin-top: 0;
+    @apply mt-0;
   }
 }
 </style>

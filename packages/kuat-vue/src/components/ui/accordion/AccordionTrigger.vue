@@ -29,36 +29,28 @@ const delegatedProps = reactiveOmit(props, "class")
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .accordion-trigger-wrapper {
-  display: flex;
+  @apply flex;
 }
 
 .accordion-trigger {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  font-weight: 500;
-  transition-property: all;
-  transition-timing-function: default;
+  @apply flex flex-1 items-center justify-between py-4 font-medium transition-all;
   transition-duration: 150ms;
+  transition-timing-function: default;
 }
 
 .accordion-trigger:hover {
-  text-decoration: underline;
+  @apply underline;
 }
 
 .accordion-trigger[data-state="open"] :deep(svg) {
-  transform: rotate(180deg);
+  @apply rotate-180;
 }
 
 .accordion-trigger__icon {
-  height: 1rem;
-  width: 1rem;
-  flex-shrink: 0;
-  transition-property: transform;
+  @apply size-4 shrink-0 transition-transform;
   transition-duration: 200ms;
 }
 </style>

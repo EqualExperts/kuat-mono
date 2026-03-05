@@ -1,16 +1,15 @@
+@reference "../../../styles.css";
+
 /* Separator – CSS-first. Tokens from @equal-experts/kuat-core. */
 
 .separator {
-  flex-shrink: 0;
-  background-color: var(--border);
+  @apply shrink-0 bg-border;
 }
 
 .separator--horizontal {
-  height: 1px;
-  width: 100%;
+  @apply h-px w-full;
 }
 
 .separator--vertical {
-  height: 100%;
-  width: 1px;
+  @apply h-full w-px;
 }

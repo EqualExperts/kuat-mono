@@ -21,12 +21,13 @@ const delegatedProps = reactiveOmit(props, "class")
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .button-group-separator {
-  margin: 0;
-  align-self: stretch;
+  @apply m-0 self-stretch;
 }
 
 .button-group-separator[data-orientation="vertical"] {
-  height: auto;
+  @apply h-auto;
 }
 </style>

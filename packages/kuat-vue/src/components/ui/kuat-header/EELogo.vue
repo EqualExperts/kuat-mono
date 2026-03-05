@@ -55,8 +55,10 @@ const props = withDefaults(defineProps<Props>(), {
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .ee-logo__text {
-  fill: currentColor;
+  @apply fill-current;
 }
 
 .ee-logo--grey {

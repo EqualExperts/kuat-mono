@@ -1,78 +1,63 @@
+@reference "../../../styles.css";
+
 /* KuatCarousel – CSS-first. Tokens from @equal-experts/kuat-core. */
 
 .kuat-carousel {
-  position: relative;
-  width: 100%;
+  @apply relative w-full;
 }
 
 .kuat-carousel__viewport {
-  overflow: hidden;
+  @apply overflow-hidden;
 }
 
 .kuat-carousel__content {
-  display: flex;
+  @apply flex;
 }
 
 .kuat-carousel__content--horizontal {
-  margin-left: -0.5rem;
+  @apply -ml-2;
 }
 
 .kuat-carousel__content--vertical {
-  margin-top: -0.5rem;
-  flex-direction: column;
+  @apply -mt-2 flex-col;
 }
 
 .kuat-carousel__item {
-  min-width: 0;
-  flex-shrink: 0;
-  flex-grow: 0;
-  border-radius: 6px;
+  @apply min-w-0 shrink-0 grow-0 rounded-md;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
 .kuat-carousel__item--horizontal {
-  padding-left: 0.5rem;
+  @apply pl-2;
 }
 
 .kuat-carousel__item--vertical {
-  padding-top: 0.5rem;
+  @apply pt-2;
 }
 
 .kuat-carousel__item--basis-1 {
-  flex-basis: 100%;
+  @apply basis-full;
 }
 
 .kuat-carousel__item--basis-2 {
-  flex-basis: 50%;
+  @apply basis-1/2;
 }
 
 .kuat-carousel__item--basis-3 {
-  flex-basis: 33.333333%;
+  @apply basis-1/3;
 }
 
 .kuat-carousel__prev,
 .kuat-carousel__next {
-  position: absolute;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  height: 2rem;
-  width: 2rem;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.125rem;
-  background-color: var(--primary);
-  color: var(--primary-foreground);
+  @apply absolute top-0 z-10 flex size-8 items-center justify-center rounded-sm bg-primary text-primary-foreground opacity-100 transition-opacity;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  transition-property: opacity;
-  transition-timing-function: default;
   transition-duration: 150ms;
+  transition-timing-function: default;
 }
 
 .kuat-carousel__prev:disabled,
 .kuat-carousel__next:disabled {
-  pointer-events: none;
-  opacity: 0.5;
+  @apply pointer-events-none opacity-50;
 }
 
 .kuat-carousel__prev:hover:not(:disabled),
@@ -81,15 +66,14 @@
 }
 
 .kuat-carousel__prev {
-  right: 2rem;
+  @apply right-8;
 }
 
 .kuat-carousel__next {
-  right: 0;
+  @apply right-0;
 }
 
 .kuat-carousel__prev :deep(svg),
 .kuat-carousel__next :deep(svg) {
-  height: 1rem;
-  width: 1rem;
+  @apply size-4;
 }

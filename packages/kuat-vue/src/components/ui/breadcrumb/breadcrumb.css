@@ -1,135 +1,74 @@
+@reference "../../../styles.css";
+
 /* Breadcrumb – CSS-first. Tokens from @equal-experts/kuat-core. */
 
 .breadcrumb-list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  @apply flex flex-wrap items-center gap-2 list-none p-0 m-0;
 }
 
 .breadcrumb-item {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+  @apply relative inline-flex items-center gap-2;
 }
 
 .breadcrumb-link {
-  color: var(--foreground);
-  text-decoration: none;
-  transition-property: color;
-  transition-duration: 150ms;
-  transition-timing-function: default;
+  @apply text-foreground no-underline transition-colors;
 }
 
 .breadcrumb-link:hover {
-  color: var(--foreground);
-  text-decoration: underline;
+  @apply text-foreground underline;
 }
 
 .breadcrumb-link:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
-  border-radius: 4px;
+  @apply outline-2 outline-offset-2 outline-ring rounded;
 }
 
 .breadcrumb-page {
-  color: var(--muted-foreground);
-  font-weight: 500;
-  pointer-events: none;
+  @apply text-muted-foreground font-medium pointer-events-none;
 }
 
 .breadcrumb-separator {
-  display: inline-flex;
-  color: var(--muted-foreground);
-  user-select: none;
+  @apply inline-flex text-muted-foreground select-none;
 }
 
 .breadcrumb-separator__icon {
-  width: 1rem;
-  height: 1rem;
+  @apply size-4;
 }
 
 .breadcrumb-dropdown-trigger {
-  background: none;
-  border: none;
-  color: var(--foreground);
-  padding: 0;
+  @apply inline-flex cursor-pointer items-center gap-1 border-0 bg-transparent p-0 text-foreground no-underline transition-colors;
   font: inherit;
-  cursor: pointer;
-  text-decoration: none;
-  transition: color 150ms;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
 }
 
 .breadcrumb-dropdown-trigger:hover {
-  text-decoration: underline;
+  @apply underline;
 }
 
 .breadcrumb-dropdown-trigger:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
-  border-radius: 4px;
+  @apply outline-2 outline-offset-2 outline-ring rounded;
 }
 
 .breadcrumb-dropdown-trigger__icon {
-  width: 1rem;
-  height: 1rem;
-  flex-shrink: 0;
+  @apply size-4 shrink-0;
 }
 
 .breadcrumb-dropdown-content {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 50;
-  min-width: 8rem;
-  overflow: hidden;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  background-color: var(--background);
-  padding: 0.25rem;
-  margin-top: 0.25rem;
+  @apply absolute left-0 top-full z-50 mt-1 min-w-32 overflow-hidden rounded-md border border-border bg-background p-1;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 .breadcrumb-dropdown-item {
-  display: flex;
-  cursor: pointer;
-  align-items: center;
-  border-radius: 4px;
-  padding: 0.375rem 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  text-decoration: none;
-  color: var(--foreground);
-  transition: background-color 0.15s;
+  @apply flex cursor-pointer items-center rounded px-2 py-1.5 text-sm leading-5 text-foreground no-underline transition-colors;
 }
 
 .breadcrumb-dropdown-item:hover {
-  background-color: var(--accent);
-  color: var(--accent-foreground);
+  @apply bg-accent text-accent-foreground;
 }
 
 .breadcrumb-ellipsis-trigger {
-  padding: 0;
-  line-height: 1;
+  @apply p-0 leading-none;
 }
 
 /* Screen-reader only – visually hidden but accessible to assistive technology */
 .breadcrumb .sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border-width: 0;
+  @apply sr-only;
 }

@@ -20,9 +20,9 @@ const delegatedProps = reactiveOmit(props, "class")
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .alert-dialog-title {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  font-weight: 600;
+  @apply text-lg font-semibold leading-7;
 }
 </style>

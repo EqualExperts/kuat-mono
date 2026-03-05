@@ -5,7 +5,6 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { EELogo } from "@/components/ui/kuat-header"
 import { Separator } from "@/components/ui/separator"
-import { EELogoIcon } from "@/components/ui/ee-logo-icon"
 
 import "./kuat-logo-lockup.css"
 

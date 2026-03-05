@@ -22,13 +22,12 @@ const delegatedProps = reactiveOmit(props, "class")
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .accordion-content {
-  overflow: hidden;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  transition-property: all;
-  transition-timing-function: default;
+  @apply overflow-hidden text-sm leading-5 transition-all;
   transition-duration: 150ms;
+  transition-timing-function: default;
 }
 
 .accordion-content[data-state="closed"] {
@@ -40,8 +39,7 @@ const delegatedProps = reactiveOmit(props, "class")
 }
 
 .accordion-content__body {
-  padding-bottom: 1rem;
-  padding-top: 0;
+  @apply pb-4 pt-0;
 }
 
 @keyframes accordion-down {

@@ -32,10 +32,10 @@ const classes = computed(() =>
     <!-- Desktop Layout -->
     <div class="kuat-header__desktop">
       <div class="kuat-header__desktop-left">
-        <div v-if="hasLogoSlot" class="shrink-0">
+        <div v-if="hasLogoSlot" class="kuat-header__logo-wrap">
           <slot name="logo" :variant="props.variant" />
         </div>
-        <div v-else-if="!props.hideLogo" class="shrink-0">
+        <div v-else-if="!props.hideLogo" class="kuat-header__logo-wrap">
           <EELogo
             class="ee-logo--desktop"
             :text-color="props.variant === 'bold' ? 'white' : 'grey'"
@@ -52,10 +52,10 @@ const classes = computed(() =>
         <slot name="title" />
       </div>
       <div class="kuat-header__desktop-right">
-        <nav v-if="$slots.navigation" class="flex items-center">
+        <nav v-if="$slots.navigation" class="kuat-header__nav">
           <slot name="navigation" />
         </nav>
-        <div v-if="$slots.actions" class="flex items-center gap-2">
+        <div v-if="$slots.actions" class="kuat-header__actions">
           <slot name="actions" />
         </div>
       </div>
@@ -64,10 +64,10 @@ const classes = computed(() =>
     <!-- Mobile Layout -->
     <div class="kuat-header__mobile">
       <div class="kuat-header__mobile-left">
-        <div v-if="hasLogoSlot" class="shrink-0">
+        <div v-if="hasLogoSlot" class="kuat-header__logo-wrap">
           <slot name="logo" :variant="props.variant" />
         </div>
-        <div v-else-if="!props.hideLogo" class="shrink-0">
+        <div v-else-if="!props.hideLogo" class="kuat-header__logo-wrap">
           <EELogo
             class="ee-logo--mobile"
             :text-color="props.variant === 'bold' ? 'white' : 'grey'"
@@ -78,7 +78,7 @@ const classes = computed(() =>
         </p>
         <slot name="title" />
       </div>
-      <div v-if="$slots['mobile-menu-trigger']" class="shrink-0">
+      <div v-if="$slots['mobile-menu-trigger']" class="kuat-header__mobile-trigger-wrap">
         <slot name="mobile-menu-trigger" />
       </div>
     </div>
@@ -89,16 +89,16 @@ const classes = computed(() =>
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .kuat-header {
-  position: relative;
-  width: 100%;
-  border-bottom-width: 1px;
+  @apply relative w-full border-b;
 }
 
 .kuat-header--default {
+  @apply border-border;
   background-color: var(--kuat-header-default-background);
   color: var(--kuat-header-default-foreground);
-  border-color: var(--border);
 }
 
 .kuat-header--bold {
@@ -108,24 +108,17 @@ const classes = computed(() =>
 }
 
 .kuat-header__desktop {
-  display: none;
+  @apply hidden;
 }
 
 @media (min-width: 768px) {
   .kuat-header__desktop {
-    display: flex;
-    height: 98px;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    @apply flex h-[98px] items-center justify-between px-6;
   }
 }
 
 .kuat-header__desktop-left {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
+  @apply flex items-center gap-5;
 }
 
 .kuat-header__desktop-title {
@@ -145,34 +138,39 @@ const classes = computed(() =>
 }
 
 .kuat-header__desktop-right {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+  @apply flex items-center gap-8;
+}
+
+.kuat-header__nav {
+  @apply flex items-center;
+}
+
+.kuat-header__actions {
+  @apply flex items-center gap-2;
+}
+
+.kuat-header__logo-wrap,
+.kuat-header__mobile-trigger-wrap {
+  @apply shrink-0;
 }
 
 .kuat-header__mobile {
-  display: flex;
-  min-height: 103px;
+  @apply flex min-h-[103px] justify-between px-3 py-4;
   align-items: flex-start;
-  justify-content: space-between;
-  padding: 1rem 0.75rem;
 }
 
 @media (min-width: 768px) {
   .kuat-header__mobile {
-    display: none;
+    @apply hidden;
   }
 }
 
 .kuat-header__mobile-left {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  @apply flex flex-col gap-2;
 }
 
 .kuat-header__mobile-title {
-  font-size: 1rem;
-  font-weight: 600;
+  @apply text-base font-semibold;
 }
 
 .kuat-header--default .kuat-header__mobile-title {
@@ -189,7 +187,7 @@ const classes = computed(() =>
 }
 
 .kuat-header--default .kuat-header__separator {
-  background-color: var(--border);
+  @apply bg-border;
 }
 
 .kuat-header--bold .kuat-header__separator {

@@ -22,9 +22,9 @@ const delegatedProps = reactiveOmit(props, "class")
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .alert-dialog-description {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  color: var(--muted-foreground);
+  @apply text-sm leading-5 text-muted-foreground;
 }
 </style>
