@@ -97,6 +97,26 @@ Kuat components use a **CSS-first** structure so that variants and state are def
 
 See `.cursorrules`, `CLAUDE.md`, and `AGENTS.md` in the repo root for the canonical implementation rules.
 
+#### Tailwind `@apply` in component CSS
+
+When Tailwind is available (as in the Kuat packages), **prefer Tailwind utilities via `@apply`** in component CSS files and Vue `<style>` blocks instead of writing equivalent vanilla CSS. This keeps styling consistent with the design system and makes utilities like `sr-only` available without duplicating definitions.
+
+- **React:** At the top of each component `.css` file that uses `@apply`, add:
+  ```css
+  @reference "../../../styles.css";
+  ```
+  so Tailwind v4 has utility scope when processing that file. Then use `@apply` for layout, spacing, typography, colours (via kuat-core preset), focus rings, and other properties Tailwind expresses. Example:
+  ```css
+  .button {
+    @apply inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium;
+  }
+  .button--variant-default {
+    @apply bg-primary text-primary-foreground;
+  }
+  ```
+- **Vue:** In each SFC `<style scoped>` block that uses `@apply`, add the same `@reference` at the top (path relative to the component, e.g. `@reference "../../../styles.css";`). Use `@apply` for the same kinds of properties as in React.
+- **Keep vanilla CSS** when Tailwind has no equivalent: `color-mix(in srgb, ...)`, `@keyframes`, complex `box-shadow` literals, `transition-timing-function: default`, Vue `:deep()` selectors, and custom pixel or `calc()` values that don’t match Tailwind’s scale. Semantic colours and spacing that match the kuat-core preset should use `@apply` (e.g. `bg-primary`, `gap-2`).
+
 ---
 
 ## Naming Conventions
@@ -253,6 +273,7 @@ Each component file should export:
 - Use semantic color tokens (`bg-primary`, not `#0066CC`)
 - Use spacing scale (`p-4`, not `padding: 17px`)
 - Use border radius rules (0px/4px/6px)
+- In component CSS and Vue `<style>` blocks, use Tailwind `@apply` with these tokens where possible (see **Tailwind @apply in component CSS** above).
 
 ### The cn() Utility
 

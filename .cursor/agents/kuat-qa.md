@@ -47,6 +47,6 @@ Both can be passed directly to the implementation agent. The **verification agen
 ## References
 
 - Repo rules: `.cursorrules`, `AGENTS.md`
-- CSS-first component layout (component directory + .css or .vue styles)
+- CSS-first component layout (component directory + .css or .vue styles); component CSS uses Tailwind `@apply` with `@reference` per `kuat-docs/rules/components/patterns.md`
 - Design tokens from `@equal-experts/kuat-core`
 - A separate verification agent runs the tests; you only produce the test code and optional spec.
