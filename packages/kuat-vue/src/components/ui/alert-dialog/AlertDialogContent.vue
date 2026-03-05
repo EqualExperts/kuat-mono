@@ -31,10 +31,10 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .alert-dialog-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
+  @apply fixed inset-0 z-50;
   background-color: rgb(0 0 0 / 0.8);
 }
 
@@ -47,21 +47,8 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
 }
 
 .alert-dialog-content {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  z-index: 50;
-  display: grid;
-  width: 100%;
-  max-width: 32rem;
-  transform: translate(-50%, -50%);
-  gap: 1rem;
-  border-width: 1px;
-  border-color: var(--border);
-  background-color: var(--background);
-  padding: 1.5rem;
+  @apply fixed left-1/2 top-1/2 z-50 grid w-full max-w-xl -translate-x-1/2 -translate-y-1/2 gap-4 border border-border bg-background p-6 transition-[duration:200ms];
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  transition-duration: 200ms;
 }
 
 .alert-dialog-content[data-state="open"] {
@@ -74,7 +61,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
 
 @media (min-width: 640px) {
   .alert-dialog-content {
-    border-radius: 0.5rem;
+    @apply rounded-lg;
   }
 }
 

@@ -24,18 +24,17 @@ const delegatedProps = reactiveOmit(props, "class")
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .separator {
-  flex-shrink: 0;
-  background-color: var(--border);
+  @apply shrink-0 bg-border;
 }
 
 .separator[data-orientation="horizontal"] {
-  height: 1px;
-  width: 100%;
+  @apply h-px w-full;
 }
 
 .separator[data-orientation="vertical"] {
-  height: 100%;
-  width: 1px;
+  @apply h-full w-px;
 }
 </style>

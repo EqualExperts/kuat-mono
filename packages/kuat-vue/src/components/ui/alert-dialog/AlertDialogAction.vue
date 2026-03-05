@@ -17,25 +17,11 @@ const delegatedProps = reactiveOmit(props, "class")
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .alert-dialog-action {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  white-space: nowrap;
-  border-radius: 0.375rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 500;
-  transition-property: color, background-color, border-color, opacity;
+  @apply inline-flex h-10 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-md border-0 bg-primary px-4 py-2 text-sm font-medium leading-5 text-primary-foreground outline-none transition-colors;
   transition-duration: 150ms;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  background-color: var(--primary);
-  color: var(--primary-foreground);
-  height: 2.5rem;
-  padding: 0.5rem 1rem;
 }
 
 .alert-dialog-action:hover {
@@ -43,7 +29,6 @@ const delegatedProps = reactiveOmit(props, "class")
 }
 
 .alert-dialog-action:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
 }
 </style>

@@ -39,7 +39,9 @@ const props = defineProps<Props>()
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .ee-logo-icon {
-  color: var(--primary);
+  @apply text-primary;
 }
 </style>

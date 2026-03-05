@@ -22,8 +22,9 @@ const forwardedProps = useForwardProps(delegatedProps)
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .accordion-item {
-  border-bottom-width: 1px;
-  border-color: var(--border);
+  @apply border-b border-border;
 }
 </style>

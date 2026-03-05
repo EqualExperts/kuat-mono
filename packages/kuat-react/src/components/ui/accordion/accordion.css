@@ -1,52 +1,40 @@
+@reference "../../../styles.css";
+
 /* Accordion – CSS-first. Tokens from @equal-experts/kuat-core. */
 
 .accordion-item {
-  border-bottom-width: 1px;
-  border-color: var(--border);
+  @apply border-b border-border;
 }
 
 .accordion-trigger-wrapper {
-  display: flex;
+  @apply flex;
 }
 
 .accordion-trigger {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  font-weight: 500;
-  transition-property: all;
-  transition-timing-function: default;
+  @apply flex flex-1 items-center justify-between py-4 font-medium transition-all;
   transition-duration: 150ms;
+  transition-timing-function: default;
 }
 
 .accordion-trigger:hover {
-  text-decoration: underline;
+  @apply underline;
 }
 
 .accordion-trigger[data-state="open"] > svg,
 .accordion-trigger[data-state="open"] .accordion-trigger__icon {
-  transform: rotate(180deg);
+  @apply rotate-180;
 }
 
 .accordion-trigger svg,
 .accordion-trigger__icon {
-  height: 1rem;
-  width: 1rem;
-  flex-shrink: 0;
-  transition-property: transform;
+  @apply size-4 shrink-0 transition-transform;
   transition-duration: 200ms;
 }
 
 .accordion-content {
-  overflow: hidden;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  transition-property: all;
-  transition-timing-function: default;
+  @apply overflow-hidden text-sm leading-5 transition-all;
   transition-duration: 150ms;
+  transition-timing-function: default;
 }
 
 .accordion-content[data-state="closed"] {
@@ -58,8 +46,7 @@
 }
 
 .accordion-content__body {
-  padding-bottom: 1rem;
-  padding-top: 0;
+  @apply pb-4 pt-0;
 }
 
 @keyframes accordion-down {

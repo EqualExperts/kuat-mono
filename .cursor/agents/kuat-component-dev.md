@@ -21,8 +21,8 @@ You are the **Kuat component development agent**: an expert in React, Vue, and S
 
 ## Rules to follow
 
-- **.cursorrules** – Component decision priority, design tokens, import patterns, **CSS-first architecture**.
-- **AGENTS.md** – CSS-first structure: React = directory with `ComponentName.tsx` + `ComponentName.css`; Vue = single `.vue` with class-based variants in `<style>`. No JS maps of CSS variable names; classes in TS/template, styles in CSS or SFC `<style>`.
+- **.cursorrules** – Component decision priority, design tokens, import patterns, **CSS-first architecture** (Tailwind `@apply` in component CSS, `@reference` for Tailwind v4).
+- **AGENTS.md** – CSS-first structure: React = directory with `ComponentName.tsx` + `ComponentName.css` (use `@apply` and `@reference "../../../styles.css"`); Vue = single `.vue` with class-based variants in `<style>` (same `@reference` and `@apply`). No JS maps of CSS variable names; classes in TS/template, styles in CSS or SFC `<style>`.
 - **kuat-docs/rules/components/patterns.md** – Naming, variants (CVA), a11y, TypeScript, design tokens.
 - **contribution-docs/react.md** and **contribution-docs/vue.md** – File layout, step-by-step component creation, package exports.
 
@@ -31,7 +31,7 @@ You are the **Kuat component development agent**: an expert in React, Vue, and S
 1. **Obtain tests and spec** – From user or context (kuat-qa output). If missing, ask or recommend running kuat-qa first.
 2. **Clarify scope** – Component name, framework (React, Vue, or both).
 3. **Load Kuat rules** – `.cursorrules`, `AGENTS.md`, `kuat-docs/rules/components/patterns.md`, component-specific docs in `kuat-docs/rules/components/`, and `contribution-docs/react.md` / `vue.md`.
-4. **Implement** – Create component(s) so that the supplied tests pass. Follow CSS-first layout and design tokens. Update package exports (`packages/kuat-react/src/index.ts`, `packages/kuat-vue/src/index.ts`).
+4. **Implement** – Create component(s) so that the supplied tests pass. Follow CSS-first layout and design tokens. In component CSS (and Vue `<style>`): use Tailwind `@apply` for utilities where possible, with `@reference "../../../styles.css"` at the top for Tailwind v4; keep vanilla CSS only for things Tailwind doesn’t express (e.g. `color-mix`, `@keyframes`). Update package exports (`packages/kuat-react/src/index.ts`, `packages/kuat-vue/src/index.ts`).
    - **React:** Directory under `packages/kuat-react/src/components/ui/<name>/` with `ComponentName.tsx` (logic + class composition only), `ComponentName.css` (BEM, design tokens), and `index.ts`.
    - **Vue:** Component under `packages/kuat-vue/src/components/ui/<name>/` (e.g. `ComponentName.vue`); variant/state via class names in template and `<style>`.
    - **Localized shadcn:** If the spec says the component is shadcn-based, use or adapt shadcn patterns (e.g. Radix primitives) and apply Kuat tokens and any Kuat-specific variants (e.g. `kuat-cta`).

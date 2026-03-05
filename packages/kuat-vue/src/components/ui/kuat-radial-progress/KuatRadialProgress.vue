@@ -113,37 +113,34 @@ const rootClasses = computed(() =>
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .kuat-radial-progress {
-  position: relative;
-  display: inline-block;
+  @apply relative inline-block;
 }
 
 .kuat-radial-progress--mini {
   width: var(--kuat-radial-progress-size-mini, 48px);
   height: var(--kuat-radial-progress-size-mini, 48px);
-  font-size: 0.75rem;
-  line-height: 1rem;
+  @apply text-xs leading-4;
 }
 
 .kuat-radial-progress--small {
   width: var(--kuat-radial-progress-size-small, 64px);
   height: var(--kuat-radial-progress-size-small, 64px);
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+  @apply text-sm leading-5;
 }
 
 .kuat-radial-progress--medium {
   width: var(--kuat-radial-progress-size-medium, 96px);
   height: var(--kuat-radial-progress-size-medium, 96px);
-  font-size: 1rem;
-  line-height: 1.5rem;
+  @apply text-base leading-6;
 }
 
 .kuat-radial-progress--large {
   width: var(--kuat-radial-progress-size-large, 128px);
   height: var(--kuat-radial-progress-size-large, 128px);
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  @apply text-lg leading-7;
 }
 
 /* Track (full circle) – visible grey oval; token with fallback when theme not applied */
@@ -152,22 +149,12 @@ const rootClasses = computed(() =>
 }
 
 .kuat-radial-progress__svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  @apply absolute inset-0 size-full;
 }
 
 .kuat-radial-progress__label {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  line-height: 1rem;
+  @apply absolute inset-0 flex items-center justify-center font-semibold leading-4 text-foreground;
   font-variant-numeric: tabular-nums;
-  color: var(--foreground);
 }
 
 /* Default = EE Blue */

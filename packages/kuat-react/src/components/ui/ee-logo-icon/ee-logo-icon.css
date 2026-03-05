@@ -1,4 +1,6 @@
+@reference "../../../styles.css";
+
 /* EE logo icon – Kuat primary (EE Blue) */
 .ee-logo-icon {
-  color: var(--primary);
+  @apply text-primary;
 }

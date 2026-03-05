@@ -31,7 +31,7 @@ packages/kuat-react/
 ```
 
 - **ComponentName.tsx** – Logic and class composition only (e.g. `cn("base", \`base--${variant}\`, className)`). No inline Tailwind or style maps.
-- **ComponentName.css** – All styles and variants in BEM form. Use design tokens (`var(--primary)`, etc.) from kuat-core.
+- **ComponentName.css** – All styles and variants. Prefer Tailwind utilities via `@apply`; add `@reference "../../../styles.css";` at the top for Tailwind v4. Use design tokens from kuat-core where needed; keep vanilla CSS only for things Tailwind doesn’t express (e.g. `color-mix`, `@keyframes`).
 - **index.ts** – Re-exports the component, types, and optional helpers (e.g. `badgeVariants()` for backward compatibility).
 
 ### Naming Conventions
@@ -120,27 +120,23 @@ export { MyComponent };
 **packages/kuat-react/src/components/ui/my-component/my-component.css**
 
 ```css
-/* Use design tokens from @equal-experts/kuat-core */
+@reference "../../../styles.css";
+
 .my-component {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
+  @apply inline-flex items-center justify-center rounded-md;
 }
 
 .my-component--default {
-  background-color: var(--primary);
-  color: var(--primary-foreground);
+  @apply bg-primary text-primary-foreground;
 }
 
 .my-component--outline {
-  border: 1px solid var(--input);
-  background-color: var(--background);
+  @apply border border-input bg-background;
 }
 
-.my-component--size-default { height: 2.5rem; padding: 0 1rem; }
-.my-component--size-sm { height: 2.25rem; padding: 0 0.75rem; }
-.my-component--size-lg { height: 2.75rem; padding: 0 1.5rem; }
+.my-component--size-default { @apply h-10 px-4; }
+.my-component--size-sm { @apply h-9 px-3; }
+.my-component--size-lg { @apply h-11 px-6; }
 ```
 
 **packages/kuat-react/src/components/ui/my-component/index.ts**
@@ -222,7 +218,7 @@ Blocks are compositions that combine multiple components.
 
 ### Step 1: Create Block Directory and Files
 
-Create `packages/kuat-react/src/components/ui/kuat-header/` with `kuat-header.tsx`, `kuat-header.css`, and `index.ts`. Use the same CSS-first pattern: class names in TS (e.g. `kuat-header`, `kuat-header--default`), all layout and variant styles in the CSS file using design tokens.
+Create `packages/kuat-react/src/components/ui/kuat-header/` with `kuat-header.tsx`, `kuat-header.css`, and `index.ts`. Use the same CSS-first pattern: class names in TS (e.g. `kuat-header`, `kuat-header--default`), and in the CSS file use Tailwind `@apply` with `@reference "../../../styles.css";` at the top; keep vanilla CSS only where Tailwind has no equivalent.
 
 ### Step 2: Export and Create Story
 

@@ -24,26 +24,19 @@ const props = withDefaults(defineProps<Props>(), {
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .button-group-text {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0 1rem;
-  border-radius: 0.375rem;
-  border: 1px solid var(--border);
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 500;
+  @apply flex items-center gap-2 rounded-md border border-border px-4 py-2 text-sm font-medium leading-5;
   background-color: var(--muted);
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
 .button-group-text :deep(svg:not([class*="size-"])) {
-  width: 1rem;
-  height: 1rem;
+  @apply size-4;
 }
 
 .button-group-text :deep(svg) {
-  pointer-events: none;
+  @apply pointer-events-none;
 }
 </style>

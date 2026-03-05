@@ -26,58 +26,50 @@ const props = withDefaults(
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .button-group {
-  display: flex;
-  width: fit-content;
-  align-items: stretch;
+  @apply flex w-fit items-stretch;
 }
 
 .button-group:has(> [data-slot="button-group"]) {
-  gap: 0.5rem;
+  @apply gap-2;
 }
 
 .button-group > *:focus-visible {
-  position: relative;
-  z-index: 10;
+  @apply relative z-10;
 }
 
 .button-group:has(select[aria-hidden="true"]:last-child)
   > [data-slot="select-trigger"]:last-of-type {
-  border-top-right-radius: 0.375rem;
-  border-bottom-right-radius: 0.375rem;
+  @apply rounded-b-md rounded-t-md;
 }
 
 .button-group [data-slot="select-trigger"]:not([class*="w-"]) {
-  width: fit-content;
+  @apply w-fit;
 }
 
 .button-group > input {
-  flex: 1;
+  @apply flex-1;
 }
 
 .button-group--horizontal > *:not(:first-child) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-left-width: 0;
+  @apply rounded-b-none rounded-l-none rounded-t-none border-l-0;
 }
 
 .button-group--horizontal > *:not(:last-child) {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+  @apply rounded-b-none rounded-r-none rounded-t-none;
 }
 
 .button-group--vertical {
-  flex-direction: column;
+  @apply flex-col;
 }
 
 .button-group--vertical > *:not(:first-child) {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-top-width: 0;
+  @apply rounded-l-none rounded-r-none rounded-t-none border-t-0;
 }
 
 .button-group--vertical > *:not(:last-child) {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  @apply rounded-b-none rounded-l-none rounded-r-none;
 }
 </style>

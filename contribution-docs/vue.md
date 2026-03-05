@@ -8,7 +8,7 @@ Guide for contributing Vue components to `@equal-experts/kuat-vue`.
 
 ### File Structure (CSS-first)
 
-Each component lives in a **directory** under `packages/kuat-vue/src/components/ui/`. Variants and state are expressed as **class names** in the template; the SFC `<style>` block (or a shared CSS file) defines what those classes do. Do not use CVA or JS maps from props to CSS variable names.
+Each component lives in a **directory** under `packages/kuat-vue/src/components/ui/`. Variants and state are expressed as **class names** in the template; the SFC `<style>` block (or a shared CSS file) defines what those classes do. Prefer Tailwind `@apply` in styles and add `@reference "../../../styles.css";` at the top for Tailwind v4. Do not use CVA or JS maps from props to CSS variable names.
 
 ```
 packages/kuat-vue/
@@ -110,26 +110,23 @@ const props = withDefaults(defineProps<Props>(), {
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 .my-component {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
+  @apply inline-flex items-center justify-center rounded-md;
 }
 
 .my-component--default {
-  background-color: var(--primary);
-  color: var(--primary-foreground);
+  @apply bg-primary text-primary-foreground;
 }
 
 .my-component--outline {
-  border: 1px solid var(--input);
-  background-color: var(--background);
+  @apply border border-input bg-background;
 }
 
-.my-component--size-default { height: 2.5rem; padding: 0 1rem; }
-.my-component--size-sm { height: 2.25rem; padding: 0 0.75rem; }
-.my-component--size-lg { height: 2.75rem; padding: 0 1.5rem; }
+.my-component--size-default { @apply h-10 px-4; }
+.my-component--size-sm { @apply h-9 px-3; }
+.my-component--size-lg { @apply h-11 px-6; }
 </style>
 ```
 

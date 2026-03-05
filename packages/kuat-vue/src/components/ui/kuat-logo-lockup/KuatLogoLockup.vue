@@ -88,6 +88,8 @@ const rootClasses = computed(() =>
 </template>
 
 <style scoped>
+@reference "../../../styles.css";
+
 /* KuatLogoLockup – Kuat variables from @equal-experts/kuat-core */
 .kuat-logo-lockup {
   container-type: inline-size;
@@ -115,21 +117,17 @@ const rootClasses = computed(() =>
 }
 
 .kuat-logo-lockup--service .kuat-logo-lockup__service-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  @apply flex flex-col items-start;
   gap: calc(2 * var(--spacing));
 }
 
 .kuat-logo-lockup__separator {
-  display: none;
+  @apply hidden w-px shrink-0;
   height: calc(6 * var(--spacing));
-  width: 1px;
-  flex-shrink: 0;
 }
 
 .kuat-logo-lockup--light .kuat-logo-lockup__separator {
-  background-color: var(--border);
+  @apply bg-border;
 }
 
 .kuat-logo-lockup--dark .kuat-logo-lockup__separator {
@@ -142,26 +140,24 @@ const rootClasses = computed(() =>
 
 @container logo-lockup (min-width: 320px) {
   .kuat-logo-lockup--service .kuat-logo-lockup__service-inner {
-    flex-direction: row;
-    align-items: center;
+    @apply flex-row items-center;
     gap: calc(4 * var(--spacing));
   }
 
   .kuat-logo-lockup__separator {
-    display: block;
+    @apply block;
   }
 }
 
 @supports not (container-type: inline-size) {
   @media (min-width: 768px) {
     .kuat-logo-lockup--service .kuat-logo-lockup__service-inner {
-      flex-direction: row;
-      align-items: center;
+      @apply flex-row items-center;
       gap: calc(4 * var(--spacing));
     }
 
     .kuat-logo-lockup__separator {
-      display: block;
+      @apply block;
     }
   }
 }
@@ -176,7 +172,7 @@ const rootClasses = computed(() =>
 
 .kuat-logo-lockup__logo-wrap,
 .kuat-logo-lockup__logo-icon {
-  flex-shrink: 0;
+  @apply shrink-0;
 }
 
 .kuat-logo-lockup__logo.kuat-logo-lockup__logo--demo {
@@ -204,22 +200,18 @@ const rootClasses = computed(() =>
 }
 
 .kuat-logo-lockup__demo-attribution {
-  display: flex;
-  align-items: center;
+  @apply flex items-center;
   gap: calc(2 * var(--spacing));
 }
 
 .kuat-logo-lockup__demo-by {
-  font-size: 0.75rem;
-  line-height: 1rem;
+  @apply text-xs font-medium leading-4;
   letter-spacing: var(--tracking-normal);
   font-family: var(--font-sans);
-  font-weight: 500;
 }
 
 .kuat-logo-lockup__demo-logo-wrap {
-  display: flex;
-  align-items: center;
+  @apply flex items-center;
 }
 
 .kuat-logo-lockup__demo-logo-wrap .kuat-logo-lockup__logo {
