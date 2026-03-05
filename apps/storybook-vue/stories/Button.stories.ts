@@ -1,29 +1,25 @@
 /**
- * @deprecated This component import is deprecated.
- *
- * For new projects, install Button directly via shadcn-vue CLI:
- * ```bash
- * npx shadcn-vue@latest add button
- * ```
- *
- * The component will be themed automatically when using kuat-core.
- * This story demonstrates the Button styling that kuat-core provides.
+ * Kuat Button – primary/secondary/outline/ghost/ghost-muted/destructive, per-instance color, no shadow.
  */
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { Button } from '@equal-experts/kuat-vue';
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button (Deprecated)',
+  title: 'Components/Button',
   component: Button,
   tags: ['autodocs'],
   argTypes: {
     variant: {
       control: 'select',
-      options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
+      options: ['primary', 'secondary', 'outline', 'ghost', 'ghost-muted', 'destructive'],
     },
     size: {
       control: 'select',
-      options: ['default', 'sm', 'lg', 'icon'],
+      options: ['mini', 'small', 'default', 'large', 'icon'],
+    },
+    color: {
+      control: 'select',
+      options: ['ee-blue', 'tech-blue', 'byte-white', 'the-cloud', 'dark-data', 'transform-teal', 'equal-ember'],
     },
     asChild: {
       control: 'boolean',
@@ -34,27 +30,16 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Default: Story = {
+export const Primary: Story = {
+  args: {
+    variant: 'primary',
+  },
   render: (args) => ({
     components: { Button },
     setup() {
       return { args };
     },
-    template: '<Button v-bind="args">Button</Button>',
-  }),
-};
-
-export const Destructive: Story = {
-  render: () => ({
-    components: { Button },
-    template: '<Button variant="destructive">Destructive</Button>',
-  }),
-};
-
-export const Outline: Story = {
-  render: () => ({
-    components: { Button },
-    template: '<Button variant="outline">Outline</Button>',
+    template: '<Button v-bind="args">Primary</Button>',
   }),
 };
 
@@ -65,6 +50,13 @@ export const Secondary: Story = {
   }),
 };
 
+export const Outline: Story = {
+  render: () => ({
+    components: { Button },
+    template: '<Button variant="outline">Outline</Button>',
+  }),
+};
+
 export const Ghost: Story = {
   render: () => ({
     components: { Button },
@@ -72,43 +64,60 @@ export const Ghost: Story = {
   }),
 };
 
-export const Link: Story = {
+export const GhostMuted: Story = {
   render: () => ({
     components: { Button },
-    template: '<Button variant="link">Link</Button>',
+    template: '<Button variant="ghost-muted">Ghost Muted</Button>',
   }),
 };
 
-export const Small: Story = {
+export const Destructive: Story = {
   render: () => ({
     components: { Button },
-    template: '<Button size="sm">Small</Button>',
+    template: '<Button variant="destructive">Destructive</Button>',
   }),
 };
 
-export const Large: Story = {
+export const Sizes: Story = {
   render: () => ({
     components: { Button },
-    template: '<Button size="lg">Large</Button>',
+    template: `
+      <div class="flex gap-4 flex-wrap items-center">
+        <Button size="mini">Mini</Button>
+        <Button size="small">Small</Button>
+        <Button size="default">Default</Button>
+        <Button size="large">Large</Button>
+        <Button size="icon" aria-label="Icon only">→</Button>
+      </div>
+    `,
   }),
 };
 
-export const Icon: Story = {
-  render: () => ({
-    components: { Button },
-    template: '<Button size="icon">→</Button>',
-  }),
-};
-
-export const WithBrandColors: Story = {
+export const Color: Story = {
   render: () => ({
     components: { Button },
     template: `
       <div class="flex gap-4 flex-wrap">
-        <Button class="bg-ee-blue-500 hover:bg-ee-blue-600">EE Blue</Button>
-        <Button class="bg-tech-blue-500 hover:bg-tech-blue-600">Tech Blue</Button>
-        <Button class="bg-transform-teal-500 hover:bg-transform-teal-600">Transform Teal</Button>
-        <Button class="bg-equal-ember-500 hover:bg-equal-ember-600">Equal Ember</Button>
+        <Button color="ee-blue" variant="primary">EE Blue</Button>
+        <Button color="tech-blue" variant="primary">Tech Blue</Button>
+        <Button color="byte-white" variant="primary">Byte White</Button>
+        <Button color="the-cloud" variant="primary">The Cloud</Button>
+        <Button color="dark-data" variant="primary">Dark Data</Button>
+        <Button color="transform-teal" variant="primary">Transform Teal</Button>
+        <Button color="equal-ember" variant="primary">Equal Ember</Button>
+      </div>
+    `,
+  }),
+};
+
+export const States: Story = {
+  render: () => ({
+    components: { Button },
+    template: `
+      <div class="flex gap-4 flex-wrap items-center">
+        <Button>Default</Button>
+        <Button disabled>Disabled</Button>
+        <Button variant="outline" disabled>Disabled Outline</Button>
       </div>
     `,
   }),
@@ -120,18 +129,19 @@ export const AllVariants: Story = {
     template: `
       <div class="space-y-4">
         <div class="flex gap-4 flex-wrap items-center">
-          <Button variant="default">Default</Button>
-          <Button variant="destructive">Destructive</Button>
-          <Button variant="outline">Outline</Button>
+          <Button variant="primary">Primary</Button>
           <Button variant="secondary">Secondary</Button>
+          <Button variant="outline">Outline</Button>
           <Button variant="ghost">Ghost</Button>
-          <Button variant="link">Link</Button>
+          <Button variant="ghost-muted">Ghost Muted</Button>
+          <Button variant="destructive">Destructive</Button>
         </div>
         <div class="flex gap-4 flex-wrap items-center">
-          <Button size="sm">Small</Button>
-          <Button size="default">Default Size</Button>
-          <Button size="lg">Large</Button>
-          <Button size="icon">→</Button>
+          <Button size="mini">Mini</Button>
+          <Button size="small">Small</Button>
+          <Button size="default">Default</Button>
+          <Button size="large">Large</Button>
+          <Button size="icon" aria-label="Icon">→</Button>
         </div>
         <div class="flex gap-4 flex-wrap items-center">
           <Button disabled>Disabled</Button>
@@ -141,4 +151,3 @@ export const AllVariants: Story = {
     `,
   }),
 };
-

@@ -6,7 +6,7 @@ Custom React components and blocks for the Kuat Design System.
 
 ## Architecture
 
-This package provides **custom components** and **blocks** that are unique to Kuat. For standard UI components (Button, Dialog, etc.), install them directly via shadcn CLI with kuat-core theming.
+This package provides **custom components** and **blocks** that are unique to Kuat. It also provides a localized **Button** component. For other UI components (e.g. Dialog), install them via shadcn CLI with kuat-core theming.
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -53,6 +53,7 @@ Components unique to Kuat, not available in shadcn:
 
 | Component | Description |
 |-----------|-------------|
+| `Button` | Primary actions with variant (primary, secondary, outline, ghost, ghost-muted, destructive) and color |
 | `ButtonGroup` | Groups buttons together with proper styling |
 | `ButtonGroupText` | Text element within a button group |
 | `ButtonGroupSeparator` | Separator between button group items |
@@ -121,10 +122,9 @@ npx shadcn@latest add button dialog dropdown-menu
 
 ```tsx
 // Kuat custom components from this package
-import { ButtonGroup, ButtonGroupText } from '@equal-experts/kuat-react';
+import { ButtonGroup, ButtonGroupText, Button } from '@equal-experts/kuat-react';
 
-// shadcn components from your local installation
-import { Button } from '@/components/ui/button';
+// Other shadcn components from your local installation if needed
 
 function Example() {
   return (
@@ -146,8 +146,7 @@ function Example() {
 Groups buttons together with seamless borders:
 
 ```tsx
-import { ButtonGroup } from '@equal-experts/kuat-react';
-import { Button } from '@/components/ui/button';
+import { ButtonGroup, Button } from '@equal-experts/kuat-react';
 
 // Horizontal (default)
 <ButtonGroup>
@@ -221,19 +220,7 @@ import { ButtonGroup, Badge } from '@equal-experts/kuat-react';
 2. Initialize shadcn: `npx shadcn@latest init`
 3. Install needed components: `npx shadcn@latest add button dialog`
 4. Update imports to use local components
-5. Keep imports for Kuat-specific components (ButtonGroup, Badge, etc.)
-
----
-
-## Deprecated Exports
-
-The following exports are deprecated and will be removed in the next major version. Install them directly via shadcn CLI instead:
-
-| Component | Replacement |
-|-----------|-------------|
-| `Button` | `npx shadcn@latest add button` |
-
-These components are still exported for backward compatibility but will be themed correctly only when using kuat-core.
+5. Keep imports for Kuat-specific components (Button, ButtonGroup, Badge, etc.)
 
 ---
 

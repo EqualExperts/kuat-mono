@@ -8,7 +8,7 @@
  * - Utilities (cn)
  * - Design tokens via bundled styles
  *
- * For standard UI components (Button, Dialog, etc.), install them directly
+ * For standard UI components not listed below (e.g. Dialog), install them directly
  * via shadcn-vue CLI with kuat-core theming. See documentation for setup guide.
  */
 
@@ -101,23 +101,13 @@ export type { BadgeVariants, BadgeVariant, BadgeRoundness } from "./components/u
 export { Breadcrumb } from "./components/ui/breadcrumb";
 export type { BreadcrumbItemEntry } from "./components/ui/breadcrumb";
 
-// =============================================================================
-// DEPRECATED EXPORTS
-// These components are re-exports of shadcn-vue components.
-// Install them directly via shadcn-vue CLI for better maintainability.
-//
-// Migration guide:
-// 1. Install @equal-experts/kuat-core for design tokens
-// 2. Run: npx shadcn-vue@latest add button (or other component)
-// 3. Remove imports from @equal-experts/kuat-vue
-//
-// These exports will be removed in the next major version.
-// =============================================================================
+// Button (localized UI component – import from Kuat)
+export {
+  Button,
+  buttonVariants,
+  BUTTON_VARIANTS,
+  BUTTON_SIZES,
+  BUTTON_COLORS,
+} from "./components/ui/button";
+export type { ButtonVariants, ButtonVariant, ButtonSize, ButtonColor } from "./components/ui/button";
 
-/**
- * @deprecated Install directly via `npx shadcn-vue@latest add button`.
- * The component will be themed automatically when using kuat-core.
- */
-export { Button, buttonVariants } from "./components/ui/button";
-/** @deprecated */
-export type { ButtonVariants } from "./components/ui/button";

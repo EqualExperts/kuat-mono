@@ -25,7 +25,14 @@
       "types": "./tailwind.config.d.ts",
       "default": "./tailwind.config.ts"
     },
-    "./variables.css": "./src/variables.css",
+    "./variables.css": {
+      "style": "./src/variables.css",
+      "default": "./src/variables.css"
+    },
+    "./button-variables.css": {
+      "style": "./src/button-variables.css",
+      "default": "./src/button-variables.css"
+    },
     "./tailwind-preset": {
       "types": "./tailwind.config.d.ts",
       "default": "./tailwind.config.ts"

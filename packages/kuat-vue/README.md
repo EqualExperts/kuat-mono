@@ -6,7 +6,7 @@ Custom Vue components and blocks for the Kuat Design System.
 
 ## Architecture
 
-This package provides **custom components** and **blocks** that are unique to Kuat. For standard UI components (Button, Dialog, etc.), install them directly via shadcn-vue CLI with kuat-core theming.
+This package provides **custom components** and **blocks** that are unique to Kuat. It also provides a localized **Button** component. For other UI components (e.g. Dialog), install them via shadcn-vue CLI with kuat-core theming.
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -53,6 +53,7 @@ Components unique to Kuat, not available in shadcn-vue:
 
 | Component | Description |
 |-----------|-------------|
+| `Button` | Primary actions with variant (primary, secondary, outline, ghost, ghost-muted, destructive) and color |
 | `ButtonGroup` | Groups buttons together with proper styling |
 | `ButtonGroupText` | Text element within a button group |
 | `ButtonGroupSeparator` | Separator between button group items |
@@ -124,10 +125,9 @@ npx shadcn-vue@latest add button dialog dropdown-menu
 ```vue
 <script setup lang="ts">
 // Kuat custom components from this package
-import { ButtonGroup, ButtonGroupText } from '@equal-experts/kuat-vue';
+import { ButtonGroup, ButtonGroupText, Button } from '@equal-experts/kuat-vue';
 
-// shadcn-vue components from your local installation
-import { Button } from '@/components/ui/button';
+// Other shadcn-vue components from your local installation if needed
 </script>
 
 <template>
@@ -149,8 +149,7 @@ Groups buttons together with seamless borders:
 
 ```vue
 <script setup lang="ts">
-import { ButtonGroup, ButtonGroupText } from '@equal-experts/kuat-vue';
-import { Button } from '@/components/ui/button';
+import { ButtonGroup, ButtonGroupText, Button } from '@equal-experts/kuat-vue';
 </script>
 
 <template>
@@ -236,19 +235,7 @@ import { ButtonGroup, Badge } from '@equal-experts/kuat-vue';
 2. Initialize shadcn-vue: `npx shadcn-vue@latest init`
 3. Install needed components: `npx shadcn-vue@latest add button dialog`
 4. Update imports to use local components
-5. Keep imports for Kuat-specific components (ButtonGroup, Badge, etc.)
-
----
-
-## Deprecated Exports
-
-The following exports are deprecated and will be removed in the next major version. Install them directly via shadcn-vue CLI instead:
-
-| Component | Replacement |
-|-----------|-------------|
-| `Button` | `npx shadcn-vue@latest add button` |
-
-These components are still exported for backward compatibility but will be themed correctly only when using kuat-core.
+5. Keep imports for Kuat-specific components (Button, ButtonGroup, Badge, etc.)
 
 ---
 

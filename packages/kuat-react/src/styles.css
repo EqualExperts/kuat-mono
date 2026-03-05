@@ -1,4 +1,5 @@
 @import "@equal-experts/kuat-core/variables.css";
+@import "@equal-experts/kuat-core/button-variables.css";
 
 /* Radial progress size variables: defined here so they are always available when using this package.
    Values match @equal-experts/kuat-core; load variables.css first to override via design tokens. */

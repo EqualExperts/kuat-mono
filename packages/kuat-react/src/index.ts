@@ -8,14 +8,14 @@
  * - Utilities (cn)
  * - Design tokens via bundled styles
  *
- * For standard UI components (Button, Dialog, etc.), install them directly
- * via shadcn CLI with kuat-core theming. See documentation for setup guide.
+// For standard UI components not listed below (e.g. Dialog), install them directly
+// via shadcn CLI with kuat-core theming. See documentation for setup guide.
  */
 
 // =============================================================================
 // STYLES: Each component imports its own CSS. Consumers should import
 // @equal-experts/kuat-core/variables.css once for design tokens.
-// For deprecated components (Button, etc.) that use Tailwind, import
+// For deprecated components that use Tailwind, import
 // "@equal-experts/kuat-react/styles" or ensure your app has Tailwind.
 // =============================================================================
 
@@ -126,24 +126,14 @@ export type {
   BreadcrumbLinkProps,
 } from "./components/ui/breadcrumb";
 
-// =============================================================================
-// DEPRECATED EXPORTS
-// These components are re-exports of shadcn components.
-// Install them directly via shadcn CLI for better maintainability.
-//
-// Migration guide:
-// 1. Install @equal-experts/kuat-core for design tokens
-// 2. Run: npx shadcn@latest add button (or other component)
-// 3. Remove imports from @equal-experts/kuat-react
-//
-// These exports will be removed in the next major version.
-// =============================================================================
+// Button (localized UI component – import from Kuat)
+export {
+  Button,
+  buttonVariants,
+  BUTTON_VARIANTS,
+  BUTTON_SIZES,
+  BUTTON_COLORS,
+} from "./components/ui/button";
+export type { ButtonProps, ButtonVariant, ButtonSize, ButtonColor } from "./components/ui/button";
 
-/**
- * @deprecated Install directly via `npx shadcn@latest add button`.
- * The component will be themed automatically when using kuat-core.
- */
-export { Button, buttonVariants } from "./components/ui/button";
-/** @deprecated */
-export type { ButtonProps } from "./components/ui/button";
 

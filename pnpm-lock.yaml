@@ -307,8 +307,8 @@ importers:
         version: 2.6.0
     devDependencies:
       '@equal-experts/kuat-core':
-        specifier: ^0.3.0
-        version: 0.3.2(tailwindcss@4.1.18)
+        specifier: workspace:*
+        version: link:../kuat-core
       '@tailwindcss/vite':
         specifier: ^4.0.0
         version: 4.1.18(vite@5.4.21)
@@ -386,8 +386,8 @@ importers:
         version: 3.5.25(typescript@5.9.3)
     devDependencies:
       '@equal-experts/kuat-core':
-        specifier: ^0.3.0
-        version: 0.3.2(tailwindcss@4.1.18)
+        specifier: workspace:*
+        version: link:../kuat-core
       '@tailwindcss/vite':
         specifier: ^4.0.0
         version: 4.1.18(vite@5.4.21)
@@ -839,17 +839,6 @@ packages:
       '@noble/ciphers': ^1.0.0
     dependencies:
       '@noble/ciphers': 1.3.0
-    dev: true
-
-  /@equal-experts/kuat-core@0.3.2(tailwindcss@4.1.18):
-    resolution: {integrity: sha512-FYRmnnUMUglyG9ANJ74q+UtYpfA6HfgqrTkqJeY0gBWYepHLPsi88d/lrxDrcVRHly8FmsF+g6MmcGAeoiP+Cw==}
-    peerDependencies:
-      tailwindcss: ^4.0.0
-    peerDependenciesMeta:
-      tailwindcss:
-        optional: true
-    dependencies:
-      tailwindcss: 4.1.18
     dev: true
 
   /@esbuild/aix-ppc64@0.21.5:
