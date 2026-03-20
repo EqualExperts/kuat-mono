@@ -15,7 +15,8 @@
 // =============================================================================
 // STYLES: Each component imports its own CSS. Consumers should import
 // @equal-experts/kuat-core/variables.css once for design tokens.
-// For deprecated components that use Tailwind, import
+// Kuat custom components (e.g. ButtonGroup) use their own CSS files and are
+// fully supported. For legacy Tailwind-only usage, import
 // "@equal-experts/kuat-react/styles" or ensure your app has Tailwind.
 // =============================================================================
 
@@ -33,7 +34,17 @@ export {
   ButtonGroupSeparator,
   ButtonGroupText,
   buttonGroupVariants,
+  BUTTON_GROUP_ORIENTATIONS,
 } from "./components/ui/button-group";
+export type {
+  ButtonGroupProps,
+  ButtonGroupTextProps,
+  ButtonGroupSeparatorProps,
+  ButtonGroupOrientation,
+} from "./components/ui/button-group";
+
+export { ContentCard } from "./components/ui/content-card";
+export type { ContentCardProps } from "./components/ui/content-card";
 
 // =============================================================================
 // KUAT BLOCKS (Composed Patterns)

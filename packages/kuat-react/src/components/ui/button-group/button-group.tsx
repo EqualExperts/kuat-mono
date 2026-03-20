@@ -16,61 +16,71 @@ export interface ButtonGroupProps extends React.ComponentProps<"div"> {
   orientation?: ButtonGroupOrientation
 }
 
-function ButtonGroup({
-  className,
-  orientation = "horizontal",
-  ...props
-}: ButtonGroupProps) {
-  return (
-    <div
-      role="group"
-      data-slot="button-group"
-      data-orientation={orientation}
-      className={cn(
-        "button-group",
-        `button-group--${orientation}`,
-        className
-      )}
-      {...props}
-    />
-  )
-}
+const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
+  function ButtonGroup(
+    { className, orientation = "horizontal", ...props },
+    ref
+  ) {
+    return (
+      <div
+        ref={ref}
+        role="group"
+        data-slot="button-group"
+        data-orientation={orientation}
+        className={cn(
+          "button-group",
+          `button-group--${orientation}`,
+          className
+        )}
+        {...props}
+      />
+    )
+  }
+)
+ButtonGroup.displayName = "ButtonGroup"
 
 export interface ButtonGroupTextProps extends React.ComponentProps<"div"> {
   asChild?: boolean
 }
 
-function ButtonGroupText({
-  className,
-  asChild = false,
-  ...props
-}: ButtonGroupTextProps) {
-  const Comp = asChild ? Slot : "div"
-  return (
-    <Comp
-      className={cn("button-group-text", className)}
-      {...props}
-    />
-  )
-}
+const ButtonGroupText = React.forwardRef<HTMLDivElement, ButtonGroupTextProps>(
+  function ButtonGroupText(
+    { className, asChild = false, ...props },
+    ref
+  ) {
+    const Comp = asChild ? Slot : "div"
+    return (
+      <Comp
+        ref={ref}
+        className={cn("button-group-text", className)}
+        {...props}
+      />
+    )
+  }
+)
+ButtonGroupText.displayName = "ButtonGroupText"
 
 export interface ButtonGroupSeparatorProps
   extends React.ComponentProps<typeof Separator> {}
 
-function ButtonGroupSeparator({
-  className,
-  orientation = "vertical",
-  ...props
-}: ButtonGroupSeparatorProps) {
+const ButtonGroupSeparator = React.forwardRef<
+  React.ComponentRef<typeof Separator>,
+  ButtonGroupSeparatorProps
+>(function ButtonGroupSeparator(
+  { className, orientation = "vertical", ...props },
+  ref
+) {
   return (
     <Separator
+      ref={ref}
       data-slot="button-group-separator"
       orientation={orientation}
       className={cn("button-group-separator", className)}
       {...props}
     />
   )
-}
+})
+ButtonGroupSeparator.displayName = "ButtonGroupSeparator"
 
 /** Returns class string for button group (backward compatibility). */
 export function buttonGroupVariants(options?: {

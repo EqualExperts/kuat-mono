@@ -35,6 +35,8 @@ export {
 } from "./components/ui/button-group";
 export type { ButtonGroupVariants } from "./components/ui/button-group";
 
+export { ContentCard } from "./components/ui/content-card";
+
 // =============================================================================
 // KUAT BLOCKS (Composed Patterns)
 // Pre-built compositions of components for common patterns
