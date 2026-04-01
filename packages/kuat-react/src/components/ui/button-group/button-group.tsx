@@ -4,6 +4,7 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 
 import { cn } from "@/lib/utils"
+import type { KuatSlotContent } from "@/lib/react-node-compat"
 import { Separator } from "@/components/ui/separator"
 
 import "./button-group.css"
@@ -12,15 +13,17 @@ export const BUTTON_GROUP_ORIENTATIONS = ["horizontal", "vertical"] as const
 export type ButtonGroupOrientation =
   (typeof BUTTON_GROUP_ORIENTATIONS)[number]
 
-export interface ButtonGroupProps extends React.ComponentProps<"div"> {
+export interface ButtonGroupProps
+  extends Omit<React.ComponentProps<"div">, "children"> {
   orientation?: ButtonGroupOrientation
+  children?: KuatSlotContent
 }
 
 const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
   function ButtonGroup(
     { className, orientation = "horizontal", ...props },
     ref
-  ) {
+  ): React.ReactElement {
     return (
       <div
         ref={ref}
@@ -39,15 +42,17 @@ const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
 )
 ButtonGroup.displayName = "ButtonGroup"
 
-export interface ButtonGroupTextProps extends React.ComponentProps<"div"> {
+export interface ButtonGroupTextProps
+  extends Omit<React.ComponentProps<"div">, "children"> {
   asChild?: boolean
+  children?: KuatSlotContent
 }
 
 const ButtonGroupText = React.forwardRef<HTMLDivElement, ButtonGroupTextProps>(
   function ButtonGroupText(
     { className, asChild = false, ...props },
     ref
-  ) {
+  ): React.ReactElement {
     const Comp = asChild ? Slot : "div"
     return (
       <Comp
@@ -69,7 +74,7 @@ const ButtonGroupSeparator = React.forwardRef<
 >(function ButtonGroupSeparator(
   { className, orientation = "vertical", ...props },
   ref
-) {
+): React.ReactElement {
   return (
     <Separator
       ref={ref}

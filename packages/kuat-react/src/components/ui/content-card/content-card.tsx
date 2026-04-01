@@ -3,22 +3,14 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import type { KuatSlotContent } from "@/lib/react-node-compat"
 import "./content-card.css"
 
-// React 19's `ReactNode` includes `bigint`, while React 18 (used by Storybook React)
-// does not. To avoid cross-version type incompatibilities, we intentionally exclude bigint.
-type KuatSlotContent =
-  | React.ReactElement
-  | React.ReactPortal
-  | string
-  | number
-  | boolean
-  | null
-  | undefined
-  | ReadonlyArray<KuatSlotContent>
-
 export interface ContentCardProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, "content" | "children"> {
+  extends Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    "content" | "children" | "title"
+  > {
   className?: string
   asChild?: boolean
   /** Optional media; when `null`, the media area is removed (no gap). */
