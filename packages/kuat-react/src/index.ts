@@ -147,4 +147,8 @@ export {
 } from "./components/ui/button";
 export type { ButtonProps, ButtonVariant, ButtonSize, ButtonColor } from "./components/ui/button";
 
+// Textarea (localized UI component – import from Kuat)
+export { Textarea, TEXTAREA_RESIZE } from "./components/ui/textarea";
+export type { TextareaProps, TextareaResize } from "./components/ui/textarea";
+
 

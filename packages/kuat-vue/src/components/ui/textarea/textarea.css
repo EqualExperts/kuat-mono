@@ -1,0 +1,49 @@
+@reference "../../../styles.css";
+
+/* Textarea – CSS-first. 4px radius (Kuat inputs). States via :focus-visible, [aria-invalid], :disabled. */
+
+.textarea {
+  @apply w-full min-h-19 rounded-sm p-2 font-sans text-sm leading-6 tracking-normal outline-none transition-[border-color,box-shadow] duration-150 ease-in-out;
+  border: 1px solid var(--border);
+  background: var(--input);
+  color: var(--foreground);
+  box-shadow: var(--shadow-xs);
+}
+
+.textarea::placeholder {
+  color: var(--muted-foreground);
+}
+
+.textarea:focus-visible {
+  border-color: var(--slate-400);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.textarea[aria-invalid="true"] {
+  border-color: var(--destructive);
+}
+
+.textarea[aria-invalid="true"]:focus-visible {
+  border-color: var(--destructive);
+  box-shadow: 0 0 0 3px var(--red-300);
+}
+
+.textarea:disabled {
+  @apply cursor-not-allowed opacity-30;
+}
+
+.textarea--resize-none {
+  resize: none;
+}
+
+.textarea--resize-vertical {
+  resize: vertical;
+}
+
+.textarea--resize-horizontal {
+  resize: horizontal;
+}
+
+.textarea--resize-both {
+  resize: both;
+}

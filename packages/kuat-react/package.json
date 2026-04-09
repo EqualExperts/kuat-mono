@@ -34,6 +34,10 @@
       "import": "./dist/kuat-radial-progress.js",
       "types": "./dist/kuat-radial-progress.d.ts"
     },
+    "./textarea": {
+      "import": "./dist/textarea.js",
+      "types": "./dist/textarea.d.ts"
+    },
     "./styles": "./dist/style.css"
   },
   "files": [

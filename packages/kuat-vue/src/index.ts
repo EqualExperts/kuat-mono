@@ -113,3 +113,7 @@ export {
 } from "./components/ui/button";
 export type { ButtonVariants, ButtonVariant, ButtonSize, ButtonColor } from "./components/ui/button";
 
+// Textarea (localized UI component – import from Kuat)
+export { Textarea, TEXTAREA_RESIZE } from "./components/ui/textarea";
+export type { TextareaResize } from "./components/ui/textarea";
+
