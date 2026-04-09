@@ -46,10 +46,25 @@ export type {
 export { ContentCard } from "./components/ui/content-card";
 export type { ContentCardProps } from "./components/ui/content-card";
 
+export {
+  ChatMessage,
+  CHAT_MESSAGE_VARIANTS,
+} from "./components/ui/chat-message";
+export type {
+  ChatMessageProps,
+  ChatMessageVariant,
+} from "./components/ui/chat-message";
+
+export { ChatComposer } from "./components/ui/chat-composer";
+export type { ChatComposerProps } from "./components/ui/chat-composer";
+
 // =============================================================================
 // KUAT BLOCKS (Composed Patterns)
 // Pre-built compositions of components for common patterns
 // =============================================================================
+export { KuatChatLayout } from "./components/ui/kuat-chat-layout";
+export type { KuatChatLayoutProps } from "./components/ui/kuat-chat-layout";
+
 export { KuatHeader, kuatHeaderVariants, EELogo } from "./components/ui/kuat-header";
 export type { KuatHeaderProps, EELogoProps } from "./components/ui/kuat-header";
 

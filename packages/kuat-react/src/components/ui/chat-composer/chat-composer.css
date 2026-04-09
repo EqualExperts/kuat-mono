@@ -1,0 +1,27 @@
+@reference "../../../styles.css";
+
+/* ChatComposer – CSS-first. Tokens from @equal-experts/kuat-core. */
+
+.chat-composer {
+  @apply flex flex-col gap-2 w-full min-w-0 border-t border-border bg-background pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-3 px-3 shrink-0;
+}
+
+.chat-composer__toolbar {
+  @apply flex flex-wrap items-center gap-2 min-h-0 min-w-0;
+}
+
+.chat-composer__main {
+  @apply flex gap-2 items-end min-w-0 w-full;
+}
+
+.chat-composer__input {
+  @apply flex-1 min-w-0 min-h-[2.5rem] flex flex-col;
+}
+
+.chat-composer__actions {
+  @apply shrink-0 flex items-center gap-2 self-end pb-0.5;
+}
+
+.chat-composer__textarea {
+  @apply min-h-[72px] w-full resize-y rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50;
+}

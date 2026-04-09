@@ -1,0 +1,86 @@
+@reference "../../../styles.css";
+
+/* ChatMessage – CSS-first. Tokens from @equal-experts/kuat-core. */
+
+.chat-message {
+  @apply flex flex-col gap-2 min-w-0 w-full;
+}
+
+.chat-message__row {
+  @apply flex gap-3 min-w-0 w-full items-start;
+}
+
+.chat-message__row--no-leading {
+  @apply gap-0;
+}
+
+.chat-message__leading {
+  @apply shrink-0 flex flex-col items-center justify-start pt-0.5;
+}
+
+.chat-message__column {
+  @apply flex flex-col gap-1 min-w-0 flex-1;
+}
+
+.chat-message__label {
+  @apply text-xs text-muted-foreground;
+}
+
+.chat-message__content {
+  @apply min-w-0 text-sm text-foreground;
+}
+
+.chat-message__text {
+  @apply m-0;
+}
+
+.chat-message__footer {
+  @apply flex flex-wrap items-center gap-2 text-xs text-muted-foreground pl-0;
+}
+
+/* User: align bubble to the end */
+.chat-message--user .chat-message__row {
+  @apply flex-row-reverse;
+}
+
+.chat-message--user .chat-message__column {
+  @apply items-end;
+}
+
+.chat-message--user .chat-message__label {
+  @apply text-end;
+}
+
+.chat-message--user .chat-message__content {
+  @apply rounded-md border border-border bg-muted px-3 py-2 max-w-[min(100%,42rem)];
+}
+
+.chat-message--user .chat-message__footer {
+  @apply justify-end pr-0;
+}
+
+/* Assistant: start-aligned */
+.chat-message--assistant .chat-message__content {
+  @apply rounded-md border border-transparent bg-transparent px-0 py-1 max-w-[min(100%,42rem)];
+}
+
+.chat-message--assistant .chat-message__column {
+  @apply items-start;
+}
+
+/* System: centered, subdued */
+.chat-message--system .chat-message__row {
+  @apply justify-center;
+}
+
+.chat-message--system .chat-message__leading {
+  @apply hidden;
+}
+
+.chat-message--system .chat-message__column {
+  @apply items-center flex-none max-w-full;
+}
+
+.chat-message--system .chat-message__content {
+  @apply text-center text-xs text-muted-foreground px-2 py-1 rounded-md bg-muted/60 border border-border/60;
+}

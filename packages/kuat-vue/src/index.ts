@@ -37,10 +37,20 @@ export type { ButtonGroupVariants } from "./components/ui/button-group";
 
 export { ContentCard } from "./components/ui/content-card";
 
+export {
+  ChatMessage,
+  CHAT_MESSAGE_VARIANTS,
+} from "./components/ui/chat-message";
+export type { ChatMessageVariant } from "./components/ui/chat-message";
+
+export { ChatComposer } from "./components/ui/chat-composer";
+
 // =============================================================================
 // KUAT BLOCKS (Composed Patterns)
 // Pre-built compositions of components for common patterns
 // =============================================================================
+export { KuatChatLayout } from "./components/ui/kuat-chat-layout";
+
 export { KuatHeader, kuatHeaderVariants, EELogo } from "./components/ui/kuat-header";
 export type { KuatHeaderVariants } from "./components/ui/kuat-header";
 
