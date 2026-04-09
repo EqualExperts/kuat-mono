@@ -44,6 +44,9 @@
     --red-300: oklch(0.850 0.080 25.0); /* #fca5a5 */
     --red-600: oklch(0.577 0.245 27.3); /* #dc2626 */
 
+    /* Indigo (Tailwind-aligned; focus ring uses 300) */
+    --indigo-300: oklch(0.809 0.105 251.8); /* #a5b4fc */
+
     /* Neutral colors */
     --black: oklch(0.0 0.0 0.0); /* #000000 */
     --white: oklch(1.0 0.0 0.0); /* #ffffff */
@@ -129,7 +132,7 @@
     --destructive-foreground: var(--brand-byte-white); /* standard white on destructive */
     --border: var(--slate-200); /* {slate.200} */
     --input: var(--brand-byte-white); /* {white} */
-    --ring: var(--slate-300); /* {slate.300} - focus ring */
+    --ring: var(--indigo-300); /* focus ring — Tailwind indigo-300 */
 
     /* Card colors - from ee-light.json */
     --card: var(--brand-byte-white); /* {white} */
@@ -203,7 +206,7 @@
     --destructive-foreground: var(--brand-byte-white); /* standard white on destructive */
     --border: var(--slate-700); /* {slate.700} */
     --input: var(--slate-600); /* {slate.600} */
-    --ring: var(--slate-300); /* {slate.300} - focus ring */
+    --ring: var(--indigo-300); /* focus ring — Tailwind indigo-300 */
 
     /* Card colors - from ee-dark.json */
     --card: var(--tech-blue-800); /* {brand.tech-blue.800} */
@@ -403,6 +406,7 @@
 
     --color-black: var(--black);
     --color-white: var(--white);
+    --color-indigo-300: var(--indigo-300);
   }
   
   body {

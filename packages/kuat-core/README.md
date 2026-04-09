@@ -270,7 +270,7 @@ import '@equal-experts/kuat-core/variables.css';
 | `--destructive` | Red 600 | Red 600 | Destructive actions |
 | `--border` | Slate 200 | Slate 700 | Borders |
 | `--input` | White | Slate 600 | Input backgrounds |
-| `--ring` | Slate 300 | Slate 300 | Focus rings |
+| `--ring` | Indigo 300 | Indigo 300 | Focus rings |
 
 ### Brand Colors
 

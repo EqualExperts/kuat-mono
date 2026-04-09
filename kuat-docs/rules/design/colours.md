@@ -92,7 +92,7 @@ Semantic tokens map brand colors to UI purposes:
 | `--destructive-foreground` | Text on destructive | White | White |
 | `--border` | Borders, dividers | Slate-200 | Slate-700 |
 | `--input` | Input borders | White | Slate-600 |
-| `--ring` | Focus rings | Slate-300 | Slate-300 |
+| `--ring` | Focus rings | Indigo-300 | Indigo-300 |
 
 ---
 
