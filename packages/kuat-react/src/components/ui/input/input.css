@@ -1,0 +1,86 @@
+@reference "../../../styles.css";
+
+/* Input – CSS-first. Wrapper holds border/shadow; field is borderless. States via :focus-within, :has([aria-invalid]), :has(:disabled). */
+
+.input {
+  /* Figma semantic/rounded-sm for inputs = 4px (not Tailwind rounded-sm / --radius-sm, which resolves too small). */
+  @apply flex w-full min-w-0 items-center font-sans outline-none transition-[border-color,box-shadow] duration-150 ease-in-out;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--input);
+  box-shadow: var(--shadow-xs);
+}
+
+.input:focus-within:not(:has(.input__field:disabled)) {
+  border-color: var(--slate-400);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.input:has(.input__field[aria-invalid="true"]) {
+  border-color: var(--destructive);
+}
+
+.input:has(.input__field[aria-invalid="true"]):focus-within {
+  border-color: var(--destructive);
+  box-shadow: 0 0 0 3px var(--red-300);
+}
+
+.input:has(.input__field:disabled) {
+  @apply cursor-not-allowed opacity-30;
+}
+
+.input__field {
+  @apply min-w-0 flex-1 border-0 bg-transparent outline-none;
+  color: var(--foreground);
+}
+
+.input__field::placeholder {
+  color: var(--muted-foreground);
+}
+
+.input__field:disabled {
+  @apply cursor-not-allowed;
+}
+
+/* shadcn-style file input */
+.input__field::file-selector-button {
+  @apply mr-4 inline-flex h-7 border-0 bg-transparent text-sm font-medium;
+  color: var(--foreground);
+}
+
+.input__decoration {
+  @apply flex shrink-0 items-center justify-center text-muted-foreground;
+}
+
+/* Sizes – match Figma Regular / Large / Small / Mini */
+.input--size-regular {
+  @apply min-h-9 gap-2 px-3 py-2;
+}
+
+.input--size-regular .input__field {
+  @apply text-sm leading-6 tracking-normal;
+}
+
+.input--size-large {
+  @apply min-h-10 gap-3 px-4 py-2.5;
+}
+
+.input--size-large .input__field {
+  @apply text-sm leading-6 tracking-normal;
+}
+
+.input--size-small {
+  @apply min-h-8 gap-1.5 px-2 py-1.5;
+}
+
+.input--size-small .input__field {
+  @apply text-sm leading-6 tracking-normal;
+}
+
+.input--size-mini {
+  @apply min-h-6 gap-1 px-1.5 py-[3px];
+}
+
+.input--size-mini .input__field {
+  @apply text-xs leading-4 tracking-wide;
+}

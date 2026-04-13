@@ -34,6 +34,10 @@
       "import": "./dist/textarea.js",
       "types": "./dist/textarea.d.ts"
     },
+    "./input": {
+      "import": "./dist/input.js",
+      "types": "./dist/input.d.ts"
+    },
     "./checkbox": {
       "import": "./dist/checkbox.js",
       "types": "./dist/checkbox.d.ts"

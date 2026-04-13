@@ -28,6 +28,7 @@ export default defineConfig({
         badge: resolve(__dirname, "src/badge.ts"),
         "button-group": resolve(__dirname, "src/button-group.ts"),
         textarea: resolve(__dirname, "src/textarea.ts"),
+        input: resolve(__dirname, "src/input.ts"),
         checkbox: resolve(__dirname, "src/checkbox.ts"),
       },
       formats: ["es"],
