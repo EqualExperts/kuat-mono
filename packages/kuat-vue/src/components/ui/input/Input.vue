@@ -22,12 +22,22 @@ const delegatedAttrs = computed(() => {
   const { class: _c, ...rest } = attrs as Record<string, unknown>
   return rest
 })
+
+/** `type="file"` must not use string v-model; consumers use @change / ref. */
+const isFileInput = computed(() => delegatedAttrs.value.type === "file")
 </script>
 
 <template>
   <div
     data-slot="input"
-    :class="cn('input', `input--size-${props.size}`, props.class)"
+    :class="
+      cn(
+        'input',
+        `input--size-${props.size}`,
+        isFileInput && 'input--type-file',
+        props.class
+      )
+    "
   >
     <span
       v-if="$slots.leftDecoration"
@@ -36,10 +46,17 @@ const delegatedAttrs = computed(() => {
       <slot name="leftDecoration" />
     </span>
     <input
+      v-if="!isFileInput"
       data-slot="input-field"
       class="input__field"
       v-bind="delegatedAttrs"
       v-model="model"
+    />
+    <input
+      v-else
+      data-slot="input-field"
+      class="input__field"
+      v-bind="delegatedAttrs"
     />
     <span
       v-if="$slots.rightDecoration"

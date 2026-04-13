@@ -82,6 +82,20 @@ export const Disabled: Story = {
   }),
 };
 
+/** Matches [shadcn file input](https://ui.shadcn.com/docs/components/radix/input#file). No v-model (use @change). */
+export const File: Story = {
+  render: () => ({
+    components: { Input },
+    template: `
+      <div class="flex max-w-md flex-col gap-2">
+        <label for="picture" class="text-sm font-medium text-slate-900">Picture</label>
+        <Input id="picture" type="file" />
+        <p class="text-sm text-slate-500">Select a picture to upload.</p>
+      </div>
+    `,
+  }),
+};
+
 export const AllSizes: Story = {
   render: () => ({
     components: { Input },

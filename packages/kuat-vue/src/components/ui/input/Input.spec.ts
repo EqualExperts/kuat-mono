@@ -64,4 +64,19 @@ describe("Input", () => {
       expect(screen.getByRole("textbox")).toBeDisabled()
     })
   })
+
+  describe("type=file", () => {
+    it("renders a file input, adds input--type-file, and omits string v-model", () => {
+      render(Input, {
+        attrs: {
+          id: "picture",
+          type: "file",
+          "aria-label": "Picture",
+        },
+      })
+      const el = screen.getByLabelText(/picture/i)
+      expect(el).toHaveAttribute("type", "file")
+      expect(el.closest("[data-slot=input]")).toHaveClass("input--type-file")
+    })
+  })
 })

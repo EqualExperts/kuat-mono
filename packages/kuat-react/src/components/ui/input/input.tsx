@@ -9,6 +9,13 @@ import "./input.css"
 export const INPUT_SIZES = ["regular", "large", "small", "mini"] as const
 export type InputSize = (typeof INPUT_SIZES)[number]
 
+/**
+ * Shared props for the Kuat `Input` wrapper + native field.
+ *
+ * For `type="file"`, avoid treating the control like a text field: browsers restrict the
+ * `value`, and React controlled file inputs are unusual—prefer an uncontrolled input with
+ * `ref` and `onChange` (see [shadcn file example](https://ui.shadcn.com/docs/components/radix/input#file)).
+ */
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   /** Visual size; maps to `input--size-*` (not the HTML `size` attribute). */
@@ -33,7 +40,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ) => {
     return (
       <div
-        className={cn("input", `input--size-${size}`, className)}
+        className={cn(
+          "input",
+          `input--size-${size}`,
+          type === "file" && "input--type-file",
+          className
+        )}
         data-slot="input"
       >
         {leftDecoration ? (

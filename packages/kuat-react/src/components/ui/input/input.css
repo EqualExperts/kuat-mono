@@ -42,10 +42,23 @@
   @apply cursor-not-allowed;
 }
 
-/* shadcn-style file input */
-.input__field::file-selector-button {
-  @apply mr-4 inline-flex h-7 border-0 bg-transparent text-sm font-medium;
+/* type="file" — layout + ::file-selector-button (shadcn file:* equivalents) */
+.input--type-file,
+.input:has(.input__field[type="file"]) {
+  @apply items-center;
+}
+
+.input__field[type="file"] {
+  @apply min-w-0 cursor-pointer;
+}
+
+.input__field[type="file"]::file-selector-button {
+  @apply mr-4 inline-flex h-7 shrink-0 cursor-pointer items-center rounded-sm border-0 bg-transparent text-sm font-medium;
   color: var(--foreground);
+}
+
+.input--size-mini .input__field[type="file"]::file-selector-button {
+  @apply h-5 text-xs;
 }
 
 .input__decoration {
