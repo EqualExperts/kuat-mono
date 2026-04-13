@@ -117,3 +117,12 @@ export type { ButtonVariants, ButtonVariant, ButtonSize, ButtonColor } from "./c
 export { Textarea, TEXTAREA_RESIZE } from "./components/ui/textarea";
 export type { TextareaResize } from "./components/ui/textarea";
 
+// Checkbox (localized UI component – import from Kuat)
+export {
+  Checkbox,
+  CheckboxField,
+  CHECKBOX_FIELD_APPEARANCES,
+  CHECKBOX_FIELD_LAYOUTS,
+} from "./components/ui/checkbox";
+export type { CheckboxFieldAppearance, CheckboxFieldLayout } from "./components/ui/checkbox";
+

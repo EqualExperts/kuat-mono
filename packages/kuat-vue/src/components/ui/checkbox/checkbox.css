@@ -1,0 +1,71 @@
+@reference "../../../styles.css";
+
+/* Checkbox – CSS-first. 4px radius (Kuat inputs). data-state: checked | unchecked | indeterminate */
+
+.checkbox {
+  @apply shrink-0 flex items-center justify-center outline-none transition-[border-color,box-shadow,opacity] duration-150 ease-in-out;
+  @apply size-4 rounded-sm;
+  border: 1px solid var(--slate-300);
+  background: var(--input);
+  box-shadow: var(--shadow-xs);
+}
+
+.checkbox:focus-visible {
+  border-color: var(--slate-400);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.checkbox[data-state="checked"],
+.checkbox[data-state="indeterminate"] {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: var(--shadow-xs);
+}
+
+.checkbox[data-state="checked"]:focus-visible,
+.checkbox[data-state="indeterminate"]:focus-visible {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.checkbox[aria-invalid="true"] {
+  border-color: var(--destructive);
+}
+
+.checkbox[aria-invalid="true"]:focus-visible {
+  border-color: var(--destructive);
+  box-shadow: 0 0 0 3px var(--red-300);
+}
+
+.checkbox[data-state="checked"][aria-invalid="true"],
+.checkbox[data-state="indeterminate"][aria-invalid="true"] {
+  border-color: var(--destructive);
+  background: var(--destructive);
+  color: var(--destructive-foreground);
+}
+
+.checkbox[data-state="checked"][aria-invalid="true"]:focus-visible,
+.checkbox[data-state="indeterminate"][aria-invalid="true"]:focus-visible {
+  box-shadow: 0 0 0 3px var(--red-300);
+}
+
+.checkbox:disabled {
+  @apply cursor-not-allowed opacity-30;
+}
+
+.checkbox__indicator {
+  @apply flex items-center justify-center text-current;
+}
+
+.checkbox__icon {
+  @apply size-3.5 stroke-[3];
+}
+
+.checkbox:not([data-state="indeterminate"]) .checkbox__icon--indeterminate {
+  display: none;
+}
+
+.checkbox[data-state="indeterminate"] .checkbox__icon--check {
+  display: none;
+}

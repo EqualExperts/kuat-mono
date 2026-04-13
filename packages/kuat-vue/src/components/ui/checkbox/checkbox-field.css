@@ -1,0 +1,57 @@
+@reference "../../../styles.css";
+
+/* CheckboxField – label + optional secondary; plain (no chrome) or card (border, padding). */
+
+.checkbox-field {
+  @apply w-full min-w-0;
+}
+
+.checkbox-field__label {
+  @apply flex cursor-pointer items-start gap-2 select-none;
+}
+
+.checkbox-field--appearance-card .checkbox-field__label {
+  @apply rounded-[10px] border border-solid border-border bg-card px-3 py-2;
+}
+
+.checkbox-field--disabled .checkbox-field__label {
+  @apply cursor-not-allowed opacity-30;
+}
+
+.checkbox-field--invalid .checkbox-field__primary {
+  color: var(--destructive);
+}
+
+.checkbox-field--appearance-card.checkbox-field--invalid .checkbox-field__label {
+  border-color: var(--destructive);
+}
+
+.checkbox-field--flipped .checkbox-field__label {
+  @apply flex-row-reverse;
+}
+
+.checkbox-field__checkbox-wrap {
+  @apply flex shrink-0 items-center justify-center pt-0.5;
+}
+
+.checkbox-field__text {
+  @apply flex min-h-px min-w-0 flex-1 flex-col items-start gap-0 text-left;
+}
+
+.checkbox-field--layout-inline .checkbox-field__text {
+  @apply flex-none;
+}
+
+.checkbox-field--layout-inline:not(.checkbox-field--has-secondary) .checkbox-field__primary {
+  @apply shrink-0 whitespace-nowrap;
+}
+
+.checkbox-field__primary {
+  @apply w-full font-sans text-sm leading-[1.5] tracking-normal;
+  color: var(--foreground);
+}
+
+.checkbox-field__secondary {
+  @apply w-full font-sans text-xs leading-4 tracking-wide;
+  color: var(--muted-foreground);
+}

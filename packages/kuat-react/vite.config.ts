@@ -29,6 +29,7 @@ export default defineConfig({
         "button-group": resolve(__dirname, "src/button-group.ts"),
         "kuat-radial-progress": resolve(__dirname, "src/kuat-radial-progress.ts"),
         textarea: resolve(__dirname, "src/textarea.ts"),
+        checkbox: resolve(__dirname, "src/checkbox.ts"),
       },
       formats: ["es"],
       fileName: (format, entryName) => `${entryName}.js`,
