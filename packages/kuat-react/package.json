@@ -46,6 +46,10 @@
       "import": "./dist/checkbox.js",
       "types": "./dist/checkbox.d.ts"
     },
+    "./radio": {
+      "import": "./dist/radio.js",
+      "types": "./dist/radio.d.ts"
+    },
     "./styles": "./dist/style.css"
   },
   "files": [

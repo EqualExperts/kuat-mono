@@ -30,6 +30,7 @@ export default defineConfig({
         textarea: resolve(__dirname, "src/textarea.ts"),
         input: resolve(__dirname, "src/input.ts"),
         checkbox: resolve(__dirname, "src/checkbox.ts"),
+        radio: resolve(__dirname, "src/radio.ts"),
       },
       formats: ["es"],
       fileName: (format, entryName) => `${entryName}.js`,

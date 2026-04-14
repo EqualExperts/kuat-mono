@@ -130,3 +130,13 @@ export {
 } from "./components/ui/checkbox";
 export type { CheckboxFieldAppearance, CheckboxFieldLayout } from "./components/ui/checkbox";
 
+// Radio (localized UI component – import from Kuat)
+export {
+  RadioGroup,
+  RadioGroupItem,
+  RadioField,
+  RADIO_FIELD_APPEARANCES,
+  RADIO_FIELD_LAYOUTS,
+} from "./components/ui/radio"
+export type { RadioFieldAppearance, RadioFieldLayout } from "./components/ui/radio"
+

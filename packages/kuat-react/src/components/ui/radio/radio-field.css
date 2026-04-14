@@ -1,0 +1,58 @@
+@reference "../../../styles.css";
+
+/* RadioField – label + optional secondary; plain (no chrome) or card (border, padding). */
+
+.radio-field {
+  @apply w-full min-w-0;
+}
+
+.radio-field__label {
+  @apply flex cursor-pointer items-start gap-2 select-none;
+}
+
+.radio-field--appearance-card .radio-field__label {
+  @apply rounded-[10px] border border-solid border-border bg-card px-3 py-2;
+}
+
+.radio-field--disabled .radio-field__label {
+  @apply cursor-not-allowed opacity-30;
+}
+
+.radio-field--invalid .radio-field__primary {
+  color: var(--destructive);
+}
+
+.radio-field--appearance-card.radio-field--invalid .radio-field__label {
+  border-color: var(--destructive);
+}
+
+.radio-field--flipped .radio-field__label {
+  @apply flex-row-reverse;
+}
+
+.radio-field__radio-wrap {
+  @apply flex shrink-0 items-center justify-center pt-0.5;
+}
+
+.radio-field__text {
+  @apply flex min-h-px min-w-0 flex-1 flex-col items-start text-left;
+  row-gap: var(--spacing);
+}
+
+.radio-field--layout-inline .radio-field__text {
+  @apply flex-none;
+}
+
+.radio-field--layout-inline:not(.radio-field--has-secondary) .radio-field__primary {
+  @apply shrink-0 whitespace-nowrap;
+}
+
+.radio-field__primary {
+  @apply w-full font-sans text-sm leading-[1.5] tracking-normal;
+  color: var(--foreground);
+}
+
+.radio-field__secondary {
+  @apply w-full font-sans text-xs leading-4 tracking-wide;
+  color: var(--muted-foreground);
+}
