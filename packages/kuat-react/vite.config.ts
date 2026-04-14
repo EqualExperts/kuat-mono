@@ -30,6 +30,7 @@ export default defineConfig({
         "kuat-radial-progress": resolve(__dirname, "src/kuat-radial-progress.ts"),
         textarea: resolve(__dirname, "src/textarea.ts"),
         input: resolve(__dirname, "src/input.ts"),
+        select: resolve(__dirname, "src/select.ts"),
         checkbox: resolve(__dirname, "src/checkbox.ts"),
         radio: resolve(__dirname, "src/radio.ts"),
       },

@@ -29,6 +29,7 @@ export default defineConfig({
         "button-group": resolve(__dirname, "src/button-group.ts"),
         textarea: resolve(__dirname, "src/textarea.ts"),
         input: resolve(__dirname, "src/input.ts"),
+        select: resolve(__dirname, "src/select.ts"),
         checkbox: resolve(__dirname, "src/checkbox.ts"),
         radio: resolve(__dirname, "src/radio.ts"),
       },

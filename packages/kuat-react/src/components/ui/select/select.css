@@ -1,0 +1,196 @@
+@reference "../../../styles.css";
+
+/* Select – CSS-first. Trigger follows input (4px radius), menu follows Figma menu tokens. */
+
+.select-trigger {
+  @apply flex w-full min-w-0 items-center outline-none transition-[border-color,box-shadow,opacity] duration-150 ease-in-out;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--input);
+  color: var(--foreground);
+  box-shadow: var(--shadow-xs);
+}
+
+.select-trigger:focus-visible:not(:disabled) {
+  border-color: var(--border);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.select-trigger[aria-invalid="true"] {
+  border-color: var(--destructive);
+}
+
+.select-trigger[aria-invalid="true"]:focus-visible {
+  box-shadow: 0 0 0 3px var(--red-300);
+}
+
+.select-trigger:disabled {
+  @apply cursor-not-allowed opacity-50;
+}
+
+.select-trigger__prepend,
+.select-trigger__decoration,
+.select-trigger__icon {
+  @apply shrink-0 text-muted-foreground;
+}
+
+.select-trigger__value-wrap {
+  @apply min-w-0 flex-1;
+}
+
+.select-trigger__label {
+  @apply block truncate text-xs leading-4 tracking-wide text-muted-foreground;
+}
+
+.select-trigger__value {
+  @apply block truncate text-sm leading-6 tracking-normal;
+}
+
+.select-trigger__value[data-placeholder] {
+  color: var(--muted-foreground);
+}
+
+.select-trigger--size-regular {
+  @apply min-h-9 gap-2 py-[7.5px] pl-3 pr-2;
+}
+
+.select-trigger--size-large {
+  @apply min-h-10 gap-3 py-[9.5px] pl-4 pr-2;
+}
+
+.select-trigger--size-small {
+  @apply min-h-8 gap-1.5 px-2 py-[5.5px];
+}
+
+.select-trigger--size-mini {
+  @apply min-h-8 gap-1 px-1.5 py-[3px];
+}
+
+.select-trigger--lines-double {
+  @apply items-end;
+}
+
+.select-trigger--lines-double .select-trigger__value-wrap {
+  @apply flex flex-col items-start;
+}
+
+.select-trigger--lines-double .select-trigger__value {
+  @apply text-sm leading-5;
+}
+
+.select-content {
+  @apply relative z-50 min-w-[8rem] overflow-hidden border p-0.5;
+  border-color: var(--border);
+  background: var(--card);
+  color: var(--foreground);
+  border-radius: 8px;
+  box-shadow:
+    0 4px 6px 0 rgb(0 0 0 / 0.1),
+    0 2px 4px 0 rgb(0 0 0 / 0.1);
+}
+
+.select-content[data-state="open"] {
+  animation: select-in 0.12s ease-out;
+}
+
+.select-content[data-state="closed"] {
+  animation: select-out 0.12s ease-in;
+}
+
+.select-content--position-popper {
+  @apply translate-y-1;
+}
+
+.select-viewport {
+  @apply p-0.5;
+  max-height: var(--kuat-select-content-max-height, 20rem);
+}
+
+.select-scroll-button {
+  @apply flex h-6 cursor-default items-center justify-center text-muted-foreground;
+}
+
+.select-label {
+  @apply px-2 py-[5.5px] text-xs leading-4 tracking-wide text-muted-foreground;
+}
+
+.select-separator {
+  @apply my-1 h-px bg-border;
+}
+
+.select-item {
+  @apply relative flex w-full cursor-default select-none items-center rounded-[6px] outline-none;
+  color: var(--foreground);
+}
+
+.select-item[data-highlighted] {
+  @apply bg-accent text-accent-foreground;
+}
+
+.select-item[data-disabled] {
+  @apply pointer-events-none opacity-50;
+}
+
+.select-content--size-regular .select-item {
+  @apply min-h-9 gap-2 py-[7.5px] pl-3 pr-2;
+}
+
+.select-content--size-large .select-item {
+  @apply min-h-10 gap-3 py-[9.5px] pl-4 pr-2;
+}
+
+.select-content--size-small .select-item {
+  @apply min-h-8 gap-1.5 px-2 py-[5.5px];
+}
+
+.select-content--size-mini .select-item {
+  @apply min-h-8 gap-1 px-1.5 py-[3px];
+}
+
+.select-item__prepend,
+.select-item__decoration,
+.select-item__indicator {
+  @apply shrink-0 text-muted-foreground;
+}
+
+.select-item__text {
+  @apply min-w-0 flex-1;
+}
+
+.select-item__label {
+  @apply block truncate text-sm leading-6 tracking-normal;
+}
+
+.select-item__description {
+  @apply block truncate text-xs leading-4 tracking-wide text-muted-foreground;
+}
+
+.select-item--double .select-item__text {
+  @apply flex flex-col;
+}
+
+.select-empty {
+  @apply px-2 py-1.5 text-sm text-muted-foreground;
+}
+
+@keyframes select-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes select-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}

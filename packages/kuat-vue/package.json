@@ -38,6 +38,10 @@
       "import": "./dist/input.js",
       "types": "./dist/input.d.ts"
     },
+    "./select": {
+      "import": "./dist/select.js",
+      "types": "./dist/select.d.ts"
+    },
     "./checkbox": {
       "import": "./dist/checkbox.js",
       "types": "./dist/checkbox.d.ts"

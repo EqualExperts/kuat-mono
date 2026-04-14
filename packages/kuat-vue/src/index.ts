@@ -121,6 +121,30 @@ export type { TextareaResize } from "./components/ui/textarea";
 export { Input, INPUT_SIZES } from "./components/ui/input";
 export type { InputSize } from "./components/ui/input";
 
+// Select (localized UI component – import from Kuat)
+export {
+  KuatSelect,
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectScrollDownButton,
+  SelectScrollUpButton,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+  SELECT_LINES,
+  SELECT_SIZES,
+} from "./components/ui/select";
+export type {
+  SelectItemGroup,
+  SelectItemOption,
+  SelectItems,
+  SelectLines,
+  SelectSize,
+} from "./components/ui/select";
+
 // Checkbox (localized UI component – import from Kuat)
 export {
   Checkbox,
