@@ -150,6 +150,7 @@ Vue component library built with shadcn-vue, Radix Vue primitives, and Tailwind 
 ### For AI Agents
 
 - [Agent Documentation](./kuat-docs/README.md) - Navigation index for AI agent documentation
+- Cursor agents under [`.cursor/agents/`](./.cursor/agents/) — **kuat-qa**, **kuat-component-dev**, **kuat-verify**, **kuat-documentation** (see [CONTRIBUTING.md](./CONTRIBUTING.md) Development Workflow)
 - [Design Rules](./kuat-docs/rules/) - Pure design language (no code)
 - [Integration Guide](./kuat-docs/setup/integration.md) - How to integrate docs into your project
 

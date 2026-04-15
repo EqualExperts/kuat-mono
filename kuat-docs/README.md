@@ -120,6 +120,8 @@ How to integrate into your environment:
 
 ## For AI Agents
 
+When working **inside the kuat-mono repository**, Cursor can use agents under [`../.cursor/agents/`](../.cursor/agents/): **kuat-qa**, **kuat-component-dev**, and **kuat-verify** for the test-driven component workflow. Use **kuat-documentation** (see [`kuat-documentation.md`](../.cursor/agents/kuat-documentation.md)) to audit or refresh consumer-facing documentation (Storybook, this `kuat-docs` tree, package READMEs). Details: [CONTRIBUTING.md](../CONTRIBUTING.md#development-workflow).
+
 ### Quick Setup: Add to Your Existing Rules
 
 Most developers already have `.cursorrules`, `CLAUDE.md`, or similar agent configuration. **Copy this snippet** into your existing file:

@@ -207,7 +207,7 @@ export const Sizes: Story = {
 
 ### Using Kuat agents (optional)
 
-When the Kuat agents are available in your environment (e.g. Cursor with `.cursor/agents/`), you are encouraged to use **kuat-qa** to plan and generate test specs and test code, **kuat-component-dev** to implement the component and add Storybook stories, and **kuat-verify** to run the tests. See [CONTRIBUTING.md](../CONTRIBUTING.md) Development Workflow for the full flow.
+When the Kuat agents are available in your environment (e.g. Cursor with `.cursor/agents/`), you are encouraged to use **kuat-qa** to plan and generate test specs and test code, **kuat-component-dev** to implement the component and add Storybook stories, and **kuat-verify** to run the tests. Optionally use **kuat-documentation** to audit or update Storybook and `kuat-docs` after implementation or before release. See [CONTRIBUTING.md](../CONTRIBUTING.md) Development Workflow for the full flow.
 
 ---
 

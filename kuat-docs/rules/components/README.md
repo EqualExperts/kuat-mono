@@ -9,6 +9,7 @@ Component development patterns for the Kuat Design System. These rules define ho
 | File | Description |
 |------|-------------|
 | [patterns.md](./patterns.md) | Naming conventions, variant architecture, accessibility, testing |
+| [documentation-template.md](./documentation-template.md) | Default section structure for consumer-facing component docs (Storybook/narrative markdown) |
 | [carousel.md](./carousel.md) | Kuat Carousel block: when to use, API, packages |
 | [logo-lockup.md](./logo-lockup.md) | Kuat Logo Lockup block: Service/Demo use, mode, props |
 
