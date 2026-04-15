@@ -4,6 +4,13 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldLabel,
+  FieldTitle,
+} from "../field"
 import { Checkbox } from "./checkbox"
 
 import "./checkbox-field.css"
@@ -14,6 +21,7 @@ export type CheckboxFieldAppearance = (typeof CHECKBOX_FIELD_APPEARANCES)[number
 export const CHECKBOX_FIELD_LAYOUTS = ["inline", "block"] as const
 export type CheckboxFieldLayout = (typeof CHECKBOX_FIELD_LAYOUTS)[number]
 
+/** @deprecated Prefer composing `Field` + `Checkbox` for new form layouts. */
 export interface CheckboxFieldProps
   extends Omit<React.ComponentPropsWithoutRef<typeof Checkbox>, "id" | "children"> {
   /** Primary label (always shown). */
@@ -29,6 +37,7 @@ export interface CheckboxFieldProps
   id?: string
 }
 
+/** @deprecated Prefer composing `Field` + `Checkbox` for new form layouts. */
 const CheckboxField = React.forwardRef<
   React.ElementRef<typeof Checkbox>,
   CheckboxFieldProps
@@ -55,7 +64,7 @@ const CheckboxField = React.forwardRef<
       checkboxProps["aria-invalid"] === "true"
 
     return (
-      <div
+      <Field
         className={cn(
           "checkbox-field",
           `checkbox-field--appearance-${appearance}`,
@@ -68,18 +77,20 @@ const CheckboxField = React.forwardRef<
         )}
         data-slot="checkbox-field"
       >
-        <label className="checkbox-field__label" htmlFor={id}>
+        <FieldLabel className="checkbox-field__label" htmlFor={id}>
           <span className="checkbox-field__checkbox-wrap">
             <Checkbox ref={ref} id={id} disabled={disabled} {...checkboxProps} />
           </span>
-          <span className="checkbox-field__text">
-            <span className="checkbox-field__primary">{label}</span>
+          <FieldContent className="checkbox-field__text">
+            <FieldTitle className="checkbox-field__primary">{label}</FieldTitle>
             {hasSecondary ? (
-              <span className="checkbox-field__secondary">{secondaryText}</span>
+              <FieldDescription className="checkbox-field__secondary">
+                {secondaryText}
+              </FieldDescription>
             ) : null}
-          </span>
-        </label>
-      </div>
+          </FieldContent>
+        </FieldLabel>
+      </Field>
     )
   }
 )

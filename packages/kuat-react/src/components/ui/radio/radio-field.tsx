@@ -4,6 +4,13 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldLabel,
+  FieldTitle,
+} from "../field"
 import { RadioGroupItem } from "./radio"
 
 import "./radio-field.css"
@@ -14,6 +21,7 @@ export type RadioFieldAppearance = (typeof RADIO_FIELD_APPEARANCES)[number]
 export const RADIO_FIELD_LAYOUTS = ["inline", "block"] as const
 export type RadioFieldLayout = (typeof RADIO_FIELD_LAYOUTS)[number]
 
+/** @deprecated Prefer composing `Field` + `RadioGroupItem` for new form layouts. */
 export interface RadioFieldProps
   extends Omit<React.ComponentPropsWithoutRef<typeof RadioGroupItem>, "id" | "children"> {
   /** Primary label (always shown). */
@@ -31,6 +39,7 @@ export interface RadioFieldProps
   value: string
 }
 
+/** @deprecated Prefer composing `Field` + `RadioGroupItem` for new form layouts. */
 const RadioField = React.forwardRef<
   React.ElementRef<typeof RadioGroupItem>,
   RadioFieldProps
@@ -58,7 +67,7 @@ const RadioField = React.forwardRef<
       radioItemProps["aria-invalid"] === "true"
 
     return (
-      <div
+      <Field
         className={cn(
           "radio-field",
           `radio-field--appearance-${appearance}`,
@@ -71,7 +80,7 @@ const RadioField = React.forwardRef<
         )}
         data-slot="radio-field"
       >
-        <label className="radio-field__label" htmlFor={id}>
+        <FieldLabel className="radio-field__label" htmlFor={id}>
           <span className="radio-field__radio-wrap">
             <RadioGroupItem
               ref={ref}
@@ -81,14 +90,16 @@ const RadioField = React.forwardRef<
               {...radioItemProps}
             />
           </span>
-          <span className="radio-field__text">
-            <span className="radio-field__primary">{label}</span>
+          <FieldContent className="radio-field__text">
+            <FieldTitle className="radio-field__primary">{label}</FieldTitle>
             {hasSecondary ? (
-              <span className="radio-field__secondary">{secondaryText}</span>
+              <FieldDescription className="radio-field__secondary">
+                {secondaryText}
+              </FieldDescription>
             ) : null}
-          </span>
-        </label>
-      </div>
+          </FieldContent>
+        </FieldLabel>
+      </Field>
     )
   }
 )

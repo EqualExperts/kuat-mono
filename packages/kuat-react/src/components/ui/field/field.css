@@ -1,0 +1,61 @@
+@reference "../../../styles.css";
+
+.field {
+  @apply flex min-w-0 flex-col gap-2;
+}
+
+.field--orientation-vertical {
+  @apply flex-col items-start;
+}
+
+.field--orientation-horizontal {
+  @apply flex-row items-start gap-3;
+}
+
+.field--orientation-responsive {
+  @apply flex-col items-start gap-2;
+}
+
+.field-set {
+  @apply min-w-0 space-y-3 border-0 p-0;
+}
+
+.field-legend {
+  @apply m-0 font-sans text-base leading-6 tracking-normal text-foreground;
+}
+
+.field-legend--label {
+  @apply text-sm leading-[1.5];
+}
+
+.field-group {
+  @apply flex min-w-0 flex-col gap-4;
+}
+
+.field-label {
+  @apply inline-flex min-w-0 items-start gap-2 font-sans text-sm leading-[1.5] tracking-normal text-foreground;
+}
+
+.field-content {
+  @apply flex min-h-px min-w-0 flex-1 flex-col gap-1;
+}
+
+.field-title {
+  @apply font-sans text-sm leading-[1.5] tracking-normal text-foreground;
+}
+
+.field-description {
+  @apply m-0 text-xs leading-4 tracking-wide text-muted-foreground;
+}
+
+.field-separator {
+  @apply flex h-px w-full items-center justify-center bg-border;
+}
+
+.field-error {
+  @apply m-0 text-xs leading-4 tracking-wide text-destructive;
+}
+
+.field-error__list {
+  @apply m-0 list-disc pl-4;
+}

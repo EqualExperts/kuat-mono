@@ -9,6 +9,14 @@ const meta: Meta<typeof SwitchField> = {
   title: "Components/SwitchField",
   component: SwitchField,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Deprecated wrapper API retained for backwards compatibility. Prefer composing `Field` + `Switch` (see `Components/Field`).",
+      },
+    },
+  },
   argTypes: {
     label: { control: "text" },
     secondaryText: { control: "text" },

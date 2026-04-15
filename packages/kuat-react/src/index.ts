@@ -155,6 +155,28 @@ export type { TextareaProps, TextareaResize } from "./components/ui/textarea";
 export { Input, INPUT_SIZES } from "./components/ui/input";
 export type { InputProps, InputSize } from "./components/ui/input";
 
+// Field (localized UI component – import from Kuat)
+export {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSeparator,
+  FieldSet,
+  FieldTitle,
+  FIELD_ORIENTATIONS,
+} from "./components/ui/field"
+export type {
+  FieldErrorProps,
+  FieldLegendProps,
+  FieldLegendVariant,
+  FieldOrientation,
+  FieldProps,
+} from "./components/ui/field"
+
 // Select (localized UI component – import from Kuat)
 export {
   KuatSelect,

@@ -157,6 +157,16 @@ describe("RadioField", () => {
     expect(container.querySelector(".radio-field--appearance-card")).toBeInTheDocument()
   })
 
+  it("retains card label hook for appearance styling", () => {
+    const { container } = render(
+      <TwoOptionGroup>
+        <RadioField label="Label" value="main" appearance="card" secondaryText="More" />
+        <RadioGroupItem value="other" aria-label="Other" />
+      </TwoOptionGroup>
+    )
+    expect(container.querySelector(".radio-field__label")).toBeInTheDocument()
+  })
+
   it("renders secondary text in plain mode", () => {
     render(
       <TwoOptionGroup>

@@ -3,6 +3,13 @@ import type { HTMLAttributes } from "vue"
 import { computed, useAttrs, useId } from "vue"
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "@/lib/utils"
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldLabel,
+  FieldTitle,
+} from "../field"
 import Checkbox from "./Checkbox.vue"
 import type { CheckboxFieldAppearance, CheckboxFieldLayout } from "./constants"
 import "./checkbox-field.css"
@@ -12,6 +19,7 @@ defineOptions({ inheritAttrs: false })
 const props = withDefaults(
   defineProps<{
     class?: HTMLAttributes["class"]
+    /** @deprecated Prefer composing `Field` + `Checkbox` for new form layouts. */
     label: string
     secondaryText?: string
     appearance?: CheckboxFieldAppearance
@@ -54,13 +62,13 @@ const checkboxBind = computed(() => {
 })
 
 const isInvalid = computed(() => {
-  const v = checkboxBind.value["aria-invalid"]
+  const v = (checkboxBind.value as Record<string, unknown>)["aria-invalid"]
   return v === true || v === "true"
 })
 </script>
 
 <template>
-  <div
+  <Field
     data-slot="checkbox-field"
     :class="
       cn(
@@ -75,7 +83,7 @@ const isInvalid = computed(() => {
       )
     "
   >
-    <label class="checkbox-field__label" :for="fieldId">
+    <FieldLabel class="checkbox-field__label" :for="fieldId">
       <span class="checkbox-field__checkbox-wrap">
         <Checkbox
           :id="fieldId"
@@ -84,10 +92,12 @@ const isInvalid = computed(() => {
           :disabled="disabled"
         />
       </span>
-      <span class="checkbox-field__text">
-        <span class="checkbox-field__primary">{{ label }}</span>
-        <span v-if="hasSecondary" class="checkbox-field__secondary">{{ secondaryText }}</span>
-      </span>
-    </label>
-  </div>
+      <FieldContent class="checkbox-field__text">
+        <FieldTitle class="checkbox-field__primary">{{ label }}</FieldTitle>
+        <FieldDescription v-if="hasSecondary" class="checkbox-field__secondary">
+          {{ secondaryText }}
+        </FieldDescription>
+      </FieldContent>
+    </FieldLabel>
+  </Field>
 </template>

@@ -42,6 +42,10 @@
       "import": "./dist/input.js",
       "types": "./dist/input.d.ts"
     },
+    "./field": {
+      "import": "./dist/field.js",
+      "types": "./dist/field.d.ts"
+    },
     "./select": {
       "import": "./dist/select.js",
       "types": "./dist/select.d.ts"

@@ -111,6 +111,17 @@ describe("SwitchField", () => {
     expect(container.querySelector(".switch-field--appearance-card")).toBeInTheDocument()
   })
 
+  it("retains card label hook for appearance styling", () => {
+    const { container } = render(SwitchField, {
+      props: {
+        label: "Label",
+        appearance: "card",
+        secondaryText: "More",
+      },
+    })
+    expect(container.querySelector(".switch-field__label")).toBeInTheDocument()
+  })
+
   it("renders secondary text in plain mode", () => {
     render(SwitchField, {
       props: {

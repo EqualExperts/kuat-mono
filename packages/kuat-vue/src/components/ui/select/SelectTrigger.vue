@@ -43,7 +43,8 @@ const delegatedProps = reactiveOmit(
 )
 
 const isInvalid = computed(() => {
-  return props.invalid || delegatedProps["aria-invalid"] === true || delegatedProps["aria-invalid"] === "true"
+  const ariaInvalid = (delegatedProps as Record<string, unknown>)["aria-invalid"]
+  return props.invalid || ariaInvalid === true || ariaInvalid === "true"
 })
 </script>
 

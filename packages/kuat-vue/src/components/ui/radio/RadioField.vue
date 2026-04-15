@@ -3,6 +3,13 @@ import type { HTMLAttributes } from "vue"
 import { computed, useAttrs, useId } from "vue"
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "@/lib/utils"
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldLabel,
+  FieldTitle,
+} from "../field"
 import RadioGroupItem from "./RadioGroupItem.vue"
 import type { RadioFieldAppearance, RadioFieldLayout } from "./constants"
 import "./radio-field.css"
@@ -12,6 +19,7 @@ defineOptions({ inheritAttrs: false })
 const props = withDefaults(
   defineProps<{
     class?: HTMLAttributes["class"]
+    /** @deprecated Prefer composing `Field` + `RadioGroupItem` for new form layouts. */
     label: string
     secondaryText?: string
     appearance?: RadioFieldAppearance
@@ -60,7 +68,7 @@ const isInvalid = computed(() => {
 </script>
 
 <template>
-  <div
+  <Field
     data-slot="radio-field"
     :class="
       cn(
@@ -75,7 +83,7 @@ const isInvalid = computed(() => {
       )
     "
   >
-    <label class="radio-field__label" :for="fieldId">
+    <FieldLabel class="radio-field__label" :for="fieldId">
       <span class="radio-field__radio-wrap">
         <RadioGroupItem
           :id="fieldId"
@@ -83,10 +91,12 @@ const isInvalid = computed(() => {
           :disabled="disabled"
         />
       </span>
-      <span class="radio-field__text">
-        <span class="radio-field__primary">{{ label }}</span>
-        <span v-if="hasSecondary" class="radio-field__secondary">{{ secondaryText }}</span>
-      </span>
-    </label>
-  </div>
+      <FieldContent class="radio-field__text">
+        <FieldTitle class="radio-field__primary">{{ label }}</FieldTitle>
+        <FieldDescription v-if="hasSecondary" class="radio-field__secondary">
+          {{ secondaryText }}
+        </FieldDescription>
+      </FieldContent>
+    </FieldLabel>
+  </Field>
 </template>

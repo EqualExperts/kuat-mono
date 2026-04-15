@@ -4,6 +4,13 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldLabel,
+  FieldTitle,
+} from "../field"
 import { Switch } from "./switch"
 
 import "./switch-field.css"
@@ -14,6 +21,7 @@ export type SwitchFieldAppearance = (typeof SWITCH_FIELD_APPEARANCES)[number]
 export const SWITCH_FIELD_LAYOUTS = ["inline", "block"] as const
 export type SwitchFieldLayout = (typeof SWITCH_FIELD_LAYOUTS)[number]
 
+/** @deprecated Prefer composing `Field` + `Switch` for new form layouts. */
 export interface SwitchFieldProps
   extends Omit<React.ComponentPropsWithoutRef<typeof Switch>, "id" | "children"> {
   /** Primary label (always shown). */
@@ -29,6 +37,7 @@ export interface SwitchFieldProps
   id?: string
 }
 
+/** @deprecated Prefer composing `Field` + `Switch` for new form layouts. */
 const SwitchField = React.forwardRef<
   React.ElementRef<typeof Switch>,
   SwitchFieldProps
@@ -55,7 +64,7 @@ const SwitchField = React.forwardRef<
       switchProps["aria-invalid"] === "true"
 
     return (
-      <div
+      <Field
         className={cn(
           "switch-field",
           `switch-field--appearance-${appearance}`,
@@ -68,18 +77,20 @@ const SwitchField = React.forwardRef<
         )}
         data-slot="switch-field"
       >
-        <label className="switch-field__label" htmlFor={id}>
+        <FieldLabel className="switch-field__label" htmlFor={id}>
           <span className="switch-field__switch-wrap">
             <Switch ref={ref} id={id} disabled={disabled} {...switchProps} />
           </span>
-          <span className="switch-field__text">
-            <span className="switch-field__primary">{label}</span>
+          <FieldContent className="switch-field__text">
+            <FieldTitle className="switch-field__primary">{label}</FieldTitle>
             {hasSecondary ? (
-              <span className="switch-field__secondary">{secondaryText}</span>
+              <FieldDescription className="switch-field__secondary">
+                {secondaryText}
+              </FieldDescription>
             ) : null}
-          </span>
-        </label>
-      </div>
+          </FieldContent>
+        </FieldLabel>
+      </Field>
     )
   }
 )

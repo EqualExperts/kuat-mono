@@ -3,6 +3,13 @@ import type { HTMLAttributes } from "vue"
 import { computed, useAttrs, useId } from "vue"
 import { reactiveOmit } from "@vueuse/core"
 import { cn } from "@/lib/utils"
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldLabel,
+  FieldTitle,
+} from "../field"
 import Switch from "./Switch.vue"
 import type { SwitchFieldAppearance, SwitchFieldLayout } from "./constants"
 import "./switch-field.css"
@@ -12,6 +19,7 @@ defineOptions({ inheritAttrs: false })
 const props = withDefaults(
   defineProps<{
     class?: HTMLAttributes["class"]
+    /** @deprecated Prefer composing `Field` + `Switch` for new form layouts. */
     label: string
     secondaryText?: string
     appearance?: SwitchFieldAppearance
@@ -60,7 +68,7 @@ const isInvalid = computed(() => {
 </script>
 
 <template>
-  <div
+  <Field
     data-slot="switch-field"
     :class="
       cn(
@@ -75,7 +83,7 @@ const isInvalid = computed(() => {
       )
     "
   >
-    <label class="switch-field__label" :for="fieldId">
+    <FieldLabel class="switch-field__label" :for="fieldId">
       <span class="switch-field__switch-wrap">
         <Switch
           :id="fieldId"
@@ -84,10 +92,12 @@ const isInvalid = computed(() => {
           :disabled="disabled"
         />
       </span>
-      <span class="switch-field__text">
-        <span class="switch-field__primary">{{ label }}</span>
-        <span v-if="hasSecondary" class="switch-field__secondary">{{ secondaryText }}</span>
-      </span>
-    </label>
-  </div>
+      <FieldContent class="switch-field__text">
+        <FieldTitle class="switch-field__primary">{{ label }}</FieldTitle>
+        <FieldDescription v-if="hasSecondary" class="switch-field__secondary">
+          {{ secondaryText }}
+        </FieldDescription>
+      </FieldContent>
+    </FieldLabel>
+  </Field>
 </template>

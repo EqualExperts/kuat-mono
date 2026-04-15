@@ -9,6 +9,14 @@ const meta: Meta<typeof CheckboxField> = {
   title: 'Components/CheckboxField',
   component: CheckboxField,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Deprecated wrapper API retained for backwards compatibility. Prefer composing `Field` + `Checkbox` (see `Components/Field`).',
+      },
+    },
+  },
   argTypes: {
     label: { control: 'text' },
     secondaryText: { control: 'text' },

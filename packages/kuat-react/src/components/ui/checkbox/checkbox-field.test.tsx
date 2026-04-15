@@ -101,6 +101,13 @@ describe("CheckboxField", () => {
     expect(container.querySelector(".checkbox-field--appearance-card")).toBeInTheDocument()
   })
 
+  it("retains card label hook for appearance styling", () => {
+    const { container } = render(
+      <CheckboxField label="Label" appearance="card" secondaryText="More" />
+    )
+    expect(container.querySelector(".checkbox-field__label")).toBeInTheDocument()
+  })
+
   it("renders secondary text in plain mode", () => {
     render(
       <CheckboxField label="Primary" appearance="plain" secondaryText="Secondary line" />

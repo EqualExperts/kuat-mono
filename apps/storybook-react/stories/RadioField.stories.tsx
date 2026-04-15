@@ -13,7 +13,7 @@ const meta: Meta<typeof RadioField> = {
     docs: {
       description: {
         component:
-          'Wrap options in `RadioGroup`. For accessibility, pair the group with a visible label using `aria-labelledby` on `RadioGroup` or a `fieldset`/`legend`.',
+          'Deprecated wrapper API retained for backwards compatibility. Prefer composing `Field` + `RadioGroupItem` (see `Components/Field`). Wrap options in `RadioGroup` and pair the group with a visible label using `aria-labelledby` or a `fieldset`/`legend`.',
       },
     },
   },
