@@ -2,6 +2,8 @@
 
 Component development rules for the Kuat Design System. This document defines naming conventions, variant architecture, accessibility requirements, and testing standards - independent of framework.
 
+**Consumers** choosing what to install or import in an application should read [**Choosing components (Kuat vs shadcn)**](../../setup/choosing-components.md) first. This file focuses on **contributors** and implementation standards inside the monorepo.
+
 ---
 
 ## Overview
@@ -19,8 +21,8 @@ When building UI, follow this priority order:
 | Priority | Source | When to Use |
 |----------|--------|-------------|
 | 1 | **Kuat Blocks** | Pre-built compositions (header, footer, search patterns) |
-| 2 | **Kuat Components** | Local versions of UI components from Kuat packages (Button, Dialog, ButtonGroup, etc.) |
-| 3 | **shadcn registry** | When no local version in Kuat (install via CLI in consumer project) |
+| 2 | **Kuat Components** | Components published from `@equal-experts/kuat-react` / `@equal-experts/kuat-vue` (e.g. Button, Field, Select, ButtonGroup) |
+| 3 | **shadcn registry** | When no published Kuat component exists (e.g. Dialog, DropdownMenu—install via CLI in the consumer project) |
 | 4 | **Custom Build** | Only when none of the above fit your needs |
 
 ### When to use the shadcn registry

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { KuatHeader, Button } from "@equal-experts/kuat-vue";
 import { Menu, ChevronDown, User } from "lucide-vue-next";
+import { kuatHeaderDocs } from "../docs/component-docs";
 
 const meta: Meta<typeof KuatHeader> = {
   title: "Kuat Blocks/KuatHeader",
@@ -8,6 +9,11 @@ const meta: Meta<typeof KuatHeader> = {
   tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",
+    docs: {
+      description: {
+        component: kuatHeaderDocs,
+      },
+    },
   },
   argTypes: {
     variant: {

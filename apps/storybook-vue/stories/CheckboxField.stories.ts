@@ -4,6 +4,7 @@
 import { ref } from 'vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { CheckboxField } from '@equal-experts/kuat-vue';
+import { checkboxFieldDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof CheckboxField> = {
   title: 'Components/CheckboxField',
@@ -12,8 +13,7 @@ const meta: Meta<typeof CheckboxField> = {
   parameters: {
     docs: {
       description: {
-        component:
-          'Deprecated wrapper API retained for backwards compatibility. Prefer composing `Field` + `Checkbox` (see `Components/Field`).',
+        component: checkboxFieldDocs,
       },
     },
   },

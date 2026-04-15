@@ -9,11 +9,19 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@equal-experts/kuat-react';
+import { accordionDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof Accordion> = {
   title: 'Components/Accordion',
   component: Accordion,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: accordionDocs,
+      },
+    },
+  },
 };
 
 export default meta;

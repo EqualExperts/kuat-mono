@@ -23,6 +23,7 @@ import {
   Switch,
   Textarea,
 } from "@equal-experts/kuat-vue"
+import { fieldDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof Field> = {
   title: "Components/Field",
@@ -31,8 +32,7 @@ const meta: Meta<typeof Field> = {
   parameters: {
     docs: {
       description: {
-        component:
-          "Composable Field primitives for labels, descriptions, grouping, and errors. Prefer this API for new forms. Legacy `*Field` wrappers remain available for migration.",
+        component: fieldDocs,
       },
     },
   },

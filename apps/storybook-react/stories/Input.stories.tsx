@@ -4,11 +4,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Search, Info } from 'lucide-react';
 import { Button, Input, INPUT_SIZES } from '@equal-experts/kuat-react';
+import { inputDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof Input> = {
   title: 'Components/Input',
   component: Input,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: inputDocs,
+      },
+    },
+  },
   argTypes: {
     size: {
       control: 'select',

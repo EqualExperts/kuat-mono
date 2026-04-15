@@ -1,11 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { Bold, Italic, Underline } from "lucide-react"
 import { ToggleGroup, ToggleGroupItem, TOGGLE_SIZES, TOGGLE_SKINS } from "@equal-experts/kuat-react"
+import { toggleGroupDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof ToggleGroup> = {
   title: "Components/ToggleGroup",
   component: ToggleGroup,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: toggleGroupDocs,
+      },
+    },
+  },
 }
 
 export default meta

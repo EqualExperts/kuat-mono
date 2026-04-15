@@ -1,11 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button, ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from "@equal-experts/kuat-react";
 import { ArchiveIcon, DownloadIcon, ShareIcon, TrashIcon } from "lucide-react";
+import { buttonGroupDocs } from "../docs/component-docs";
 
 const meta: Meta<typeof ButtonGroup> = {
   title: "Components/ButtonGroup",
   component: ButtonGroup,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: buttonGroupDocs,
+      },
+    },
+  },
   argTypes: {
     orientation: {
       control: "select",

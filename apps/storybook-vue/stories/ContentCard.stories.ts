@@ -1,10 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/vue3"
 import { ContentCard, Badge } from "@equal-experts/kuat-vue"
+import { contentCardDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof ContentCard> = {
   title: "Components/ContentCard",
   component: ContentCard,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: contentCardDocs,
+      },
+    },
+  },
 }
 
 export default meta

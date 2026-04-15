@@ -5,11 +5,19 @@ import { ref } from 'vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { Search, Info } from 'lucide-vue-next';
 import { Button, Input, INPUT_SIZES } from '@equal-experts/kuat-vue';
+import { inputDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof Input> = {
   title: 'Components/Input',
   component: Input,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: inputDocs,
+      },
+    },
+  },
   argTypes: {
     size: {
       control: 'select',

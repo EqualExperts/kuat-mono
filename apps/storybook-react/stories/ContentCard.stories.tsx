@@ -1,10 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { Badge, ContentCard } from "@equal-experts/kuat-react"
+import { contentCardDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof ContentCard> = {
   title: "Components/ContentCard",
   component: ContentCard,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: contentCardDocs,
+      },
+    },
+  },
 }
 
 export default meta

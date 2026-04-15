@@ -6,6 +6,7 @@ import {
   KuatCarouselPrevious,
   KuatCarouselNext,
 } from "@equal-experts/kuat-react"
+import { kuatCarouselDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof KuatCarousel> = {
   title: "Kuat Blocks/KuatCarousel",
@@ -15,8 +16,7 @@ const meta: Meta<typeof KuatCarousel> = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "Kuat Carousel is built with Embla. Use it for testimonials, image galleries, or any content that benefits from horizontal scrolling with 1, 2, or 3 visible slides. Navigation is in the top-right. See [marketing scenarios](https://github.com/EqualExperts/kuat-docs) for usage (e.g. many testimonials, limited space).",
+        component: kuatCarouselDocs,
       },
     },
   },

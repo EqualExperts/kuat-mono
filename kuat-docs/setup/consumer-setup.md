@@ -1,6 +1,8 @@
 # Consumer Setup Guide
 
-How to set up a new project using the Kuat Design System with the recommended architecture: **kuat-core for theming + shadcn components installed directly**.
+How to set up a new project using the Kuat Design System with the recommended architecture: **`kuat-core` for theming**, **`@equal-experts/kuat-react` or `@equal-experts/kuat-vue` for design-system components**, and **shadcn** only for primitives the packages do not publish.
+
+For **what to import from where**, read [choosing-components.md](./choosing-components.md) and [public-api-inventory.md](./public-api-inventory.md).
 
 ---
 
@@ -12,33 +14,31 @@ The Kuat Design System uses a layered architecture:
 ┌─────────────────────────────────────────────────────┐
 │  Your Application                                   │
 ├─────────────────────────────────────────────────────┤
-│  Kuat Blocks (Header, Footer, etc.)                 │  ← From kuat-react/vue
+│  Kuat blocks (KuatHeader, KuatCarousel, …)         │  ← From kuat-react / kuat-vue
 ├─────────────────────────────────────────────────────┤
-│  Kuat Custom Components (ButtonGroup)               │  ← From kuat-react/vue
+│  Kuat primitives (Button, Field, Select, …)        │  ← From kuat-react / kuat-vue
 ├─────────────────────────────────────────────────────┤
-│  shadcn Components (Button, Dialog, etc.)           │  ← Installed directly
+│  shadcn-only UI (Dialog, DropdownMenu, …)           │  ← Installed in your repo via CLI
 ├─────────────────────────────────────────────────────┤
-│  kuat-core (Design Tokens, Theme)                   │  ← Foundation
+│  kuat-core (design tokens, Tailwind preset)         │  ← Foundation
 └─────────────────────────────────────────────────────┘
 ```
 
-**Decision Priority:**
-1. **Kuat Blocks** - Pre-built compositions for common patterns
-2. **Kuat Components** - Custom components not in shadcn (e.g., ButtonGroup)
-3. **shadcn Components** - Standard UI components themed by kuat-core
-4. **Custom Build** - Only when none of the above fit
+**Decision priority:** See [choosing-components.md](./choosing-components.md) (blocks → Kuat package → shadcn for gaps → custom).
 
 ---
 
 ## Quick Start (React)
 
-### Step 1: Install kuat-core
+### Step 1: Install kuat-core and kuat-react
 
 ```bash
-pnpm add @equal-experts/kuat-core
+pnpm add @equal-experts/kuat-core @equal-experts/kuat-react
 ```
 
 ### Step 2: Configure Tailwind CSS
+
+Include Kuat package paths in `content` so Tailwind sees component classes.
 
 ```typescript
 // tailwind.config.ts
@@ -54,7 +54,7 @@ export default {
 } satisfies Config;
 ```
 
-### Step 3: Import Design Tokens
+### Step 3: Import design tokens
 
 ```typescript
 // main.tsx or App.tsx
@@ -62,50 +62,67 @@ import '@equal-experts/kuat-core/variables.css';
 import './styles.css'; // Your app styles
 ```
 
-### Step 4: Initialize shadcn
+### Step 4: Initialize shadcn (recommended for gaps)
+
+Use the shadcn CLI for components **not** shipped by Kuat (e.g. Dialog, DropdownMenu, Tabs). You can initialize early or when you first need a gap component.
 
 ```bash
 npx shadcn@latest init
 ```
 
-When prompted, use these settings:
+When prompted, use settings that match your stack, for example:
+
 - Style: Default
 - Base color: Slate
 - CSS variables: Yes
-- Tailwind config: tailwind.config.ts
-- Components path: src/components
-- Utils path: src/lib/utils
+- Tailwind config: `tailwind.config.ts`
+- Components path: `src/components`
+- Utils path: `src/lib/utils`
 
-### Step 5: Install shadcn Components
+### Step 5: Add shadcn components as needed
+
+Install only what Kuat does not provide, for example:
 
 ```bash
-# Install components as needed
-npx shadcn@latest add button
 npx shadcn@latest add dialog
 npx shadcn@latest add dropdown-menu
-# ... etc
 ```
 
-### Step 6: Install Kuat Custom Components (Optional)
+See [public-api-inventory.md](./public-api-inventory.md) for typical Kuat vs shadcn split.
 
-If you need Kuat-specific components like ButtonGroup:
+### Step 6: Import from Kuat vs your shadcn folder
 
-```bash
-pnpm add @equal-experts/kuat-react
-```
+**Prefer Kuat** for primitives that exist in the package (Button, Field, Select, Switch, Accordion, Alert Dialog, Badge, Input, Textarea, ButtonGroup, blocks, etc.):
 
 ```tsx
-// Only import custom components, not standard ones
-import { ButtonGroup, ButtonGroupText } from '@equal-experts/kuat-react';
-import { Button } from '@/components/ui/button'; // Your shadcn copy
+import { Button, ButtonGroup, Field } from '@equal-experts/kuat-react';
+// or tree-shake via subpaths:
+import { Switch } from '@equal-experts/kuat-react/switch';
+```
 
-function Example() {
+**Use your local shadcn copy** for components Kuat does not publish:
+
+```tsx
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+```
+
+**Example combining both:**
+
+```tsx
+import { Button, ButtonGroup } from '@equal-experts/kuat-react';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+
+export function Example() {
   return (
-    <ButtonGroup>
-      <Button>Option A</Button>
-      <Button>Option B</Button>
-      <Button>Option C</Button>
-    </ButtonGroup>
+    <Dialog>
+      <ButtonGroup>
+        <DialogTrigger asChild>
+          <Button variant="outline">Open</Button>
+        </DialogTrigger>
+        <Button>Option B</Button>
+      </ButtonGroup>
+      <DialogContent>Hello</DialogContent>
+    </Dialog>
   );
 }
 ```
@@ -114,10 +131,10 @@ function Example() {
 
 ## Quick Start (Vue)
 
-### Step 1: Install kuat-core
+### Step 1: Install kuat-core and kuat-vue
 
 ```bash
-pnpm add @equal-experts/kuat-core
+pnpm add @equal-experts/kuat-core @equal-experts/kuat-vue
 ```
 
 ### Step 2: Configure Tailwind CSS
@@ -136,7 +153,7 @@ export default {
 } satisfies Config;
 ```
 
-### Step 3: Import Design Tokens
+### Step 3: Import design tokens
 
 ```typescript
 // main.ts
@@ -154,24 +171,20 @@ createApp(App).mount('#app');
 npx shadcn-vue@latest init
 ```
 
-### Step 5: Install shadcn-vue Components
+### Step 5: Install shadcn-vue components as needed
 
 ```bash
-npx shadcn-vue@latest add button
 npx shadcn-vue@latest add dialog
-# ... etc
+npx shadcn-vue@latest add dropdown-menu
 ```
 
-### Step 6: Install Kuat Custom Components (Optional)
-
-```bash
-pnpm add @equal-experts/kuat-vue
-```
+### Step 6: Import from Kuat vs your shadcn folder
 
 ```vue
 <script setup lang="ts">
-import { ButtonGroup, ButtonGroupText } from '@equal-experts/kuat-vue';
-import { Button } from '@/components/ui/button';
+import { Button, ButtonGroup, Field } from '@equal-experts/kuat-vue';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+// or: import { Switch } from '@equal-experts/kuat-vue/switch'
 </script>
 
 <template>
@@ -184,58 +197,51 @@ import { Button } from '@/components/ui/button';
 
 ---
 
-## Project Structure
+## Project structure
 
-After setup, your project should look like:
+After setup, a typical project looks like:
 
 ```
 your-project/
 ├── src/
 │   ├── components/
-│   │   └── ui/              # shadcn components (installed directly)
-│   │       ├── button.tsx
-│   │       ├── dialog.tsx
-│   │       └── ...
+│   │   └── ui/              # shadcn CLI: components Kuat does not ship (e.g. dialog)
 │   ├── lib/
-│   │   └── utils.ts         # cn() utility from shadcn
+│   │   └── utils.ts         # cn() from shadcn init
 │   ├── App.tsx
 │   └── main.tsx
-├── tailwind.config.ts       # Uses kuatPreset
+├── tailwind.config.ts       # kuatPreset
 ├── components.json          # shadcn CLI config
-└── package.json
+└── package.json             # includes @equal-experts/kuat-core and kuat-react or kuat-vue
 ```
+
+You **do not** need a local `button.tsx` if you import `Button` from Kuat only—but many teams still keep shadcn Dialog/Tabs/etc. under `components/ui/`.
 
 ---
 
-## What Goes Where
+## What goes where
 
-| Component Type | Source | Example |
-|----------------|--------|---------|
-| Design tokens | `@equal-experts/kuat-core` | Colors, fonts, spacing |
-| Standard UI | shadcn CLI | Button, Dialog, Dropdown |
-| Kuat custom | `@equal-experts/kuat-react` | ButtonGroup |
-| Kuat blocks | `@equal-experts/kuat-react` | KuatHeader (coming soon) |
-| App-specific | Your code | Custom features |
+| Need | Source | Examples |
+|------|--------|----------|
+| Design tokens | `@equal-experts/kuat-core` | `variables.css`, Tailwind preset |
+| Kuat primitives and blocks | `@equal-experts/kuat-react` / `@equal-experts/kuat-vue` | `Button`, `Field`, `Select`, `KuatHeader`, `ButtonGroup`, … |
+| shadcn-only UI | CLI into your repo | `Dialog`, `DropdownMenu`, `Tabs`, … |
+| App-specific | Your code | Business views, routes |
 
 ---
 
 ## Theming
 
-shadcn components are automatically themed when you:
+Components stay on-brand when you:
 
-1. Import `@equal-experts/kuat-core/variables.css`
-2. Use the kuat Tailwind preset
+1. Import `@equal-experts/kuat-core/variables.css` before app styles.
+2. Use the Kuat Tailwind preset.
 
-The CSS variables from kuat-core provide:
-- Brand colors (EE Blue, Transform Teal, etc.)
-- Typography (Lexend, JetBrains Mono, Lora)
-- Spacing scale (8-point grid)
-- Border radius values
-- Light/dark mode support
+Applies to Kuat components and to shadcn copies that use the same CSS variables.
 
-### Dark Mode
+### Dark mode
 
-Apply the `.dark` class to your root element:
+Apply the `.dark` class on the root (or toggle it):
 
 ```tsx
 <html className="dark">
@@ -245,42 +251,31 @@ Apply the `.dark` class to your root element:
 </html>
 ```
 
-Or toggle dynamically:
-
 ```tsx
 document.documentElement.classList.toggle('dark');
 ```
 
 ---
 
-## Migration from Previous Architecture
+## Import paths (barrel vs subpath)
 
-If you were previously importing components from `@equal-experts/kuat-react`:
+- **Barrel:** `import { Checkbox } from '@equal-experts/kuat-react'`
+- **Subpath:** `import { Checkbox } from '@equal-experts/kuat-react/checkbox'` — matches `package.json` `exports` and can help bundlers.
 
-### Before (Deprecated)
+See [public-api-inventory.md](./public-api-inventory.md) for subpath list.
 
-```tsx
-import { Button, Dialog, ButtonGroup } from '@equal-experts/kuat-react';
-```
+---
 
-### After (Recommended)
+## Migration from older guidance
 
-```tsx
-// Standard components from your local shadcn installation
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
+Some projects were told to put **all** “standard” UI in shadcn and use Kuat only for `ButtonGroup`. Kuat now ships many localized primitives **from the package**.
 
-// Kuat-specific components from the package
-import { ButtonGroup } from '@equal-experts/kuat-react';
-```
+**Recommended today**
 
-### Migration Steps
+- Import **Button**, **Field**, **Select**, and other published primitives from `@equal-experts/kuat-react` or `@equal-experts/kuat-vue`.
+- Use **shadcn** for components Kuat does not export (check [public-api-inventory.md](./public-api-inventory.md)).
 
-1. Install `@equal-experts/kuat-core` if not already installed
-2. Initialize shadcn CLI: `npx shadcn@latest init`
-3. Install the components you need: `npx shadcn@latest add button dialog`
-4. Update imports to use local components
-5. Remove deprecated imports from `@equal-experts/kuat-react`
+**If you already have shadcn copies** of components that Kuat also ships, migrate gradually: switch imports to Kuat and remove duplicates when practical to avoid two buttons with different behaviour.
 
 ---
 
@@ -288,24 +283,27 @@ import { ButtonGroup } from '@equal-experts/kuat-react';
 
 ### Components not styled correctly
 
-1. Verify `@equal-experts/kuat-core/variables.css` is imported before other styles
-2. Check that `kuatPreset` is in your Tailwind config `presets` array
-3. Ensure shadcn components are in the Tailwind `content` paths
+1. Import `@equal-experts/kuat-core/variables.css` before other styles.
+2. Ensure `kuatPreset` is in Tailwind `presets`.
+3. Ensure both `src/**` and `node_modules/@equal-experts/kuat-react/**` (or `kuat-vue`) are in `content`.
+4. For shadcn files under `src/components/ui`, keep those paths in `content`.
 
 ### TypeScript errors
 
-1. Ensure `@types/react` (React) or `vue` (Vue) are installed
-2. Set `moduleResolution` to `bundler` or `node16` in tsconfig
+1. Install `@types/react` (React) or use Vue’s types.
+2. Set `moduleResolution` to `bundler` or `node16` in `tsconfig`.
 
 ### Dark mode not working
 
-1. Verify `.dark` class is applied to `<html>` or a parent element
-2. Check that CSS variables are imported
+1. Apply `.dark` on `<html>` or an ancestor.
+2. Confirm CSS variables are loaded.
 
 ---
 
-## Related Documentation
+## Related documentation
 
-- [kuat-core Integration](./kuat-core-integration.md) - Framework-agnostic token usage
-- [Verification Guide](./verification.md) - Test your setup
-- [Component Patterns](../rules/components/patterns.md) - Development standards
+- [Choosing components (Kuat vs shadcn)](./choosing-components.md)
+- [Public API inventory](./public-api-inventory.md)
+- [kuat-core integration](./kuat-core-integration.md)
+- [Verification](./verification.md)
+- [Component patterns (contributors)](../rules/components/patterns.md)

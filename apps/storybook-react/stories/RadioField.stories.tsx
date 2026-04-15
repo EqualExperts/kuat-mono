@@ -4,6 +4,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { RadioField, RadioGroup } from '@equal-experts/kuat-react';
 import { useState } from 'react';
+import { radioFieldDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof RadioField> = {
   title: 'Components/RadioField',
@@ -12,8 +13,7 @@ const meta: Meta<typeof RadioField> = {
   parameters: {
     docs: {
       description: {
-        component:
-          'Deprecated wrapper API retained for backwards compatibility. Prefer composing `Field` + `RadioGroupItem` (see `Components/Field`). Wrap options in `RadioGroup` and pair the group with a visible label using `aria-labelledby` or a `fieldset`/`legend`.',
+        component: radioFieldDocs,
       },
     },
   },

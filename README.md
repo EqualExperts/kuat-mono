@@ -32,8 +32,9 @@ apps/
 
 If you want to **use** the Kuat Design System in your React or Vue application:
 
-- **React**: See [@equal-experts/kuat-react README](./packages/kuat-react/README.md) for installation and usage
-- **Vue**: See [@equal-experts/kuat-vue README](./packages/kuat-vue/README.md) for installation and usage
+- **Setup (tokens + imports):** [Consumer setup](./kuat-docs/setup/consumer-setup.md) and [Choosing components (Kuat vs shadcn)](./kuat-docs/setup/choosing-components.md)
+- **React**: [@equal-experts/kuat-react README](./packages/kuat-react/README.md)
+- **Vue**: [@equal-experts/kuat-vue README](./packages/kuat-vue/README.md)
 
 ### For Contributors
 
@@ -75,20 +76,15 @@ pnpm lint
 pnpm dev
 ```
 
-## Project Status
+## Project status
 
-**Current Version**: 0.2.x
+**Current workspace / package version:** 0.4.2 (see `package.json` in the repo root and under `packages/*`).
 
-**Available Components**:
-- Button (with variants: default, destructive, outline, secondary, ghost, link)
-- Accordion (single and multiple selection modes)
-- Alert Dialog (with customizable actions)
+Published libraries combine **`@equal-experts/kuat-core`** (tokens), **`@equal-experts/kuat-react`** or **`@equal-experts/kuat-vue`** (primitives and blocks), and **shadcn** / **shadcn-vue** in your app for components Kuat does not ship (for example Dialog, DropdownMenu).
 
-**Coming Soon**:
-- Form components (Input, Select, Checkbox, Radio)
-- Navigation components (Tabs, Menu, Breadcrumb)
-- Feedback components (Toast, Alert, Progress)
-- And more...
+**Illustrative coverage in `@equal-experts/kuat-react` / `@equal-experts/kuat-vue`:** actions and grouping (`Button`, `ButtonGroup`, `Badge`), form controls (`Field`, `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `Toggle`), surfaces (`Accordion`, `AlertDialog`, `Breadcrumb`), blocks (`KuatHeader`, `KuatCarousel`, `KuatLogoLockup`, `KuatRadialProgress`, `ContentCard`), and more. See each package README and [public API inventory](./kuat-docs/setup/public-api-inventory.md) for the authoritative list.
+
+**Storybook** in this repo documents interactive behaviour and is the primary reference for component API details.
 
 ## Packages
 
@@ -106,17 +102,17 @@ Shared CSS variables and Tailwind configuration for consistent theming across Re
 
 React component library built with shadcn/ui, Radix UI primitives, and Tailwind CSS v4.
 
-**Installation**: `pnpm add @equal-experts/kuat-react`
+**Install:** `pnpm add @equal-experts/kuat-core @equal-experts/kuat-react`
 
-**Usage Guide**: See [packages/kuat-react/README.md](./packages/kuat-react/README.md) for integration instructions.
+**Usage:** [packages/kuat-react/README.md](./packages/kuat-react/README.md), [consumer setup](./kuat-docs/setup/consumer-setup.md)
 
 ### @equal-experts/kuat-vue
 
 Vue component library built with shadcn-vue, Radix Vue primitives, and Tailwind CSS v4.
 
-**Installation**: `pnpm add @equal-experts/kuat-vue`
+**Install:** `pnpm add @equal-experts/kuat-core @equal-experts/kuat-vue`
 
-**Usage Guide**: See [packages/kuat-vue/README.md](./packages/kuat-vue/README.md) for integration instructions.
+**Usage:** [packages/kuat-vue/README.md](./packages/kuat-vue/README.md), [consumer setup](./kuat-docs/setup/consumer-setup.md)
 
 ## Tech Stack
 
@@ -130,11 +126,13 @@ Vue component library built with shadcn-vue, Radix Vue primitives, and Tailwind 
 
 ## Documentation
 
-### For Users
+### For users
 
-- **[@equal-experts/kuat-react README](./packages/kuat-react/README.md)** - How to use the React library in your application
-- **[@equal-experts/kuat-vue README](./packages/kuat-vue/README.md)** - How to use the Vue library in your application
-- [Design System Documentation](./kuat-docs/README.md) - Full documentation index
+- [Consumer setup](./kuat-docs/setup/consumer-setup.md) — install order, Tailwind, imports
+- [Choosing components](./kuat-docs/setup/choosing-components.md) — Kuat packages vs shadcn vs custom
+- [@equal-experts/kuat-react README](./packages/kuat-react/README.md)
+- [@equal-experts/kuat-vue README](./packages/kuat-vue/README.md)
+- [Design system documentation](./kuat-docs/README.md) — index of rules and examples
 
 ### For Contributors
 

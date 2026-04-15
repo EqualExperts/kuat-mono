@@ -9,9 +9,12 @@ Guides for integrating the Kuat Design System documentation into your tools, IDE
 | File | Description |
 |------|-------------|
 | [consumer-setup.md](./consumer-setup.md) | Recommended project setup for consumers |
+| [choosing-components.md](./choosing-components.md) | Kuat packages vs shadcn vs custom |
+| [public-api-inventory.md](./public-api-inventory.md) | Published API and documentation map |
 | [kuat-core-integration.md](./kuat-core-integration.md) | Framework-agnostic token usage |
 | [integration.md](./integration.md) | How to integrate docs into IDEs and agents |
 | [verification.md](./verification.md) | Testing your setup works correctly |
+| [DOCUMENTATION-AUDIT-SUMMARY.md](./DOCUMENTATION-AUDIT-SUMMARY.md) | Last documentation review outcomes |
 
 ---
 

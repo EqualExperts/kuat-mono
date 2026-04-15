@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { KuatHeader, Button } from "@equal-experts/kuat-react";
 import { Menu, ChevronDown, User } from "lucide-react";
+import { kuatHeaderDocs } from "../docs/component-docs";
 
 const meta: Meta<typeof KuatHeader> = {
   title: "Kuat Blocks/KuatHeader",
@@ -8,6 +9,11 @@ const meta: Meta<typeof KuatHeader> = {
   tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",
+    docs: {
+      description: {
+        component: kuatHeaderDocs,
+      },
+    },
   },
   argTypes: {
     variant: {

@@ -3,11 +3,19 @@
  */
 import type { Meta, StoryObj } from '@storybook/react';
 import { RadioGroup, RadioGroupItem } from '@equal-experts/kuat-react';
+import { radioDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof RadioGroup> = {
   title: 'Components/Radio',
   component: RadioGroup,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: radioDocs,
+      },
+    },
+  },
   argTypes: {
     disabled: { control: 'boolean' },
   },

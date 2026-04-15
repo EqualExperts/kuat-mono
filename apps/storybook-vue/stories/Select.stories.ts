@@ -12,6 +12,7 @@ import {
   SELECT_LINES,
   SELECT_SIZES,
 } from "@equal-experts/kuat-vue"
+import { selectDocs } from "../docs/component-docs"
 
 const groupedThemeItems = [
   {
@@ -33,6 +34,13 @@ const meta: Meta<typeof KuatSelect> = {
   title: "Components/Select",
   component: KuatSelect,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: selectDocs,
+      },
+    },
+  },
   argTypes: {
     size: {
       control: "select",

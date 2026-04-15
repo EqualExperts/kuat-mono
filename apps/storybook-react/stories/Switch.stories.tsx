@@ -1,11 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { useState } from "react"
 import { Switch } from "@equal-experts/kuat-react"
+import { switchDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof Switch> = {
   title: "Components/Switch",
   component: Switch,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: switchDocs,
+      },
+    },
+  },
   args: {
     disabled: false,
     defaultChecked: false,

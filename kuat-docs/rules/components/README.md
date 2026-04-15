@@ -13,6 +13,8 @@ Component development patterns for the Kuat Design System. These rules define ho
 | [carousel.md](./carousel.md) | Kuat Carousel block: when to use, API, packages |
 | [logo-lockup.md](./logo-lockup.md) | Kuat Logo Lockup block: Service/Demo use, mode, props |
 
+**Consumers:** [Choosing components (Kuat vs shadcn)](../../setup/choosing-components.md) · [Public API inventory](../../setup/public-api-inventory.md). Most primitives use Storybook (`parameters.docs` + shared `component-docs` in each Storybook app) rather than a markdown file per component.
+
 ---
 
 ## Key Principles

@@ -6,11 +6,19 @@ import {
   TOGGLE_SIZES,
   TOGGLE_SKINS,
 } from "@equal-experts/kuat-vue"
+import { toggleGroupDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof ToggleGroup> = {
   title: "Components/ToggleGroup",
   component: ToggleGroup,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: toggleGroupDocs,
+      },
+    },
+  },
   args: {
     type: "single",
     orientation: "horizontal",

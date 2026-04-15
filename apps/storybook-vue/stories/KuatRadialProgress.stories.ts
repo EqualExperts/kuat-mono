@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3"
 import { KuatRadialProgress } from "@equal-experts/kuat-vue"
+import { kuatRadialProgressDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof KuatRadialProgress> = {
   title: "Components/KuatRadialProgress",
@@ -7,6 +8,11 @@ const meta: Meta<typeof KuatRadialProgress> = {
   tags: ["autodocs"],
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component: kuatRadialProgressDocs,
+      },
+    },
   },
   argTypes: {
     value: {

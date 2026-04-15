@@ -4,11 +4,19 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Breadcrumb } from "@equal-experts/kuat-react";
 import type { BreadcrumbItemEntry } from "@equal-experts/kuat-react";
+import { breadcrumbDocs } from "../docs/component-docs";
 
 const meta: Meta<typeof Breadcrumb> = {
   title: "Components/Breadcrumb",
   component: Breadcrumb,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: breadcrumbDocs,
+      },
+    },
+  },
   argTypes: {
     items: {
       description: "Ordered list of breadcrumb entries (label, optional href, optional children for dropdown)",

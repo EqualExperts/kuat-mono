@@ -7,7 +7,7 @@ Equal Experts' design system for building consistent, accessible, and brand-alig
 Kuat is a **design decision layer** that provides:
 
 - **Design Tokens** (`kuat-core`) - CSS variables, Tailwind preset, brand colors, typography
-- **Custom Components** (`kuat-react`, `kuat-vue`) - Components not in shadcn (ButtonGroup, etc.)
+- **Components** (`kuat-react`, `kuat-vue`) - Published primitives and blocks; use shadcn CLI for gaps (e.g. Dialog)
 - **Blocks** - Pre-built compositions for common patterns (headers, footers, search)
 - **Documentation** - Design rules, content guidelines, and patterns
 
@@ -19,9 +19,9 @@ Kuat is a **design decision layer** that provides:
 ├─────────────────────────────────────────────────────┤
 │  Kuat Blocks (Header, Footer, etc.)                 │  ← From kuat-react/vue
 ├─────────────────────────────────────────────────────┤
-│  Kuat Components (ButtonGroup)                      │  ← From kuat-react/vue
+│  Kuat Components (Button, Field, Select, …)         │  ← From kuat-react/vue
 ├─────────────────────────────────────────────────────┤
-│  shadcn Components (Button, Dialog)                 │  ← Installed directly via CLI
+│  shadcn-only (Dialog, DropdownMenu, …)               │  ← Installed in your app via CLI
 ├─────────────────────────────────────────────────────┤
 │  kuat-core (Design Tokens, Theme)                   │  ← Foundation
 └─────────────────────────────────────────────────────┘
@@ -43,9 +43,9 @@ When building UI, follow this priority:
 
 | Priority | Source | When to Use |
 |----------|--------|-------------|
-| 1 | **Kuat Blocks** | Pre-built compositions (header, footer, search) |
-| 2 | **Kuat Components** | Custom components not in shadcn (ButtonGroup) |
-| 3 | **shadcn** | Standard UI components, themed via kuat-core |
+| 1 | **Kuat Blocks** | Pre-built compositions (header, carousel, logo lockup) |
+| 2 | **Kuat Components** | Published from `@equal-experts/kuat-react` / `kuat-vue` (Button, Field, Select, ButtonGroup, …) |
+| 3 | **shadcn** | Components **not** in Kuat (e.g. Dialog), themed via kuat-core |
 | 4 | **Custom** | Only when none of the above fit |
 
 ## Design Decision Framework
@@ -56,7 +56,7 @@ When building UI, follow this priority:
 | Which border radius? | 0px static, 6px interactive, 4px inputs |
 | How much spacing? | Use 8-point grid (multiples of 4px) |
 | Which font? | Lexend (UI), JetBrains Mono (code), Lora (editorial) |
-| Which component library? | shadcn + kuat-core theming (see setup guide) |
+| Which component library? | `kuat-core` + `@equal-experts/kuat-react` or `kuat-vue` for published primitives; shadcn CLI for gaps (see [setup/choosing-components.md](./setup/choosing-components.md)) |
 
 ---
 
@@ -68,8 +68,7 @@ Load `rules/` directory
 **For framework examples:**
 Also load `examples/react/` or `examples/vue/`
 
-**For setup/integration:**
-See `setup/integration.md`
+**For setup:** [setup/consumer-setup.md](./setup/consumer-setup.md), [setup/choosing-components.md](./setup/choosing-components.md) · **IDE/agents:** [setup/integration.md](./setup/integration.md)
 
 ---
 
@@ -111,10 +110,13 @@ How to integrate into your environment:
 
 | File | Description |
 |------|-------------|
-| [setup/consumer-setup.md](./setup/consumer-setup.md) | **Recommended**: kuat-core + shadcn setup |
+| [setup/consumer-setup.md](./setup/consumer-setup.md) | **Recommended**: `kuat-core`, Kuat packages, shadcn for gaps |
+| [setup/choosing-components.md](./setup/choosing-components.md) | When to import from Kuat vs install via shadcn |
+| [setup/public-api-inventory.md](./setup/public-api-inventory.md) | Published exports ↔ Storybook / narrative docs |
 | [setup/integration.md](./setup/integration.md) | Integration patterns for IDEs and agents |
 | [setup/verification.md](./setup/verification.md) | Testing your setup |
 | [setup/kuat-core-integration.md](./setup/kuat-core-integration.md) | Framework-agnostic token usage |
+| [setup/DOCUMENTATION-AUDIT-SUMMARY.md](./setup/DOCUMENTATION-AUDIT-SUMMARY.md) | Latest documentation review summary |
 
 ---
 
@@ -232,21 +234,21 @@ Test your setup with these prompts:
 | Package | Description |
 |---------|-------------|
 | `@equal-experts/kuat-core` | Design tokens, CSS variables, Tailwind preset (foundation) |
-| `@equal-experts/kuat-react` | Custom React components and blocks (ButtonGroup, etc.) |
-| `@equal-experts/kuat-vue` | Custom Vue components and blocks (ButtonGroup, etc.) |
+| `@equal-experts/kuat-react` | React primitives, blocks, and utilities (see [public-api-inventory](./setup/public-api-inventory.md)) |
+| `@equal-experts/kuat-vue` | Vue primitives, blocks, and utilities |
 
-**Note:** For standard UI components (Button, Dialog, etc.), install them directly via shadcn CLI. They will be automatically themed when using kuat-core.
+**Note:** Import primitives from Kuat packages when published; add **shadcn** / **shadcn-vue** copies only for components Kuat does not ship (for example Dialog). See [choosing-components](./setup/choosing-components.md).
 
 ---
 
 ## For Application Developers
 
-**Recommended Setup:** Use `kuat-core` for theming + shadcn components installed directly.
+**Recommended setup:** `kuat-core` + `@equal-experts/kuat-react` or `kuat-vue` + **shadcn only for gaps**.
 
-- **Quick Start**: See [Consumer Setup Guide](./setup/consumer-setup.md)
-- **React Applications**: See [@equal-experts/kuat-react README](../packages/kuat-react/README.md)
-- **Vue Applications**: See [@equal-experts/kuat-vue README](../packages/kuat-vue/README.md)
-- **Any Framework**: See [kuat-core-integration.md](./setup/kuat-core-integration.md)
+- **Setup & imports:** [Consumer setup](./setup/consumer-setup.md) · [Choosing components](./setup/choosing-components.md)
+- **React:** [@equal-experts/kuat-react README](../packages/kuat-react/README.md)
+- **Vue:** [@equal-experts/kuat-vue README](../packages/kuat-vue/README.md)
+- **Any framework (tokens only):** [kuat-core-integration](./setup/kuat-core-integration.md)
 
 ---
 

@@ -4,6 +4,7 @@
 import { ref } from 'vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { RadioField, RadioGroup } from '@equal-experts/kuat-vue';
+import { radioFieldDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof RadioField> = {
   title: 'Components/RadioField',
@@ -12,8 +13,7 @@ const meta: Meta<typeof RadioField> = {
   parameters: {
     docs: {
       description: {
-        component:
-          'Deprecated wrapper API retained for backwards compatibility. Prefer composing `Field` + `RadioGroupItem` (see `Components/Field`). Wrap options in `RadioGroup` (`v-model` on the group) and pair with a visible label using `aria-labelledby` or a `fieldset`/`legend`.',
+        component: radioFieldDocs,
       },
     },
   },

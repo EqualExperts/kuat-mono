@@ -1,10 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/vue3"
 import { KuatLogoLockup } from "@equal-experts/kuat-vue"
+import { kuatLogoLockupDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof KuatLogoLockup> = {
   title: "Kuat Blocks/KuatLogoLockup",
   component: KuatLogoLockup,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: kuatLogoLockupDocs,
+      },
+    },
+  },
   argTypes: {
     title: {
       control: "text",

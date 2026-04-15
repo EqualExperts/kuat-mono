@@ -4,6 +4,7 @@
 import { ref } from "vue"
 import type { Meta, StoryObj } from "@storybook/vue3"
 import { SwitchField } from "@equal-experts/kuat-vue"
+import { switchFieldDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof SwitchField> = {
   title: "Components/SwitchField",
@@ -12,8 +13,7 @@ const meta: Meta<typeof SwitchField> = {
   parameters: {
     docs: {
       description: {
-        component:
-          "Deprecated wrapper API retained for backwards compatibility. Prefer composing `Field` + `Switch` (see `Components/Field`).",
+        component: switchFieldDocs,
       },
     },
   },

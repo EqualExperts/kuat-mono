@@ -1,24 +1,24 @@
 # @equal-experts/kuat-vue
 
-Custom Vue components and blocks for the Kuat Design System.
+Vue 3 components and blocks for the Kuat Design System: **localized primitives** and **composed blocks**. Use **`@equal-experts/kuat-core`** for tokens and **shadcn-vue** only for UI that Kuat does not ship (for example Dialog, DropdownMenu).
+
+**When to import from here vs shadcn-vue:** [Choosing components](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/setup/choosing-components.md) · [Public API inventory](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/setup/public-api-inventory.md)
 
 ---
 
 ## Architecture
 
-This package provides **custom components** and **blocks** that are unique to Kuat. It also provides a localized **Button** component. For other UI components (e.g. Dialog), install them via shadcn-vue CLI with kuat-core theming.
-
 ```
 ┌─────────────────────────────────────────────────────┐
 │  Your Application                                   │
 ├─────────────────────────────────────────────────────┤
-│  Kuat Blocks (from this package)                    │
+│  Kuat blocks (KuatHeader, KuatCarousel, …)         │  ← This package
 ├─────────────────────────────────────────────────────┤
-│  Kuat Components (from this package)                │
+│  Kuat primitives (Button, Field, Select, …)        │  ← This package
 ├─────────────────────────────────────────────────────┤
-│  shadcn-vue Components (installed directly)         │
+│  shadcn-vue-only (Dialog, DropdownMenu, …)          │  ← Installed in your app
 ├─────────────────────────────────────────────────────┤
-│  @equal-experts/kuat-core (design tokens)           │
+│  @equal-experts/kuat-core                            │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -27,66 +27,58 @@ This package provides **custom components** and **blocks** that are unique to Ku
 ## Installation
 
 ```bash
-# Using pnpm (recommended)
-pnpm add @equal-experts/kuat-vue
-
-# Using npm
-npm install @equal-experts/kuat-vue
-
-# Using yarn
-yarn add @equal-experts/kuat-vue
-```
-
-### Peer Dependencies
-
-```bash
-pnpm add vue radix-vue reka-ui
-```
-
----
-
-## What's Included
-
-### Custom Components
-
-Components unique to Kuat, not available in shadcn-vue:
-
-| Component | Description |
-|-----------|-------------|
-| `Button` | Primary actions with variant (primary, secondary, outline, ghost, ghost-muted, destructive) and color |
-| `ButtonGroup` | Groups buttons together with proper styling |
-| `ButtonGroupText` | Text element within a button group |
-| `ButtonGroupSeparator` | Separator between button group items |
-
-### Blocks (Coming Soon)
-
-Pre-built compositions for common patterns:
-
-| Block | Description |
-|-------|-------------|
-| `KuatHeader` | Brand header with logo, navigation, actions |
-| `KuatFooter` | Brand footer with links and legal |
-| `KuatSearchPattern` | Search input with suggestions |
-
-### Utilities
-
-| Utility | Description |
-|---------|-------------|
-| `cn()` | Class name merger using clsx + tailwind-merge |
-
----
-
-## Recommended Setup
-
-For the best experience, combine this package with kuat-core and shadcn-vue:
-
-### Step 1: Install Dependencies
-
-```bash
 pnpm add @equal-experts/kuat-core @equal-experts/kuat-vue
 ```
 
-### Step 2: Configure Tailwind
+### Peer dependencies
+
+See this package’s `package.json` `peerDependencies` (for example `vue`, `radix-vue` / `reka-ui` as appropriate to your stack).
+
+---
+
+## What’s included
+
+### Utilities
+
+| Export | Description |
+|--------|-------------|
+| `cn` | Class name merger |
+
+### Blocks
+
+| Area | Examples |
+|------|----------|
+| Header / brand | `KuatHeader`, `EELogo` |
+| Carousel | `KuatCarousel`, `KuatCarouselContent`, `KuatCarouselItem`, `KuatCarouselPrevious`, `KuatCarouselNext` |
+| Logo lockup | `KuatLogoLockup`, `EELogoIcon` |
+| Progress | `KuatRadialProgress` |
+| Cards | `ContentCard` |
+
+### Form and actions
+
+`Button`, `ButtonGroup`, `ButtonGroupText`, `ButtonGroupSeparator`, `Badge`, `Input`, `Textarea`, `Field` (+ subcomponents), `KuatSelect` / `Select` (+ primitives), `Checkbox` / `CheckboxField`, `RadioGroup` / `RadioField`, `Switch` / `SwitchField`, `Toggle`, `ToggleGroup`.
+
+### Content and navigation
+
+`Accordion`, `AlertDialog`, `Breadcrumb` (Vue API may differ slightly from React—see Storybook: `apps/storybook-vue`).
+
+### Tree-shakable subpath imports
+
+Example:
+
+```vue
+<script setup lang="ts">
+import { Switch } from '@equal-experts/kuat-vue/switch';
+</script>
+```
+
+See `package.json` `exports` and [public-api-inventory.md](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/setup/public-api-inventory.md).
+
+---
+
+## Recommended setup
+
+### 1. Tailwind
 
 ```typescript
 // tailwind.config.ts
@@ -102,38 +94,31 @@ export default {
 } satisfies Config;
 ```
 
-### Step 3: Import Styles
+### 2. Design tokens
 
 ```typescript
 // main.ts
-import { createApp } from 'vue';
 import '@equal-experts/kuat-core/variables.css';
-import App from './App.vue';
-
-createApp(App).mount('#app');
 ```
 
-### Step 4: Install shadcn-vue Components
+### 3. shadcn-vue for gaps
 
 ```bash
 npx shadcn-vue@latest init
-npx shadcn-vue@latest add button dialog dropdown-menu
+npx shadcn-vue@latest add dialog dropdown-menu
 ```
 
-### Step 5: Use Components Together
+### 4. Use Kuat + shadcn-vue together
 
 ```vue
 <script setup lang="ts">
-// Kuat custom components from this package
-import { ButtonGroup, ButtonGroupText, Button } from '@equal-experts/kuat-vue';
-
-// Other shadcn-vue components from your local installation if needed
+import { Button, ButtonGroup } from '@equal-experts/kuat-vue';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 </script>
 
 <template>
   <ButtonGroup>
     <Button variant="outline">Edit</Button>
-    <Button variant="outline">Save</Button>
     <Button variant="destructive">Delete</Button>
   </ButtonGroup>
 </template>
@@ -141,11 +126,9 @@ import { ButtonGroup, ButtonGroupText, Button } from '@equal-experts/kuat-vue';
 
 ---
 
-## Component Examples
+## Component examples
 
 ### ButtonGroup
-
-Groups buttons together with seamless borders:
 
 ```vue
 <script setup lang="ts">
@@ -153,95 +136,44 @@ import { ButtonGroup, ButtonGroupText, Button } from '@equal-experts/kuat-vue';
 </script>
 
 <template>
-  <!-- Horizontal (default) -->
   <ButtonGroup>
     <Button variant="outline">Left</Button>
-    <Button variant="outline">Center</Button>
     <Button variant="outline">Right</Button>
   </ButtonGroup>
 
-  <!-- Vertical -->
   <ButtonGroup orientation="vertical">
     <Button variant="outline">Top</Button>
-    <Button variant="outline">Middle</Button>
     <Button variant="outline">Bottom</Button>
   </ButtonGroup>
 
-  <!-- With text label -->
   <ButtonGroup>
     <ButtonGroupText>Filter:</ButtonGroupText>
     <Button variant="outline">All</Button>
-    <Button variant="outline">Active</Button>
-    <Button variant="outline">Completed</Button>
   </ButtonGroup>
 </template>
 ```
 
-### cn() Utility
-
-Merge class names with Tailwind conflict resolution:
+### `cn()` utility
 
 ```vue
 <script setup lang="ts">
 import { cn } from '@equal-experts/kuat-vue';
 
-const props = defineProps<{
-  class?: string;
-}>();
-
-const containerClass = cn(
-  'bg-background text-foreground p-4',
-  props.class
-);
+const containerClass = cn('bg-background text-foreground p-4', props.class);
 </script>
-
-<template>
-  <div :class="containerClass">
-    <slot />
-  </div>
-</template>
 ```
 
 ---
 
-## Migration Guide
+## Migration (legacy projects)
 
-If you were importing standard components from this package, migrate to direct shadcn-vue installation:
+**Prefer** imports from `@equal-experts/kuat-vue` for primitives this package publishes. Use **shadcn-vue** under `@/components/ui` for components **not** in Kuat (for example Dialog).
 
-### Before (Deprecated)
-
-```vue
-<script setup lang="ts">
-import { Button, Dialog } from '@equal-experts/kuat-vue';
-</script>
-```
-
-### After (Recommended)
-
-```vue
-<script setup lang="ts">
-// Standard components from your local shadcn-vue installation
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-
-// Kuat-specific components from this package (including Badge)
-import { ButtonGroup, Badge } from '@equal-experts/kuat-vue';
-</script>
-```
-
-### Migration Steps
-
-1. Ensure `@equal-experts/kuat-core` is installed
-2. Initialize shadcn-vue: `npx shadcn-vue@latest init`
-3. Install needed components: `npx shadcn-vue@latest add button dialog`
-4. Update imports to use local components
-5. Keep imports for Kuat-specific components (Button, ButtonGroup, Badge, etc.)
+Do **not** move `Button` to a local shadcn-vue copy unless you have a deliberate fork—prefer Kuat’s `Button` for consistency with tokens and variants.
 
 ---
 
-## TypeScript Support
-
-All components are fully typed:
+## TypeScript
 
 ```vue
 <script setup lang="ts">
@@ -254,30 +186,16 @@ const orientation: ButtonGroupVariants['orientation'] = 'horizontal';
 
 ---
 
-## Dark Mode
+## Dark mode
 
-Dark mode is supported via the `.dark` class on your root element:
-
-```vue
-<template>
-  <div :class="{ dark: isDark }">
-    <App />
-  </div>
-</template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-const isDark = ref(false);
-</script>
-```
-
-Components automatically adapt when using kuat-core design tokens.
+Apply `.dark` on the root (or toggle a class on `<html>` / layout). Tokens come from `kuat-core`.
 
 ---
 
-## Related Documentation
+## Related documentation
 
-- [Consumer Setup Guide](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/setup/consumer-setup.md)
-- [kuat-core Integration](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/setup/kuat-core-integration.md)
-- [Component Patterns](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/rules/components/patterns.md)
-- [shadcn-vue Documentation](https://www.shadcn-vue.com)
+- [Consumer setup](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/setup/consumer-setup.md)
+- [Choosing components](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/setup/choosing-components.md)
+- [kuat-core integration](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/setup/kuat-core-integration.md)
+- [Component patterns (contributors)](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/rules/components/patterns.md)
+- [shadcn-vue](https://www.shadcn-vue.com)

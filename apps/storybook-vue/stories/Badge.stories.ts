@@ -4,11 +4,19 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { Badge } from "@equal-experts/kuat-vue";
 import { BadgeCheckIcon } from "lucide-vue-next";
+import { badgeDocs } from "../docs/component-docs";
 
 const meta: Meta<typeof Badge> = {
   title: "Components/Badge",
   component: Badge,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: badgeDocs,
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: "select",

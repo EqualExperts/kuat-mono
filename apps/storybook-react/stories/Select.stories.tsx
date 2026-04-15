@@ -13,11 +13,19 @@ import {
   SELECT_LINES,
   SELECT_SIZES,
 } from "@equal-experts/kuat-react"
+import { selectDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof KuatSelect> = {
   title: "Components/Select",
   component: KuatSelect,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: selectDocs,
+      },
+    },
+  },
   argTypes: {
     size: {
       control: "select",

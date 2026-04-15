@@ -4,6 +4,7 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { Breadcrumb } from "@equal-experts/kuat-vue";
 import type { BreadcrumbItemEntry } from "@equal-experts/kuat-vue";
+import { breadcrumbDocs } from "../docs/component-docs";
 
 const simpleItems: BreadcrumbItemEntry[] = [
   { label: "Home", href: "#" },
@@ -15,6 +16,13 @@ const meta: Meta<typeof Breadcrumb> = {
   title: "Components/Breadcrumb",
   component: Breadcrumb,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: breadcrumbDocs,
+      },
+    },
+  },
   argTypes: {
     items: {
       description: "Ordered list of breadcrumb entries (label, optional href, optional children for dropdown)",

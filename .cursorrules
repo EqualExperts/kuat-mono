@@ -11,7 +11,7 @@ Monorepo with three packages:
 
 Kuat is a **design decision layer**, not a full component library:
 - **kuat-core**: Design tokens for any framework
-- **kuat-react/vue**: Custom components (ButtonGroup), blocks, and local UI components
+- **kuat-react/vue**: Blocks, localized UI primitives, and utilities; many components ship from the package (see `kuat-docs/setup/public-api-inventory.md`)
 - Prefer **local components from Kuat packages**; use **shadcn registry** (CLI) only when no local version exists
 
 ## Component Decision Priority
@@ -19,7 +19,7 @@ Kuat is a **design decision layer**, not a full component library:
 | Priority | Source | When to Use |
 |----------|--------|-------------|
 | 1 | Kuat Blocks | Pre-built compositions (header, footer, search) |
-| 2 | Kuat Components | Local UI components from Kuat packages (Button, Dialog, ButtonGroup, etc.) |
+| 2 | Kuat Components | Published from `@equal-experts/kuat-react` / `kuat-vue` (e.g. Button, Field, Select; not Dialog unless added) |
 | 3 | shadcn registry | When no local version in Kuat (install via CLI in consumer project) |
 | 4 | Custom | Only when none of the above fit |
 
@@ -27,7 +27,7 @@ Kuat is a **design decision layer**, not a full component library:
 
 | Task | Load |
 |------|------|
-| Project setup | `setup/consumer-setup.md` |
+| Project setup | `setup/consumer-setup.md`, `setup/choosing-components.md` |
 | Design decisions | `rules/design/{topic}.md` |
 | Component creation | `rules/components/patterns.md` |
 | Content writing | `rules/content/` |

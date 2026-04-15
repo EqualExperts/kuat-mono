@@ -1,11 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { Button, ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from "@equal-experts/kuat-vue";
 import { ArchiveIcon, DownloadIcon, ShareIcon, TrashIcon } from "lucide-vue-next";
+import { buttonGroupDocs } from "../docs/component-docs";
 
 const meta: Meta<typeof ButtonGroup> = {
   title: "Components/ButtonGroup",
   component: ButtonGroup,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: buttonGroupDocs,
+      },
+    },
+  },
   argTypes: {
     orientation: {
       control: "select",

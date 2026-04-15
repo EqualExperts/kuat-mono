@@ -4,11 +4,19 @@
 import { ref } from 'vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { Checkbox } from '@equal-experts/kuat-vue';
+import { checkboxDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof Checkbox> = {
   title: 'Components/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: checkboxDocs,
+      },
+    },
+  },
   argTypes: {
     disabled: { control: 'boolean' },
     'aria-invalid': { control: 'boolean' },

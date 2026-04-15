@@ -3,11 +3,19 @@
  */
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { Button } from '@equal-experts/kuat-vue';
+import { buttonDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: buttonDocs,
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',

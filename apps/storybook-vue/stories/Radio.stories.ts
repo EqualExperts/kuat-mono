@@ -4,11 +4,19 @@
 import { ref } from 'vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { RadioGroup, RadioGroupItem } from '@equal-experts/kuat-vue';
+import { radioDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof RadioGroup> = {
   title: 'Components/Radio',
   component: RadioGroup,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: radioDocs,
+      },
+    },
+  },
 };
 
 export default meta;

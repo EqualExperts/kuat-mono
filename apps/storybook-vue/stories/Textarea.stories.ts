@@ -4,11 +4,19 @@
 import { ref } from 'vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { Textarea } from '@equal-experts/kuat-vue';
+import { textareaDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof Textarea> = {
   title: 'Components/Textarea',
   component: Textarea,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: textareaDocs,
+      },
+    },
+  },
   argTypes: {
     resize: {
       control: 'select',

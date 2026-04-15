@@ -1,10 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { KuatRadialProgress } from "@equal-experts/kuat-react";
+import { kuatRadialProgressDocs } from "../docs/component-docs";
 
 const meta: Meta<typeof KuatRadialProgress> = {
   title: "Components/KuatRadialProgress",
   component: KuatRadialProgress,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: kuatRadialProgressDocs,
+      },
+    },
+  },
   argTypes: {
     value: {
       control: { type: "range", min: 0, max: 100, step: 1 },

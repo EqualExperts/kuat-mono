@@ -15,11 +15,19 @@ import {
   AlertDialogTrigger,
   Button,
 } from '@equal-experts/kuat-vue';
+import { alertDialogDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof AlertDialog> = {
   title: 'Components/AlertDialog',
   component: AlertDialog,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: alertDialogDocs,
+      },
+    },
+  },
 };
 
 export default meta;
