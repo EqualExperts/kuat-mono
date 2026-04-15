@@ -1,0 +1,50 @@
+@reference "../../../styles.css";
+
+.toggle-group {
+  @apply inline-flex w-fit items-stretch;
+}
+
+.toggle-group--vertical {
+  @apply flex-col;
+}
+
+.toggle-group--horizontal > .toggle-group-item:only-child,
+.toggle-group--vertical > .toggle-group-item:only-child {
+  border-radius: 4px;
+}
+
+.toggle-group--horizontal > .toggle-group-item:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.toggle-group--horizontal > .toggle-group-item:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.toggle-group--horizontal > .toggle-group-item:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+
+.toggle-group--vertical > .toggle-group-item:first-child {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.toggle-group--vertical > .toggle-group-item:last-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.toggle-group--vertical > .toggle-group-item:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+
+.toggle-group--horizontal > .toggle-group-item--skin-outlined:not(:first-child) {
+  border-left-width: 0;
+}
+
+.toggle-group--vertical > .toggle-group-item--skin-outlined:not(:first-child) {
+  border-top-width: 0;
+}

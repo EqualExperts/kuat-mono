@@ -1,0 +1,82 @@
+@reference "../../../styles.css";
+
+.toggle,
+.toggle-group-item {
+  @apply inline-flex items-center justify-center gap-2 whitespace-nowrap outline-none transition-[background-color,border-color,box-shadow,color,opacity] duration-150 ease-in-out;
+  min-height: 36px;
+  padding: 7px 8px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #020617;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  letter-spacing: 0.5px;
+}
+
+.toggle svg,
+.toggle-group-item svg {
+  @apply pointer-events-none shrink-0;
+  width: 20px;
+  height: 20px;
+}
+
+.toggle:focus-visible,
+.toggle-group-item:focus-visible {
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.toggle:disabled,
+.toggle-group-item:disabled {
+  @apply pointer-events-none cursor-not-allowed;
+  opacity: 0.45;
+}
+
+.toggle--skin-outlined,
+.toggle-group-item--skin-outlined {
+  border-color: #e2e8f0;
+  background: transparent;
+}
+
+.toggle--skin-outlined[data-state="on"],
+.toggle-group-item--skin-outlined[data-state="on"] {
+  background: rgb(51 65 85 / 5%);
+}
+
+.toggle--skin-ghost,
+.toggle-group-item--skin-ghost {
+  border-color: transparent;
+  background: transparent;
+}
+
+.toggle--skin-ghost[data-state="on"],
+.toggle-group-item--skin-ghost[data-state="on"] {
+  background: rgb(0 0 0 / 5%);
+}
+
+.toggle--size-mini,
+.toggle-group-item--size-mini {
+  min-height: 24px;
+  padding: 2px 8px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.toggle--size-small,
+.toggle-group-item--size-small {
+  min-height: 32px;
+  padding: 5px 8px;
+}
+
+.toggle--size-regular,
+.toggle-group-item--size-regular {
+  min-height: 36px;
+  padding: 7px 8px;
+}
+
+.toggle--size-large,
+.toggle-group-item--size-large {
+  min-height: 40px;
+  padding: 9px 12px;
+}

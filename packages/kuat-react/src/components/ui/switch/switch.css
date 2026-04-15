@@ -1,0 +1,71 @@
+@reference "../../../styles.css";
+
+/* Switch – CSS-first. Radix data-state: checked | unchecked */
+
+.switch {
+  @apply relative inline-flex shrink-0 items-center rounded-full outline-none transition-[border-color,box-shadow,opacity,background-color] duration-150 ease-in-out;
+  --kuat-switch-width: calc(var(--spacing) * 9);
+  --kuat-switch-height: calc(var(--spacing) * 5);
+  --kuat-switch-thumb-size: calc(var(--spacing) * 4);
+  width: var(--kuat-switch-width);
+  height: var(--kuat-switch-height);
+  border: 1px solid var(--slate-300);
+  background: var(--slate-100);
+  box-shadow: var(--shadow-xs);
+  padding: 1px;
+}
+
+.switch:focus-visible {
+  border-color: var(--slate-400);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.switch[data-state="checked"] {
+  border-color: var(--primary);
+  background: var(--primary);
+}
+
+.switch[data-state="checked"]:focus-visible {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.switch[aria-invalid="true"] {
+  border-color: var(--destructive);
+}
+
+.switch[aria-invalid="true"]:focus-visible {
+  border-color: var(--destructive);
+  box-shadow: 0 0 0 3px var(--red-300);
+}
+
+.switch[data-state="checked"][aria-invalid="true"] {
+  border-color: var(--destructive);
+  background: var(--destructive);
+}
+
+.switch[data-state="checked"][aria-invalid="true"]:focus-visible {
+  box-shadow: 0 0 0 3px var(--red-300);
+}
+
+.switch:disabled {
+  @apply cursor-not-allowed opacity-30;
+}
+
+.switch__thumb {
+  @apply block rounded-full transition-transform duration-150 ease-in-out;
+  width: var(--kuat-switch-thumb-size);
+  height: var(--kuat-switch-thumb-size);
+  background: var(--background);
+  transform: translateX(0);
+  box-shadow: var(--shadow-xs);
+}
+
+.switch[data-state="checked"] .switch__thumb {
+  transform: translateX(calc(var(--kuat-switch-width) - var(--kuat-switch-thumb-size) - 4px));
+  background: var(--primary-foreground);
+}
+
+.switch[data-state="checked"][aria-invalid="true"] .switch__thumb {
+  background: var(--destructive-foreground);
+}

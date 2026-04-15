@@ -164,3 +164,23 @@ export {
 } from "./components/ui/radio"
 export type { RadioFieldAppearance, RadioFieldLayout } from "./components/ui/radio"
 
+// Switch (localized UI component – import from Kuat)
+export {
+  Switch,
+  SwitchField,
+  SWITCH_FIELD_APPEARANCES,
+  SWITCH_FIELD_LAYOUTS,
+} from "./components/ui/switch"
+export type { SwitchFieldAppearance, SwitchFieldLayout } from "./components/ui/switch"
+
+// Toggle (localized UI component – import from Kuat)
+export { Toggle, TOGGLE_SIZES, TOGGLE_SKINS } from "./components/ui/toggle"
+export type { ToggleSize, ToggleSkin } from "./components/ui/toggle"
+
+export {
+  ToggleGroup,
+  ToggleGroupItem,
+  TOGGLE_GROUP_ORIENTATIONS,
+} from "./components/ui/toggle-group"
+export type { ToggleGroupOrientation } from "./components/ui/toggle-group"
+

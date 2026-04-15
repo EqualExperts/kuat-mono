@@ -1,0 +1,57 @@
+@reference "../../../styles.css";
+
+/* SwitchField – label + optional secondary; plain (no chrome) or card (border, padding). */
+
+.switch-field {
+  @apply w-full min-w-0;
+}
+
+.switch-field__label {
+  @apply flex cursor-pointer items-start gap-2 select-none;
+}
+
+.switch-field--appearance-card .switch-field__label {
+  @apply rounded-[10px] border border-solid border-border bg-card px-3 py-2;
+}
+
+.switch-field--disabled .switch-field__label {
+  @apply cursor-not-allowed opacity-30;
+}
+
+.switch-field--invalid .switch-field__primary {
+  color: var(--destructive);
+}
+
+.switch-field--appearance-card.switch-field--invalid .switch-field__label {
+  border-color: var(--destructive);
+}
+
+.switch-field--flipped .switch-field__label {
+  @apply flex-row-reverse;
+}
+
+.switch-field__switch-wrap {
+  @apply flex shrink-0 items-center justify-center pt-0.5;
+}
+
+.switch-field__text {
+  @apply flex min-h-px min-w-0 flex-1 flex-col items-start gap-0 text-left;
+}
+
+.switch-field--layout-inline .switch-field__text {
+  @apply flex-none;
+}
+
+.switch-field--layout-inline:not(.switch-field--has-secondary) .switch-field__primary {
+  @apply shrink-0 whitespace-nowrap;
+}
+
+.switch-field__primary {
+  @apply w-full font-sans text-sm leading-[1.5] tracking-normal;
+  color: var(--foreground);
+}
+
+.switch-field__secondary {
+  @apply w-full font-sans text-xs leading-4 tracking-wide;
+  color: var(--muted-foreground);
+}

@@ -217,4 +217,34 @@ export type {
   RadioFieldProps,
 } from "./components/ui/radio"
 
+// Switch (localized UI component – import from Kuat)
+export {
+  Switch,
+  SwitchField,
+  SWITCH_FIELD_APPEARANCES,
+  SWITCH_FIELD_LAYOUTS,
+} from "./components/ui/switch"
+export type {
+  SwitchProps,
+  SwitchFieldAppearance,
+  SwitchFieldLayout,
+  SwitchFieldProps,
+} from "./components/ui/switch"
+
+// Toggle (localized UI component – import from Kuat)
+export {
+  Toggle,
+  ToggleGroup,
+  ToggleGroupItem,
+  TOGGLE_SIZES,
+  TOGGLE_SKINS,
+} from "./components/ui/toggle"
+export type {
+  ToggleProps,
+  ToggleGroupProps,
+  ToggleGroupItemProps,
+  ToggleSize,
+  ToggleSkin,
+} from "./components/ui/toggle"
+
 

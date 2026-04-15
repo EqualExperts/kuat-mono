@@ -54,6 +54,18 @@
       "import": "./dist/radio.js",
       "types": "./dist/radio.d.ts"
     },
+    "./switch": {
+      "import": "./dist/switch.js",
+      "types": "./dist/switch.d.ts"
+    },
+    "./toggle": {
+      "import": "./dist/toggle.js",
+      "types": "./dist/toggle.d.ts"
+    },
+    "./toggle-group": {
+      "import": "./dist/toggle-group.js",
+      "types": "./dist/toggle-group.d.ts"
+    },
     "./styles": "./dist/style.css"
   },
   "files": [
