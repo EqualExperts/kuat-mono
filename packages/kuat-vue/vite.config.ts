@@ -34,6 +34,7 @@ export default defineConfig({
         checkbox: resolve(__dirname, "src/checkbox.ts"),
         radio: resolve(__dirname, "src/radio.ts"),
         switch: resolve(__dirname, "src/switch.ts"),
+        sonner: resolve(__dirname, "src/sonner.ts"),
         toggle: resolve(__dirname, "src/toggle.ts"),
         "toggle-group": resolve(__dirname, "src/toggle-group.ts"),
       },
@@ -46,6 +47,7 @@ export default defineConfig({
         "radix-vue",
         "reka-ui",
         "lucide-vue-next",
+        "vue-sonner",
       ],
       output: {
         globals: {

@@ -201,3 +201,12 @@ export {
 } from "./components/ui/toggle-group"
 export type { ToggleGroupOrientation } from "./components/ui/toggle-group"
 
+// Sonner (localized UI component – import from Kuat)
+export { Sonner, SonnerContent, SONNER_POSITIONS, toast } from "./components/ui/sonner"
+export type {
+  SonnerAnnouncement,
+  SonnerContentAction,
+  SonnerPosition,
+  SonnerToastOptions,
+} from "./components/ui/sonner"
+

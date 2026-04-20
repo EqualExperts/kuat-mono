@@ -1,0 +1,50 @@
+@reference "../../../styles.css";
+
+.kuat-sonner__toaster {
+  --width: 22.25rem;
+}
+
+.kuat-sonner__toast {
+  @apply w-[var(--width)] rounded-md border border-border bg-card p-4 text-card-foreground shadow-sm;
+}
+
+.kuat-sonner__content {
+  @apply flex min-w-0 items-start gap-3;
+}
+
+.kuat-sonner__icon {
+  @apply mt-0.5 shrink-0 text-muted-foreground;
+}
+
+.kuat-sonner__text {
+  @apply min-w-0 flex-1;
+}
+
+.kuat-sonner__title {
+  @apply text-sm font-semibold leading-[1.3125rem] text-foreground;
+}
+
+.kuat-sonner__description {
+  @apply mt-1 text-sm leading-[1.3125rem] text-muted-foreground;
+}
+
+.kuat-sonner__action,
+.kuat-sonner__cancel {
+  @apply h-6 rounded px-2 text-[0.625rem] font-semibold leading-[1.3125rem] transition-colors;
+}
+
+.kuat-sonner__action {
+  @apply bg-primary text-primary-foreground hover:bg-primary/90;
+}
+
+.kuat-sonner__cancel {
+  @apply border border-border bg-background text-foreground hover:bg-muted;
+}
+
+.kuat-sonner__loader {
+  @apply inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent text-muted-foreground;
+}
+
+.kuat-sonner__loading-spinner {
+  @apply inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent text-muted-foreground;
+}

@@ -1,6 +1,6 @@
 # Public API and documentation inventory
 
-This file maps **published package exports** to **documentation surfaces** (Storybook, narrative docs in `kuat-docs/rules/components/`). Use it when auditing or updating consumer docs. Package versions follow `packages/*/package.json` (currently **0.4.2**).
+This file maps **published package exports** to **documentation surfaces** (Storybook, narrative docs in `kuat-docs/rules/components/`). Use it when auditing or updating consumer docs. Package versions follow `packages/*/package.json` (currently **0.5.0**).
 
 ---
 
@@ -24,6 +24,7 @@ This file maps **published package exports** to **documentation surfaces** (Stor
 | `./checkbox` | |
 | `./radio` | |
 | `./switch` | |
+| `./sonner` | |
 | `./toggle` | |
 | `./toggle-group` | |
 | `./styles` | Bundled CSS |
@@ -50,6 +51,7 @@ Symbols exported only from the main barrel (no dedicated subpath): e.g. `KuatHea
 | `KuatRadialProgress.stories.tsx` | KuatRadialProgress |
 | `Radio.stories.tsx`, `RadioField.stories.tsx` | RadioGroup, RadioField |
 | `Select.stories.tsx` | Select, KuatSelect |
+| `Sonner.stories.tsx` | Sonner |
 | `Switch.stories.tsx`, `SwitchField.stories.tsx` | Switch, SwitchField |
 | `Textarea.stories.tsx` | Textarea |
 | `Toggle.stories.tsx`, `ToggleGroup.stories.tsx` | Toggle, ToggleGroup |
@@ -87,7 +89,6 @@ Install via **shadcn** / **shadcn-vue** when you need them, with `kuat-core` the
 - Dialog (modal content distinct from Alert Dialog)
 - Dropdown menu, Context menu, Popover, Tooltip
 - Tabs, Navigation menu, Sheet, Drawer
-- Toast, Sonner
 - Avatar, Calendar, Command, etc.
 
 This list is **not exhaustive** — if a primitive is not exported from `@equal-experts/kuat-react` / `@equal-experts/kuat-vue`, add it from the registry.

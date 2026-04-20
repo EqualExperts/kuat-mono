@@ -78,7 +78,7 @@ pnpm dev
 
 ## Project status
 
-**Current workspace / package version:** 0.4.2 (see `package.json` in the repo root and under `packages/*`).
+**Current workspace / package version:** 0.5.0 (see `package.json` in the repo root and under `packages/*`).
 
 Published libraries combine **`@equal-experts/kuat-core`** (tokens), **`@equal-experts/kuat-react`** or **`@equal-experts/kuat-vue`** (primitives and blocks), and **shadcn** / **shadcn-vue** in your app for components Kuat does not ship (for example Dialog, DropdownMenu).
 

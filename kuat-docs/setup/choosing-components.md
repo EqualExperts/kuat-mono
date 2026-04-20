@@ -9,7 +9,7 @@ Consumer-facing decision guide. Contributors should also read [rules/components/
 | Priority | Source | When to use |
 |----------|--------|-------------|
 | 1 | **Kuat blocks** | Pre-built compositions (header, carousel, logo lockup, content cards where provided). |
-| 2 | **Components from `@equal-experts/kuat-react` or `@equal-experts/kuat-vue`** | The design system ships localized primitives (Button, Field, Select, Switch, Accordion, etc.). **Import from Kuat** when the component is part of the package public API. |
+| 2 | **Components from `@equal-experts/kuat-react` or `@equal-experts/kuat-vue`** | The design system ships localized primitives (Button, Field, Select, Switch, Sonner, Accordion, etc.). **Import from Kuat** when the component is part of the package public API. |
 | 3 | **shadcn registry** | UI primitives **not** published by Kuat (e.g. Dialog, DropdownMenu, Tabs). Install via CLI into your app; theme with `kuat-core`. |
 | 4 | **Custom** | Only when nothing above fits; still use kuat-core tokens. |
 

@@ -242,3 +242,14 @@ export const toggleGroupDocs = `## Overview
 ## When not to use
 - Destructive primary actions (use ButtonGroup)
 - Long lists of options (Select)`;
+
+export const sonnerDocs = `## Overview
+Opinionated toast notifications built on Sonner with Kuat styling and API wrappers.
+
+## When to use
+- Non-blocking status updates (success, info, warning, error)
+- Short confirmations after async user actions
+
+## When not to use
+- Critical flows that require user focus and immediate action (use dialog patterns)
+- Replacing inline form validation or field-level guidance`;

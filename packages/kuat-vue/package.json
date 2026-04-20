@@ -58,6 +58,10 @@
       "import": "./dist/switch.js",
       "types": "./dist/switch.d.ts"
     },
+    "./sonner": {
+      "import": "./dist/sonner.js",
+      "types": "./dist/sonner.d.ts"
+    },
     "./toggle": {
       "import": "./dist/toggle.js",
       "types": "./dist/toggle.d.ts"
@@ -99,7 +103,8 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "embla-carousel-vue": "^8.0.0",
-    "tailwind-merge": "^2.2.1"
+    "tailwind-merge": "^2.2.1",
+    "vue-sonner": "^2.0.9"
   },
   "devDependencies": {
     "@equal-experts/kuat-core": "workspace:*",
