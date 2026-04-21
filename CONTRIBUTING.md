@@ -21,6 +21,36 @@ Guide for contributing to the Kuat Design System packages.
 
 ---
 
+## Agent Rules Sync (Deterministic)
+
+This repo vendors upstream agent guidance from `EqualExperts/kuat-agent-rules` and generates local entrypoint files from templates.
+
+### Canonical files
+
+- Local canonical rules: `AGENTS.md` (generated)
+- Cursor entrypoint: `.cursorrules` (generated pointer)
+- Claude entrypoint: `CLAUDE.md` (symlink to `AGENTS.md`)
+- Templates: `scripts/agent-rules/templates/`
+- Generator: `scripts/agent-rules/generate-entrypoints.mjs`
+- Upstream sync script: `scripts/agent-rules/sync-upstream.sh`
+
+### Commands
+
+- `pnpm agent-rules:sync:upstream` - sync upstream repo into `external/kuat-agent-rules` via `git subtree` when available, otherwise a deterministic clone-and-copy fallback
+- `pnpm agent-rules:generate` - regenerate `AGENTS.md` and `.cursorrules` from templates
+- `pnpm agent-rules:check` - verify generated files are up to date
+- `pnpm agent-rules:sync` - run sync + generate
+
+### Workflow
+
+1. Run `pnpm agent-rules:sync`
+2. Review upstream changes in `external/kuat-agent-rules`
+3. Update templates under `scripts/agent-rules/templates/` if local overlay needs changes
+4. Run `pnpm agent-rules:generate`
+5. Validate with `pnpm agent-rules:check`
+
+---
+
 ## Architecture Overview
 
 See [ARCHITECTURE.md](./ARCHITECTURE.md) for detailed system documentation.

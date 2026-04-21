@@ -8,7 +8,11 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "test:run": "turbo run test:run",
-    "format": "prettier --write \"**/*.{ts,tsx,md,json}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "agent-rules:sync:upstream": "./scripts/agent-rules/sync-upstream.sh",
+    "agent-rules:generate": "node ./scripts/agent-rules/generate-entrypoints.mjs",
+    "agent-rules:check": "node ./scripts/agent-rules/generate-entrypoints.mjs --check",
+    "agent-rules:sync": "pnpm agent-rules:sync:upstream && pnpm agent-rules:generate"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",

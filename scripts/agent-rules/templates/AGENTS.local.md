@@ -1,6 +1,3 @@
-<!-- AUTO-GENERATED FILE. -->
-<!-- Source: scripts/agent-rules/templates/AGENTS.local.md -->
-<!-- Regenerate with: pnpm agent-rules:generate -->
 # Kuat Mono Agent Rules (Canonical Local Source)
 
 This is the single source of truth for local agent behavior in this repository.

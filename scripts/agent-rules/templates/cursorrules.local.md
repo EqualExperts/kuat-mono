@@ -1,6 +1,3 @@
-<!-- AUTO-GENERATED FILE. -->
-<!-- Source: scripts/agent-rules/templates/cursorrules.local.md -->
-<!-- Regenerate with: pnpm agent-rules:generate -->
 # Cursor Rules
 
 This repository follows the canonical local agent rules in `AGENTS.md`.
