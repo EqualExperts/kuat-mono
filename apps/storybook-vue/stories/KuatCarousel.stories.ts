@@ -20,6 +20,8 @@ const meta: Meta<typeof Carousel> = {
         component: kuatCarouselDocs,
       },
     },
+  
+    a11y: { test: "error" },
   },
   argTypes: {
     basis: {

@@ -13,6 +13,8 @@ const meta: Meta<typeof Toggle> = {
         component: toggleDocs,
       },
     },
+  
+    a11y: { test: "error" },
   },
   args: {
     children: "Label",

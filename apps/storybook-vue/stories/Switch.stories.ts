@@ -13,6 +13,8 @@ const meta: Meta<typeof Switch> = {
         component: switchDocs,
       },
     },
+  
+    a11y: { test: "error" },
   },
   args: {
     disabled: false,

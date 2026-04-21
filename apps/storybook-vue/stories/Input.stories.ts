@@ -17,6 +17,8 @@ const meta: Meta<typeof Input> = {
         component: inputDocs,
       },
     },
+  
+    a11y: { test: 'todo' },
   },
   argTypes: {
     size: {

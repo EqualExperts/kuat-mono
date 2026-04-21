@@ -27,6 +27,8 @@ const meta: Meta<typeof AlertDialog> = {
         component: alertDialogDocs,
       },
     },
+  
+    a11y: { test: 'todo' },
   },
 };
 

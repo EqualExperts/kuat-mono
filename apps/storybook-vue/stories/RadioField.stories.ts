@@ -16,6 +16,8 @@ const meta: Meta<typeof RadioField> = {
         component: radioFieldDocs,
       },
     },
+  
+    a11y: { test: 'error' },
   },
   argTypes: {
     label: { control: 'text' },

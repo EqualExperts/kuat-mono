@@ -13,6 +13,8 @@ const meta: Meta<typeof KuatRadialProgress> = {
         component: kuatRadialProgressDocs,
       },
     },
+  
+    a11y: { test: "todo" },
   },
   argTypes: {
     value: {

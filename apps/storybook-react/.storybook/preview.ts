@@ -23,6 +23,12 @@ const DEVICE_VIEWPORTS = {
 
 const preview: Preview = {
   parameters: {
+    a11y: {
+      test: "error",
+      options: {
+        restoreScroll: true,
+      },
+    },
     viewport: {
       options: DEVICE_VIEWPORTS,
       defaultViewport: "responsive",

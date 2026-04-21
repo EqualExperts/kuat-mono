@@ -16,6 +16,8 @@ const meta: Meta<typeof SwitchField> = {
         component: switchFieldDocs,
       },
     },
+  
+    a11y: { test: "error" },
   },
   argTypes: {
     label: { control: "text" },

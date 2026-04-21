@@ -25,6 +25,8 @@ const meta: Meta<typeof KuatSelect> = {
         component: selectDocs,
       },
     },
+  
+    a11y: { test: "error" },
   },
   argTypes: {
     size: {

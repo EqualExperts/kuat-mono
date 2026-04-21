@@ -14,6 +14,8 @@ const meta: Meta<typeof KuatHeader> = {
         component: kuatHeaderDocs,
       },
     },
+  
+    a11y: { test: "todo" },
   },
   argTypes: {
     variant: {

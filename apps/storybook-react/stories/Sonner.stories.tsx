@@ -18,6 +18,8 @@ const meta: Meta<typeof Sonner> = {
       },
     },
     layout: "fullscreen",
+  
+    a11y: { test: "todo" },
   },
   args: {
     position: "top-right",

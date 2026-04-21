@@ -16,6 +16,8 @@ const meta: Meta<typeof Badge> = {
         component: badgeDocs,
       },
     },
+  
+    a11y: { test: "todo" },
   },
   argTypes: {
     variant: {

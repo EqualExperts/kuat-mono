@@ -167,6 +167,9 @@ const meta: Meta<typeof MyComponent> = {
   title: "Kuat Components/MyComponent",
   component: MyComponent,
   tags: ["autodocs"],
+  parameters: {
+    a11y: { test: "error" },
+  },
   argTypes: {
     variant: {
       control: "select",
@@ -265,6 +268,13 @@ Check:
 - [ ] Light and dark mode work
 - [ ] Keyboard navigation works
 - [ ] Focus states are visible
+- [ ] Story accessibility checks pass (`parameters.a11y.test = "error"`)
+
+Run automated Storybook accessibility checks:
+
+```bash
+pnpm --filter storybook-react test-storybook
+```
 
 ### Build Test
 

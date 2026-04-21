@@ -14,8 +14,9 @@ const config: StorybookConfig = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
     "@storybook/addon-themes",
+    "@storybook/addon-a11y",
+    "@storybook/experimental-addon-test",
   ],
   framework: {
     name: "@storybook/react-vite",

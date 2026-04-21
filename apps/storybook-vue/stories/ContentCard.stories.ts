@@ -12,6 +12,8 @@ const meta: Meta<typeof ContentCard> = {
         component: contentCardDocs,
       },
     },
+  
+    a11y: { test: "todo" },
   },
 }
 

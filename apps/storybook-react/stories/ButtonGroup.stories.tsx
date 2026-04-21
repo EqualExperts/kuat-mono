@@ -13,6 +13,8 @@ const meta: Meta<typeof ButtonGroup> = {
         component: buttonGroupDocs,
       },
     },
+  
+    a11y: { test: "todo" },
   },
   argTypes: {
     orientation: {

@@ -8,7 +8,9 @@
     "dev": "pnpm exec storybook dev -p 6006",
     "build": "storybook build",
     "build-storybook": "storybook build",
-    "preview": "npx http-server storybook-static"
+    "preview": "npx http-server storybook-static",
+    "test-storybook": "vitest run --project=storybook",
+    "test-storybook:watch": "vitest --project=storybook"
   },
   "dependencies": {
     "@equal-experts/kuat-react": "workspace:*",
@@ -19,8 +21,9 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.0",
+    "@storybook/addon-a11y": "8.6.14",
     "@storybook/addon-essentials": "^8.4.7",
-    "@storybook/addon-interactions": "^8.4.7",
+    "@storybook/experimental-addon-test": "8.6.14",
     "@storybook/addon-links": "^8.4.7",
     "@storybook/addon-themes": "^8.4.7",
     "@storybook/blocks": "^8.4.7",
@@ -29,10 +32,13 @@
     "@storybook/test": "^8.4.7",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@vitest/browser": "^3.2.4",
+    "playwright": "^1.54.2",
     "storybook": "^8.4.7",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.6.3",
-    "vite": "^6.0.3"
+    "vite": "^6.0.3",
+    "vitest": "^3.2.4"
   }
 }
 

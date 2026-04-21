@@ -12,6 +12,8 @@ const meta: Meta<typeof KuatLogoLockup> = {
         component: kuatLogoLockupDocs,
       },
     },
+  
+    a11y: { test: "error" },
   },
   argTypes: {
     title: {

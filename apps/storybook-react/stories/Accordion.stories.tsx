@@ -21,6 +21,8 @@ const meta: Meta<typeof Accordion> = {
         component: accordionDocs,
       },
     },
+  
+    a11y: { test: 'error' },
   },
 };
 

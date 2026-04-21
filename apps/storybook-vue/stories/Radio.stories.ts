@@ -16,6 +16,8 @@ const meta: Meta<typeof RadioGroup> = {
         component: radioDocs,
       },
     },
+  
+    a11y: { test: "error" },
   },
 };
 

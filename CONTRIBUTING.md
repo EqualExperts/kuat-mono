@@ -108,6 +108,7 @@ If not in Kuat, either add a local version to Kuat or recommend installing from 
 4. **Add Storybook Stories**
    - React: `apps/storybook-react/stories/`
    - Vue: `apps/storybook-vue/stories/`
+   - Story meta must include `parameters.a11y.test = "error"` (or a documented per-story override where needed)
 
 5. **Document in kuat-docs**
    - Add usage documentation describing when and how to use the component
@@ -128,9 +129,10 @@ Detailed implementation guides with code examples:
 
 1. **Start Storybook** for your target framework
 2. **Create/edit components** following framework-specific guide
-3. **Test in Storybook** - verify all variants, light/dark mode
-4. **Build**: `pnpm build`
-5. **Lint**: `pnpm lint`
+3. **Test in Storybook** - verify all variants, light/dark mode, and accessibility checks
+4. **Run Storybook accessibility tests**: `pnpm --filter storybook-react test-storybook` and/or `pnpm --filter storybook-vue test-storybook`
+5. **Build**: `pnpm build`
+6. **Lint**: `pnpm lint`
 
 We encourage using the Kuat agents when they are available (e.g. in Cursor with `.cursor/agents/`). For new or changed components, prefer this test-driven flow: the **Kuat QA agent** (`.cursor/agents/kuat-qa.md`) plans test specs and generates runnable test code; the **component development agent** (`.cursor/agents/kuat-component-dev.md`) implements the component and adds Storybook stories; **kuat-verify** (`.cursor/agents/kuat-verify.md`) runs the tests and reports pass/fail. Optionally use **kuat-documentation** (`.cursor/agents/kuat-documentation.md`) to audit or refresh consumer-facing documentation.
 
@@ -183,6 +185,7 @@ chore: upgrade Tailwind to v4.1
 - [ ] Created React version
 - [ ] Created Vue version
 - [ ] Added Storybook stories (both frameworks)
+- [ ] Storybook story meta includes `parameters.a11y.test = "error"` (or documented exception)
 - [ ] Added documentation to `kuat-docs/`
 - [ ] Tested light and dark mode
 - [ ] PR includes screenshots

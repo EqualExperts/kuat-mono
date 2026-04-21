@@ -67,6 +67,7 @@ For adding components to Kuat packages:
 2. Follow Component Decision Framework in `rules/components/patterns.md`
 3. Create both React and Vue versions for custom components
 4. Add Storybook stories in `apps/storybook-{react,vue}/`
+5. Story files must include accessibility checks by setting `parameters.a11y.test = "error"` on the story meta (or stricter per-story overrides when needed)
 
 **Using Kuat agents:** When adding or changing components, prefer using the Kuat agents if available (e.g. in Cursor with .cursor/agents/): use kuat-qa to plan and write test specs and test code, kuat-component-dev to implement and add Storybook stories, and kuat-verify to run tests. Optionally use kuat-documentation to audit or refresh consumer-facing docs (Storybook, kuat-docs, READMEs) after implementation or before release. This keeps a test-driven flow and consistent quality.
 

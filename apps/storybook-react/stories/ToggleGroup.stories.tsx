@@ -13,6 +13,8 @@ const meta: Meta<typeof ToggleGroup> = {
         component: toggleGroupDocs,
       },
     },
+  
+    a11y: { test: "error" },
   },
 }
 

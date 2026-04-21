@@ -16,6 +16,8 @@ const meta: Meta<typeof CheckboxField> = {
         component: checkboxFieldDocs,
       },
     },
+  
+    a11y: { test: 'error' },
   },
   argTypes: {
     label: { control: 'text' },

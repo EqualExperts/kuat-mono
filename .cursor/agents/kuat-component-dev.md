@@ -39,6 +39,7 @@ You are the **Kuat component development agent**: an expert in React, Vue, and S
    - **React:** `apps/storybook-react/stories/` – `Meta<typeof Component>`, `StoryObj`, import from `@equal-experts/kuat-react`. See `ButtonGroup.stories.tsx`, `KuatLogoLockup.stories.tsx`.
    - **Vue:** `apps/storybook-vue/stories/` – Same structure with `@storybook/vue3`, `components` + `template`, import from `@equal-experts/kuat-vue`. See `ButtonGroup.stories.ts`.
    - Cover at least: default, main variants, and one or two realistic examples.
+   - Story meta must include accessibility checks with `parameters.a11y.test = "error"` so Storybook Vitest runs fail on accessibility violations.
 6. **Hand off** – Do **not** run Vitest or other tests. In your final response, state that verification should be done by **kuat-verify**, and pass along the **test file path(s)** (e.g. `packages/kuat-react/src/components/ui/<name>/<Name>.test.tsx`). Example: "Implementation and stories are complete. Hand off to **kuat-verify** with test path: `packages/kuat-react/src/components/ui/foo/Foo.test.tsx`."
 
 ## Output

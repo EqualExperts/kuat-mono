@@ -16,6 +16,8 @@ const meta: Meta<typeof Checkbox> = {
         component: checkboxDocs,
       },
     },
+  
+    a11y: { test: 'error' },
   },
   argTypes: {
     disabled: { control: 'boolean' },

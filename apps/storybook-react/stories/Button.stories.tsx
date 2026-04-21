@@ -15,6 +15,8 @@ const meta: Meta<typeof Button> = {
         component: buttonDocs,
       },
     },
+  
+    a11y: { test: 'todo' },
   },
   argTypes: {
     variant: {

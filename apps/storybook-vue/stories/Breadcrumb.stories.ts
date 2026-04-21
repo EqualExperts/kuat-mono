@@ -22,6 +22,8 @@ const meta: Meta<typeof Breadcrumb> = {
         component: breadcrumbDocs,
       },
     },
+  
+    a11y: { test: "error" },
   },
   argTypes: {
     items: {

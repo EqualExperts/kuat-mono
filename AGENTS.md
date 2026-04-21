@@ -15,6 +15,8 @@ When adding or modifying components in Kuat packages, use a CSS-first structure 
 
 **New components:** Follow this structure by default. Variants and states are expressed as **class names**; the CSS file (or SFC `<style>`) defines what those classes do.
 
+**Storybook accessibility requirement:** New or changed component stories must include Storybook accessibility checks by setting `parameters.a11y.test = "error"` in story meta (or an equivalent stricter per-story rule where justified), in both React and Vue Storybooks.
+
 When adding or changing components, prefer the Kuat component workflow agents when available (`.cursor/agents/`): **kuat-qa** (plan and write test specs and test code), **kuat-component-dev** (implement and add Storybook stories), **kuat-verify** (run tests and report pass/fail). Optionally use **kuat-documentation** to audit or update consumer-facing documentation. See `.cursor/agents/kuat-qa.md`, `.cursor/agents/kuat-component-dev.md`, `.cursor/agents/kuat-verify.md`, and `.cursor/agents/kuat-documentation.md`.
 
 For full project structure, contributing, and verification, see `.cursorrules` and `AGENTS.md`.

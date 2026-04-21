@@ -16,6 +16,8 @@ const meta: Meta<typeof Textarea> = {
         component: textareaDocs,
       },
     },
+  
+    a11y: { test: 'error' },
   },
   argTypes: {
     resize: {

@@ -316,6 +316,7 @@ Before shipping a component, verify:
 - [ ] Screen reader announces correctly
 - [ ] Focus visible and logical
 - [ ] ARIA attributes present
+- [ ] Storybook stories set `parameters.a11y.test = "error"` at meta (or documented per-story override) so automated a11y tests run in CI
 
 ### Styling
 - [ ] Uses design tokens
