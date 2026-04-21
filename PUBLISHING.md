@@ -110,7 +110,6 @@ rm equal-experts-kuat-react-*.tgz
 
 Expected contents:
 - `dist/` directory (compiled code and styles)
-- `docs/` directory (AI-friendly documentation, auto-generated during build)
 - `README.md`
 - `package.json`
 
@@ -155,25 +154,23 @@ We follow [Semantic Versioning](https://semver.org/):
    - New components/features → minor version
    - Bug fixes → patch version
 
-2. **Update package.json**
-   
-   For each package being published:
-   ```bash
-   # Example: bumping from 0.2.3 to 0.3.0
-   cd packages/kuat-react
-   npm version minor  # or major, patch
-   
-   cd ../kuat-vue
-   npm version minor
-   
-   cd ../kuat-core
-   npm version minor  # if changes were made to core
-   ```
+2. **Update version metadata consistently**
+
+   Update version values in all release metadata surfaces, not just package-level manifests:
+   - `package.json` (repo root)
+   - `packages/kuat-core/package.json`
+   - `packages/kuat-react/package.json`
+   - `packages/kuat-vue/package.json`
+   - `package-lock.json` (if present in repo)
+   - `CHANGELOG.md`
+   - any docs that show the "current version" (for example `README.md`, `kuat-docs/setup/public-api-inventory.md`)
+
+   This avoids drift between published package versions and repository release documentation.
 
 3. **Commit version changes**
    ```bash
-   git add packages/*/package.json
-   git commit -m "chore: bump version to 0.3.0"
+   git add package.json package-lock.json packages/*/package.json CHANGELOG.md README.md kuat-docs/setup/public-api-inventory.md
+   git commit -m "chore: bump release version to x.y.z"
    ```
 
 ### Creating Git Tags

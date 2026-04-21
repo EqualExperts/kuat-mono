@@ -78,11 +78,11 @@ pnpm dev
 
 ## Project status
 
-**Current workspace / package version:** 0.5.0 (see `package.json` in the repo root and under `packages/*`).
+**Current workspace / package version:** 0.6.0 (see `package.json` in the repo root and under `packages/*`).
 
 Published libraries combine **`@equal-experts/kuat-core`** (tokens), **`@equal-experts/kuat-react`** or **`@equal-experts/kuat-vue`** (primitives and blocks), and **shadcn** / **shadcn-vue** in your app for components Kuat does not ship (for example Dialog, DropdownMenu).
 
-**Illustrative coverage in `@equal-experts/kuat-react` / `@equal-experts/kuat-vue`:** actions and grouping (`Button`, `ButtonGroup`, `Badge`), form controls (`Field`, `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `Toggle`), surfaces (`Accordion`, `AlertDialog`, `Breadcrumb`), blocks (`KuatHeader`, `KuatCarousel`, `KuatLogoLockup`, `KuatRadialProgress`, `ContentCard`), and more. See each package README and [public API inventory](./kuat-docs/setup/public-api-inventory.md) for the authoritative list.
+**Illustrative coverage in `@equal-experts/kuat-react` / `@equal-experts/kuat-vue`:** actions and grouping (`Button`, `ButtonGroup`, `Badge`), form controls (`Field`, `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `Toggle`), surfaces (`Accordion`, `AlertDialog`, `Breadcrumb`, `Sonner`), blocks (`KuatHeader`, `KuatCarousel`, `KuatLogoLockup`, `KuatRadialProgress`, `ContentCard`), and more. See each package README and [public API inventory](./kuat-docs/setup/public-api-inventory.md) for the authoritative list.
 
 **Storybook** in this repo documents interactive behaviour and is the primary reference for component API details.
 

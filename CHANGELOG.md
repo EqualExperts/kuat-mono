@@ -2,6 +2,25 @@
 
 All notable changes to the published Kuat packages are documented in this file.
 
+## 0.6.0 - 2026-04-21
+
+### Package Changes
+
+#### Added
+- New `Sonner` toast components in both `@equal-experts/kuat-react` and `@equal-experts/kuat-vue`, including shared positioning constants and toast helpers.
+
+#### Changed
+- Updated carousel implementations across React and Vue packages to the latest internal Kuat version and behavior.
+- Aligned package versioning and release metadata across all published Kuat packages.
+
+### Repository and Tooling
+
+- Vendored upstream agent guidance under `external/kuat-agent-rules` with deterministic sync tooling and local entrypoint generation templates.
+- Standardized local agent entrypoints so `AGENTS.md` is the canonical source, with `.cursorrules` as a generated bootstrap pointer and `CLAUDE.md` linked to `AGENTS.md`.
+
+### Consumer Notes
+- This is a backwards-compatible minor release with new component surface (`Sonner`) and carousel updates; no breaking API changes were introduced.
+
 ## 0.5.0 - 2026-04-16
 
 ### Added

@@ -1,6 +1,6 @@
 # Public API and documentation inventory
 
-This file maps **published package exports** to **documentation surfaces** (Storybook, narrative docs in `kuat-docs/rules/components/`). Use it when auditing or updating consumer docs. Package versions follow `packages/*/package.json` (currently **0.5.0**).
+This file maps **published package exports** to **documentation surfaces** (Storybook, narrative docs in `kuat-docs/rules/components/`). Use it when auditing or updating consumer docs. Package versions follow `packages/*/package.json` (currently **0.6.0**).
 
 ---
 
