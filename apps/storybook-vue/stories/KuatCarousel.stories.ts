@@ -1,19 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/vue3"
 import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
   KuatCarousel,
-  KuatCarouselContent,
-  KuatCarouselItem,
-  KuatCarouselPrevious,
-  KuatCarouselNext,
 } from "@equal-experts/kuat-vue"
 import { kuatCarouselDocs } from "../docs/component-docs"
 
-const meta: Meta<typeof KuatCarousel> = {
-  title: "Kuat Blocks/KuatCarousel",
-  component: KuatCarousel,
+const meta: Meta<typeof Carousel> = {
+  title: "Components/Carousel",
+  component: Carousel,
   tags: ["autodocs"],
   parameters: {
-    layout: "centered",
+    layout: "padded",
     docs: {
       description: {
         component: kuatCarouselDocs,
@@ -21,51 +22,62 @@ const meta: Meta<typeof KuatCarousel> = {
     },
   },
   argTypes: {
-    slidesPerView: {
+    basis: {
       control: "select",
       options: [1, 2, 3],
-      description: "Number of slides visible at once",
+      description: "Default item basis (visible items per viewport)",
     },
   },
 }
 
 export default meta
 
-type Story = StoryObj<typeof KuatCarousel>
+type Story = StoryObj<typeof Carousel>
 
 const textSlides = [1, 2, 3, 4, 5]
+const imageSlides = [
+  "https://picsum.photos/seed/kuat-carousel-1/960/540",
+  "https://picsum.photos/seed/kuat-carousel-2/960/540",
+  "https://picsum.photos/seed/kuat-carousel-3/960/540",
+]
+const noopPlugin = () => ({
+  name: "noop-plugin",
+  options: {},
+  init: () => {},
+  destroy: () => {},
+})
 
 export const OneSlide: Story = {
   args: {
-    slidesPerView: 1,
+    basis: 1,
   },
   render: (args) => ({
     components: {
-      KuatCarousel,
-      KuatCarouselContent,
-      KuatCarouselItem,
-      KuatCarouselPrevious,
-      KuatCarouselNext,
+      Carousel,
+      CarouselContent,
+      CarouselItem,
+      CarouselPrevious,
+      CarouselNext,
     },
     setup() {
       return { args, textSlides }
     },
     template: `
-      <KuatCarousel v-bind="args" class="w-full max-w-sm">
+      <Carousel v-bind="args" class="w-full max-w-full sm:max-w-sm">
         <template #content>
-          <KuatCarouselContent>
-            <KuatCarouselItem v-for="n in textSlides" :key="n">
+          <CarouselContent>
+            <CarouselItem v-for="n in textSlides" :key="n">
               <div class="flex aspect-square items-center justify-center bg-muted p-6 text-4xl font-semibold">
                 {{ n }}
               </div>
-            </KuatCarouselItem>
-          </KuatCarouselContent>
+            </CarouselItem>
+          </CarouselContent>
         </template>
         <template #controls>
-          <KuatCarouselPrevious />
-          <KuatCarouselNext />
+          <CarouselPrevious />
+          <CarouselNext />
         </template>
-      </KuatCarousel>
+      </Carousel>
     `,
   }),
   parameters: {
@@ -79,35 +91,35 @@ export const OneSlide: Story = {
 
 export const TwoSlides: Story = {
   args: {
-    slidesPerView: 2,
+    basis: 2,
   },
   render: (args) => ({
     components: {
-      KuatCarousel,
-      KuatCarouselContent,
-      KuatCarouselItem,
-      KuatCarouselPrevious,
-      KuatCarouselNext,
+      Carousel,
+      CarouselContent,
+      CarouselItem,
+      CarouselPrevious,
+      CarouselNext,
     },
     setup() {
       return { args, textSlides }
     },
     template: `
-      <KuatCarousel v-bind="args" class="w-full max-w-sm">
+      <Carousel v-bind="args" class="w-full max-w-full sm:max-w-sm">
         <template #content>
-          <KuatCarouselContent>
-            <KuatCarouselItem v-for="n in textSlides" :key="n">
+          <CarouselContent>
+            <CarouselItem v-for="n in textSlides" :key="n">
               <div class="flex aspect-square items-center justify-center bg-muted p-6 text-2xl font-semibold">
                 {{ n }}
               </div>
-            </KuatCarouselItem>
-          </KuatCarouselContent>
+            </CarouselItem>
+          </CarouselContent>
         </template>
         <template #controls>
-          <KuatCarouselPrevious />
-          <KuatCarouselNext />
+          <CarouselPrevious />
+          <CarouselNext />
         </template>
-      </KuatCarousel>
+      </Carousel>
     `,
   }),
   parameters: {
@@ -121,35 +133,35 @@ export const TwoSlides: Story = {
 
 export const ThreeSlides: Story = {
   args: {
-    slidesPerView: 3,
+    basis: 3,
   },
   render: (args) => ({
     components: {
-      KuatCarousel,
-      KuatCarouselContent,
-      KuatCarouselItem,
-      KuatCarouselPrevious,
-      KuatCarouselNext,
+      Carousel,
+      CarouselContent,
+      CarouselItem,
+      CarouselPrevious,
+      CarouselNext,
     },
     setup() {
       return { args, textSlides }
     },
     template: `
-      <KuatCarousel v-bind="args" class="w-full max-w-sm">
+      <Carousel v-bind="args" class="w-full max-w-full sm:max-w-sm">
         <template #content>
-          <KuatCarouselContent>
-            <KuatCarouselItem v-for="n in textSlides" :key="n">
+          <CarouselContent>
+            <CarouselItem v-for="n in textSlides" :key="n">
               <div class="flex aspect-square items-center justify-center bg-muted p-4 text-xl font-semibold">
                 {{ n }}
               </div>
-            </KuatCarouselItem>
-          </KuatCarouselContent>
+            </CarouselItem>
+          </CarouselContent>
         </template>
         <template #controls>
-          <KuatCarouselPrevious />
-          <KuatCarouselNext />
+          <CarouselPrevious />
+          <CarouselNext />
         </template>
-      </KuatCarousel>
+      </Carousel>
     `,
   }),
   parameters: {
@@ -163,31 +175,324 @@ export const ThreeSlides: Story = {
 
 export const WithImagePlaceholder: Story = {
   args: {
-    slidesPerView: 2,
+    basis: 2,
   },
   render: (args) => ({
     components: {
-      KuatCarousel,
-      KuatCarouselContent,
-      KuatCarouselItem,
-      KuatCarouselPrevious,
-      KuatCarouselNext,
+      Carousel,
+      CarouselContent,
+      CarouselItem,
+      CarouselPrevious,
+      CarouselNext,
     },
     setup() {
-      return { args }
+      return { args, imageSlides }
     },
     template: `
-      <KuatCarousel v-bind="args" class="w-full max-w-md">
+      <Carousel v-bind="args" class="w-full max-w-full sm:max-w-md">
         <template #content>
-          <KuatCarouselContent>
-            <KuatCarouselItem v-for="n in 3" :key="n">
-              <div class="aspect-video w-full rounded-[6px] bg-gradient-to-br from-slate-200 to-slate-300" />
-            </KuatCarouselItem>
-          </KuatCarouselContent>
+          <CarouselContent>
+            <CarouselItem
+              v-for="(src, idx) in imageSlides"
+              :key="src"
+            >
+              <img
+                :src="src"
+                :alt="'Example carousel image ' + (idx + 1)"
+                class="aspect-video w-full rounded-[6px] object-cover"
+                loading="lazy"
+              />
+            </CarouselItem>
+          </CarouselContent>
         </template>
         <template #controls>
-          <KuatCarouselPrevious />
-          <KuatCarouselNext />
+          <CarouselPrevious />
+          <CarouselNext />
+        </template>
+      </Carousel>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Carousel with real image examples from a public placeholder source.",
+      },
+    },
+  },
+}
+
+export const ContainerWidths: Story = {
+  args: {
+    basis: 2,
+  },
+  render: (args) => ({
+    components: {
+      Carousel,
+      CarouselContent,
+      CarouselItem,
+      CarouselPrevious,
+      CarouselNext,
+    },
+    setup() {
+      const widthExamples = [
+        { label: "Small container (18rem max)", className: "w-full max-w-full sm:max-w-72" },
+        { label: "Medium container (24rem max)", className: "w-full max-w-full sm:max-w-96" },
+        { label: "Large container (32rem max)", className: "w-full max-w-full sm:max-w-[32rem]" },
+      ]
+
+      return { args, textSlides, widthExamples }
+    },
+    template: `
+      <div class="flex w-full flex-col gap-4">
+        <div
+          v-for="width in widthExamples"
+          :key="width.label"
+          :class="[width.className, 'space-y-2']"
+        >
+          <p class="text-xs text-muted-foreground">{{ width.label }}</p>
+          <Carousel v-bind="args" class="w-full">
+            <template #content>
+              <CarouselContent>
+                <CarouselItem
+                  v-for="n in textSlides"
+                  :key="width.label + '-' + n"
+                >
+                  <div class="flex aspect-video items-center justify-center bg-muted p-4 text-xl font-semibold">
+                    {{ n }}
+                  </div>
+                </CarouselItem>
+              </CarouselContent>
+            </template>
+            <template #controls>
+              <CarouselPrevious />
+              <CarouselNext />
+            </template>
+          </Carousel>
+        </div>
+      </div>
+    `,
+  }),
+  parameters: {
+    layout: "padded",
+    docs: {
+      description: {
+        story:
+          "Shows the same carousel rendered in small, medium, and large container widths.",
+      },
+    },
+  },
+}
+
+export const AlignCenter: Story = {
+  args: {
+    basis: 2,
+  },
+  render: (args) => ({
+    components: {
+      Carousel,
+      CarouselContent,
+      CarouselItem,
+      CarouselPrevious,
+      CarouselNext,
+    },
+    setup() {
+      return { args, textSlides }
+    },
+    template: `
+      <Carousel v-bind="args" :opts="{ align: 'center' }" class="w-full max-w-full sm:max-w-md">
+        <template #content>
+          <CarouselContent>
+            <CarouselItem v-for="n in textSlides" :key="n">
+              <div class="flex aspect-video items-center justify-center bg-muted p-4 text-xl font-semibold">
+                {{ n }}
+              </div>
+            </CarouselItem>
+          </CarouselContent>
+        </template>
+        <template #controls>
+          <CarouselPrevious />
+          <CarouselNext />
+        </template>
+      </Carousel>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Uses `opts.align = \"center\"` to keep the active snap centered in the container.",
+      },
+    },
+  },
+}
+
+export const AlignStart: Story = {
+  args: {
+    basis: 2,
+  },
+  render: (args) => ({
+    components: {
+      Carousel,
+      CarouselContent,
+      CarouselItem,
+      CarouselPrevious,
+      CarouselNext,
+    },
+    setup() {
+      return { args, textSlides }
+    },
+    template: `
+      <Carousel v-bind="args" :opts="{ align: 'start' }" class="w-full max-w-full sm:max-w-md">
+        <template #content>
+          <CarouselContent>
+            <CarouselItem v-for="n in textSlides" :key="n">
+              <div class="flex aspect-video items-center justify-center bg-muted p-4 text-xl font-semibold">
+                {{ n }}
+              </div>
+            </CarouselItem>
+          </CarouselContent>
+        </template>
+        <template #controls>
+          <CarouselPrevious />
+          <CarouselNext />
+        </template>
+      </Carousel>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Uses `opts.align = \"start\"` so active snaps are left-aligned in the viewport.",
+      },
+    },
+  },
+}
+
+export const PagedStartAligned: Story = {
+  args: {
+    basis: 2,
+  },
+  render: (args) => ({
+    components: {
+      Carousel,
+      CarouselContent,
+      CarouselItem,
+      CarouselPrevious,
+      CarouselNext,
+    },
+    setup() {
+      return { args, textSlides }
+    },
+    template: `
+      <Carousel
+        v-bind="args"
+        :opts="{ align: 'start', slidesToScroll: 2, containScroll: 'trimSnaps' }"
+        class="w-full max-w-full sm:max-w-md"
+      >
+        <template #content>
+          <CarouselContent>
+            <CarouselItem v-for="n in textSlides" :key="n">
+              <div class="flex aspect-video items-center justify-center bg-muted p-4 text-xl font-semibold">
+                {{ n }}
+              </div>
+            </CarouselItem>
+          </CarouselContent>
+        </template>
+        <template #controls>
+          <CarouselPrevious />
+          <CarouselNext />
+        </template>
+      </Carousel>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Combines left alignment with page-like movement using `slidesToScroll` and `containScroll: \"trimSnaps\"`.",
+      },
+    },
+  },
+}
+
+export const PluginsAndEvents: Story = {
+  render: () => ({
+    components: {
+      Carousel,
+      CarouselContent,
+      CarouselItem,
+      CarouselPrevious,
+      CarouselNext,
+    },
+    setup() {
+      const events: string[] = []
+      const carouselEvents = {
+        select: () => {
+          events.push("select")
+        },
+      }
+      return { textSlides, carouselEvents, noopPlugin, events }
+    },
+    template: `
+      <div class="flex w-full max-w-full sm:max-w-md flex-col gap-2">
+        <Carousel
+          :basis="2"
+          :plugins="[noopPlugin()]"
+          :events="carouselEvents"
+          :opts="{ align: 'start' }"
+        >
+          <template #content>
+            <CarouselContent>
+              <CarouselItem v-for="n in textSlides" :key="n">
+                <div class="flex aspect-square items-center justify-center bg-muted p-6 text-2xl font-semibold">{{ n }}</div>
+              </CarouselItem>
+            </CarouselContent>
+          </template>
+          <template #controls>
+            <CarouselPrevious />
+            <CarouselNext />
+          </template>
+        </Carousel>
+        <p class="text-xs text-muted-foreground">Event handlers are attached inline via the events prop.</p>
+      </div>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Demonstrates passing Embla plugins and inline event handlers.",
+      },
+    },
+  },
+}
+
+export const KuatCarouselCompatibility: StoryObj<typeof KuatCarousel> = {
+  render: () => ({
+    components: {
+      KuatCarousel,
+      CarouselContent,
+      CarouselItem,
+      CarouselPrevious,
+      CarouselNext,
+    },
+    setup() {
+      return { textSlides }
+    },
+    template: `
+      <KuatCarousel :slides-per-view="2" class="w-full max-w-full sm:max-w-sm">
+        <template #content>
+          <CarouselContent>
+            <CarouselItem v-for="n in textSlides" :key="n">
+              <div class="flex aspect-square items-center justify-center bg-muted p-6 text-2xl font-semibold">{{ n }}</div>
+            </CarouselItem>
+          </CarouselContent>
+        </template>
+        <template #controls>
+          <CarouselPrevious />
+          <CarouselNext />
         </template>
       </KuatCarousel>
     `,
@@ -196,82 +501,7 @@ export const WithImagePlaceholder: Story = {
     docs: {
       description: {
         story:
-          "Carousel with image-style placeholders (e.g. for galleries or testimonials with photos).",
-      },
-    },
-  },
-}
-
-export const AllVariants: Story = {
-  render: () => ({
-    components: {
-      KuatCarousel,
-      KuatCarouselContent,
-      KuatCarouselItem,
-      KuatCarouselPrevious,
-      KuatCarouselNext,
-    },
-    setup() {
-      return { textSlides }
-    },
-    template: `
-      <div class="flex flex-col gap-10">
-        <div>
-          <h3 class="mb-2 text-sm font-medium">1 slide</h3>
-          <KuatCarousel :slides-per-view="1" class="w-full max-w-xs">
-            <template #content>
-              <KuatCarouselContent>
-                <KuatCarouselItem v-for="n in 3" :key="n">
-                  <div class="flex aspect-square items-center justify-center bg-muted text-2xl font-semibold">{{ n }}</div>
-                </KuatCarouselItem>
-              </KuatCarouselContent>
-            </template>
-            <template #controls>
-              <KuatCarouselPrevious />
-              <KuatCarouselNext />
-            </template>
-          </KuatCarousel>
-        </div>
-        <div>
-          <h3 class="mb-2 text-sm font-medium">2 slides</h3>
-          <KuatCarousel :slides-per-view="2" class="w-full max-w-xs">
-            <template #content>
-              <KuatCarouselContent>
-                <KuatCarouselItem v-for="n in 4" :key="n">
-                  <div class="flex aspect-square items-center justify-center bg-muted text-xl font-semibold">{{ n }}</div>
-                </KuatCarouselItem>
-              </KuatCarouselContent>
-            </template>
-            <template #controls>
-              <KuatCarouselPrevious />
-              <KuatCarouselNext />
-            </template>
-          </KuatCarousel>
-        </div>
-        <div>
-          <h3 class="mb-2 text-sm font-medium">3 slides</h3>
-          <KuatCarousel :slides-per-view="3" class="w-full max-w-xs">
-            <template #content>
-              <KuatCarouselContent>
-                <KuatCarouselItem v-for="n in 5" :key="n">
-                  <div class="flex aspect-square items-center justify-center bg-muted font-semibold">{{ n }}</div>
-                </KuatCarouselItem>
-              </KuatCarouselContent>
-            </template>
-            <template #controls>
-              <KuatCarouselPrevious />
-              <KuatCarouselNext />
-            </template>
-          </KuatCarousel>
-        </div>
-      </div>
-    `,
-  }),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Comparison of 1, 2, and 3 slides per view. Navigation is always in the top-right.",
+          "Legacy `KuatCarousel` API remains available and maps `slidesPerView` to `basis`.",
       },
     },
   },

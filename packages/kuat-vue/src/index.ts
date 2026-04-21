@@ -45,6 +45,21 @@ export { KuatHeader, kuatHeaderVariants, EELogo } from "./components/ui/kuat-hea
 export type { KuatHeaderVariants } from "./components/ui/kuat-header";
 
 export {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "./components/ui/carousel";
+export type {
+  CarouselItemBasis,
+  CarouselOrientation,
+  CarouselApi,
+  CarouselEventHandler,
+  CarouselEventHandlers,
+} from "./components/ui/carousel";
+
+export {
   KuatCarousel,
   KuatCarouselContent,
   KuatCarouselItem,
