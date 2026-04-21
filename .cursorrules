@@ -1,93 +1,9 @@
-# Kuat Design System - Agent Guidelines
+# Cursor Rules
 
-## Project Structure
+This repository follows the canonical local agent rules in `AGENTS.md`.
 
-Monorepo with three packages:
-- `@equal-experts/kuat-core` - CSS variables, Tailwind preset (foundation)
-- `@equal-experts/kuat-react` - Custom React components and blocks
-- `@equal-experts/kuat-vue` - Custom Vue components and blocks
+For design and structure guidance, agents should first load:
+- https://github.com/EqualExperts/kuat-agent-rules
 
-## Architecture
-
-Kuat is a **design decision layer**, not a full component library:
-- **kuat-core**: Design tokens for any framework
-- **kuat-react/vue**: Blocks, localized UI primitives, and utilities; many components ship from the package (see `kuat-docs/setup/public-api-inventory.md`)
-- Prefer **local components from Kuat packages**; use **shadcn registry** (CLI) only when no local version exists
-
-## Component Decision Priority
-
-| Priority | Source | When to Use |
-|----------|--------|-------------|
-| 1 | Kuat Blocks | Pre-built compositions (header, footer, search) |
-| 2 | Kuat Components | Published from `@equal-experts/kuat-react` / `kuat-vue` (e.g. Button, Field, Select; not Dialog unless added) |
-| 3 | shadcn registry | When no local version in Kuat (install via CLI in consumer project) |
-| 4 | Custom | Only when none of the above fit |
-
-## Documentation (`kuat-docs/`)
-
-| Task | Load |
-|------|------|
-| Project setup | `setup/consumer-setup.md`, `setup/choosing-components.md` |
-| Design decisions | `rules/design/{topic}.md` |
-| Component creation | `rules/components/patterns.md` |
-| Content writing | `rules/content/` |
-| Contributing | `contributing.md` |
-
-## Quick Reference
-
-- **Colors:** EE Blue (#0066CC), Tech Blue, Transform Teal, Equal Ember
-- **Fonts:** Lexend (sans), JetBrains Mono (mono), Lora (serif)
-- **Spacing:** 8-point grid (4px base unit)
-- **Border radius:** 0px static | 6px interactive | 4px inputs
-
-## Import Patterns
-
-```ts
-// Design tokens (any framework)
-import "@equal-experts/kuat-core/variables.css"
-
-// Prefer: components from Kuat when they exist there
-import { ButtonGroup, Button } from "@equal-experts/kuat-react"
-
-// Fallback: when component is not in Kuat, use consumer's local shadcn install
-import { Dialog } from "@/components/ui/dialog"
-```
-
-## For Consumer Projects
-
-Guide consumers to:
-1. Install `@equal-experts/kuat-core` for design tokens
-2. Prefer Kuat packages for UI components; use shadcn CLI only for components not provided by Kuat
-3. Import from Kuat when a local version exists; otherwise install via shadcn CLI and import locally
-
-## Contributing to Kuat
-
-For adding components to Kuat packages:
-1. Read `kuat-docs/contributing.md` for setup and workflow
-2. Follow Component Decision Framework in `rules/components/patterns.md`
-3. Create both React and Vue versions for custom components
-4. Add Storybook stories in `apps/storybook-{react,vue}/`
-5. Story files must include accessibility checks by setting `parameters.a11y.test = "error"` on the story meta (or stricter per-story overrides when needed)
-
-**Using Kuat agents:** When adding or changing components, prefer using the Kuat agents if available (e.g. in Cursor with .cursor/agents/): use kuat-qa to plan and write test specs and test code, kuat-component-dev to implement and add Storybook stories, and kuat-verify to run tests. Optionally use kuat-documentation to audit or refresh consumer-facing docs (Storybook, kuat-docs, READMEs) after implementation or before release. This keeps a test-driven flow and consistent quality.
-
-**Important:** Prefer adding local versions of needed UI components to Kuat packages so consumers can use them from Kuat; if a component is not in Kuat, consumers use the shadcn registry.
-
-## Component architecture – CSS-first
-
-When adding or modifying components in Kuat packages, use a CSS-first structure so variants and state are defined by classes, not by JS maps of CSS variable names.
-
-**React:** A component is a **directory** under `packages/kuat-react/src/components/ui/` with:
-- `ComponentName.tsx` – logic and class composition only (e.g. `className={cn("base", `base--${size}`, `base--${color}`)}`).
-- `ComponentName.css` – all styles and variants (BEM-style or `componentName--variant`). Prefer Tailwind utilities via `@apply`; add `@reference "../../../styles.css";` at the top so Tailwind v4 has utility scope. Use design tokens from kuat-core in the CSS file; do not define or reference token names in JS maps. Keep vanilla CSS only where Tailwind has no equivalent (e.g. `color-mix`, `@keyframes`).
-- Optional `index.ts` that re-exports the component and imports the CSS.
-
-**Vue:** Use a **single .vue file** per component (or per subcomponent). Put variant/state styles in `<style>` (scoped or BEM). Prefer Tailwind `@apply`; add `@reference "../../../styles.css";` at the top of the style block for Tailwind v4. Do not use JS objects that map prop values to CSS variable names or `var(...)` strings; the template composes class names from props, and the style block defines what those classes do.
-
-**New components:** Follow this structure by default. Variants and states are expressed as **class names**; the CSS file (or SFC `<style>`) defines what those classes do.
-
-## Verification
-
-- "Primary brand color?" → EE Blue (#0066CC)
-- "Border radius for buttons?" → 6px
-- "Where do Button components come from?" → From Kuat package if a local version exists; otherwise from shadcn (registry/CLI)
+Then apply local implementation rules from:
+- `AGENTS.md`
