@@ -113,6 +113,13 @@ Expected contents:
 - `README.md`
 - `package.json`
 
+For `@equal-experts/kuat-core`, expected docs bundle contents include:
+- `agent-docs/README.md`
+- `agent-docs/kuat-docs/rules/README.md`
+- `agent-docs/kuat-docs/rules/design/layouts.md`
+- `agent-docs/kuat-docs/rules/scenarios/`
+- `agent-docs/external/kuat-agent-rules/kuat-docs/rules/foundations/`
+
 ### 6. Test in a Clean Project
 
 Create a test project to verify the package works as expected:
@@ -150,11 +157,12 @@ Confirm package payloads include only consumer-needed docs.
    - `contribution-docs/`
    - `.cursor/agents/`
    - repo-level `AGENTS.md` / `.cursorrules`
-3. If any non-consumer docs appear in a tarball, remove them from package payload configuration before publishing.
+3. Verify `@equal-experts/kuat-core` includes bundled consumer agent docs under `agent-docs/` and excludes contributor docs from that bundle.
+4. If any non-consumer docs appear in a tarball, remove them from package payload configuration before publishing.
 
 Current expected payload model in this repo:
 - `@equal-experts/kuat-react` and `@equal-experts/kuat-vue`: `dist/` + package README + package manifest
-- `@equal-experts/kuat-core`: exported token/config files + package README + package manifest
+- `@equal-experts/kuat-core`: exported token/config files + package README + package manifest + `agent-docs/` (consumer-facing rules only)
 
 ## Version Management
 
@@ -168,28 +176,25 @@ We follow [Semantic Versioning](https://semver.org/):
 
 ### Updating Version Numbers
 
-1. **Decide on the version bump**
+1. **Decide release scope**
+   - all packages (default)
+   - one package (`core`, `react`, or `vue`)
+
+2. **Choose bump type**
    - Breaking changes → major version
    - New components/features → minor version
    - Bug fixes → patch version
+   - or specify a custom `x.y.z` version
 
-2. **Update version metadata consistently**
+3. **Independent package versions**
+   - release tooling updates only selected package `package.json` files
+   - non-selected packages remain unchanged
+   - root `package.json` version is not bumped by this flow
 
-   Update version values in all release metadata surfaces, not just package-level manifests:
-   - `package.json` (repo root)
-   - `packages/kuat-core/package.json`
-   - `packages/kuat-react/package.json`
-   - `packages/kuat-vue/package.json`
-   - `package-lock.json` (if present in repo)
-   - `CHANGELOG.md`
-   - any docs that show the "current version" (for example `README.md`, `kuat-docs/setup/public-api-inventory.md`)
-
-   This avoids drift between published package versions and repository release documentation.
-
-3. **Commit version changes**
+4. **Commit version/changelog changes**
    ```bash
-   git add package.json package-lock.json packages/*/package.json CHANGELOG.md README.md kuat-docs/setup/public-api-inventory.md
-   git commit -m "chore: bump release version to x.y.z"
+   git add packages/*/package.json CHANGELOG.md
+   git commit -m "chore: release package(s)"
    ```
 
 ### Creating Git Tags
@@ -209,98 +214,52 @@ git push --tags
 
 ## Publishing Process
 
-### Publishing Individual Packages
-
-#### 1. Build All Packages
-
-```bash
-# From repository root
-pnpm build
-```
-
-#### 2. Publish React Package
-
-```bash
-cd packages/kuat-react
-
-# Dry run (optional, to verify what will be published)
-npm publish --dry-run
-
-# Publish to npm
-npm publish --access public
-
-cd ../..
-```
-
-#### 3. Publish Vue Package
-
-```bash
-cd packages/kuat-vue
-
-# Publish to npm
-npm publish --access public
-
-cd ../..
-```
-
-#### 4. Publish Core Package (if needed)
-
-Only publish if you've made changes to the core package:
-
-```bash
-cd packages/kuat-core
-
-# Publish to npm
-npm publish --access public
-
-cd ../..
-```
-
-### Publishing All Packages (Script)
-
-You can use this script to publish all packages:
-
-```bash
-#!/bin/bash
-set -e
-
-# Build all packages
-echo "Building all packages..."
-pnpm build
-
-# Publish packages
-echo "Publishing @equal-experts/kuat-core..."
-cd packages/kuat-core
-npm publish --access public
-cd ../..
-
-echo "Publishing @equal-experts/kuat-react..."
-cd packages/kuat-react
-npm publish --access public
-cd ../..
-
-echo "Publishing @equal-experts/kuat-vue..."
-cd packages/kuat-vue
-npm publish --access public
-cd ../..
-
-echo "All packages published successfully!"
-```
-
-Save this as `scripts/publish.sh` and make it executable:
-
-```bash
-chmod +x scripts/publish.sh
-./scripts/publish.sh
-```
-
-### Publishing All Packages (One-liner)
+### Recommended: Interactive shorthand
 
 From repo root:
 
 ```bash
-pnpm build && pnpm --filter @equal-experts/kuat-core exec npm publish --access public && pnpm --filter @equal-experts/kuat-react exec npm publish --access public && pnpm --filter @equal-experts/kuat-vue exec npm publish --access public
+# Default: all packages
+pnpm release
 ```
+
+The interactive flow will:
+- verify npm auth first (`npm whoami`) and prompt `npm login` early when needed,
+- select scope (all or one package),
+- choose bump type per selected package,
+- collect changelog bullets,
+- run build/lint checks and package sanity checks (`npm pack`),
+- publish selected packages.
+
+### Single package release
+
+```bash
+pnpm release:package
+```
+
+or directly:
+
+```bash
+pnpm release -- --package react
+```
+
+### Non-interactive / CI-friendly flags
+
+```bash
+pnpm release -- --package core --bump patch --yes --dry-run
+```
+
+Supported flags:
+- `--package all|core|react|vue`
+- `--bump patch|minor|major|x.y.z`
+- `--notes-file <path>`
+- `--yes`
+- `--dry-run`
+- `--skip-lint`
+
+### Manual fallback
+
+If needed, you can still publish manually from package directories using `npm publish --access public`.
 
 ## Post-publish Verification
 

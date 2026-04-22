@@ -2,7 +2,7 @@
 
 How to integrate the Kuat Design System documentation into your AI agent or IDE.
 
-> **Note for npm consumers:** These docs are not bundled in npm packages. Clone from the [kuat-mono repository](https://github.com/equalexperts/kuat-mono) or copy the snippet below.
+> **Note for npm consumers:** Consumer agent docs are bundled in `@equal-experts/kuat-core` under `agent-docs/`. You can load them directly from `node_modules` without cloning this repository.
 
 ---
 
@@ -29,12 +29,11 @@ You MUST reference the Kuat documentation when:
 2. Follow existing patterns; do not invent new ones
 3. If the documentation doesn't cover your case, ask before proceeding
 
-**Documentation index** (single entry point; canonical EE text is under `external/kuat-agent-rules/kuat-docs/rules/` when you clone the monorepo):
-- `rules/README.md` - EE canonical paths, Kuat implementation, and links to local-only rules
-- `rules/design/layouts.md` - Kuat layout primitives (+ upstream product/marketing scenario links in that file)
-- `rules/components/patterns.md` - Component naming, variants, accessibility
-- `examples/react/` - React implementation examples
-- `examples/vue/` - Vue implementation examples
+**Documentation index** (single entry point in installed package):
+- `node_modules/@equal-experts/kuat-core/agent-docs/README.md` - bundled entrypoint
+- `node_modules/@equal-experts/kuat-core/agent-docs/kuat-docs/rules/README.md` - EE canonical paths + Kuat implementation
+- `node_modules/@equal-experts/kuat-core/agent-docs/kuat-docs/rules/design/layouts.md` - Kuat layout primitives
+- Optional (repo docs): `rules/components/patterns.md`, `examples/react/`, `examples/vue/`
 
 **Quick reference (when docs unavailable):**
 Semantic tokens only (`bg-primary` not `bg-blue-500`), 8-point spacing grid, 6px radius for interactive elements, WCAG AA contrast.
@@ -59,39 +58,33 @@ I'm using the Kuat Design System. Add a section to my agent rules that:
 
 Reference: https://github.com/equalexperts/kuat-mono/tree/master/kuat-docs
 
-**Documentation index** (same pointer model as above):
-- `rules/README.md` - EE canonical paths + Kuat implementation
-- `rules/design/layouts.md` - Kuat layout primitives
-- `rules/components/patterns.md` - Component naming, variants, accessibility
-- `examples/react/` - React implementation examples
-- `examples/vue/` - Vue implementation examples
-- `examples/css/` - Vanilla CSS examples
+**Documentation index** (same bundle model as above):
+- `node_modules/@equal-experts/kuat-core/agent-docs/README.md` - bundled entrypoint
+- `node_modules/@equal-experts/kuat-core/agent-docs/kuat-docs/rules/README.md` - EE canonical paths + Kuat implementation
+- `node_modules/@equal-experts/kuat-core/agent-docs/kuat-docs/rules/design/layouts.md` - Kuat layout primitives
+- Optional (repo docs): `rules/components/patterns.md` and `examples/{react|vue|css}/`
 ```
 
 ---
 
 ## For Deeper Integration
 
-If you need the agent to reference full documentation (component patterns, layouts, content guidelines), clone the docs locally:
+If you need the agent to reference foundations and scenarios with zero repo-clone step, install `@equal-experts/kuat-core` and point your agent at the bundled docs path:
 
 ```bash
-# Clone only the docs (sparse checkout)
-git clone --filter=blob:none --sparse https://github.com/equalexperts/kuat-mono.git
-cd kuat-mono
-git sparse-checkout set kuat-docs
-
-# Copy to your project
-cp -r kuat-docs /path/to/your-project/
+pnpm add @equal-experts/kuat-core
 ```
 
-Then update your rules snippet to reference local files:
+Then update your rules snippet to reference installed-package files:
 
 ```markdown
 ## Kuat Design System
 
-When working on UI, reference the design rules in `kuat-docs/rules/`.
+When working on UI, load:
+- `node_modules/@equal-experts/kuat-core/agent-docs/README.md`
+- `node_modules/@equal-experts/kuat-core/agent-docs/kuat-docs/rules/design/layouts.md`
 
-For implementation examples, see `kuat-docs/examples/{react|vue|css}/`.
+Then follow links in the bundle for foundations, product, and marketing scenarios.
 ```
 
 ---
@@ -137,10 +130,10 @@ Clone `kuat-docs/` and load `rules/` + `examples/{framework}/` (~2500 lines).
 
 | Task | Load |
 |------|------|
-| Colour / typography / spacing / borders / logo / content voice | `rules/README.md` then open linked files under `external/kuat-agent-rules/...` |
-| Layout design | `rules/design/layouts.md` + `rules/README.md` |
-| Content writing | `rules/README.md` (foundations + web types) |
-| Component creation | `rules/components/patterns.md` + `examples/{framework}/components.md` |
+| Colour / typography / spacing / borders / logo / content voice | `node_modules/@equal-experts/kuat-core/agent-docs/README.md` then follow bundled links |
+| Layout design | `node_modules/@equal-experts/kuat-core/agent-docs/kuat-docs/rules/design/layouts.md` + bundle README |
+| Content writing | bundle README + bundled product/marketing content docs |
+| Component creation | Use bundled docs for layout/content decisions; add repo docs (`rules/components/patterns.md` + `examples/{framework}/components.md`) if needed |
 
 ---
 
@@ -177,8 +170,11 @@ def get_kuat_context(task: str, framework: str = None) -> str:
     """Load Kuat design context for a task."""
     base = "kuat-docs/"
     files = {
-        "design": ["rules/README.md", "rules/design/layouts.md"],
-        "content": ["rules/README.md"],
+        "design": [
+            "node_modules/@equal-experts/kuat-core/agent-docs/README.md",
+            "node_modules/@equal-experts/kuat-core/agent-docs/kuat-docs/rules/design/layouts.md"
+        ],
+        "content": ["node_modules/@equal-experts/kuat-core/agent-docs/README.md"],
         "component": ["rules/components/patterns.md"],
     }
     result = [load(f"{base}{f}") for f in files.get(task, [])]
@@ -194,8 +190,8 @@ def get_kuat_context(task: str, framework: str = None) -> str:
 | What | Lines | Tokens (~) |
 |------|-------|------------|
 | Snippet only | 15 | 150 |
-| `rules/README.md` + `external/kuat-agent-rules/kuat-docs/rules/` (as needed) | varies | varies |
-| `rules/design/layouts.md` | 400 | 3,000 |
+| `node_modules/@equal-experts/kuat-core/agent-docs/README.md` | varies | varies |
+| `node_modules/@equal-experts/kuat-core/agent-docs/kuat-docs/rules/design/layouts.md` | 400 | 3,000 |
 | `rules/components/` | 200 | 1,500 |
 | `examples/{framework}/` | 800 | 6,000 |
 
@@ -224,7 +220,7 @@ See [verification.md](./verification.md) for comprehensive tests.
 3. For detailed rules, clone docs locally
 
 **Need more detail?**
-Clone the monorepo so `kuat-docs/rules/README.md` and `external/kuat-agent-rules/` resolve; follow links into the vendored EE rule files.
+Load `node_modules/@equal-experts/kuat-core/agent-docs/README.md` and follow links inside that bundle.
 
 ---
 

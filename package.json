@@ -9,6 +9,8 @@
     "test": "turbo run test",
     "test:run": "turbo run test:run",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "release": "node ./scripts/release/publish.mjs",
+    "release:package": "node ./scripts/release/publish.mjs --package",
     "agent-rules:sync:upstream": "./scripts/agent-rules/sync-upstream.sh",
     "agent-rules:generate": "node ./scripts/agent-rules/generate-entrypoints.mjs",
     "agent-rules:check": "node ./scripts/agent-rules/generate-entrypoints.mjs --check",
@@ -16,11 +18,14 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
+    "eslint": "^9.39.4",
+    "globals": "^17.5.0",
     "prettier": "^3.2.5",
     "shadcn": "^3.6.1",
     "shadcn-vue": "^2.4.3",
     "turbo": "^2.0.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^8.59.0"
   },
   "engines": {
     "node": ">=18"

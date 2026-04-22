@@ -10,6 +10,14 @@ Core design tokens and CSS variables for the Kuat Design System by Equal Experts
 - **Tailwind CSS Preset** - Pre-configured theme extensions for Tailwind CSS v4
 - **Dark Mode Support** - Automatic light/dark mode via the `.dark` class
 
+### Bundled agent docs
+
+`@equal-experts/kuat-core` includes consumer-facing AI agent docs under:
+
+- `node_modules/@equal-experts/kuat-core/agent-docs/README.md`
+
+This bundle covers Kuat layout/scenario guidance and canonical Equal Experts foundations needed for consistent layout/content decisions. Contributor docs are intentionally excluded.
+
 ### When to Use kuat-core
 
 | Use Case | Package |

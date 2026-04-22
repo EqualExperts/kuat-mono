@@ -1,0 +1,51 @@
+{
+  "outputDir": "packages/kuat-core/agent-docs",
+  "include": [
+    {
+      "source": "kuat-docs/rules/README.md",
+      "target": "kuat-docs/rules/README.md"
+    },
+    {
+      "source": "kuat-docs/rules/design/layouts.md",
+      "target": "kuat-docs/rules/design/layouts.md"
+    },
+    {
+      "source": "kuat-docs/rules/scenarios",
+      "target": "kuat-docs/rules/scenarios"
+    },
+    {
+      "source": "external/kuat-agent-rules/kuat-docs/rules/LOADING.md",
+      "target": "external/kuat-agent-rules/kuat-docs/rules/LOADING.md"
+    },
+    {
+      "source": "external/kuat-agent-rules/kuat-docs/rules/foundations/design",
+      "target": "external/kuat-agent-rules/kuat-docs/rules/foundations/design"
+    },
+    {
+      "source": "external/kuat-agent-rules/kuat-docs/rules/foundations/content",
+      "target": "external/kuat-agent-rules/kuat-docs/rules/foundations/content"
+    },
+    {
+      "source": "external/kuat-agent-rules/kuat-docs/rules/foundations/logo.md",
+      "target": "external/kuat-agent-rules/kuat-docs/rules/foundations/logo.md"
+    },
+    {
+      "source": "external/kuat-agent-rules/kuat-docs/rules/types/web/product",
+      "target": "external/kuat-agent-rules/kuat-docs/rules/types/web/product"
+    },
+    {
+      "source": "external/kuat-agent-rules/kuat-docs/rules/types/web/marketing",
+      "target": "external/kuat-agent-rules/kuat-docs/rules/types/web/marketing"
+    }
+  ],
+  "denyPathSegments": [
+    ".cursor",
+    "contribution-docs"
+  ],
+  "denyFilenames": [
+    "CONTRIBUTING.md",
+    "AGENTS.md",
+    ".cursorrules",
+    "PUBLISHING.md"
+  ]
+}

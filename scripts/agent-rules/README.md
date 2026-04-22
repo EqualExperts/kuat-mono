@@ -8,7 +8,7 @@ Scope:
 
 ## Commands
 
-- `pnpm agent-rules:sync:upstream` - syncs `EqualExperts/kuat-agent-rules` into `external/kuat-agent-rules` using `git subtree` (or a deterministic clone-and-copy fallback when subtree is unavailable)
+- `pnpm agent-rules:sync:upstream` - syncs `EqualExperts/kuat-agent-rules` into `external/kuat-agent-rules` using `git subtree` (or a deterministic clone-and-copy fallback when subtree is unavailable), then refreshes `packages/kuat-core/agent-docs` and reports add/remove/update file changes for published docs
 - `pnpm agent-rules:generate` - regenerates `AGENTS.md` and `.cursorrules` from templates
 - `pnpm agent-rules:check` - verifies generated files are up to date
 - `pnpm agent-rules:sync` - sync upstream then regenerate local entrypoints

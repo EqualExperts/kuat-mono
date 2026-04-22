@@ -306,4 +306,5 @@ Some projects were told to put **all** “standard” UI in shadcn and use Kuat 
 - [Public API inventory](./public-api-inventory.md)
 - [kuat-core integration](./kuat-core-integration.md)
 - [Verification](./verification.md)
-- [Component patterns (contributors)](../rules/components/patterns.md)
+- [Agent docs integration](./integration.md)
+- Bundled agent docs path: `node_modules/@equal-experts/kuat-core/agent-docs/README.md`

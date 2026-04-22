@@ -44,3 +44,29 @@ else
 fi
 
 echo "Upstream rules synced to ${PREFIX}."
+
+echo "Checking published docs bundle for @equal-experts/kuat-core..."
+node ./scripts/agent-docs/bundle-for-core.mjs
+
+bundle_status="$(git status --porcelain -- packages/kuat-core/agent-docs)"
+if [[ -n "$bundle_status" ]]; then
+  echo "Published docs bundle has updates. Review add/remove/update below:"
+  echo "$bundle_status"
+
+  added_files="$(printf "%s\n" "$bundle_status" | rg '^\?\? ' || true)"
+  removed_files="$(printf "%s\n" "$bundle_status" | rg '^[ MARC][D] ' || true)"
+
+  if [[ -n "$added_files" ]]; then
+    echo ""
+    echo "Files to add:"
+    echo "$added_files"
+  fi
+
+  if [[ -n "$removed_files" ]]; then
+    echo ""
+    echo "Files to remove:"
+    echo "$removed_files"
+  fi
+else
+  echo "Published docs bundle is up to date (no add/remove changes)."
+fi

@@ -1,6 +1,6 @@
 {
   "name": "@equal-experts/kuat-core",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Core design tokens and CSS variables for the Kuat Design System",
   "license": "MIT",
   "author": "Equal Experts",
@@ -43,8 +43,12 @@
     "src",
     "tailwind.config.ts",
     "tailwind.config.d.ts",
-    "README.md"
+    "README.md",
+    "agent-docs"
   ],
+  "scripts": {
+    "prepack": "node ../../scripts/agent-docs/bundle-for-core.mjs"
+  },
   "devDependencies": {
     "tailwindcss": "^4.0.0"
   },
