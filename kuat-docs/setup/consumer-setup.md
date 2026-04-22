@@ -33,7 +33,13 @@ The Kuat Design System uses a layered architecture:
 ### Step 1: Install kuat-core and kuat-react
 
 ```bash
-pnpm add @equal-experts/kuat-core @equal-experts/kuat-react
+pnpm add react react-dom @equal-experts/kuat-core @equal-experts/kuat-react
+```
+
+Install required peers for components you use (example set):
+
+```bash
+pnpm add @radix-ui/react-slot @radix-ui/react-accordion @radix-ui/react-alert-dialog @radix-ui/react-select @radix-ui/react-separator @radix-ui/react-checkbox @radix-ui/react-radio-group @radix-ui/react-switch @radix-ui/react-toggle @radix-ui/react-toggle-group lucide-react sonner
 ```
 
 ### Step 2: Configure Tailwind CSS
@@ -54,15 +60,27 @@ export default {
 } satisfies Config;
 ```
 
-### Step 3: Import design tokens
+### Step 3: Add Tailwind runtime stylesheet (required for Tailwind v4)
+
+Create `src/tailwind.css`:
+
+```css
+@import "tailwindcss";
+```
+
+### Step 4: Import tokens and Kuat styles
 
 ```typescript
 // main.tsx or App.tsx
 import '@equal-experts/kuat-core/variables.css';
+import '@equal-experts/kuat-react/styles';
+import './tailwind.css';
 import './styles.css'; // Your app styles
 ```
 
-### Step 4: Initialize shadcn (recommended for gaps)
+If your template includes global starter CSS (for example Vite `src/index.css`), remove it or strip any root/body/app font and layout resets that override Kuat styles.
+
+### Step 5: Initialize shadcn (recommended for gaps)
 
 Use the shadcn CLI for components **not** shipped by Kuat (e.g. Dialog, DropdownMenu, Tabs). You can initialize early or when you first need a gap component.
 
@@ -79,7 +97,7 @@ When prompted, use settings that match your stack, for example:
 - Components path: `src/components`
 - Utils path: `src/lib/utils`
 
-### Step 5: Add shadcn components as needed
+### Step 6: Add shadcn components as needed
 
 Install only what Kuat does not provide, for example:
 
@@ -90,7 +108,7 @@ npx shadcn@latest add dropdown-menu
 
 See [public-api-inventory.md](./public-api-inventory.md) for typical Kuat vs shadcn split.
 
-### Step 6: Import from Kuat vs your shadcn folder
+### Step 7: Import from Kuat vs your shadcn folder
 
 **Prefer Kuat** for primitives that exist in the package (Button, Field, Select, Switch, Accordion, Alert Dialog, Badge, Input, Textarea, ButtonGroup, blocks, etc.):
 
@@ -98,6 +116,8 @@ See [public-api-inventory.md](./public-api-inventory.md) for typical Kuat vs sha
 import { Button, ButtonGroup, Field } from '@equal-experts/kuat-react';
 // or tree-shake via subpaths:
 import { Switch } from '@equal-experts/kuat-react/switch';
+// Carousel is root-only:
+import { KuatCarousel } from '@equal-experts/kuat-react';
 ```
 
 **Use your local shadcn copy** for components Kuat does not publish:
@@ -134,7 +154,8 @@ export function Example() {
 ### Step 1: Install kuat-core and kuat-vue
 
 ```bash
-pnpm add @equal-experts/kuat-core @equal-experts/kuat-vue
+pnpm add vue @equal-experts/kuat-core @equal-experts/kuat-vue
+pnpm add radix-vue reka-ui lucide-vue-next vue-sonner
 ```
 
 ### Step 2: Configure Tailwind CSS
@@ -153,11 +174,21 @@ export default {
 } satisfies Config;
 ```
 
-### Step 3: Import design tokens
+### Step 3: Add Tailwind runtime stylesheet (required for Tailwind v4)
+
+Create `src/tailwind.css`:
+
+```css
+@import "tailwindcss";
+```
+
+### Step 4: Import design tokens and Kuat styles
 
 ```typescript
 // main.ts
 import '@equal-experts/kuat-core/variables.css';
+import '@equal-experts/kuat-vue/styles';
+import './tailwind.css';
 import './style.css';
 import { createApp } from 'vue';
 import App from './App.vue';
@@ -165,26 +196,29 @@ import App from './App.vue';
 createApp(App).mount('#app');
 ```
 
-### Step 4: Initialize shadcn-vue
+If your template includes global starter CSS (for example Vite `src/style.css`), remove it or strip root/body/app font and layout resets that override Kuat styles.
+
+### Step 5: Initialize shadcn-vue
 
 ```bash
 npx shadcn-vue@latest init
 ```
 
-### Step 5: Install shadcn-vue components as needed
+### Step 6: Install shadcn-vue components as needed
 
 ```bash
 npx shadcn-vue@latest add dialog
 npx shadcn-vue@latest add dropdown-menu
 ```
 
-### Step 6: Import from Kuat vs your shadcn folder
+### Step 7: Import from Kuat vs your shadcn folder
 
 ```vue
 <script setup lang="ts">
 import { Button, ButtonGroup, Field } from '@equal-experts/kuat-vue';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 // or: import { Switch } from '@equal-experts/kuat-vue/switch'
+// carousel is root-only: import { KuatCarousel } from '@equal-experts/kuat-vue'
 </script>
 
 <template>
@@ -279,6 +313,52 @@ Some projects were told to put **all** “standard” UI in shadcn and use Kuat 
 
 ---
 
+## Installation verification tests (human or agent)
+
+Run these immediately after setup to verify import resolution and styling without package-internal CSS workarounds.
+
+### React verification
+
+1. Render `Button`, `Field`, and `KuatCarousel` from `@equal-experts/kuat-react`.
+2. Add a visible utility class check in the view (`text-4xl font-bold`).
+3. Run:
+
+```bash
+pnpm build
+pnpm dev
+```
+
+Pass criteria:
+- no unresolved imports for `@equal-experts/kuat-react/styles`,
+- Tailwind utility classes are applied,
+- Kuat components render with expected styling.
+
+Fail criteria:
+- importing any `node_modules/@equal-experts/kuat-react/dist/*.css`,
+- importing carousel via `@equal-experts/kuat-react/carousel`.
+
+### Vue verification
+
+1. Render `Button`, `Field`, and `KuatCarousel` from `@equal-experts/kuat-vue`.
+2. Add a visible utility class check in the view (`text-4xl font-bold`).
+3. Run:
+
+```bash
+pnpm build
+pnpm dev
+```
+
+Pass criteria:
+- no unresolved imports for `@equal-experts/kuat-vue/styles`,
+- Tailwind utility classes are applied,
+- Kuat components render with expected styling.
+
+Fail criteria:
+- importing any `node_modules/@equal-experts/kuat-vue/dist/*.css`,
+- importing carousel via `@equal-experts/kuat-vue/carousel`.
+
+---
+
 ## Troubleshooting
 
 ### Components not styled correctly
@@ -287,6 +367,17 @@ Some projects were told to put **all** “standard” UI in shadcn and use Kuat 
 2. Ensure `kuatPreset` is in Tailwind `presets`.
 3. Ensure both `src/**` and `node_modules/@equal-experts/kuat-react/**` (or `kuat-vue`) are in `content`.
 4. For shadcn files under `src/components/ui`, keep those paths in `content`.
+
+### Fonts or spacing look like template defaults
+
+1. Check for starter-template global CSS (`src/index.css`, `src/style.css`, or similar).
+2. Remove or neutralize rules that set `font`/`font-family` on `:root`, `html`, `body`, `#root`, or `#app`.
+3. Keep this import order in app entry:
+   - `@equal-experts/kuat-core/variables.css`
+   - `@equal-experts/<package>/styles`
+   - `./tailwind.css`
+   - app-specific overrides last
+4. If needed, restart the dev server after removing starter CSS overrides.
 
 ### TypeScript errors
 

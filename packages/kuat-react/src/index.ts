@@ -13,6 +13,12 @@
  */
 
 // =============================================================================
+// STYLES
+// =============================================================================
+// Bundled design tokens and Tailwind runtime from @equal-experts/kuat-core.
+import "./styles.css";
+
+// =============================================================================
 // STYLES: Each component imports its own CSS. Consumers should import
 // @equal-experts/kuat-core/variables.css once for design tokens.
 // Kuat custom components (e.g. ButtonGroup) use their own CSS files and are

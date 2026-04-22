@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, writeFile, unlink } from "node:fs/promises";
 import path from "node:path";
 import readline from "node:readline/promises";
 import { spawnSync } from "node:child_process";
@@ -101,6 +101,70 @@ function run(command, args, options = {}) {
   }
 }
 
+function runCapture(command, args, options = {}) {
+  const result = spawnSync(command, args, {
+    cwd: options.cwd ?? repoRoot,
+    stdio: "pipe",
+    shell: false,
+    encoding: "utf8",
+  });
+
+  if (result.status !== 0) {
+    const stderr = result.stderr?.trim();
+    throw new Error(`Command failed: ${command} ${args.join(" ")}${stderr ? `\n${stderr}` : ""}`);
+  }
+
+  return result.stdout ?? "";
+}
+
+function printSuccessSummary({ dryRun, releasePlan, runLint }) {
+  const banner = [
+    "",
+    "==============================================",
+    "  _  ___   _    _  _____   ___  _   __        ",
+    " | |/ / | | |  / \\|_   _| |_ _|/ \\ / /        ",
+    " | ' /| | | | / _ \\ | |    | ||  _  |         ",
+    " | . \\| |_| |/ ___ \\| |    | || | | |         ",
+    " |_|\\_\\\\___//_/   \\_\\_|   |___|_| |_|         ",
+    "                                              ",
+    "                                              ",
+    " Release flow completed successfully.",
+    "==============================================",
+  ];
+  console.log(banner.join("\n"));
+
+  console.log("\nSummary:");
+  console.log(`- Mode: ${dryRun ? "dry-run (no publish/write)" : "publish"}`);
+  console.log(`- Lint: ${runLint ? "run" : "skipped"}`);
+  console.log("- Packages:");
+  for (const item of releasePlan) {
+    console.log(`  - ${item.pkg.name}: ${item.from} -> ${item.to}`);
+  }
+}
+
+function printFailureSummary(error, stage) {
+  const banner = [
+    "",
+    "==============================================",
+    "  ____  _____ _     _____ ___ ____  _         ",
+    " |  _ \\| ____| |   | ____|_ _|  _ \\| |        ",
+    " | |_) |  _| | |   |  _|  | || |_) | |        ",
+    " |  _ <| |___| |___| |___ | ||  _ <| |___     ",
+    " |_| \\_\\_____|_____|_____|___|_| \\_\\_____|    ",
+    "                                              ",
+    "                                              ",
+    " Release flow stopped due to an issue.",
+    "==============================================",
+  ];
+  console.error(banner.join("\n"));
+  console.error("\nFailure summary:");
+  console.error(`- Stage: ${stage}`);
+  console.error(`- Error: ${error.message}`);
+  console.error("\nSuggested actions:");
+  console.error("- Fix the issue reported above.");
+  console.error("- Re-run the same release command.");
+}
+
 function isNpmAuthenticated() {
   const result = spawnSync("npm", ["whoami"], {
     cwd: repoRoot,
@@ -137,6 +201,105 @@ async function readJson(relPath) {
 async function writeJson(relPath, value) {
   const abs = path.join(repoRoot, relPath);
   await writeFile(abs, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function collectExportTargets(exportsConfig, acc = new Set()) {
+  if (typeof exportsConfig === "string") {
+    acc.add(exportsConfig);
+    return acc;
+  }
+
+  if (Array.isArray(exportsConfig)) {
+    for (const item of exportsConfig) {
+      collectExportTargets(item, acc);
+    }
+    return acc;
+  }
+
+  if (exportsConfig && typeof exportsConfig === "object") {
+    for (const value of Object.values(exportsConfig)) {
+      collectExportTargets(value, acc);
+    }
+  }
+
+  return acc;
+}
+
+function parsePackedFilename(packOutput, packageName) {
+  const lines = packOutput
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const tarball = [...lines].reverse().find((line) => line.endsWith(".tgz"));
+  if (!tarball) {
+    throw new Error(`Could not determine tarball name for ${packageName} from npm pack output.`);
+  }
+  return tarball;
+}
+
+function toTarEntryPath(relativePath) {
+  return `package/${relativePath.replace(/^\.\//, "")}`;
+}
+
+function listTarEntries(tarballPath, cwd) {
+  const output = runCapture("tar", ["-tzf", tarballPath], { cwd });
+  return new Set(
+    output
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean),
+  );
+}
+
+function extractTarText(tarballPath, entryPath, cwd) {
+  return runCapture("tar", ["-xOf", tarballPath, entryPath], { cwd });
+}
+
+async function validateExportTargets(pkg, tarballPath, cwd) {
+  const packageJson = await readJson(pkg.packageJson);
+  const exportTargets = [...collectExportTargets(packageJson.exports)];
+  const entries = listTarEntries(tarballPath, cwd);
+
+  for (const target of exportTargets) {
+    const expectedEntry = toTarEntryPath(target);
+    if (!entries.has(expectedEntry)) {
+      throw new Error(
+        `${pkg.name} export target missing from tarball: ${target} (expected ${expectedEntry} in ${tarballPath})`,
+      );
+    }
+  }
+}
+
+async function validateStylesContract(pkg, tarballPath, cwd) {
+  const packageJson = await readJson(pkg.packageJson);
+  const stylesExport = packageJson.exports?.["./styles"];
+  if (!stylesExport) return;
+
+  const stylesTarget =
+    typeof stylesExport === "string"
+      ? stylesExport
+      : stylesExport.import ?? stylesExport.default ?? stylesExport.require;
+
+  if (!stylesTarget || typeof stylesTarget !== "string") {
+    throw new Error(`${pkg.name} has invalid ./styles export configuration.`);
+  }
+
+  const stylesEntry = toTarEntryPath(stylesTarget);
+  const entries = listTarEntries(tarballPath, cwd);
+  if (!entries.has(stylesEntry)) {
+    throw new Error(`${pkg.name} styles export target missing from tarball: ${stylesTarget}`);
+  }
+
+  if (pkg.id === "react" || pkg.id === "vue") {
+    const css = extractTarText(tarballPath, stylesEntry, cwd);
+    const requiredSelectors = [".button", ".field", ".content-card"];
+    const missing = requiredSelectors.filter((selector) => !css.includes(selector));
+    if (missing.length > 0) {
+      throw new Error(
+        `${pkg.name} styles contract failed. Missing selectors in ${stylesTarget}: ${missing.join(", ")}`,
+      );
+    }
+  }
 }
 
 async function promptList(rl, label, options, defaultIndex = 0) {
@@ -232,10 +395,12 @@ async function updateChangelog(entry) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  let currentStage = "initialization";
 
   try {
     console.log("Kuat interactive release");
     console.log(`Mode: ${args.dryRun ? "dry-run" : "publish"}`);
+    currentStage = "npm authentication";
     ensureNpmAuth(args);
 
     let scope = args.package;
@@ -260,6 +425,7 @@ async function main() {
       }
     }
 
+    currentStage = "scope selection";
     const selectedPackageIds =
       scope === "all"
         ? [...DEFAULT_ORDER]
@@ -271,6 +437,7 @@ async function main() {
 
     const selectedPackages = selectedPackageIds.map((id) => PACKAGE_MAP[id]);
 
+    currentStage = "version planning";
     const packageVersions = {};
     for (const pkg of selectedPackages) {
       const json = await readJson(pkg.packageJson);
@@ -302,6 +469,7 @@ async function main() {
       releasePlan.push({ pkg, from: packageVersions[pkg.id], to: nextVersion, bump: bumpChoice.trim() });
     }
 
+    currentStage = "changelog input";
     const notes = args.yes
       ? { added: [], changed: [], fixed: [] }
       : await collectNotes(rl, args);
@@ -326,20 +494,35 @@ async function main() {
       }
     }
 
+    currentStage = "build";
     run("pnpm", ["build"]);
-    if (runLint) run("pnpm", ["lint"]);
+    if (runLint) {
+      currentStage = "lint";
+      run("pnpm", ["lint"]);
+    }
 
+    currentStage = "package checks (npm pack)";
     for (const item of releasePlan) {
-      run("npm", ["pack"], { cwd: path.join(repoRoot, item.pkg.dir) });
+      const packageDir = path.join(repoRoot, item.pkg.dir);
+      const packOutput = runCapture("npm", ["pack"], { cwd: packageDir });
+      const tarballName = parsePackedFilename(packOutput, item.pkg.name);
+      console.log(`Validated pack output for ${item.pkg.name}: ${tarballName}`);
+
+      await validateExportTargets(item.pkg, tarballName, packageDir);
+      await validateStylesContract(item.pkg, tarballName, packageDir);
+
+      await unlink(path.join(packageDir, tarballName));
     }
 
     if (!args.dryRun) {
+      currentStage = "version updates";
       for (const item of releasePlan) {
         const json = await readJson(item.pkg.packageJson);
         json.version = item.to;
         await writeJson(item.pkg.packageJson, json);
       }
 
+      currentStage = "changelog update";
       const affectedPackages = releasePlan.map((item) => `${item.pkg.name}@${item.to}`);
       const heading =
         releasePlan.length === 1
@@ -359,11 +542,14 @@ async function main() {
     }
 
     if (!args.dryRun) {
+      currentStage = "npm publish";
       for (const item of releasePlan) {
         run("npm", ["publish", "--access", "public"], { cwd: path.join(repoRoot, item.pkg.dir) });
       }
     }
 
+    currentStage = "completed";
+    printSuccessSummary({ dryRun: args.dryRun, releasePlan, runLint });
     console.log("\nRelease complete.");
     console.log("Suggested next steps:");
     console.log("- git status");
@@ -371,12 +557,16 @@ async function main() {
     console.log('- git commit -m "chore: release packages"');
     console.log("- git tag <tag>");
     console.log("- git push && git push --tags");
+  } catch (error) {
+    error.stage = currentStage;
+    throw error;
   } finally {
     rl.close();
   }
 }
 
 main().catch((error) => {
-  console.error(error.message);
+  const stage = error?.stage ?? "unknown";
+  printFailureSummary(error, stage);
   process.exit(1);
 });

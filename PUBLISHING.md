@@ -229,6 +229,8 @@ The interactive flow will:
 - choose bump type per selected package,
 - collect changelog bullets,
 - run build/lint checks and package sanity checks (`npm pack`),
+- validate every `package.json` `exports` target exists in each packed tarball,
+- validate `./styles` contract for UI packages (`@equal-experts/kuat-react` and `@equal-experts/kuat-vue`) by checking key selectors exist in the exported CSS file,
 - publish selected packages.
 
 ### Single package release

@@ -27,12 +27,23 @@ Vue 3 components and blocks for the Kuat Design System: **localized primitives**
 ## Installation
 
 ```bash
-pnpm add @equal-experts/kuat-core @equal-experts/kuat-vue
+pnpm add vue @equal-experts/kuat-core @equal-experts/kuat-vue
 ```
 
 ### Peer dependencies
 
-See this package’s `package.json` `peerDependencies` (for example `vue`, `radix-vue` / `reka-ui` as appropriate to your stack).
+Install peers for the components you use before running `dev` or `build`.
+
+| Components you use | Required peers |
+|---|---|
+| Core components (`Button`, `Field`, `Select`, `Switch`, `Accordion`) | `radix-vue`, `reka-ui`, `lucide-vue-next` |
+| `Sonner` | `vue-sonner` |
+
+Example peer install:
+
+```bash
+pnpm add radix-vue reka-ui lucide-vue-next vue-sonner
+```
 
 ---
 
@@ -74,6 +85,14 @@ import { Switch } from '@equal-experts/kuat-vue/switch';
 
 See `package.json` `exports` and [public-api-inventory.md](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/setup/public-api-inventory.md).
 
+`KuatCarousel` is currently exported from the root barrel:
+
+```vue
+<script setup lang="ts">
+import { KuatCarousel } from '@equal-experts/kuat-vue';
+</script>
+```
+
 ---
 
 ## Recommended setup
@@ -94,21 +113,34 @@ export default {
 } satisfies Config;
 ```
 
-### 2. Design tokens
+### 2. Tailwind runtime stylesheet (required for Tailwind v4)
+
+Create a global stylesheet and load Tailwind:
+
+```css
+/* src/tailwind.css */
+@import "tailwindcss";
+```
+
+### 3. Design tokens and Kuat styles
 
 ```typescript
 // main.ts
 import '@equal-experts/kuat-core/variables.css';
+import '@equal-experts/kuat-vue/styles';
+import './tailwind.css';
 ```
 
-### 3. shadcn-vue for gaps
+If you scaffolded from a starter template (for example Vite), remove or neutralize template CSS that resets fonts/layout globally (for example `src/style.css` with `:root { font: ... }`, `body { ... }`, `#app { ... }`). These rules can override Kuat typography and spacing.
+
+### 4. shadcn-vue for gaps
 
 ```bash
 npx shadcn-vue@latest init
 npx shadcn-vue@latest add dialog dropdown-menu
 ```
 
-### 4. Use Kuat + shadcn-vue together
+### 5. Use Kuat + shadcn-vue together
 
 ```vue
 <script setup lang="ts">
@@ -162,6 +194,66 @@ import { cn } from '@equal-experts/kuat-vue';
 const containerClass = cn('bg-background text-foreground p-4', props.class);
 </script>
 ```
+
+---
+
+## Verification test (human or agent)
+
+Use this quick smoke test after installation to verify imports, styles, and Tailwind are wired correctly.
+
+### 1. Add a smoke component
+
+```vue
+<script setup lang="ts">
+import {
+  Button,
+  Field,
+  KuatCarousel,
+  KuatCarouselContent,
+  KuatCarouselItem,
+  KuatCarouselPrevious,
+  KuatCarouselNext,
+} from '@equal-experts/kuat-vue';
+</script>
+
+<template>
+  <main class="mx-auto max-w-4xl space-y-8 p-8">
+    <h1 class="text-4xl font-bold">Kuat install smoke test</h1>
+
+    <Field>
+      <label for="name">Name</label>
+      <input id="name" placeholder="Test input" />
+    </Field>
+
+    <Button variant="primary">Primary action</Button>
+
+    <KuatCarousel>
+      <KuatCarouselContent>
+        <KuatCarouselItem><div class="rounded border p-6">Slide 1</div></KuatCarouselItem>
+        <KuatCarouselItem><div class="rounded border p-6">Slide 2</div></KuatCarouselItem>
+      </KuatCarouselContent>
+      <KuatCarouselPrevious />
+      <KuatCarouselNext />
+    </KuatCarousel>
+  </main>
+</template>
+```
+
+### 2. Run checks
+
+```bash
+pnpm build
+pnpm dev
+```
+
+### 3. Pass/fail criteria
+
+- Pass: no unresolved import errors for `@equal-experts/kuat-vue/styles` or component imports.
+- Pass: heading renders visibly larger and bold (`text-4xl font-bold` applied).
+- Pass: `Button`, `Field`, and `KuatCarousel` render with Kuat styles (not plain browser defaults).
+- Pass: typography uses Kuat font stack (Lexend for sans) rather than template defaults.
+- Fail: any need to import internal `dist/*.css` files manually.
+- Fail: using `@equal-experts/kuat-vue/carousel` instead of root barrel import for carousel.
 
 ---
 

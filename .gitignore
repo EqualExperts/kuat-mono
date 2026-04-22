@@ -52,3 +52,5 @@ lerna-debug.log*
 
 # External files
 external/
+packages/kuat-react/equal-experts-kuat-react-*.tgz
+packages/kuat-vue/equal-experts-kuat-vue-*.tgz

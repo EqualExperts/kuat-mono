@@ -27,9 +27,11 @@ This file maps **published package exports** to **documentation surfaces** (Stor
 | `./sonner` | |
 | `./toggle` | |
 | `./toggle-group` | |
-| `./styles` | Bundled CSS |
+| `./styles` | Bundled global CSS entry (`dist/style.css`) |
 
 Symbols exported only from the main barrel (no dedicated subpath): e.g. `KuatHeader`, `KuatCarousel`, `KuatLogoLockup`, `EELogoIcon`, `ContentCard`, `ButtonGroup`, `cn`, etc. See `packages/kuat-react/src/index.ts`.
+
+Important install note: import carousel from `@equal-experts/kuat-react` (root barrel), not `@equal-experts/kuat-react/carousel`.
 
 ### Storybook (`apps/storybook-react/stories/`)
 
@@ -62,7 +64,9 @@ Symbols exported only from the main barrel (no dedicated subpath): e.g. `KuatHea
 
 ### `package.json` subpath exports
 
-Same pattern as React, except **no** `./kuat-radial-progress` subpath in `package.json` (radial progress is still on the main barrel — verify `package.json` if this changes). Barrel: `packages/kuat-vue/src/index.ts`.
+Same pattern as React, except **no** `./kuat-radial-progress` subpath in `package.json` (radial progress is still on the main barrel — verify `package.json` if this changes). Includes `./styles` as bundled global CSS entry (`dist/style.css`). Barrel: `packages/kuat-vue/src/index.ts`.
+
+Important install note: import carousel from `@equal-experts/kuat-vue` (root barrel), not `@equal-experts/kuat-vue/carousel`.
 
 ### Storybook (`apps/storybook-vue/stories/`)
 

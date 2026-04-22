@@ -5,6 +5,36 @@ All notable changes to the published Kuat packages are documented in this file.
 ## Multi-package release - 2026-04-22
 
 ### Affected packages
+- @equal-experts/kuat-core@0.9.1
+- @equal-experts/kuat-react@0.9.1
+- @equal-experts/kuat-vue@0.9.1
+
+### Notes
+- Release prepared via shorthand script.
+
+## Multi-package release - 2026-04-22
+
+### Affected packages
+- @equal-experts/kuat-core@0.9.0
+- @equal-experts/kuat-react@0.9.0
+- @equal-experts/kuat-vue@0.9.0
+
+### Changed
+- Improvements to installation guidance for agents
+
+## Multi-package release - 2026-04-22
+
+### Affected packages
+- @equal-experts/kuat-core@0.8.0
+- @equal-experts/kuat-react@0.8.0
+- @equal-experts/kuat-vue@0.8.0
+
+### Added
+- Release workflow
+
+## Multi-package release - 2026-04-22
+
+### Affected packages
 - @equal-experts/kuat-core@0.7.0
 - @equal-experts/kuat-react@0.7.0
 - @equal-experts/kuat-vue@0.7.0

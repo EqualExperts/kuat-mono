@@ -27,18 +27,31 @@ React components and blocks for the Kuat Design System: **localized primitives**
 ## Installation
 
 ```bash
-pnpm add @equal-experts/kuat-core @equal-experts/kuat-react
+pnpm add react react-dom @equal-experts/kuat-core @equal-experts/kuat-react
 ```
 
 You need **both** packages: core supplies CSS variables and the Tailwind preset; this package supplies components.
 
 ### Peer dependencies
 
-`react` and `react-dom` are required. Radix UI and other peers are listed in this package’s `package.json` under `peerDependencies`—install the primitives that match the components you use.
+Install peers for the components you use before running `dev` or `build`.
+
+| Components you use | Required peers |
+|---|---|
+| `Button`, `KuatHeader` | `@radix-ui/react-slot`, `lucide-react` |
+| `Accordion` | `@radix-ui/react-accordion` |
+| `AlertDialog` | `@radix-ui/react-alert-dialog` |
+| `Select` / `KuatSelect` | `@radix-ui/react-select`, `@radix-ui/react-separator` |
+| `Checkbox` / `CheckboxField` | `@radix-ui/react-checkbox` |
+| `RadioGroup` / `RadioField` | `@radix-ui/react-radio-group` |
+| `Switch` / `SwitchField` | `@radix-ui/react-switch` |
+| `Toggle` / `ToggleGroup` | `@radix-ui/react-toggle`, `@radix-ui/react-toggle-group` |
+| `Sonner` | `sonner` |
+
+Example peer install for a broad setup:
 
 ```bash
-pnpm add react react-dom
-# Add @radix-ui/* and lucide-react as needed for your components — see peerDependencies
+pnpm add @radix-ui/react-slot @radix-ui/react-accordion @radix-ui/react-alert-dialog @radix-ui/react-select @radix-ui/react-separator @radix-ui/react-checkbox @radix-ui/react-radio-group @radix-ui/react-switch @radix-ui/react-toggle @radix-ui/react-toggle-group lucide-react sonner
 ```
 
 ---
@@ -81,6 +94,12 @@ import { KuatRadialProgress } from '@equal-experts/kuat-react/kuat-radial-progre
 
 See [public-api-inventory.md](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/setup/public-api-inventory.md) for the full subpath list.
 
+`KuatCarousel` is currently exported from the root barrel:
+
+```tsx
+import { KuatCarousel } from '@equal-experts/kuat-react';
+```
+
 ---
 
 ## Recommended setup
@@ -101,21 +120,47 @@ export default {
 } satisfies Config;
 ```
 
-### 2. Design tokens (once per app)
+### 2. Tailwind runtime stylesheet (required for Tailwind v4)
+
+Create a global stylesheet and load Tailwind:
+
+```css
+/* src/tailwind.css */
+@import "tailwindcss";
+```
+
+### 3. Design tokens and Kuat styles (once per app entrypoint)
 
 ```typescript
 // main.tsx
 import '@equal-experts/kuat-core/variables.css';
+import '@equal-experts/kuat-react/styles';
+import './tailwind.css';
+import './app.css';
 ```
 
-### 3. shadcn for gaps only
+Import order matters: load Kuat tokens and Kuat styles before app-specific styles.
+
+If you scaffolded from a starter template (for example Vite), remove or neutralize template CSS that resets fonts/layout globally (for example `src/index.css` with `:root { font: ... }`, `body { ... }`, `#root { ... }`). These rules can override Kuat typography and spacing.
+
+Typical cleanup for a smoke setup:
+
+```typescript
+// Keep in main.tsx
+import '@equal-experts/kuat-core/variables.css';
+import '@equal-experts/kuat-react/styles';
+import './tailwind.css';
+// Remove template global CSS import if it overrides root/body fonts or layout
+```
+
+### 4. shadcn for gaps only
 
 ```bash
 npx shadcn@latest init
 npx shadcn@latest add dialog dropdown-menu   # examples — skip `button` if you use Kuat Button
 ```
 
-### 4. Use Kuat + shadcn together
+### 5. Use Kuat + shadcn together
 
 ```tsx
 import { Button, ButtonGroup, Field } from '@equal-experts/kuat-react';
@@ -167,6 +212,56 @@ export function Box({ className, ...props }: React.ComponentProps<'div'>) {
   return <div className={cn('bg-background p-4', className)} {...props} />;
 }
 ```
+
+---
+
+## Verification test (human or agent)
+
+Use this quick smoke test after installation to verify imports, styles, and Tailwind are wired correctly.
+
+### 1. Add a smoke component
+
+```tsx
+import { Button, Field, KuatCarousel, KuatCarouselContent, KuatCarouselItem } from '@equal-experts/kuat-react';
+
+export function KuatInstallSmoke() {
+  return (
+    <div className="space-y-6 p-6">
+      <h1 className="text-4xl font-bold">Kuat install smoke test</h1>
+
+      <Field>
+        <label htmlFor="name">Name</label>
+        <input id="name" placeholder="Test input" />
+      </Field>
+
+      <Button variant="primary">Primary action</Button>
+
+      <KuatCarousel opts={{ loop: false }}>
+        <KuatCarouselContent>
+          <KuatCarouselItem>Slide 1</KuatCarouselItem>
+          <KuatCarouselItem>Slide 2</KuatCarouselItem>
+        </KuatCarouselContent>
+      </KuatCarousel>
+    </div>
+  );
+}
+```
+
+### 2. Run checks
+
+```bash
+pnpm build
+pnpm dev
+```
+
+### 3. Pass/fail criteria
+
+- Pass: no unresolved import errors for `@equal-experts/kuat-react/styles` or component imports.
+- Pass: heading renders visibly larger and bold (`text-4xl font-bold` applied).
+- Pass: `Button`, `Field`, and `KuatCarousel` render with Kuat styles (not plain browser defaults).
+- Pass: typography uses Kuat font stack (Lexend for sans) rather than template defaults.
+- Fail: any need to import internal `dist/*.css` files manually.
+- Fail: using `@equal-experts/kuat-react/carousel` instead of root barrel import for carousel.
 
 ---
 

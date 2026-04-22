@@ -1,6 +1,6 @@
 {
   "name": "@equal-experts/kuat-react",
-  "version": "0.7.0",
+  "version": "0.9.1",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -74,7 +74,10 @@
       "import": "./dist/toggle-group.js",
       "types": "./dist/toggle-group.d.ts"
     },
-    "./styles": "./dist/style.css"
+    "./styles": {
+      "types": "./dist/style.css.d.ts",
+      "default": "./dist/style.css"
+    }
   },
   "files": [
     "dist",
@@ -95,7 +98,7 @@
     "directory": "packages/kuat-react"
   },
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && node -e \"const fs=require('node:fs');fs.writeFileSync('dist/style.css.d.ts','declare const stylesheet: string;\\\\nexport default stylesheet;\\\\n');\"",
     "dev": "vite build --watch",
     "lint": "eslint . --max-warnings 0",
     "test": "vitest",
