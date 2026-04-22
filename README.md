@@ -126,6 +126,15 @@ Vue component library built with shadcn-vue, Radix Vue primitives, and Tailwind 
 
 ## Documentation
 
+### Docs Audience Contract
+
+Kuat documentation is intentionally split by audience:
+
+- **Contributor docs (repo-internal):** guidance for maintainers/agents changing Kuat itself (architecture, coding standards, testing, accessibility gates, release process, agent workflow).
+- **Consumer docs (usage-focused):** guidance for application teams using published Kuat packages (install, setup, component selection, composition, design foundations).
+
+Contributor-focused docs are not included in published package payloads unless explicitly added to a package `files` list.
+
 ### For users
 
 - [Consumer setup](./kuat-docs/setup/consumer-setup.md) — install order, Tailwind, imports
@@ -133,12 +142,15 @@ Vue component library built with shadcn-vue, Radix Vue primitives, and Tailwind 
 - [@equal-experts/kuat-react README](./packages/kuat-react/README.md)
 - [@equal-experts/kuat-vue README](./packages/kuat-vue/README.md)
 - [Design system documentation](./kuat-docs/README.md) — index of rules and examples
+- [Rule ownership matrix](./kuat-docs/setup/rules-source-of-truth.md) — local vs upstream source of truth
 
 ### For Contributors
 
 - [CONTRIBUTING.md](./CONTRIBUTING.md) - Development workflow and component guidelines
 - [ARCHITECTURE.md](./ARCHITECTURE.md) - Monorepo architecture and design decisions
 - [Component Guidelines](./kuat-docs/rules/components/patterns.md) - Component development patterns
+- [Contribution guides](./contribution-docs/README.md) - React/Vue implementation standards
+- [Local agent rules](./AGENTS.md) - Contributor-focused local overlay rules
 
 ### For Maintainers
 
@@ -150,7 +162,7 @@ Vue component library built with shadcn-vue, Radix Vue primitives, and Tailwind 
 - [Agent Documentation](./kuat-docs/README.md) - Navigation index for AI agent documentation
 - Local canonical agent rules: [`AGENTS.md`](./AGENTS.md) (generated from `scripts/agent-rules/templates/`)
 - Cursor agents under [`.cursor/agents/`](./.cursor/agents/) — **kuat-qa**, **kuat-component-dev**, **kuat-verify**, **kuat-documentation** (see [CONTRIBUTING.md](./CONTRIBUTING.md) Development Workflow)
-- [Design Rules](./kuat-docs/rules/) - Pure design language (no code)
+- [Rules index](./kuat-docs/rules/README.md) — EE canonical paths (`external/kuat-agent-rules`) and Kuat implementation
 - [Integration Guide](./kuat-docs/setup/integration.md) - How to integrate docs into your project
 
 ## Contributing

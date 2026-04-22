@@ -1,97 +1,148 @@
-# Kuat Design System Rules
+# Kuat rules index
 
-Pure design language documentation - technology-agnostic rules for building consistent user interfaces and content.
+Single entry point for **Equal Experts** canonical rules (vendored copy) and **Kuat**-specific implementation notes. Generic brand doctrine is **not** duplicated here—link targets live under [`external/kuat-agent-rules`](../../external/kuat-agent-rules).
 
----
+> Policy: [Rules source of truth](../setup/rules-source-of-truth.md). Task-loading order for upstream: [`LOADING.md`](../../external/kuat-agent-rules/kuat-docs/rules/LOADING.md).
 
-## Quick Navigation
-
-| Category | Description | Key Files |
-|----------|-------------|-----------|
-| [Design](./design/) | Visual design rules | colours, typography, spacing, borders, layouts, logo |
-| [Accessibility](./accessibility/) | WCAG 2.2 AA requirements | design, content, technical |
-| [Content](./content/) | Content writing rules | voice, tone, marketing, UX writing |
-| [Components](./components/) | Component pattern rules | naming, variants, accessibility |
-| [Scenarios](./scenarios/) | Applied layout patterns | authentication, dashboards, forms, docs, marketing |
+**Path prefix (this repo):** `external/kuat-agent-rules/kuat-docs/rules/`
 
 ---
 
-## How to Use These Rules
+## Canonical EE rules (vendored)
 
-**These files contain design principles and specifications only - no code examples.**
+Use these files in the synced tree. Paths below are relative to the repo root.
 
-For implementation code, see:
-- [examples/react/](../examples/react/) - React/JSX examples
-- [examples/vue/](../examples/vue/) - Vue SFC examples
-- [examples/css/](../examples/css/) - Vanilla CSS examples
+### Rules index & loading
 
----
+| Resource | Path |
+|----------|------|
+| Rules README | [`external/kuat-agent-rules/kuat-docs/rules/README.md`](../../external/kuat-agent-rules/kuat-docs/rules/README.md) |
+| Task loading | [`external/kuat-agent-rules/kuat-docs/rules/LOADING.md`](../../external/kuat-agent-rules/kuat-docs/rules/LOADING.md) |
 
-## Design Rules
+### Foundations — design
 
-Visual design specifications for the Kuat Design System:
+| Topic | Path |
+|-------|------|
+| Design language | [`.../foundations/design/design-language.md`](../../external/kuat-agent-rules/kuat-docs/rules/foundations/design/design-language.md) |
+| Colours | [`.../foundations/design/colours.md`](../../external/kuat-agent-rules/kuat-docs/rules/foundations/design/colours.md) |
+| Typography | [`.../foundations/design/typography.md`](../../external/kuat-agent-rules/kuat-docs/rules/foundations/design/typography.md) |
+| Spacing | [`.../foundations/design/spacing.md`](../../external/kuat-agent-rules/kuat-docs/rules/foundations/design/spacing.md) |
+| Borders | [`.../foundations/design/borders.md`](../../external/kuat-agent-rules/kuat-docs/rules/foundations/design/borders.md) |
 
-- **[colours.md](./design/colours.md)** - Brand colors, semantic tokens, accessibility
-- **[typography.md](./design/typography.md)** - Fonts, type scale, hierarchy
-- **[spacing.md](./design/spacing.md)** - 8-point grid, spacing scale, patterns
-- **[borders.md](./design/borders.md)** - Border philosophy, radius, colors
-- **[logo.md](./design/logo.md)** - Logo usage, sizing, variants
-- **[layouts.md](./design/layouts.md)** - Layout primitives and building blocks
-- **[overview.md](./design/overview.md)** - Design system principles
+### Foundations — logo
 
----
+| Topic | Path |
+|-------|------|
+| Logo | [`.../foundations/logo.md`](../../external/kuat-agent-rules/kuat-docs/rules/foundations/logo.md) |
 
-## Accessibility Rules
+### Foundations — content
 
-WCAG 2.2 Level AA requirements for the Kuat Design System:
+| Topic | Path |
+|-------|------|
+| Content index | [`.../foundations/content/README.md`](../../external/kuat-agent-rules/kuat-docs/rules/foundations/content/README.md) |
+| Voice and tone | [`.../foundations/content/voice-and-tone.md`](../../external/kuat-agent-rules/kuat-docs/rules/foundations/content/voice-and-tone.md) |
+| Writing style | [`.../foundations/content/writing-style.md`](../../external/kuat-agent-rules/kuat-docs/rules/foundations/content/writing-style.md) |
+| Formatting | [`.../foundations/content/formatting.md`](../../external/kuat-agent-rules/kuat-docs/rules/foundations/content/formatting.md) |
+| Punctuation | [`.../foundations/content/punctuation.md`](../../external/kuat-agent-rules/kuat-docs/rules/foundations/content/punctuation.md) |
+| Numbers | [`.../foundations/content/numbers.md`](../../external/kuat-agent-rules/kuat-docs/rules/foundations/content/numbers.md) |
 
-- **[README.md](./accessibility/README.md)** - Overview, WCAG principles, testing tools
-- **[design.md](./accessibility/design.md)** - Visual accessibility (contrast, color, motion)
-- **[content.md](./accessibility/content.md)** - Content accessibility (plain language, structure)
-- **[technical.md](./accessibility/technical.md)** - Implementation (keyboard, focus, ARIA, forms)
+### Types — web — product
 
----
+| Topic | Path |
+|-------|------|
+| Product design (layouts / navigation scenarios) | [`.../types/web/product/design.md`](../../external/kuat-agent-rules/kuat-docs/rules/types/web/product/design.md) |
+| Product content | [`.../types/web/product/content/product-content.md`](../../external/kuat-agent-rules/kuat-docs/rules/types/web/product/content/product-content.md) |
+| Product content (directory) | [`.../types/web/product/content/`](../../external/kuat-agent-rules/kuat-docs/rules/types/web/product/content/) |
 
-## Content Rules
+### Types — web — marketing
 
-Content writing guidelines for consistent voice and messaging:
-
-- **[foundations.md](./content/foundations.md)** - Universal voice and tone principles
-- **[marketing-sales.md](./content/marketing-sales.md)** - Marketing and sales content
-- **[product-ux.md](./content/product-ux.md)** - Product interface content
-
----
-
-## Component Rules
-
-Component development patterns (framework-agnostic):
-
-- **[patterns.md](./components/patterns.md)** - Naming, variants, accessibility, testing
-
----
-
-## Scenario Patterns
-
-Applied layout and design patterns for specific use cases:
-
-- **[README.md](./scenarios/README.md)** - Overview and when to use scenarios
-- **[authentication.md](./scenarios/authentication.md)** - Login, registration, password flows
-- **[dashboards.md](./scenarios/dashboards.md)** - Analytics, data tables, metrics
-- **[forms.md](./scenarios/forms.md)** - Settings, multi-step forms, data entry
-- **[documentation.md](./scenarios/documentation.md)** - Docs sites, knowledge bases
-- **[marketing-pages.md](./scenarios/marketing-pages.md)** - Landing pages, pricing, features
+| Topic | Path |
+|-------|------|
+| Marketing website | [`.../types/web/marketing/website.md`](../../external/kuat-agent-rules/kuat-docs/rules/types/web/marketing/website.md) |
+| Marketing content | [`.../types/web/marketing/content/marketing-content.md`](../../external/kuat-agent-rules/kuat-docs/rules/types/web/marketing/content/marketing-content.md) |
+| Marketing content (directory) | [`.../types/web/marketing/content/`](../../external/kuat-agent-rules/kuat-docs/rules/types/web/marketing/content/) |
 
 ---
 
-## For AI Agents
+## Kuat implementation (this monorepo)
 
-**Recommended context loading:**
+High-level EE design language is in [`design-language.md`](../../external/kuat-agent-rules/kuat-docs/rules/foundations/design/design-language.md). The sections below are **Kuat-only**: how tokens and packages map to code.
 
-1. **Minimum context**: Load only the specific rule file needed for the task
-2. **Design tasks**: Load `rules/design/` directory
-3. **Content tasks**: Load `rules/content/` directory  
-4. **Component tasks**: Load `rules/components/` + relevant `examples/` directory
-5. **Accessibility tasks**: Load `rules/accessibility/` directory
-6. **Page building**: Load relevant `rules/scenarios/` file + `rules/design/layouts.md`
+### What is Kuat?
 
-**File size targets**: Each file is optimized to be under 200-400 lines for efficient context usage.
+Kuat is the design decision layer for Equal Experts web UIs: tokens (`@equal-experts/kuat-core`), components (`@equal-experts/kuat-react`, `@equal-experts/kuat-vue`), blocks, and documentation.
+
+### Token architecture
+
+**Layer 1 — Brand colours:** EE Blue, Transform Teal, Tech Blue, Equal Ember (see upstream colours doc).
+
+**Layer 2 — Semantic tokens** (examples): `--primary`, `--secondary`, `--accent`, `--background`, `--foreground`, `--muted`, `--destructive`, `--border`, `--input`, `--ring`.
+
+**Layer 3 — Component tokens** (examples): `--card`, `--card-foreground`, `--sidebar`, `--sidebar-foreground`, `--popover`, `--popover-foreground`.
+
+### Theming
+
+- **Light:** default semantic tokens.
+- **Dark:** add `.dark` on the root; semantic tokens switch; follow upstream usage for brand colours.
+
+### Package layout
+
+```
+@equal-experts/kuat-core/
+├── src/variables.css
+└── tailwind.config.ts
+
+@equal-experts/kuat-react/ → src/components/
+@equal-experts/kuat-vue/   → src/components/
+```
+
+### Integration docs
+
+- [Integration guide](../setup/integration.md)
+- [Kuat core integration](../setup/kuat-core-integration.md)
+
+---
+
+## Local rule documents (not mirrored above)
+
+These files live only under `kuat-docs/rules/` and add Kuat or scenario-specific guidance:
+
+| Area | Entry |
+|------|--------|
+| Layout primitives | [design/layouts.md](./design/layouts.md) |
+| Components | [components/README.md](./components/README.md), [patterns.md](./components/patterns.md) |
+| Accessibility | [accessibility/README.md](./accessibility/README.md) |
+| Scenarios | [scenarios/README.md](./scenarios/README.md) |
+
+---
+
+## Quick navigation
+
+| Category | Notes |
+|----------|--------|
+| **EE canonical** | Tables above → `external/kuat-agent-rules` |
+| **Kuat tokens & packages** | Section *Kuat implementation* |
+| **[Design — layouts](./design/layouts.md)** | Kuat layout primitives + upstream scenario links |
+| **[Accessibility](./accessibility/)** | WCAG-oriented local guides |
+| **[Components](./components/)** | Naming, variants, patterns |
+| **[Scenarios](./scenarios/)** | Applied flows (auth, dashboards, …) |
+
+---
+
+## Implementation examples
+
+Code samples are not in this file:
+
+- [examples/react/](../examples/react/)
+- [examples/vue/](../examples/vue/)
+- [examples/css/](../examples/css/)
+
+---
+
+## For AI agents
+
+1. **Default:** Load **this file** (`kuat-docs/rules/README.md`), then open the specific upstream file(s) from the tables (same paths under `external/kuat-agent-rules/...`).
+2. **Design tokens / brand colour decisions:** [`foundations/design/colours.md`](../../external/kuat-agent-rules/kuat-docs/rules/foundations/design/colours.md) (and spacing/typography/borders as needed).
+3. **Content voice / UX copy:** [`foundations/content/voice-and-tone.md`](../../external/kuat-agent-rules/kuat-docs/rules/foundations/content/voice-and-tone.md) plus product or marketing content docs above.
+4. **Layout structure in code:** [design/layouts.md](./design/layouts.md).
+5. **Components:** [components/patterns.md](./components/patterns.md) + relevant `examples/{framework}/`.

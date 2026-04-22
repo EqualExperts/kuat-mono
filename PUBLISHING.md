@@ -137,6 +137,25 @@ node test.js
 - Update README.md if there are significant changes
 - Update version numbers in documentation examples
 
+### 8. Documentation Publish Boundary
+
+Confirm package payloads include only consumer-needed docs.
+
+1. Check package `files` fields in:
+   - `packages/kuat-core/package.json`
+   - `packages/kuat-react/package.json`
+   - `packages/kuat-vue/package.json`
+2. Verify `npm pack` output for each package does **not** include contributor-only docs such as:
+   - `CONTRIBUTING.md`
+   - `contribution-docs/`
+   - `.cursor/agents/`
+   - repo-level `AGENTS.md` / `.cursorrules`
+3. If any non-consumer docs appear in a tarball, remove them from package payload configuration before publishing.
+
+Current expected payload model in this repo:
+- `@equal-experts/kuat-react` and `@equal-experts/kuat-vue`: `dist/` + package README + package manifest
+- `@equal-experts/kuat-core`: exported token/config files + package README + package manifest
+
 ## Version Management
 
 ### Semantic Versioning
@@ -273,6 +292,14 @@ Save this as `scripts/publish.sh` and make it executable:
 ```bash
 chmod +x scripts/publish.sh
 ./scripts/publish.sh
+```
+
+### Publishing All Packages (One-liner)
+
+From repo root:
+
+```bash
+pnpm build && pnpm --filter @equal-experts/kuat-core exec npm publish --access public && pnpm --filter @equal-experts/kuat-react exec npm publish --access public && pnpm --filter @equal-experts/kuat-vue exec npm publish --access public
 ```
 
 ## Post-publish Verification

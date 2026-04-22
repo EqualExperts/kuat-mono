@@ -76,22 +76,23 @@ Also load `examples/react/` or `examples/vue/`
 
 ### Rules (Pure Design Language - No Code)
 
-Technology-agnostic design specifications:
+Technology-agnostic specifications: **[`rules/README.md`](./rules/README.md)** is the single index for **canonical Equal Experts** paths (vendored under [`external/kuat-agent-rules`](../external/kuat-agent-rules)), **Kuat implementation** (tokens, packages), and links to **local-only** guides. See [setup/rules-source-of-truth.md](./setup/rules-source-of-truth.md).
 
 | Directory | Description |
 |-----------|-------------|
-| [rules/design/](./rules/design/) | Colors, typography, spacing, borders, layouts, logo |
-| [rules/content/](./rules/content/) | Voice, tone, marketing, UX writing |
+| [rules/README.md](./rules/README.md) | **Start here** — EE canonical rules + Kuat notes |
+| [rules/design/layouts.md](./rules/design/layouts.md) | Kuat layout primitives (not duplicated upstream) |
+| [rules/design/README.md](./rules/design/README.md) | Pointer into the index + layouts |
+| [rules/content/README.md](./rules/content/README.md) | Pointer into the index |
 | [rules/components/](./rules/components/) | Naming, variants, accessibility patterns |
+| [rules/accessibility/](./rules/accessibility/) | WCAG-oriented guides |
+| [rules/scenarios/](./rules/scenarios/) | Page-type patterns |
+
+**Also load:** `external/kuat-agent-rules/kuat-docs/rules/` for full EE text (colours, typography, voice and tone, product/marketing content, …).
 
 **Key files:**
-- `rules/design/colours.md` - Brand colors and semantic tokens
-- `rules/design/typography.md` - Fonts and type scale
-- `rules/design/spacing.md` - 8-point grid system
-- `rules/design/borders.md` - Border philosophy and radius
-- `rules/design/layouts.md` - Page layouts and navigation
-- `rules/design/logo.md` - Logo usage guidelines
-- `rules/content/foundations.md` - Universal content principles
+- `rules/README.md` - Canonical index
+- `rules/design/layouts.md` - Layout primitives
 - `rules/components/patterns.md` - Component development rules
 
 ### Examples (Framework-Specific Code)
@@ -113,6 +114,7 @@ How to integrate into your environment:
 | [setup/consumer-setup.md](./setup/consumer-setup.md) | **Recommended**: `kuat-core`, Kuat packages, shadcn for gaps |
 | [setup/choosing-components.md](./setup/choosing-components.md) | When to import from Kuat vs install via shadcn |
 | [setup/public-api-inventory.md](./setup/public-api-inventory.md) | Published exports ↔ Storybook / narrative docs |
+| [setup/rules-source-of-truth.md](./setup/rules-source-of-truth.md) | Local vs upstream rule ownership and duplication policy |
 | [setup/integration.md](./setup/integration.md) | Integration patterns for IDEs and agents |
 | [setup/verification.md](./setup/verification.md) | Testing your setup |
 | [setup/kuat-core-integration.md](./setup/kuat-core-integration.md) | Framework-agnostic token usage |
@@ -123,6 +125,8 @@ How to integrate into your environment:
 ## For AI Agents
 
 When working **inside the kuat-mono repository**, Cursor can use agents under [`../.cursor/agents/`](../.cursor/agents/): **kuat-qa**, **kuat-component-dev**, and **kuat-verify** for the test-driven component workflow. Use **kuat-documentation** (see [`kuat-documentation.md`](../.cursor/agents/kuat-documentation.md)) to audit or refresh consumer-facing documentation (Storybook, this `kuat-docs` tree, package READMEs). Details: [CONTRIBUTING.md](../CONTRIBUTING.md#development-workflow).
+
+For local vs upstream ownership of design/content rules, see [setup/rules-source-of-truth.md](./setup/rules-source-of-truth.md).
 
 ### Quick Setup: Add to Your Existing Rules
 
@@ -148,16 +152,9 @@ You MUST reference the Kuat documentation when:
 3. If the documentation doesn't cover your case, ask before proceeding
 
 **Documentation index:**
-- `rules/design/colours.md` - Brand colors, semantic tokens, color usage
-- `rules/design/typography.md` - Fonts, type scale, text styles
-- `rules/design/spacing.md` - 8-point grid, margins, padding
-- `rules/design/borders.md` - Border radius, border styles
-- `rules/design/layouts.md` - Page layouts, navigation patterns
-- `rules/design/logo.md` - Logo usage and placement
+- `rules/README.md` - Single index: EE canonical paths (`external/kuat-agent-rules`), Kuat tokens/packages, links to layouts/components/scenarios
+- `rules/design/layouts.md` - Kuat layout primitives
 - `rules/components/patterns.md` - Component naming, variants, accessibility
-- `rules/content/foundations.md` - Voice, tone, universal writing principles
-- `rules/content/product-ux.md` - Product and UX writing guidelines
-- `rules/content/marketing-sales.md` - Marketing content guidelines
 - `examples/react/` - React implementation examples
 - `examples/vue/` - Vue implementation examples
 

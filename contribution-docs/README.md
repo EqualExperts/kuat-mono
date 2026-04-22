@@ -2,6 +2,8 @@
 
 Framework-specific guides for contributing to Kuat Design System packages.
 
+These are contributor-only implementation guides for maintainers working inside this monorepo, not consumer usage documentation for published packages.
+
 ---
 
 ## Guides
@@ -54,4 +56,4 @@ pnpm lint
 - [CONTRIBUTING.md](../CONTRIBUTING.md) - High-level contribution process
 - [ARCHITECTURE.md](../ARCHITECTURE.md) - System architecture
 - [Component Patterns](../kuat-docs/rules/components/patterns.md) - Naming and accessibility
-- [Design Rules](../kuat-docs/rules/design/) - Colors, spacing, typography
+- [Design rules index](../kuat-docs/rules/README.md) - EE foundations and Kuat notes

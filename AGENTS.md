@@ -5,6 +5,11 @@
 
 This is the single source of truth for local agent behavior in this repository.
 
+## Audience boundary
+
+- This file is for **contributors/maintainers** working inside `kuat-mono`.
+- For **consumer usage guidance** (apps using published Kuat packages), use package READMEs plus `kuat-docs/setup/` docs and upstream foundations.
+
 ## Rule loading order
 
 1. Load upstream Equal Experts design and structure guidance first:
@@ -40,6 +45,7 @@ Use the local workflow agents in `.cursor/agents/`:
 - `.cursor/agents/kuat-component-dev.md`
 - `.cursor/agents/kuat-verify.md`
 - `.cursor/agents/kuat-documentation.md`
+- `kuat-docs/rules/README.md` (EE canonical paths in `external/kuat-agent-rules`; Kuat implementation)
 - `kuat-docs/rules/components/patterns.md`
 - `contribution-docs/react.md`
 - `contribution-docs/vue.md`

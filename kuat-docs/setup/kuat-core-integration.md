@@ -650,6 +650,5 @@ When using the preset, these utilities are available:
 - [Consumer Setup Guide](./consumer-setup.md) - Recommended kuat-core + shadcn setup
 - [Integration Guide](./integration.md) - General integration patterns
 - [Verification Guide](./verification.md) - Test your setup
-- [Colors](../rules/design/colours.md) - Brand color specifications
-- [Typography](../rules/design/typography.md) - Font families and text styling
+- [Rules index](../rules/README.md) - Brand colours, typography, and other EE foundations (`external/kuat-agent-rules`)
 - [Component Patterns](../rules/components/patterns.md) - Component development patterns

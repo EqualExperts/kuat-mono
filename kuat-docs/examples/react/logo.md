@@ -2,7 +2,7 @@
 
 Code examples for using the Equal Experts logo in React.
 
-**Rules:** See [rules/design/logo.md](../../rules/design/logo.md)
+**Rules:** [`rules/README.md`](../../rules/README.md) indexes canonical EE logo rules under `external/kuat-agent-rules` (see *Foundations — logo*).
 
 ---
 

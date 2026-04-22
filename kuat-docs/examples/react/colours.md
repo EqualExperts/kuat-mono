@@ -2,7 +2,7 @@
 
 Code examples for using Kuat Design System colors in React.
 
-**Rules:** See [rules/design/colours.md](../../rules/design/colours.md)
+**Rules:** [`rules/README.md`](../../rules/README.md) indexes canonical EE colour rules under `external/kuat-agent-rules` (see *Foundations — design*).
 
 ---
 

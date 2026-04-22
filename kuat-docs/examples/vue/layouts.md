@@ -2,7 +2,7 @@
 
 Code examples for Kuat Design System layouts in Vue.
 
-**Rules:** See [rules/design/layouts.md](../../rules/design/layouts.md)
+**Rules:** [layouts.md](../../rules/design/layouts.md) (Kuat primitives); canonical EE rules: [`rules/README.md`](../../rules/README.md).
 
 ---
 

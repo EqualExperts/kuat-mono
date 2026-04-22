@@ -239,7 +239,7 @@ Example: "Email address is invalid. Check for typos and try again."
 **Cause:** Old or incomplete rules loaded
 
 **Fix:**
-- Verify latest `rules/design/colours.md` is loaded
+- Verify `rules/README.md` is loaded and the agent follows links to `external/kuat-agent-rules/.../foundations/design/colours.md` when deciding colours
 - Check for cached/stale context
 
 ### Agent uses wrong spacing values
@@ -247,7 +247,7 @@ Example: "Email address is invalid. Check for typos and try again."
 **Cause:** May be using generic Tailwind knowledge
 
 **Fix:**
-- Ensure `rules/design/spacing.md` is loaded
+- Ensure spacing guidance from `external/kuat-agent-rules/.../foundations/design/spacing.md` is loaded (indexed in `rules/README.md`)
 - Add explicit instruction to follow Kuat patterns
 
 ### Agent doesn't know component patterns
@@ -264,7 +264,7 @@ Example: "Email address is invalid. Check for typos and try again."
 
 **Fix:**
 - Explicitly mention border radius rules in prompt
-- Load `rules/design/borders.md`
+- Load border rules via `rules/README.md` → `external/kuat-agent-rules/.../foundations/design/borders.md`
 
 ---
 

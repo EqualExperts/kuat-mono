@@ -372,8 +372,5 @@ For code examples implementing these patterns:
 ## Related Documentation
 
 - [Consumer Setup Guide](../../setup/consumer-setup.md) - Recommended project setup
-- [Design Overview](../design/overview.md) - Design system principles
-- [Colours](../design/colours.md) - Color tokens
-- [Typography](../design/typography.md) - Font specifications
-- [Spacing](../design/spacing.md) - Spacing scale
-- [Borders](../design/borders.md) - Border radius rules
+- [Rules index](../README.md) - Canonical EE foundations (`external/kuat-agent-rules`) and Kuat implementation
+- [Layouts](../design/layouts.md) - Kuat layout primitives

@@ -364,5 +364,4 @@ Marketing pages use full-width sections with contained content.
 ## Related Documentation
 
 - [Layout Primitives](../design/layouts.md) - Horizontal Navigation layout
-- [Content Marketing](../content/marketing-sales.md) - Marketing content guidelines
-- [Logo Usage](../design/logo.md) - Logo placement and variants
+- [Rules index](../README.md) - Marketing content and logo (paths under *Types — web — marketing* and *Foundations — logo*)

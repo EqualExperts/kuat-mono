@@ -2,7 +2,7 @@
 
 Applied layout and design patterns for specific use cases.
 
-Each scenario combines the foundational rules from `rules/design/` and `rules/accessibility/` into actionable guidance for building complete page types.
+Each scenario combines foundational EE rules (indexed in [`rules/README.md`](../README.md), files under `external/kuat-agent-rules`) with `rules/accessibility/` into actionable guidance for building complete page types.
 
 ---
 
@@ -54,11 +54,11 @@ Scenarios build on foundational documentation:
 │  (authentication, dashboards, etc.)     │
 ├─────────────────────────────────────────┤
 │  References:                            │
+│  ├── rules/README.md (EE canonical)    │
+│  ├── external/kuat-agent-rules/...     │
 │  ├── rules/design/layouts.md           │
-│  ├── rules/design/colours.md           │
-│  ├── rules/design/typography.md        │
 │  ├── rules/accessibility/*.md          │
-│  └── rules/content/*.md                │
+│  └── rules/components/ (as needed)     │
 └─────────────────────────────────────────┘
 ```
 
@@ -71,7 +71,7 @@ When building a specific page type:
 1. Load the relevant scenario file
 2. Follow the recommended base layout from `rules/design/layouts.md`
 3. Reference accessibility requirements from `rules/accessibility/`
-4. Use design tokens from `rules/design/colours.md` and `rules/design/typography.md`
+4. Use design tokens from the EE foundations linked in [`rules/README.md`](../README.md) (e.g. `foundations/design/colours.md`, `typography.md` under `external/kuat-agent-rules`)
 
 ---
 
@@ -79,5 +79,5 @@ When building a specific page type:
 
 - [Layout Primitives](../design/layouts.md) - Base layout building blocks
 - [Accessibility](../accessibility/) - WCAG requirements
-- [Design Rules](../design/) - Visual design specifications
-- [Content Rules](../content/) - Writing guidelines
+- [Rules index](../README.md) - EE canonical design/content paths and Kuat notes
+- [Design — layouts](../design/layouts.md) - Layout primitives

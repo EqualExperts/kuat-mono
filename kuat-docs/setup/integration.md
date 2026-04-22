@@ -29,17 +29,10 @@ You MUST reference the Kuat documentation when:
 2. Follow existing patterns; do not invent new ones
 3. If the documentation doesn't cover your case, ask before proceeding
 
-**Documentation index:**
-- `rules/design/colours.md` - Brand colors, semantic tokens, color usage
-- `rules/design/typography.md` - Fonts, type scale, text styles
-- `rules/design/spacing.md` - 8-point grid, margins, padding
-- `rules/design/borders.md` - Border radius, border styles
-- `rules/design/layouts.md` - Page layouts, navigation patterns
-- `rules/design/logo.md` - Logo usage and placement
+**Documentation index** (single entry point; canonical EE text is under `external/kuat-agent-rules/kuat-docs/rules/` when you clone the monorepo):
+- `rules/README.md` - EE canonical paths, Kuat implementation, and links to local-only rules
+- `rules/design/layouts.md` - Kuat layout primitives (+ upstream product/marketing scenario links in that file)
 - `rules/components/patterns.md` - Component naming, variants, accessibility
-- `rules/content/foundations.md` - Voice, tone, universal writing principles
-- `rules/content/product-ux.md` - Product and UX writing guidelines
-- `rules/content/marketing-sales.md` - Marketing content guidelines
 - `examples/react/` - React implementation examples
 - `examples/vue/` - Vue implementation examples
 
@@ -66,18 +59,10 @@ I'm using the Kuat Design System. Add a section to my agent rules that:
 
 Reference: https://github.com/equalexperts/kuat-mono/tree/master/kuat-docs
 
-**Documentation index:**
-- `rules/design/overview.md` - Design system principles and philosophy
-- `rules/design/colours.md` - Brand colors, semantic tokens, color usage
-- `rules/design/typography.md` - Fonts, type scale, text styles
-- `rules/design/spacing.md` - 8-point grid, margins, padding
-- `rules/design/borders.md` - Border radius, border styles
-- `rules/design/layouts.md` - Page layouts, navigation patterns
-- `rules/design/logo.md` - Logo usage and placement guidelines
+**Documentation index** (same pointer model as above):
+- `rules/README.md` - EE canonical paths + Kuat implementation
+- `rules/design/layouts.md` - Kuat layout primitives
 - `rules/components/patterns.md` - Component naming, variants, accessibility
-- `rules/content/foundations.md` - Voice, tone, writing principles
-- `rules/content/product-ux.md` - Product and UX writing guidelines
-- `rules/content/marketing-sales.md` - Marketing content guidelines
 - `examples/react/` - React implementation examples
 - `examples/vue/` - Vue implementation examples
 - `examples/css/` - Vanilla CSS examples
@@ -140,7 +125,7 @@ Use the snippet above. Your agent has the key values and can reference the GitHu
 
 **Best for:** Heavy design system usage
 
-Clone `kuat-docs/rules/` locally (~1500 lines, ~12K tokens).
+Clone `kuat-docs/` and `external/kuat-agent-rules/` from the monorepo so [`rules/README.md`](../rules/README.md) links resolve. The index is one file; follow links into the vendored EE rules as needed.
 
 ### Full (Rules + Examples)
 
@@ -152,10 +137,9 @@ Clone `kuat-docs/` and load `rules/` + `examples/{framework}/` (~2500 lines).
 
 | Task | Load |
 |------|------|
-| Color decisions | `rules/design/colours.md` |
-| Typography | `rules/design/typography.md` |
-| Layout design | `rules/design/layouts.md` |
-| Content writing | `rules/content/` |
+| Colour / typography / spacing / borders / logo / content voice | `rules/README.md` then open linked files under `external/kuat-agent-rules/...` |
+| Layout design | `rules/design/layouts.md` + `rules/README.md` |
+| Content writing | `rules/README.md` (foundations + web types) |
 | Component creation | `rules/components/patterns.md` + `examples/{framework}/components.md` |
 
 ---
@@ -193,8 +177,8 @@ def get_kuat_context(task: str, framework: str = None) -> str:
     """Load Kuat design context for a task."""
     base = "kuat-docs/"
     files = {
-        "design": ["rules/design/colours.md", "rules/design/spacing.md"],
-        "content": ["rules/content/foundations.md"],
+        "design": ["rules/README.md", "rules/design/layouts.md"],
+        "content": ["rules/README.md"],
         "component": ["rules/components/patterns.md"],
     }
     result = [load(f"{base}{f}") for f in files.get(task, [])]
@@ -210,8 +194,8 @@ def get_kuat_context(task: str, framework: str = None) -> str:
 | What | Lines | Tokens (~) |
 |------|-------|------------|
 | Snippet only | 15 | 150 |
-| `rules/design/` | 900 | 7,000 |
-| `rules/content/` | 500 | 4,000 |
+| `rules/README.md` + `external/kuat-agent-rules/kuat-docs/rules/` (as needed) | varies | varies |
+| `rules/design/layouts.md` | 400 | 3,000 |
 | `rules/components/` | 200 | 1,500 |
 | `examples/{framework}/` | 800 | 6,000 |
 
@@ -240,7 +224,7 @@ See [verification.md](./verification.md) for comprehensive tests.
 3. For detailed rules, clone docs locally
 
 **Need more detail?**
-Clone `kuat-docs/rules/` for full specifications.
+Clone the monorepo so `kuat-docs/rules/README.md` and `external/kuat-agent-rules/` resolve; follow links into the vendored EE rule files.
 
 ---
 

@@ -2,7 +2,7 @@
 
 Vanilla CSS examples for using Kuat Design System colors.
 
-**Rules:** See [rules/design/colours.md](../../rules/design/colours.md)
+**Rules:** [`rules/README.md`](../../rules/README.md) indexes canonical EE colour rules under `external/kuat-agent-rules` (see *Foundations — design*).
 
 ---
 

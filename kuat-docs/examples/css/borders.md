@@ -2,7 +2,7 @@
 
 Vanilla CSS examples for using Kuat Design System borders.
 
-**Rules:** See [rules/design/borders.md](../../rules/design/borders.md)
+**Rules:** [`rules/README.md`](../../rules/README.md) indexes canonical EE border rules under `external/kuat-agent-rules` (see *Foundations — design*).
 
 ---
 

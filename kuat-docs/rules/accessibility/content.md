@@ -225,4 +225,4 @@ Always spell out abbreviations on first use:
 - [Accessibility Overview](./README.md)
 - [Design Accessibility](./design.md) - Visual guidelines
 - [Technical Accessibility](./technical.md) - Implementation details
-- [Content Foundations](../content/foundations.md) - Voice and tone
+- [Rules index](../README.md) - Canonical EE content foundations (`voice-and-tone`, etc.)

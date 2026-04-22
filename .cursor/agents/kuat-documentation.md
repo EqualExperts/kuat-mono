@@ -37,7 +37,7 @@ Use these locations; **do not** invent a parallel documentation tree (e.g. a sec
 | Framework examples | `kuat-docs/examples/react/`, `kuat-docs/examples/vue/` |
 | Consumer setup | `packages/kuat-react/README.md`, `packages/kuat-vue/README.md`, `kuat-docs/setup/` |
 | Contribution context | `CONTRIBUTING.md`, `contribution-docs/react.md`, `contribution-docs/vue.md` |
-| Design tokens | `packages/kuat-core/`, `kuat-docs/rules/design/` |
+| Design tokens | `packages/kuat-core/`, `kuat-docs/rules/README.md`, `external/kuat-agent-rules/kuat-docs/rules/foundations/design/` |
 
 Co-located **tests** (`*.test.tsx`, `*.spec.ts`) clarify behaviour and accessibility expectations — use them when narrative docs are ambiguous.
 

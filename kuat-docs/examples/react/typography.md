@@ -2,7 +2,7 @@
 
 Code examples for using Kuat Design System typography in React.
 
-**Rules:** See [rules/design/typography.md](../../rules/design/typography.md)
+**Rules:** [`rules/README.md`](../../rules/README.md) indexes canonical EE typography under `external/kuat-agent-rules` (see *Foundations — design*).
 
 ---
 

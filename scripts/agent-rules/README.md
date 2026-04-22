@@ -2,6 +2,10 @@
 
 Deterministic sync and generation tools for agent entrypoint files.
 
+Scope:
+- These tools are for contributor/agent guidance inside this monorepo.
+- Synced files under `external/kuat-agent-rules` are **not** part of published npm package payloads unless explicitly added to a package `files` field.
+
 ## Commands
 
 - `pnpm agent-rules:sync:upstream` - syncs `EqualExperts/kuat-agent-rules` into `external/kuat-agent-rules` using `git subtree` (or a deterministic clone-and-copy fallback when subtree is unavailable)

@@ -2,7 +2,7 @@
 
 Vanilla CSS examples for using Kuat Design System spacing.
 
-**Rules:** See [rules/design/spacing.md](../../rules/design/spacing.md)
+**Rules:** [`rules/README.md`](../../rules/README.md) indexes canonical EE spacing under `external/kuat-agent-rules` (see *Foundations — design*).
 
 ---
 

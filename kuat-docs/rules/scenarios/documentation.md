@@ -330,4 +330,4 @@ Docs / Components / Button / Variants
 
 - [Layout Primitives](../design/layouts.md) - Sidebar and Split layouts
 - [Content Accessibility](../accessibility/content.md) - Structure and headings
-- [Typography](../design/typography.md) - Type scale and hierarchy
+- [Rules index](../README.md) - Canonical EE typography (`external/kuat-agent-rules`)

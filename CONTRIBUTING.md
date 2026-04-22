@@ -21,6 +21,14 @@ Guide for contributing to the Kuat Design System packages.
 
 ---
 
+## Documentation Audience Policy
+
+- **Contributor docs are repo-internal:** `CONTRIBUTING.md`, `contribution-docs/`, `.cursor/agents/`, and local `AGENTS.md` are for contributors/maintainers working on Kuat itself.
+- **Consumer docs are usage-facing:** package READMEs and `kuat-docs/setup/` are for application teams integrating Kuat.
+- **Design/content source of truth:** generic EE foundations are upstream in `external/kuat-agent-rules`; local docs should focus on Kuat-specific implementation overlays. See `kuat-docs/setup/rules-source-of-truth.md`.
+
+---
+
 ## Agent Rules Sync (Deterministic)
 
 This repo vendors upstream agent guidance from `EqualExperts/kuat-agent-rules` and generates local entrypoint files from templates.
@@ -122,7 +130,7 @@ If not in Kuat, either add a local version to Kuat or recommend installing from 
 
 1. **Design Reference Required**
    - Obtain Figma design or design specification before implementation
-   - Reference design rules in `kuat-docs/rules/design/`
+   - Reference design rules via `kuat-docs/rules/README.md` (canonical EE paths in `external/kuat-agent-rules`) and `kuat-docs/rules/design/layouts.md` when relevant
    - Follow spacing, color, and typography guidelines
 
 2. **Check Kuat first, then shadcn registry**
@@ -211,7 +219,7 @@ chore: upgrade Tailwind to v4.1
 
 - [ ] Figma design or design spec obtained
 - [ ] Verified component does NOT exist in shadcn
-- [ ] Reviewed design rules in `kuat-docs/rules/design/`
+- [ ] Reviewed `kuat-docs/rules/README.md` (and linked upstream files as needed)
 - [ ] Created React version
 - [ ] Created Vue version
 - [ ] Added Storybook stories (both frameworks)
@@ -231,7 +239,7 @@ chore: upgrade Tailwind to v4.1
 - [Architecture](./ARCHITECTURE.md) - System overview
 - [React Guide](./contribution-docs/react.md) - React-specific contribution guide
 - [Vue Guide](./contribution-docs/vue.md) - Vue-specific contribution guide
-- [Design Rules](./kuat-docs/rules/design/) - Colors, spacing, typography
+- [Design rules index](./kuat-docs/rules/README.md) - EE foundations (`external/kuat-agent-rules`) and Kuat notes
 - [Component Patterns](./kuat-docs/rules/components/patterns.md) - Naming, accessibility
 
 ### External

@@ -194,5 +194,4 @@ When using colour for status (red/amber/green):
 - [Accessibility Overview](./README.md)
 - [Content Accessibility](./content.md) - Alt text guidelines
 - [Technical Accessibility](./technical.md) - Implementation details
-- [Colours](../design/colours.md) - Kuat colour tokens
-- [Typography](../design/typography.md) - Kuat type scale
+- [Rules index](../README.md) - Canonical EE design docs and Kuat token notes

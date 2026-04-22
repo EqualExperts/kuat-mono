@@ -287,5 +287,5 @@ pnpm build
 ## Related Documentation
 
 - [Component Patterns](../kuat-docs/rules/components/patterns.md) - Naming, accessibility
-- [Design Rules](../kuat-docs/rules/design/) - Colors, spacing, typography
+- [Design rules index](../kuat-docs/rules/README.md) - EE foundations and Kuat notes
 - [React Examples](../kuat-docs/examples/react/components.md) - Additional patterns
