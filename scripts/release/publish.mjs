@@ -290,9 +290,13 @@ async function validateStylesContract(pkg, tarballPath, cwd) {
     throw new Error(`${pkg.name} styles export target missing from tarball: ${stylesTarget}`);
   }
 
-  if (pkg.id === "react" || pkg.id === "vue") {
+  const requiredSelectorsByPackage = {
+    react: [".button", ".field", ".content-card", ".kuat-carousel"],
+    vue: [".button", ".field", ".kuat-carousel"],
+  };
+  const requiredSelectors = requiredSelectorsByPackage[pkg.id];
+  if (requiredSelectors) {
     const css = extractTarText(tarballPath, stylesEntry, cwd);
-    const requiredSelectors = [".button", ".field", ".content-card"];
     const missing = requiredSelectors.filter((selector) => !css.includes(selector));
     if (missing.length > 0) {
       throw new Error(

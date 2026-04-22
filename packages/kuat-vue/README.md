@@ -30,6 +30,22 @@ Vue 3 components and blocks for the Kuat Design System: **localized primitives**
 pnpm add vue @equal-experts/kuat-core @equal-experts/kuat-vue
 ```
 
+### Agent Guardrails
+
+Add this to your project `AGENTS.md` (or `.cursorrules`) so agent workflows stay Kuat-first:
+
+```markdown
+## Kuat UX and UI Decision Rules
+1. Load bundled rules entrypoints from `@equal-experts/kuat-core`:
+   - `node_modules/@equal-experts/kuat-core/agent-docs/kuat-docs/rules/README.md`
+   - `node_modules/@equal-experts/kuat-core/agent-docs/external/kuat-agent-rules/kuat-docs/rules/LOADING.md`
+2. Use bundled Equal Experts foundations and web rules for wider UX/UI decisions (layout, navigation, hierarchy, spacing, typography, content, accessibility), not just component choice (`.../external/kuat-agent-rules/.../foundations/*` and `.../types/web/*`).
+3. For implementation, read `kuat-docs/setup/choosing-components.md` before building UI.
+4. Choose component sources in order: Kuat blocks -> Kuat components -> shadcn-vue gaps -> custom.
+5. Verify exports in `@equal-experts/kuat-vue` before implementing.
+6. Document both design decision rationale and chosen component source in PR notes.
+```
+
 ### Peer dependencies
 
 Install peers for the components you use before running `dev` or `build`.
@@ -85,11 +101,13 @@ import { Switch } from '@equal-experts/kuat-vue/switch';
 
 See `package.json` `exports` and [public-api-inventory.md](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/setup/public-api-inventory.md).
 
-`KuatCarousel` is currently exported from the root barrel:
+`KuatCarousel` is exported from both the root barrel and subpath:
 
 ```vue
 <script setup lang="ts">
 import { KuatCarousel } from '@equal-experts/kuat-vue';
+// or
+// import { KuatCarousel } from '@equal-experts/kuat-vue/kuat-carousel';
 </script>
 ```
 
@@ -253,7 +271,7 @@ pnpm dev
 - Pass: `Button`, `Field`, and `KuatCarousel` render with Kuat styles (not plain browser defaults).
 - Pass: typography uses Kuat font stack (Lexend for sans) rather than template defaults.
 - Fail: any need to import internal `dist/*.css` files manually.
-- Fail: using `@equal-experts/kuat-vue/carousel` instead of root barrel import for carousel.
+- Fail: selecting custom/shadcn-vue carousel without documenting why `@equal-experts/kuat-vue` carousel exports were not used.
 
 ---
 

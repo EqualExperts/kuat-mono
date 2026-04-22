@@ -27,6 +27,8 @@ export default defineConfig({
         "alert-dialog": resolve(__dirname, "src/alert-dialog.ts"),
         badge: resolve(__dirname, "src/badge.ts"),
         "button-group": resolve(__dirname, "src/button-group.ts"),
+        carousel: resolve(__dirname, "src/carousel.ts"),
+        "kuat-carousel": resolve(__dirname, "src/kuat-carousel.ts"),
         textarea: resolve(__dirname, "src/textarea.ts"),
         input: resolve(__dirname, "src/input.ts"),
         field: resolve(__dirname, "src/field.ts"),

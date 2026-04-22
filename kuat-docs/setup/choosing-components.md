@@ -15,6 +15,15 @@ Consumer-facing decision guide. Contributors should also read [rules/components/
 
 **Rule of thumb:** Check [public-api-inventory.md](./public-api-inventory.md) and your package `exports` in `node_modules/@equal-experts/kuat-react/package.json`. If the component exists there, prefer Kuat.
 
+### Decision evidence (required)
+
+For each UI feature or component you add, record in your PR or implementation notes:
+
+- The chosen source (`Kuat block`, `Kuat package component`, `shadcn`, or `custom`)
+- Why higher-priority sources were not used (if applicable)
+
+This keeps human and agent implementations aligned with the priority model and makes exceptions auditable.
+
 ---
 
 ## Import patterns

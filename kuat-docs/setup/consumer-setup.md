@@ -26,6 +26,33 @@ The Kuat Design System uses a layered architecture:
 
 **Decision priority:** See [choosing-components.md](./choosing-components.md) (blocks → Kuat package → shadcn for gaps → custom).
 
+## Agent Guardrails (required)
+
+Add this section to your project `AGENTS.md` (or your primary agent rules file) so agents follow Kuat-first decisions during implementation:
+
+```markdown
+## Kuat UI Component Selection Rules
+
+Before any UI implementation:
+1. Read `kuat-docs/setup/choosing-components.md`.
+2. Select component sources in this order:
+   - Kuat blocks
+   - Kuat components (`@equal-experts/kuat-react` / `@equal-experts/kuat-vue`)
+   - shadcn / shadcn-vue components for gaps
+   - custom build (last resort)
+3. Verify availability from package exports before coding.
+4. In PR notes, document:
+   - chosen source
+   - why higher-priority sources were not used (if any)
+
+Failure conditions:
+- Custom component created when a Kuat equivalent exists.
+- shadcn selected when Kuat already ships equivalent capability.
+- No recorded decision path in implementation notes.
+```
+
+If your team does not use `AGENTS.md`, add the same block to `.cursorrules` (or equivalent IDE rules file) and include a PR checklist item for component-source justification.
+
 ---
 
 ## Quick Start (React)
@@ -116,8 +143,9 @@ See [public-api-inventory.md](./public-api-inventory.md) for typical Kuat vs sha
 import { Button, ButtonGroup, Field } from '@equal-experts/kuat-react';
 // or tree-shake via subpaths:
 import { Switch } from '@equal-experts/kuat-react/switch';
-// Carousel is root-only:
+// KuatCarousel from root or subpath:
 import { KuatCarousel } from '@equal-experts/kuat-react';
+// import { KuatCarousel } from '@equal-experts/kuat-react/kuat-carousel';
 ```
 
 **Use your local shadcn copy** for components Kuat does not publish:
@@ -218,7 +246,9 @@ npx shadcn-vue@latest add dropdown-menu
 import { Button, ButtonGroup, Field } from '@equal-experts/kuat-vue';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 // or: import { Switch } from '@equal-experts/kuat-vue/switch'
-// carousel is root-only: import { KuatCarousel } from '@equal-experts/kuat-vue'
+// KuatCarousel from root or subpath:
+// import { KuatCarousel } from '@equal-experts/kuat-vue'
+// import { KuatCarousel } from '@equal-experts/kuat-vue/kuat-carousel'
 </script>
 
 <template>
@@ -335,7 +365,7 @@ Pass criteria:
 
 Fail criteria:
 - importing any `node_modules/@equal-experts/kuat-react/dist/*.css`,
-- importing carousel via `@equal-experts/kuat-react/carousel`.
+- custom-building or installing a shadcn carousel without documenting why Kuat carousel exports were not used.
 
 ### Vue verification
 
@@ -355,7 +385,7 @@ Pass criteria:
 
 Fail criteria:
 - importing any `node_modules/@equal-experts/kuat-vue/dist/*.css`,
-- importing carousel via `@equal-experts/kuat-vue/carousel`.
+- custom-building or installing a shadcn-vue carousel without documenting why Kuat carousel exports were not used.
 
 ---
 

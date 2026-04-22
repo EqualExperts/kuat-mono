@@ -329,7 +329,9 @@ Packages are configured to publish only necessary files:
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./styles": "./dist/style.css"
+    "./carousel": "./dist/carousel.js",
+    "./kuat-carousel": "./dist/kuat-carousel.js",
+    "./styles": "./dist/styles.css"
   }
 }
 ```

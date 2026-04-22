@@ -70,9 +70,17 @@
       "import": "./dist/toggle-group.js",
       "types": "./dist/toggle-group.d.ts"
     },
+    "./carousel": {
+      "import": "./dist/carousel.js",
+      "types": "./dist/carousel.d.ts"
+    },
+    "./kuat-carousel": {
+      "import": "./dist/kuat-carousel.js",
+      "types": "./dist/kuat-carousel.d.ts"
+    },
     "./styles": {
-      "types": "./dist/style.css.d.ts",
-      "default": "./dist/style.css"
+      "types": "./dist/styles.css.d.ts",
+      "default": "./dist/styles.css"
     }
   },
   "files": [
@@ -95,7 +103,7 @@
     "directory": "packages/kuat-vue"
   },
   "scripts": {
-    "build": "vite build && node -e \"const fs=require('node:fs');fs.writeFileSync('dist/style.css.d.ts','declare const stylesheet: string;\\\\nexport default stylesheet;\\\\n');\"",
+    "build": "vite build && node -e \"const fs=require('node:fs');fs.writeFileSync('dist/styles.css.d.ts','declare const stylesheet: string;\\\\nexport default stylesheet;\\\\n');\"",
     "dev": "vite build --watch",
     "lint": "eslint . --max-warnings 0",
     "test": "vitest",

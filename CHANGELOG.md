@@ -12,6 +12,9 @@ All notable changes to the published Kuat packages are documented in this file.
 ### Notes
 - Release prepared via shorthand script.
 
+### Changed
+- agent guardrails added to consumer setup.
+
 ## Multi-package release - 2026-04-22
 
 ### Affected packages

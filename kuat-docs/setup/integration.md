@@ -29,6 +29,28 @@ You MUST reference the Kuat documentation when:
 2. Follow existing patterns; do not invent new ones
 3. If the documentation doesn't cover your case, ask before proceeding
 
+## Kuat UI Component Selection Rules
+Before any UI implementation:
+1. Load bundled rules entrypoints from `@equal-experts/kuat-core`:
+   - `node_modules/@equal-experts/kuat-core/agent-docs/kuat-docs/rules/README.md`
+   - `node_modules/@equal-experts/kuat-core/agent-docs/external/kuat-agent-rules/kuat-docs/rules/LOADING.md`
+2. Ensure decisions reference both bundled Equal Experts foundations and web rules (`.../external/kuat-agent-rules/.../foundations/*` and `.../types/web/*`).
+3. Read `kuat-docs/setup/choosing-components.md`.
+4. Select component sources in this order:
+   - Kuat blocks
+   - Kuat components (`@equal-experts/kuat-react` / `@equal-experts/kuat-vue`)
+   - shadcn / shadcn-vue components for gaps
+   - custom build (last resort)
+5. Verify package exports before implementation.
+6. In implementation notes or PR description, record:
+   - chosen component source
+   - why higher-priority options were not used (if applicable)
+
+Failure conditions:
+- custom implementation created when a Kuat equivalent exists
+- shadcn chosen when Kuat already provides the capability
+- no recorded decision path
+
 **Documentation index** (single entry point in installed package):
 - `node_modules/@equal-experts/kuat-core/agent-docs/README.md` - bundled entrypoint
 - `node_modules/@equal-experts/kuat-core/agent-docs/kuat-docs/rules/README.md` - EE canonical paths + Kuat implementation
@@ -42,6 +64,12 @@ Semantic tokens only (`bg-primary` not `bg-blue-500`), 8-point spacing grid, 6px
 ```
 
 This tells your agent **when** to use the design system and **how** to behave when making UI decisions.
+
+### Non-agent fallback
+
+If your team does not use `AGENTS.md`, copy the same snippet into `.cursorrules` (or your IDE-equivalent rules file) and add this PR checklist item:
+
+- [ ] Component source documented (Kuat block/component, shadcn gap, or custom with justification)
 
 ---
 

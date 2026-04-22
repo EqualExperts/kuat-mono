@@ -32,6 +32,22 @@ pnpm add react react-dom @equal-experts/kuat-core @equal-experts/kuat-react
 
 You need **both** packages: core supplies CSS variables and the Tailwind preset; this package supplies components.
 
+### Agent Guardrails
+
+Add this to your project `AGENTS.md` (or `.cursorrules`) so agent workflows stay Kuat-first:
+
+```markdown
+## Kuat UI Component Selection Rules
+1. Load bundled rules entrypoints from `@equal-experts/kuat-core`:
+   - `node_modules/@equal-experts/kuat-core/agent-docs/kuat-docs/rules/README.md`
+   - `node_modules/@equal-experts/kuat-core/agent-docs/external/kuat-agent-rules/kuat-docs/rules/LOADING.md`
+2. Ensure decisions reference both bundled Equal Experts foundations and web rules (`.../external/kuat-agent-rules/.../foundations/*` and `.../types/web/*`).
+3. Read `kuat-docs/setup/choosing-components.md` before building UI.
+4. Choose sources in order: Kuat blocks -> Kuat components -> shadcn gaps -> custom.
+5. Verify exports in `@equal-experts/kuat-react` before implementing.
+6. Document the chosen source and any exception rationale in PR notes.
+```
+
 ### Peer dependencies
 
 Install peers for the components you use before running `dev` or `build`.
@@ -94,10 +110,12 @@ import { KuatRadialProgress } from '@equal-experts/kuat-react/kuat-radial-progre
 
 See [public-api-inventory.md](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/setup/public-api-inventory.md) for the full subpath list.
 
-`KuatCarousel` is currently exported from the root barrel:
+`KuatCarousel` is exported from both the root barrel and subpath:
 
 ```tsx
 import { KuatCarousel } from '@equal-experts/kuat-react';
+// or
+import { KuatCarousel } from '@equal-experts/kuat-react/kuat-carousel';
 ```
 
 ---
@@ -261,7 +279,7 @@ pnpm dev
 - Pass: `Button`, `Field`, and `KuatCarousel` render with Kuat styles (not plain browser defaults).
 - Pass: typography uses Kuat font stack (Lexend for sans) rather than template defaults.
 - Fail: any need to import internal `dist/*.css` files manually.
-- Fail: using `@equal-experts/kuat-react/carousel` instead of root barrel import for carousel.
+- Fail: selecting custom/shadcn carousel without documenting why `@equal-experts/kuat-react` carousel exports were not used.
 
 ---
 

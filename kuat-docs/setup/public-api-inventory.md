@@ -27,11 +27,15 @@ This file maps **published package exports** to **documentation surfaces** (Stor
 | `./sonner` | |
 | `./toggle` | |
 | `./toggle-group` | |
-| `./styles` | Bundled global CSS entry (`dist/style.css`) |
+| `./carousel` | Tree-shakable carousel primitives |
+| `./kuat-carousel` | Tree-shakable Kuat carousel block entry |
+| `./styles` | Bundled global CSS entry (`dist/styles.css`) |
 
-Symbols exported only from the main barrel (no dedicated subpath): e.g. `KuatHeader`, `KuatCarousel`, `KuatLogoLockup`, `EELogoIcon`, `ContentCard`, `ButtonGroup`, `cn`, etc. See `packages/kuat-react/src/index.ts`.
+Symbols exported only from the main barrel (no dedicated subpath): e.g. `KuatHeader`, `KuatLogoLockup`, `EELogoIcon`, `ContentCard`, `ButtonGroup`, `cn`, etc. See `packages/kuat-react/src/index.ts`.
 
-Important install note: import carousel from `@equal-experts/kuat-react` (root barrel), not `@equal-experts/kuat-react/carousel`.
+Carousel can be imported from either:
+- `@equal-experts/kuat-react` (root barrel), or
+- `@equal-experts/kuat-react/carousel` and `@equal-experts/kuat-react/kuat-carousel` (subpaths).
 
 ### Storybook (`apps/storybook-react/stories/`)
 
@@ -64,9 +68,11 @@ Important install note: import carousel from `@equal-experts/kuat-react` (root b
 
 ### `package.json` subpath exports
 
-Same pattern as React, except **no** `./kuat-radial-progress` subpath in `package.json` (radial progress is still on the main barrel — verify `package.json` if this changes). Includes `./styles` as bundled global CSS entry (`dist/style.css`). Barrel: `packages/kuat-vue/src/index.ts`.
+Same pattern as React, except **no** `./kuat-radial-progress` subpath in `package.json` (radial progress is still on the main barrel — verify `package.json` if this changes). Includes `./styles` as bundled global CSS entry (`dist/styles.css`). Barrel: `packages/kuat-vue/src/index.ts`.
 
-Important install note: import carousel from `@equal-experts/kuat-vue` (root barrel), not `@equal-experts/kuat-vue/carousel`.
+Carousel can be imported from either:
+- `@equal-experts/kuat-vue` (root barrel), or
+- `@equal-experts/kuat-vue/carousel` and `@equal-experts/kuat-vue/kuat-carousel` (subpaths).
 
 ### Storybook (`apps/storybook-vue/stories/`)
 

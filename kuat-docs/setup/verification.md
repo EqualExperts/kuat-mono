@@ -20,8 +20,8 @@ Ask your agent these questions and verify the expected answers:
 | "What font should I use for code?" | JetBrains Mono (font-mono) |
 | "What border radius for a button?" | 6px (interactive element) |
 | "What spacing between form fields?" | space-y-4 (16px) |
-| "Where should I get Button components?" | shadcn CLI (installed directly, themed by kuat-core) |
-| "What Kuat components are available?" | ButtonGroup, and blocks (KuatHeader, etc.) |
+| "Where should I get Button components?" | `@equal-experts/kuat-react` / `@equal-experts/kuat-vue` package exports |
+| "What Kuat components are available?" | Kuat primitives and blocks (Button, Field, Select, KuatCarousel, KuatHeader, etc.) |
 
 If answers match, basic integration is working.
 
@@ -309,8 +309,8 @@ def test_design_system_integration():
 A minimal test app is available at `apps/test-consumer-react/` that demonstrates:
 
 1. kuat-core design tokens loading correctly
-2. shadcn Button themed by kuat-core CSS variables
-3. Kuat ButtonGroup working alongside shadcn components
+2. Kuat Button themed by kuat-core CSS variables
+3. Kuat primitives working alongside shadcn gap components
 4. Dark mode functioning
 5. Typography loading (Lexend, Lora, JetBrains Mono)
 
@@ -329,17 +329,17 @@ pnpm dev
 **Prompt:** "I need a Button component for my React app using Kuat. Where should I get it?"
 
 **Expected:**
-- Install via shadcn CLI: `npx shadcn@latest add button`
-- Theme will be applied automatically via kuat-core CSS variables
-- Import from local: `import { Button } from "@/components/ui/button"`
+- Import from Kuat package: `import { Button } from "@equal-experts/kuat-react"`
+- Keep shadcn for components Kuat does not publish
+- Theme is applied via kuat-core CSS variables and Kuat package styles
 
 **Not expected:**
-- Import from `@equal-experts/kuat-react` (deprecated for Button)
+- Installing a duplicate local shadcn Button when Kuat Button is available
 
 **Verification:**
-- [ ] Recommends shadcn CLI installation
+- [ ] Recommends importing Button from Kuat package exports
 - [ ] Mentions kuat-core theming
-- [ ] Does NOT suggest importing Button from kuat-react
+- [ ] Avoids duplicate shadcn/local button guidance
 
 ---
 
@@ -348,19 +348,18 @@ pnpm dev
 **Prompt:** "What components should I import from @equal-experts/kuat-react?"
 
 **Expected:**
-- ButtonGroup (custom component not in shadcn)
-- Accordion (localized UI component – import from Kuat)
-- Future blocks: KuatHeader, KuatFooter, etc.
+- Primitives published by Kuat (`Button`, `Field`, `Select`, `Switch`, `Accordion`, etc.)
+- Blocks (`KuatHeader`, `KuatCarousel`, `KuatLogoLockup`, etc.)
 - Utilities: `cn()`
+- Use shadcn only for gaps not exported by Kuat
 
 **Not expected:**
-- Button, Dialog, Badge (use shadcn directly)
+- Blanket statement that only ButtonGroup should be imported from Kuat
 
 **Verification:**
-- [ ] Lists ButtonGroup as primary export
-- [ ] Lists Accordion as available from Kuat
-- [ ] Does NOT list Button, Dialog, Badge as Kuat exports
-- [ ] Mentions blocks (coming soon)
+- [ ] Lists both Kuat primitives and blocks
+- [ ] Includes Button/Field/Select as Kuat exports
+- [ ] Keeps Dialog/DropdownMenu/Tabs as likely shadcn gap examples
 
 ---
 
@@ -370,15 +369,16 @@ pnpm dev
 
 **Expected:**
 1. Install `@equal-experts/kuat-core`
-2. Configure Tailwind with kuat preset
-3. Import `@equal-experts/kuat-core/variables.css`
-4. Initialize shadcn CLI
-5. Install shadcn components as needed
-6. Optionally install `@equal-experts/kuat-react` for custom components
+2. Install `@equal-experts/kuat-react`
+3. Configure Tailwind with kuat preset
+4. Add Tailwind runtime stylesheet (`@import "tailwindcss"`)
+5. Import `@equal-experts/kuat-core/variables.css` and `@equal-experts/kuat-react/styles`
+6. Initialize shadcn CLI for gap components only
 
 **Verification:**
 - [ ] Mentions kuat-core as foundation
-- [ ] Includes shadcn CLI initialization
+- [ ] Includes `@equal-experts/kuat-react` as primary component package
+- [ ] Includes shadcn CLI initialization for gaps
 - [ ] Shows correct import order
 
 ---
@@ -389,12 +389,13 @@ pnpm dev
 
 **Expected:**
 1. Check if Kuat has a block (KuatSearchPattern) - use if available
-2. Otherwise use shadcn components (Input, Button) themed by kuat-core
-3. Compose them following Kuat patterns
+2. Otherwise use Kuat package primitives (`Input`, `Button`)
+3. Fall back to shadcn only if the required piece is not published by Kuat
+4. Record decision rationale if a lower-priority source is chosen
 
 **Verification:**
 - [ ] Checks Kuat blocks first
-- [ ] Falls back to shadcn components
+- [ ] Uses Kuat package primitives before shadcn
 - [ ] Mentions kuat-core theming
 
 ---
