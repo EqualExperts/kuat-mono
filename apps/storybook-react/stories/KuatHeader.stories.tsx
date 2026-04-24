@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { KuatHeader, Button } from "@equal-experts/kuat-react";
-import { Menu, ChevronDown, User } from "lucide-react";
-import { kuatHeaderDocs } from "../docs/component-docs";
+import type { Meta, StoryObj } from "@storybook/react"
+import { KuatHeader, Button } from "@equal-experts/kuat-react"
+import { Menu, ChevronDown, User } from "lucide-react"
+import { kuatHeaderDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof KuatHeader> = {
   title: "Kuat Blocks/KuatHeader",
@@ -14,7 +14,6 @@ const meta: Meta<typeof KuatHeader> = {
         component: kuatHeaderDocs,
       },
     },
-  
     a11y: { test: "todo" },
   },
   argTypes: {
@@ -31,39 +30,58 @@ const meta: Meta<typeof KuatHeader> = {
       control: "boolean",
       description: "Hide the default EE logo",
     },
+    lockupVariant: {
+      control: "select",
+      options: ["default", "demo"],
+      description: "Logo/title lockup mode in the header",
+    },
   },
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof KuatHeader>;
+export default meta
+type Story = StoryObj<typeof KuatHeader>
 
-// Navigation items for desktop
-const NavItems = ({ variant = "default" }: { variant?: "default" | "bold" }) => (
+const navigationItems = [
+  { label: "Dashboard", url: "/dashboard" },
+  { label: "Opportunities", url: "/opportunities" },
+  {
+    label: "Settings",
+    url: "/settings",
+    items: [
+      { label: "Profile", url: "/settings/profile" },
+      { label: "Team", url: "/settings/team" },
+    ],
+  },
+]
+
+const actionItems = [
+  {
+    label: "John Doe",
+    url: "/account",
+    icon: <User className="h-4 w-4" />,
+    items: [
+      { label: "Account", url: "/account" },
+      { label: "Sign out", url: "/sign-out" },
+    ],
+  },
+]
+
+const LegacyNavItems = ({ variant = "default" }: { variant?: "default" | "bold" }) => (
   <div className="flex items-center gap-1">
-    <Button
-      variant="ghost"
-      className={variant === "bold" ? "text-slate-100 hover:bg-white/10" : ""}
-    >
+    <Button variant="ghost" className={variant === "bold" ? "text-slate-100 hover:bg-white/10" : ""}>
       Dashboard
     </Button>
-    <Button
-      variant="ghost"
-      className={variant === "bold" ? "text-slate-100 hover:bg-white/10" : ""}
-    >
+    <Button variant="ghost" className={variant === "bold" ? "text-slate-100 hover:bg-white/10" : ""}>
       Opportunities
     </Button>
-    <Button
-      variant="ghost"
-      className={variant === "bold" ? "text-slate-100 hover:bg-white/10" : ""}
-    >
+    <Button variant="ghost" className={variant === "bold" ? "text-slate-100 hover:bg-white/10" : ""}>
       Settings
       <ChevronDown className="ml-1 h-4 w-4" />
     </Button>
   </div>
-);
+)
 
-// User menu placeholder
-const UserMenu = ({ variant = "default" }: { variant?: "default" | "bold" }) => (
+const LegacyUserMenu = ({ variant = "default" }: { variant?: "default" | "bold" }) => (
   <Button
     variant="outline"
     className={`gap-2 ${
@@ -76,13 +94,12 @@ const UserMenu = ({ variant = "default" }: { variant?: "default" | "bold" }) => 
     <span className="hidden sm:inline">John Doe</span>
     <ChevronDown className="h-4 w-4" />
   </Button>
-);
+)
 
-// Mobile menu trigger
-const MobileMenuTrigger = ({
+const LegacyMobileMenuTrigger = ({
   variant = "default",
 }: {
-  variant?: "default" | "bold";
+  variant?: "default" | "bold"
 }) => (
   <Button
     variant="ghost"
@@ -94,195 +111,122 @@ const MobileMenuTrigger = ({
   >
     <Menu className="h-6 w-6" />
   </Button>
-);
+)
 
 export const Default: Story = {
   args: {
     variant: "default",
+    lockupVariant: "default",
     title: "Timesheets",
+    navigation: navigationItems,
+    actions: actionItems,
   },
-  render: (args) => (
-    <KuatHeader
-      {...args}
-      navigation={<NavItems variant={args.variant} />}
-      actions={<UserMenu variant={args.variant} />}
-      mobileMenuTrigger={<MobileMenuTrigger variant={args.variant} />}
-    />
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Default light variant of the KuatHeader with the EE logo, navigation, and user menu.",
-      },
-    },
-  },
-};
+}
 
 export const Bold: Story = {
   args: {
     variant: "bold",
+    lockupVariant: "default",
     title: "Timesheets",
+    navigation: navigationItems,
+    actions: actionItems,
   },
-  render: (args) => (
-    <KuatHeader
-      {...args}
-      navigation={<NavItems variant={args.variant} />}
-      actions={<UserMenu variant={args.variant} />}
-      mobileMenuTrigger={<MobileMenuTrigger variant={args.variant} />}
-    />
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Bold dark variant of the KuatHeader with Tech Blue background. Logo text automatically switches to white.",
-      },
-    },
-  },
-};
+}
 
 export const WithoutNavigation: Story = {
   args: {
     variant: "default",
+    lockupVariant: "default",
     title: "Dashboard",
+    actions: actionItems,
   },
-  render: (args) => (
-    <KuatHeader
-      {...args}
-      actions={<UserMenu variant={args.variant} />}
-      mobileMenuTrigger={<MobileMenuTrigger variant={args.variant} />}
-    />
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story: "Header without navigation items - useful for simpler layouts.",
-      },
-    },
-  },
-};
+}
 
 export const MinimalHeader: Story = {
   args: {
     variant: "default",
+    lockupVariant: "default",
     title: "My App",
   },
-  render: (args) => <KuatHeader {...args} />,
-  parameters: {
-    docs: {
-      description: {
-        story: "Minimal header with just the default EE logo and title.",
-      },
-    },
+}
+
+export const DemoLockupDefaultVariant: Story = {
+  args: {
+    variant: "default",
+    lockupVariant: "demo",
+    title: "Kuat Demo",
+    navigation: navigationItems,
+    actions: actionItems,
   },
-};
+}
+
+export const DemoLockupBoldVariant: Story = {
+  args: {
+    variant: "bold",
+    lockupVariant: "demo",
+    title: "Kuat Demo",
+    navigation: navigationItems,
+    actions: actionItems,
+  },
+}
 
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-8">
       <div>
-        <h3 className="text-sm font-medium mb-2 px-4">Default Variant</h3>
-        <KuatHeader
-          variant="default"
-          title="Timesheets"
-          navigation={<NavItems variant="default" />}
-          actions={<UserMenu variant="default" />}
-          mobileMenuTrigger={<MobileMenuTrigger variant="default" />}
-        />
+        <h3 className="mb-2 px-4 text-sm font-medium">Default Variant</h3>
+        <KuatHeader variant="default" title="Timesheets" navigation={navigationItems} actions={actionItems} />
       </div>
       <div>
-        <h3 className="text-sm font-medium mb-2 px-4">Bold Variant</h3>
-        <KuatHeader
-          variant="bold"
-          title="Timesheets"
-          navigation={<NavItems variant="bold" />}
-          actions={<UserMenu variant="bold" />}
-          mobileMenuTrigger={<MobileMenuTrigger variant="bold" />}
-        />
+        <h3 className="mb-2 px-4 text-sm font-medium">Bold Variant</h3>
+        <KuatHeader variant="bold" title="Timesheets" navigation={navigationItems} actions={actionItems} />
       </div>
     </div>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story: "Comparison of all header variants. Note how the EE logo text color adapts to each variant.",
-      },
-    },
-  },
-};
-
-export const DarkMode: Story = {
-  render: () => (
-    <div className="dark bg-slate-950 p-4">
-      <KuatHeader
-        variant="default"
-        title="Timesheets"
-        navigation={<NavItems variant="default" />}
-        actions={<UserMenu variant="default" />}
-        mobileMenuTrigger={<MobileMenuTrigger variant="default" />}
-      />
-    </div>
-  ),
-  parameters: {
-    backgrounds: { default: "dark" },
-    docs: {
-      description: {
-        story:
-          "Default header variant in dark mode - adapts colors automatically.",
-      },
-    },
-  },
-};
+}
 
 export const ResponsiveDemo: Story = {
   render: () => (
     <div className="space-y-4">
-      <p className="text-sm text-muted-foreground px-4">
+      <p className="px-4 text-sm text-muted-foreground">
         Resize your browser window to see the responsive behavior. Desktop shows
-        full navigation, mobile shows hamburger menu. Logo resizes appropriately.
+        full navigation, mobile shows a full-screen menu sheet with actions fixed
+        at the bottom.
+      </p>
+      <KuatHeader variant="default" title="Timesheets" navigation={navigationItems} actions={actionItems} />
+    </div>
+  ),
+}
+
+export const ResponsiveDemoLockup: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <p className="px-4 text-sm text-muted-foreground">
+        Resize your browser window to verify the demo lockup adapts to mobile
+        with title-first hierarchy and reduced logo sizing.
       </p>
       <KuatHeader
         variant="default"
-        title="Timesheets"
-        navigation={<NavItems variant="default" />}
-        actions={<UserMenu variant="default" />}
-        mobileMenuTrigger={<MobileMenuTrigger variant="default" />}
+        lockupVariant="demo"
+        title="Kuat Demo"
+        navigation={navigationItems}
+        actions={actionItems}
       />
     </div>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Demonstrates responsive behavior - resize your browser to see mobile vs desktop layouts.",
-      },
-    },
-  },
-};
+}
 
-export const CustomLogo: Story = {
-  render: () => (
+export const LegacySlots: Story = {
+  args: {
+    variant: "default",
+    title: "Legacy Header",
+  },
+  render: (args) => (
     <KuatHeader
-      variant="default"
-      title="Custom App"
-      logo={
-        <div className="flex items-center gap-2 font-bold text-xl text-slate-700">
-          <div className="w-10 h-10 bg-transform-teal-500 rounded flex items-center justify-center text-white text-sm">
-            CA
-          </div>
-          <span>Custom App</span>
-        </div>
-      }
-      navigation={<NavItems variant="default" />}
-      mobileMenuTrigger={<MobileMenuTrigger variant="default" />}
+      {...args}
+      navigation={<LegacyNavItems variant={args.variant} />}
+      actions={<LegacyUserMenu variant={args.variant} />}
+      mobileMenuTrigger={<LegacyMobileMenuTrigger variant={args.variant} />}
     />
   ),
-  parameters: {
-    docs: {
-      description: {
-        story: "You can override the default EE logo with a custom logo element.",
-      },
-    },
-  },
-};
+}

@@ -1,14 +1,26 @@
 "use client"
 
 import * as React from "react"
+import { ChevronDown, Menu, User, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 import "./kuat-header.css"
 
 export const KUAT_HEADER_VARIANTS = ["default", "bold"] as const
 export type KuatHeaderVariant = (typeof KUAT_HEADER_VARIANTS)[number]
+
+export const KUAT_HEADER_LOCKUP_VARIANTS = ["default", "demo"] as const
+export type KuatHeaderLockupVariant = (typeof KUAT_HEADER_LOCKUP_VARIANTS)[number]
 
 export const EE_LOGO_TEXT_COLORS = ["grey", "white"] as const
 export type EELogoTextColor = (typeof EE_LOGO_TEXT_COLORS)[number]
@@ -69,17 +81,155 @@ export interface KuatHeaderProps
   logo?: React.ReactNode
   /** Page or application title */
   title?: string
-  /** Navigation items - visible on desktop, hidden on mobile */
-  navigation?: React.ReactNode
-  /** Right-side actions (e.g., user menu, search) - visible on desktop */
-  actions?: React.ReactNode
+  /** Navigation items or legacy navigation node. */
+  navigation?: React.ReactNode | KuatHeaderNavItem[]
+  /** Right-side actions or legacy action node. */
+  actions?: React.ReactNode | KuatHeaderActionItem[]
   /** Mobile menu trigger button (e.g., hamburger icon) */
   mobileMenuTrigger?: React.ReactNode
   /** Mobile menu content (typically a Sheet or Drawer) */
   mobileMenu?: React.ReactNode
   /** Hide the default EE logo */
   hideLogo?: boolean
+  /** Brand lockup layout in header. */
+  lockupVariant?: KuatHeaderLockupVariant
   variant?: KuatHeaderVariant
+}
+
+export interface KuatHeaderSubItem {
+  label: string
+  url: string
+}
+
+export interface KuatHeaderNavItem extends KuatHeaderSubItem {
+  items?: KuatHeaderSubItem[]
+}
+
+export interface KuatHeaderActionItem extends KuatHeaderSubItem {
+  icon?: React.ReactNode
+  items?: KuatHeaderSubItem[]
+}
+
+const defaultLinkRenderer = (
+  item: KuatHeaderSubItem,
+  className?: string
+) => (
+  <a href={item.url} className={className}>
+    {item.label}
+  </a>
+)
+
+function isNavConfig(
+  value: KuatHeaderProps["navigation"]
+): value is KuatHeaderNavItem[] {
+  return Array.isArray(value)
+}
+
+function isActionConfig(
+  value: KuatHeaderProps["actions"]
+): value is KuatHeaderActionItem[] {
+  return Array.isArray(value)
+}
+
+function HeaderDropdownItems({ items }: { items: KuatHeaderSubItem[] }) {
+  return (
+    <DropdownMenuContent align="start" className="kuat-header__dropdown-content">
+      <DropdownMenuGroup>
+        {items.map((item) => (
+          <DropdownMenuItem key={`${item.label}-${item.url}`} asChild>
+            {defaultLinkRenderer(item, "kuat-header__dropdown-link")}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuGroup>
+    </DropdownMenuContent>
+  )
+}
+
+function HeaderDesktopNav({ items, variant }: { items: KuatHeaderNavItem[]; variant: KuatHeaderVariant }) {
+  return (
+    <div className="kuat-header__nav-items">
+      {items.map((item) => {
+        if (!item.items?.length) {
+          return (
+            <a
+              key={`${item.label}-${item.url}`}
+              href={item.url}
+              className={cn(
+                "kuat-header__nav-link",
+                variant === "bold" && "kuat-header__nav-link--bold"
+              )}
+            >
+              {item.label}
+            </a>
+          )
+        }
+
+        return (
+          <DropdownMenu key={`${item.label}-${item.url}`}>
+            <DropdownMenuTrigger asChild>
+              <button
+                type="button"
+                className={cn(
+                  "kuat-header__nav-trigger",
+                  variant === "bold" && "kuat-header__nav-trigger--bold"
+                )}
+                aria-haspopup="menu"
+              >
+                {item.label}
+                <ChevronDown className="h-4 w-4" aria-hidden />
+              </button>
+            </DropdownMenuTrigger>
+            <HeaderDropdownItems items={item.items} />
+          </DropdownMenu>
+        )
+      })}
+    </div>
+  )
+}
+
+function HeaderDesktopActions({ items, variant }: { items: KuatHeaderActionItem[]; variant: KuatHeaderVariant }) {
+  return (
+    <div className="kuat-header__actions-items">
+      {items.map((item) => {
+        const icon = item.icon ?? <User className="h-4 w-4" aria-hidden />
+        if (!item.items?.length) {
+          return (
+            <a
+              key={`${item.label}-${item.url}`}
+              href={item.url}
+              className={cn(
+                "kuat-header__action-link",
+                variant === "bold" && "kuat-header__action-link--bold"
+              )}
+            >
+              {icon}
+              <span>{item.label}</span>
+            </a>
+          )
+        }
+
+        return (
+          <DropdownMenu key={`${item.label}-${item.url}`}>
+            <DropdownMenuTrigger asChild>
+              <button
+                type="button"
+                className={cn(
+                  "kuat-header__action-trigger",
+                  variant === "bold" && "kuat-header__action-trigger--bold"
+                )}
+                aria-haspopup="menu"
+              >
+                {icon}
+                <span className="hidden sm:inline">{item.label}</span>
+                <ChevronDown className="h-4 w-4" aria-hidden />
+              </button>
+            </DropdownMenuTrigger>
+            <HeaderDropdownItems items={item.items} />
+          </DropdownMenu>
+        )
+      })}
+    </div>
+  )
 }
 
 const KuatHeader = React.forwardRef<HTMLElement, KuatHeaderProps>(
@@ -94,11 +244,69 @@ const KuatHeader = React.forwardRef<HTMLElement, KuatHeaderProps>(
       mobileMenuTrigger,
       mobileMenu,
       hideLogo,
+      lockupVariant = "default",
       children,
       ...props
     },
     ref
   ) => {
+    const isStructuredNavigation = isNavConfig(navigation)
+    const isStructuredActions = isActionConfig(actions)
+    const hasStructuredMenus = isStructuredNavigation || isStructuredActions
+    const [isMobileOpen, setIsMobileOpen] = React.useState(false)
+    const mobileTriggerRef = React.useRef<HTMLButtonElement | null>(null)
+    const mobileSheetRef = React.useRef<HTMLDivElement | null>(null)
+
+    React.useEffect(() => {
+      if (!isMobileOpen) {
+        return
+      }
+      const body = document.body
+      const previousOverflow = body.style.overflow
+      body.style.overflow = "hidden"
+      const previousFocused = document.activeElement as HTMLElement | null
+      const firstInteractive = mobileSheetRef.current?.querySelector<HTMLElement>(
+        "button, a, [tabindex]:not([tabindex='-1'])"
+      )
+      firstInteractive?.focus()
+
+      const onKeyDown = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+          event.preventDefault()
+          setIsMobileOpen(false)
+          return
+        }
+        if (event.key !== "Tab" || !mobileSheetRef.current) {
+          return
+        }
+        const focusables = mobileSheetRef.current.querySelectorAll<HTMLElement>(
+          "button, a, [tabindex]:not([tabindex='-1'])"
+        )
+        if (!focusables.length) {
+          return
+        }
+        const first = focusables[0]
+        const last = focusables[focusables.length - 1]
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault()
+          last.focus()
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault()
+          first.focus()
+        }
+      }
+      document.addEventListener("keydown", onKeyDown)
+      return () => {
+        body.style.overflow = previousOverflow
+        document.removeEventListener("keydown", onKeyDown)
+        if (mobileTriggerRef.current) {
+          mobileTriggerRef.current.focus()
+        } else {
+          previousFocused?.focus()
+        }
+      }
+    }, [isMobileOpen])
+
     const logoElement =
       logo !== undefined
         ? logo
@@ -119,6 +327,12 @@ const KuatHeader = React.forwardRef<HTMLElement, KuatHeaderProps>(
             />
           )
 
+    const effectiveLockupVariant = logo !== undefined ? "default" : lockupVariant
+    const showDefaultDesktopLockup = logoElement && effectiveLockupVariant === "default"
+    const showDefaultMobileLockup = mobileLogoElement && effectiveLockupVariant === "default"
+    const showDemoDesktopLockup = logoElement && effectiveLockupVariant === "demo"
+    const showDemoMobileLockup = mobileLogoElement && effectiveLockupVariant === "demo"
+
     return (
       <header
         ref={ref}
@@ -131,7 +345,7 @@ const KuatHeader = React.forwardRef<HTMLElement, KuatHeaderProps>(
       >
         <div className="kuat-header__desktop">
           <div className="kuat-header__desktop-left">
-            {logoElement && (
+            {showDefaultDesktopLockup && (
               <>
                 <div className="shrink-0">{logoElement}</div>
                 <Separator
@@ -140,37 +354,169 @@ const KuatHeader = React.forwardRef<HTMLElement, KuatHeaderProps>(
                 />
               </>
             )}
-            {title && (
+            {showDemoDesktopLockup && (
+              <div className="kuat-header__desktop-demo-lockup">
+                {title && (
+                  <h1 className="kuat-header__desktop-demo-title">
+                    {title}
+                  </h1>
+                )}
+                <div className="kuat-header__demo-byline">
+                  <span className="kuat-header__demo-label">A demo by</span>
+                  <div className="kuat-header__desktop-demo-logo">{logoElement}</div>
+                </div>
+              </div>
+            )}
+            {title && effectiveLockupVariant === "default" && (
               <h1 className="kuat-header__desktop-title">
                 {title}
               </h1>
             )}
           </div>
           <div className="kuat-header__desktop-right">
-            {navigation && (
+            {isStructuredNavigation ? (
+              navigation.length > 0 && (
+                <nav aria-label="Primary navigation">
+                  <HeaderDesktopNav items={navigation} variant={variant} />
+                </nav>
+              )
+            ) : navigation ? (
               <nav className="flex items-center">{navigation}</nav>
-            )}
-            {actions && (
+            ) : null}
+            {isStructuredActions ? (
+              actions.length > 0 && (
+                <div className="flex items-center gap-2">
+                  <HeaderDesktopActions items={actions} variant={variant} />
+                </div>
+              )
+            ) : actions ? (
               <div className="flex items-center gap-2">{actions}</div>
-            )}
+            ) : null}
           </div>
         </div>
 
         <div className="kuat-header__mobile">
           <div className="kuat-header__mobile-left">
-            {mobileLogoElement && <div className="shrink-0">{mobileLogoElement}</div>}
-            {title && (
+            {showDefaultMobileLockup && <div className="shrink-0">{mobileLogoElement}</div>}
+            {showDemoMobileLockup && (
+              <div className="kuat-header__mobile-demo-lockup">
+                {title && (
+                  <p className="kuat-header__mobile-demo-title">
+                    {title}
+                  </p>
+                )}
+                <div className="kuat-header__demo-byline">
+                  <span className="kuat-header__demo-label">A demo by</span>
+                  <div className="kuat-header__mobile-demo-logo">{mobileLogoElement}</div>
+                </div>
+              </div>
+            )}
+            {title && effectiveLockupVariant === "default" && (
               <p className="kuat-header__mobile-title">
                 {title}
               </p>
             )}
           </div>
-          {mobileMenuTrigger && (
+          {mobileMenuTrigger ? (
             <div className="shrink-0">{mobileMenuTrigger}</div>
-          )}
+          ) : hasStructuredMenus ? (
+            <Button
+              ref={mobileTriggerRef}
+              variant="ghost"
+              size="icon"
+              className={cn(
+                "kuat-header__mobile-trigger",
+                variant === "bold" && "kuat-header__mobile-trigger--bold"
+              )}
+              aria-label="Open menu"
+              aria-expanded={isMobileOpen}
+              aria-controls="kuat-header-mobile-menu"
+              onClick={() => setIsMobileOpen(true)}
+            >
+              <Menu className="h-6 w-6" aria-hidden />
+            </Button>
+          ) : null}
         </div>
 
-        {mobileMenu}
+        {hasStructuredMenus ? (
+          isMobileOpen && (
+            <div
+              id="kuat-header-mobile-menu"
+              ref={mobileSheetRef}
+              className="kuat-header__mobile-sheet"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
+            >
+              <div className="kuat-header__mobile-sheet-header">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="kuat-header__mobile-close"
+                  aria-label="Close menu"
+                  onClick={() => setIsMobileOpen(false)}
+                >
+                  <X className="h-6 w-6" aria-hidden />
+                </Button>
+              </div>
+              <div className="kuat-header__mobile-sheet-nav">
+                {isStructuredNavigation && navigation.length > 0 && (
+                  <nav aria-label="Primary navigation">
+                    <ul className="kuat-header__mobile-list">
+                      {navigation.map((item) => (
+                        <li key={`${item.label}-${item.url}`}>
+                          <a href={item.url} className="kuat-header__mobile-link">
+                            {item.label}
+                          </a>
+                          {item.items?.length ? (
+                            <ul className="kuat-header__mobile-sub-list">
+                              {item.items.map((subItem) => (
+                                <li key={`${subItem.label}-${subItem.url}`}>
+                                  <a href={subItem.url} className="kuat-header__mobile-sub-link">
+                                    {subItem.label}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          ) : null}
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                )}
+              </div>
+              {isStructuredActions && actions.length > 0 ? (
+                <div className="kuat-header__mobile-sheet-actions">
+                  <ul className="kuat-header__mobile-list">
+                    {actions.map((action) => (
+                      <li key={`${action.label}-${action.url}`}>
+                        <a href={action.url} className="kuat-header__mobile-link">
+                          <span className="kuat-header__mobile-action-icon">
+                            {action.icon ?? <User className="h-4 w-4" aria-hidden />}
+                          </span>
+                          {action.label}
+                        </a>
+                        {action.items?.length ? (
+                          <ul className="kuat-header__mobile-sub-list">
+                            {action.items.map((subItem) => (
+                              <li key={`${subItem.label}-${subItem.url}`}>
+                                <a href={subItem.url} className="kuat-header__mobile-sub-link">
+                                  {subItem.label}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </div>
+          )
+        ) : (
+          mobileMenu
+        )}
         {children}
       </header>
     )

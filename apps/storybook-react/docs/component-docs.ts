@@ -141,6 +141,12 @@ Long-form product guidance: [carousel.md](https://github.com/equalexperts/kuat-m
 export const kuatHeaderDocs = `## Overview
 Application **header** with brand logo slot, navigation area, and actions.
 
+## Logo lockup modes
+- \`lockupVariant="default"\`: Existing lockup (EE logo with title treatment used today)
+- \`lockupVariant="demo"\`: Client demo lockup where the title is primary and a smaller EE logo sits beneath
+
+If a custom \`logo\` is passed, it overrides internal lockup rendering.
+
 ## When to use
 - Product chrome at the top of every page
 

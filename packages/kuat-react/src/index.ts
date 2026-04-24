@@ -56,8 +56,20 @@ export type { ContentCardProps } from "./components/ui/content-card";
 // KUAT BLOCKS (Composed Patterns)
 // Pre-built compositions of components for common patterns
 // =============================================================================
-export { KuatHeader, kuatHeaderVariants, EELogo } from "./components/ui/kuat-header";
-export type { KuatHeaderProps, EELogoProps } from "./components/ui/kuat-header";
+export {
+  KuatHeader,
+  kuatHeaderVariants,
+  EELogo,
+  KUAT_HEADER_LOCKUP_VARIANTS,
+} from "./components/ui/kuat-header";
+export type {
+  KuatHeaderProps,
+  EELogoProps,
+  KuatHeaderLockupVariant,
+  KuatHeaderSubItem,
+  KuatHeaderNavItem,
+  KuatHeaderActionItem,
+} from "./components/ui/kuat-header";
 
 export {
   Carousel,
