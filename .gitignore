@@ -54,3 +54,7 @@ lerna-debug.log*
 external/
 packages/kuat-react/equal-experts-kuat-react-*.tgz
 packages/kuat-vue/equal-experts-kuat-vue-*.tgz
+
+# Generated before vite build (see scripts/concat-component-styles.mjs)
+packages/kuat-react/src/components-bundles/_inlined-components.css
+packages/kuat-vue/src/components-bundles/_inlined-components.css

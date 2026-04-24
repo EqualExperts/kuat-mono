@@ -1,9 +1,6 @@
 // Export utilities needed for AlertDialog
 export { cn } from "./lib/utils";
 
-// Export styles
-import "./styles.css";
-
 // Export AlertDialog components
 export {
   AlertDialog,

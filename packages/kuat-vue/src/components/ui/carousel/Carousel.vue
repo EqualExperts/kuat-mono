@@ -7,6 +7,8 @@ import type { CarouselApi, CarouselItemBasis, CarouselOrientation } from "./cont
 import { carouselContextKey } from "./context"
 import "./carousel.css"
 
+export type CarouselPlugins = Parameters<typeof useEmblaCarousel>[1]
+
 export type CarouselEventHandler = (api: CarouselApi, eventName: string) => void
 export type CarouselEventHandlers = Partial<Record<string, CarouselEventHandler>>
 
@@ -15,7 +17,7 @@ interface Props {
   opts?: Record<string, unknown>
   basis?: CarouselItemBasis
   orientation?: CarouselOrientation
-  plugins?: unknown[]
+  plugins?: CarouselPlugins
   setApi?: (api: CarouselApi | undefined) => void
   events?: CarouselEventHandlers
 }

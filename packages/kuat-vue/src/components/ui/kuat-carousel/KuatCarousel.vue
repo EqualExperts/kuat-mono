@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from "vue"
 import Carousel from "../carousel/Carousel.vue"
-import type { CarouselApi, CarouselEventHandlers, CarouselOrientation } from "../carousel"
+import type {
+  CarouselApi,
+  CarouselEventHandlers,
+  CarouselOrientation,
+  CarouselPlugins,
+} from "../carousel"
 
 export type KuatCarouselSlidesPerView = 1 | 2 | 3
 
 interface Props {
   class?: HTMLAttributes["class"]
   opts?: Record<string, unknown>
-  plugins?: unknown[]
+  plugins?: CarouselPlugins
   events?: CarouselEventHandlers
   setApi?: (api: CarouselApi | undefined) => void
   slidesPerView?: KuatCarouselSlidesPerView

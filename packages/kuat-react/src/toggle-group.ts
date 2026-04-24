@@ -1,7 +1,5 @@
 export { cn } from "./lib/utils"
 
-import "./styles.css"
-
 export {
   ToggleGroup,
   ToggleGroupItem,

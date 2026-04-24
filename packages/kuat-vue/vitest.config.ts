@@ -1,8 +1,8 @@
 import { defineConfig, mergeConfig } from "vitest/config";
-import viteConfig from "./vite.config";
+import { kuatVueVitestViteConfig } from "./vite.shared";
 
 export default mergeConfig(
-  viteConfig,
+  kuatVueVitestViteConfig(),
   defineConfig({
     test: {
       environment: "jsdom",
@@ -10,5 +10,5 @@ export default mergeConfig(
       setupFiles: ["./src/test/setup.ts"],
       passWithNoTests: true,
     },
-  })
+  }),
 );

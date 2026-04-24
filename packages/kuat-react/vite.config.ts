@@ -1,24 +1,38 @@
+import { createRequire } from "node:module";
 import { resolve } from "path";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 
+const require = createRequire(import.meta.url);
+
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    dts({
-      include: ["src/**/*"],
-      exclude: ["src/**/*.test.ts", "src/**/*.test.tsx"],
-    }),
+    ...(process.env.VITEST
+      ? []
+      : [
+          dts({
+            include: ["src/**/*"],
+            exclude: ["src/**/*.test.ts", "src/**/*.test.tsx"],
+          }),
+        ]),
   ],
   resolve: {
     alias: {
       "@": resolve(__dirname, "./src"),
+      // @tailwindcss/vite uses enhanced-resolve; explicit targets avoid export-map gaps during build.
+      "@equal-experts/kuat-core/variables.css": require.resolve("@equal-experts/kuat-core/variables.css"),
+      "@equal-experts/kuat-core/button-variables.css": require.resolve(
+        "@equal-experts/kuat-core/button-variables.css",
+      ),
     },
   },
   build: {
+    sourcemap: false,
+    reportCompressedSize: false,
     lib: {
       entry: {
         index: resolve(__dirname, "src/index.ts"),
@@ -45,6 +59,7 @@ export default defineConfig({
       fileName: (format, entryName) => `${entryName}.js`,
     },
     rollupOptions: {
+      maxParallelFileOps: 6,
       external: [
         "react",
         "react-dom",

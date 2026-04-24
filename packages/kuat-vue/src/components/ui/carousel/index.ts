@@ -5,4 +5,4 @@ export { default as CarouselPrevious } from "./CarouselPrevious.vue"
 export { default as CarouselNext } from "./CarouselNext.vue"
 
 export type { CarouselItemBasis, CarouselOrientation, CarouselApi } from "./context"
-export type { CarouselEventHandler, CarouselEventHandlers } from "./Carousel.vue"
+export type { CarouselEventHandler, CarouselEventHandlers, CarouselPlugins } from "./Carousel.vue"

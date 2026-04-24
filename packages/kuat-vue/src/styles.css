@@ -1,22 +1,7 @@
 @import "@equal-experts/kuat-core/variables.css";
 @import "@equal-experts/kuat-core/button-variables.css";
 @import "tailwindcss";
-@import "./components/ui/breadcrumb/breadcrumb.css";
-@import "./components/ui/button/button.css";
-@import "./components/ui/carousel/carousel.css";
-@import "./components/ui/checkbox/checkbox.css";
-@import "./components/ui/checkbox/checkbox-field.css";
-@import "./components/ui/field/field.css";
-@import "./components/ui/input/input.css";
-@import "./components/ui/kuat-carousel/kuat-carousel.css";
-@import "./components/ui/radio/radio.css";
-@import "./components/ui/radio/radio-field.css";
-@import "./components/ui/select/select.css";
-@import "./components/ui/switch/switch.css";
-@import "./components/ui/switch/switch-field.css";
-@import "./components/ui/textarea/textarea.css";
-@import "./components/ui/toggle/toggle.css";
-@import "./components/ui/toggle-group/toggle-group.css";
+@import "./components-bundles/_inlined-components.css";
 
 /* Radial progress size variables: defined here so they are always available when using this package.
    Values match @equal-experts/kuat-core; load variables.css first to override via design tokens. */

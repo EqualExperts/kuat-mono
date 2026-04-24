@@ -1,6 +1,3 @@
-// Export styles
-import "./styles.css";
-
 export {
   KuatCarousel,
   KuatCarouselContent,
