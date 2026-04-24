@@ -5,6 +5,16 @@ All notable changes to the published Kuat packages are documented in this file.
 ## Multi-package release - 2026-04-24
 
 ### Affected packages
+- @equal-experts/kuat-core@0.11.0
+- @equal-experts/kuat-react@0.11.0
+- @equal-experts/kuat-vue@0.11.0
+
+### Changed
+- Carousel responsive basis via API
+
+## Multi-package release - 2026-04-24
+
+### Affected packages
 - @equal-experts/kuat-core@0.10.0
 - @equal-experts/kuat-react@0.10.0
 - @equal-experts/kuat-vue@0.10.0
