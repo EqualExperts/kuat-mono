@@ -3,7 +3,12 @@ import type { HTMLAttributes } from "vue"
 import { computed, provide, ref, toRef, watch } from "vue"
 import useEmblaCarousel from "embla-carousel-vue"
 import { cn } from "@/lib/utils"
-import type { CarouselApi, CarouselItemBasis, CarouselOrientation } from "./context"
+import type {
+  CarouselApi,
+  CarouselItemBasis,
+  CarouselOrientation,
+  CarouselResponsiveBasis,
+} from "./context"
 import { carouselContextKey } from "./context"
 import "./carousel.css"
 
@@ -16,6 +21,11 @@ interface Props {
   class?: HTMLAttributes["class"]
   opts?: Record<string, unknown>
   basis?: CarouselItemBasis
+  basisSm?: CarouselItemBasis
+  basisMd?: CarouselItemBasis
+  basisLg?: CarouselItemBasis
+  basisXl?: CarouselItemBasis
+  basis2xl?: CarouselItemBasis
   orientation?: CarouselOrientation
   plugins?: CarouselPlugins
   setApi?: (api: CarouselApi | undefined) => void
@@ -87,9 +97,18 @@ watch(
   { immediate: true }
 )
 
+const responsiveBasis = computed<CarouselResponsiveBasis>(() => ({
+  sm: props.basisSm,
+  md: props.basisMd,
+  lg: props.basisLg,
+  xl: props.basisXl,
+  "2xl": props.basis2xl,
+}))
+
 provide(carouselContextKey, {
   api: emblaApi,
   basis: toRef(() => props.basis),
+  responsiveBasis,
   orientation: toRef(() => props.orientation),
   scrollPrev,
   scrollNext,

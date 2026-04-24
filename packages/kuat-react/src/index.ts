@@ -69,6 +69,7 @@ export {
 } from "./components/ui/carousel";
 export type {
   CarouselItemBasis,
+  CarouselResponsiveBasis,
   CarouselEventHandler,
   CarouselEventHandlers,
   CarouselProps,

@@ -175,6 +175,54 @@ export const ThreeSlides: Story = {
   },
 }
 
+export const ResponsiveBasisByBreakpoint: Story = {
+  render: () => ({
+    components: {
+      Carousel,
+      CarouselContent,
+      CarouselItem,
+      CarouselPrevious,
+      CarouselNext,
+    },
+    setup() {
+      return { textSlides }
+    },
+    template: `
+      <Carousel
+        :basis="1"
+        :basis-sm="2"
+        :basis-md="2"
+        :basis-lg="3"
+        :basis-xl="3"
+        :basis2xl="3"
+        class="w-full"
+      >
+        <template #content>
+          <CarouselContent>
+            <CarouselItem v-for="n in textSlides" :key="n">
+              <div class="flex aspect-video items-center justify-center bg-muted p-4 text-xl font-semibold">
+                {{ n }}
+              </div>
+            </CarouselItem>
+          </CarouselContent>
+        </template>
+        <template #controls>
+          <CarouselPrevious />
+          <CarouselNext />
+        </template>
+      </Carousel>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Sets slide basis per Tailwind breakpoint using `basisSm`, `basisMd`, `basisLg`, `basisXl`, and `basis2xl`.",
+      },
+    },
+  },
+}
+
 export const WithImagePlaceholder: Story = {
   args: {
     basis: 2,

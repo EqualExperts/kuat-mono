@@ -138,6 +138,34 @@ describe("Carousel (Vue)", () => {
     expect(wrapper.find(".item-b").classes()).toContain("carousel__item--basis-3")
   })
 
+  it("applies responsive basis classes for all Kuat Tailwind breakpoints", () => {
+    const wrapper = mount({
+      components: {
+        Carousel,
+        CarouselContent,
+        CarouselItem,
+      },
+      template: `
+        <Carousel :basis="1" :basis-sm="2" :basis-md="3">
+          <template #content>
+            <CarouselContent>
+              <CarouselItem class="item-a">A</CarouselItem>
+              <CarouselItem :basis-lg="2" :basis-xl="3" :basis2xl="1" class="item-b">B</CarouselItem>
+            </CarouselContent>
+          </template>
+        </Carousel>
+      `,
+    })
+
+    expect(wrapper.find(".item-a").classes()).toContain("carousel__item--basis-sm-2")
+    expect(wrapper.find(".item-a").classes()).toContain("carousel__item--basis-md-3")
+    expect(wrapper.find(".item-b").classes()).toContain("carousel__item--basis-sm-2")
+    expect(wrapper.find(".item-b").classes()).toContain("carousel__item--basis-md-3")
+    expect(wrapper.find(".item-b").classes()).toContain("carousel__item--basis-lg-2")
+    expect(wrapper.find(".item-b").classes()).toContain("carousel__item--basis-xl-3")
+    expect(wrapper.find(".item-b").classes()).toContain("carousel__item--basis-2xl-1")
+  })
+
   it("wires inline Embla events and cleans up on unmount", () => {
     const selectHandler = vi.fn()
     const wrapper = mount(Carousel, {

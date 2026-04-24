@@ -14,12 +14,16 @@ type CarouselPlugins = Parameters<typeof useEmblaCarousel>[1]
 type CarouselOrientation = "horizontal" | "vertical"
 
 export type CarouselItemBasis = 1 | 2 | 3
+export type CarouselResponsiveBasis = Partial<
+  Record<"sm" | "md" | "lg" | "xl" | "2xl", CarouselItemBasis>
+>
 export type CarouselEventHandler = (api: CarouselApi, eventName: string) => void
 export type CarouselEventHandlers = Partial<Record<string, CarouselEventHandler>>
 
 interface CarouselContextValue {
   api: CarouselApi
   basis: CarouselItemBasis
+  responsiveBasis: CarouselResponsiveBasis
   orientation: CarouselOrientation
   scrollPrev: () => void
   scrollNext: () => void
@@ -40,6 +44,11 @@ function useCarousel() {
 export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
   opts?: CarouselOptions
   basis?: CarouselItemBasis
+  basisSm?: CarouselItemBasis
+  basisMd?: CarouselItemBasis
+  basisLg?: CarouselItemBasis
+  basisXl?: CarouselItemBasis
+  basis2xl?: CarouselItemBasis
   orientation?: CarouselOrientation
   plugins?: CarouselPlugins
   setApi?: (api: CarouselApi) => void
@@ -51,6 +60,11 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     {
       opts,
       basis = 1,
+      basisSm,
+      basisMd,
+      basisLg,
+      basisXl,
+      basis2xl,
       orientation = "horizontal",
       plugins,
       setApi,
@@ -117,13 +131,33 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       () => ({
         api: api!,
         basis,
+        responsiveBasis: {
+          sm: basisSm,
+          md: basisMd,
+          lg: basisLg,
+          xl: basisXl,
+          "2xl": basis2xl,
+        },
         orientation,
         scrollPrev,
         scrollNext,
         canScrollPrev,
         canScrollNext,
       }),
-      [api, basis, orientation, scrollPrev, scrollNext, canScrollPrev, canScrollNext]
+      [
+        api,
+        basis,
+        basisSm,
+        basisMd,
+        basisLg,
+        basisXl,
+        basis2xl,
+        orientation,
+        scrollPrev,
+        scrollNext,
+        canScrollPrev,
+        canScrollNext,
+      ]
     )
 
     const childArray = React.Children.toArray(children)
@@ -166,12 +200,22 @@ CarouselContent.displayName = "CarouselContent"
 
 export interface CarouselItemProps extends React.HTMLAttributes<HTMLDivElement> {
   basis?: CarouselItemBasis
+  basisSm?: CarouselItemBasis
+  basisMd?: CarouselItemBasis
+  basisLg?: CarouselItemBasis
+  basisXl?: CarouselItemBasis
+  basis2xl?: CarouselItemBasis
 }
 
 const CarouselItem = React.forwardRef<HTMLDivElement, CarouselItemProps>(
-  ({ basis: itemBasis, className, ...props }, ref) => {
-    const { basis: contextBasis, orientation } = useCarousel()
+  ({ basis: itemBasis, basisSm, basisMd, basisLg, basisXl, basis2xl, className, ...props }, ref) => {
+    const { basis: contextBasis, responsiveBasis, orientation } = useCarousel()
     const basis = itemBasis ?? contextBasis
+    const resolvedSm = basisSm ?? responsiveBasis.sm
+    const resolvedMd = basisMd ?? responsiveBasis.md
+    const resolvedLg = basisLg ?? responsiveBasis.lg
+    const resolvedXl = basisXl ?? responsiveBasis.xl
+    const resolved2xl = basis2xl ?? responsiveBasis["2xl"]
 
     return (
       <div
@@ -180,6 +224,11 @@ const CarouselItem = React.forwardRef<HTMLDivElement, CarouselItemProps>(
           "carousel__item",
           `carousel__item--${orientation}`,
           `carousel__item--basis-${basis}`,
+          resolvedSm != null && `carousel__item--basis-sm-${resolvedSm}`,
+          resolvedMd != null && `carousel__item--basis-md-${resolvedMd}`,
+          resolvedLg != null && `carousel__item--basis-lg-${resolvedLg}`,
+          resolvedXl != null && `carousel__item--basis-xl-${resolvedXl}`,
+          resolved2xl != null && `carousel__item--basis-2xl-${resolved2xl}`,
           className
         )}
         {...props}

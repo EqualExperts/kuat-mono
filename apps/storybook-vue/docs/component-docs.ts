@@ -127,7 +127,7 @@ Single-line text input with Kuat sizing and tokens.
 - Numeric-only inputs with strict UX (consider specialized inputs)`;
 
 export const kuatCarouselDocs = `## Overview
-Carousel built with **Embla**. Use \`basis\` for visible item sizing, \`plugins\` for Embla plugins, and \`events\` for inline Embla event handlers.
+Carousel built with **Embla**. Use \`basis\` for default sizing and \`basisSm\`/\`basisMd\`/\`basisLg\`/\`basisXl\`/\`basis2xl\` for breakpoint-specific item sizing. Use \`plugins\` for Embla plugins and \`events\` for inline Embla event handlers.
 
 ## When to use
 - Testimonials, image galleries, card rows that scroll horizontally

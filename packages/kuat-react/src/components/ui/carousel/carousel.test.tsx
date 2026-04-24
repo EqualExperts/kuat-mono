@@ -64,6 +64,27 @@ describe("Carousel", () => {
     expect(screen.getByTestId("item-b")).toHaveClass("carousel__item--basis-3")
   })
 
+  it("applies responsive basis classes for all Kuat Tailwind breakpoints", () => {
+    render(
+      <Carousel basis={1} basisSm={2} basisMd={3}>
+        <CarouselContent>
+          <CarouselItem data-testid="item-a">A</CarouselItem>
+          <CarouselItem basisLg={2} basisXl={3} basis2xl={1} data-testid="item-b">
+            B
+          </CarouselItem>
+        </CarouselContent>
+      </Carousel>
+    )
+
+    expect(screen.getByTestId("item-a")).toHaveClass("carousel__item--basis-sm-2")
+    expect(screen.getByTestId("item-a")).toHaveClass("carousel__item--basis-md-3")
+    expect(screen.getByTestId("item-b")).toHaveClass("carousel__item--basis-sm-2")
+    expect(screen.getByTestId("item-b")).toHaveClass("carousel__item--basis-md-3")
+    expect(screen.getByTestId("item-b")).toHaveClass("carousel__item--basis-lg-2")
+    expect(screen.getByTestId("item-b")).toHaveClass("carousel__item--basis-xl-3")
+    expect(screen.getByTestId("item-b")).toHaveClass("carousel__item--basis-2xl-1")
+  })
+
   it("passes options and plugins to Embla", () => {
     const plugins = [{ name: "noop" }]
     const opts = { loop: true, align: "start" as const }
