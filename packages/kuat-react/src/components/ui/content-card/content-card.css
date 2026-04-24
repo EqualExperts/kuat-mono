@@ -3,7 +3,19 @@
 /* ContentCard – CSS-first. Tokens from @equal-experts/kuat-core. */
 
 .content-card {
-  @apply flex flex-col items-start relative border border-border bg-card pb-2 w-full max-w-[373px] border-solid min-w-0;
+  @apply flex flex-col items-start relative border border-border bg-card pb-2 w-full border-solid min-w-0;
+}
+
+.content-card--width-default {
+  @apply max-w-[373px];
+}
+
+.content-card--width-fluid {
+  @apply max-w-none;
+}
+
+.content-card--width-custom {
+  max-width: var(--content-card-max-width, 373px);
 }
 
 /* Optional media */

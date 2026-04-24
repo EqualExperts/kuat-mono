@@ -119,6 +119,120 @@ export const Responsive: Story = {
   }),
 }
 
+export const DefaultWidth: Story = {
+  render: () => ({
+    components: { ContentCard, Badge },
+    template: `
+      <div class="p-6 bg-background">
+        <div class="w-full max-w-xl">
+          <ContentCard
+            width="default"
+            category="${requiredProps.category}"
+            title="A clear &amp; descriptive headline"
+            :title-heading-level="${requiredProps.titleHeadingLevel}"
+            content-text="Default width keeps the original max-width constraint."
+            :image-src="'${DEFAULT_CARD_IMAGE_SRC}'"
+            :image-alt="'${DEFAULT_ALT_TEXT}'"
+          >
+            <template #badge>
+              <Badge variant="secondary">Case study</Badge>
+            </template>
+          </ContentCard>
+        </div>
+      </div>
+    `,
+  }),
+}
+
+export const FluidWidth: Story = {
+  render: () => ({
+    components: { ContentCard, Badge },
+    template: `
+      <div class="p-6 bg-background space-y-6">
+        <div class="w-full max-w-xl">
+          <ContentCard
+            width="fluid"
+            category="${requiredProps.category}"
+            title="A clear &amp; descriptive headline"
+            :title-heading-level="${requiredProps.titleHeadingLevel}"
+            content-text="Fluid width fills the parent container."
+            :image-src="'${DEFAULT_CARD_IMAGE_SRC}'"
+            :image-alt="'${DEFAULT_ALT_TEXT}'"
+          >
+            <template #badge>
+              <Badge variant="secondary">Case study</Badge>
+            </template>
+          </ContentCard>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <ContentCard
+            width="fluid"
+            category="${requiredProps.category}"
+            title="A clear &amp; descriptive headline"
+            :title-heading-level="${requiredProps.titleHeadingLevel}"
+            content-text="Grid item 1 (fluid)."
+          >
+            <template #badge>
+              <Badge variant="secondary">Case study</Badge>
+            </template>
+          </ContentCard>
+          <ContentCard
+            width="fluid"
+            category="${requiredProps.category}"
+            title="A clear &amp; descriptive headline"
+            :title-heading-level="${requiredProps.titleHeadingLevel}"
+            content-text="Grid item 2 (fluid)."
+          >
+            <template #badge>
+              <Badge variant="secondary">Case study</Badge>
+            </template>
+          </ContentCard>
+        </div>
+      </div>
+    `,
+  }),
+}
+
+export const CustomMaxWidth: Story = {
+  render: () => ({
+    components: { ContentCard, Badge },
+    template: `
+      <div class="p-6 bg-background space-y-6">
+        <div class="w-full max-w-xl">
+          <ContentCard
+            width="custom"
+            max-width="28rem"
+            category="${requiredProps.category}"
+            title="A clear &amp; descriptive headline"
+            :title-heading-level="${requiredProps.titleHeadingLevel}"
+            content-text="Custom max width set to 28rem."
+          >
+            <template #badge>
+              <Badge variant="secondary">Case study</Badge>
+            </template>
+          </ContentCard>
+        </div>
+
+        <div class="w-full max-w-xl">
+          <ContentCard
+            width="custom"
+            :max-width="320"
+            category="${requiredProps.category}"
+            title="A clear &amp; descriptive headline"
+            :title-heading-level="${requiredProps.titleHeadingLevel}"
+            content-text="Custom max width can also be provided as a number (px)."
+          >
+            <template #badge>
+              <Badge variant="secondary">Case study</Badge>
+            </template>
+          </ContentCard>
+        </div>
+      </div>
+    `,
+  }),
+}
+
 export const ClickableAsChild: Story = {
   render: () => ({
     components: { ContentCard, Badge },

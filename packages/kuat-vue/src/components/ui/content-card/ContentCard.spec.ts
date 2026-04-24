@@ -27,5 +27,48 @@ describe("ContentCard", () => {
     expect(badgeRegion).toBeInTheDocument()
     expect(screen.getByText("Case study")).toBeInTheDocument()
   })
+
+  it("uses constrained width by default", () => {
+    render(ContentCard, {
+      props: {
+        category: "User experience",
+        title: "A clear & descriptive headline",
+        titleHeadingLevel: 3,
+      },
+    })
+
+    const root = document.querySelector("[data-slot='content-card']")
+    expect(root).toHaveClass("content-card--width-default")
+  })
+
+  it("supports fluid width mode", () => {
+    render(ContentCard, {
+      props: {
+        category: "User experience",
+        title: "A clear & descriptive headline",
+        titleHeadingLevel: 3,
+        width: "fluid",
+      },
+    })
+
+    const root = document.querySelector("[data-slot='content-card']")
+    expect(root).toHaveClass("content-card--width-fluid")
+  })
+
+  it("supports custom max-width mode", () => {
+    render(ContentCard, {
+      props: {
+        category: "User experience",
+        title: "A clear & descriptive headline",
+        titleHeadingLevel: 3,
+        width: "custom",
+        maxWidth: "28rem",
+      },
+    })
+
+    const root = document.querySelector("[data-slot='content-card']")
+    expect(root).toHaveClass("content-card--width-custom")
+    expect(root).toHaveAttribute("style", expect.stringContaining("--content-card-max-width: 28rem"))
+  })
 })
 

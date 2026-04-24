@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from "vue"
+import type { CSSProperties, HTMLAttributes } from "vue"
 import { computed } from "vue"
 import type { PrimitiveProps } from "reka-ui"
 import { Primitive } from "reka-ui"
@@ -9,6 +9,10 @@ import { cn } from "@/lib/utils"
 
 interface Props extends PrimitiveProps {
   class?: HTMLAttributes["class"]
+  /** Width behavior for the root card container. */
+  width?: "default" | "fluid" | "custom"
+  /** Used when `width` is `custom`; accepts CSS max-width values. */
+  maxWidth?: string | number
   /** Optional media; when `null`, the media area is removed (no gap). */
   imageSrc?: string | null
   imageAlt?: string
@@ -24,19 +28,32 @@ interface Props extends PrimitiveProps {
 
 const props = withDefaults(defineProps<Props>(), {
   as: "div",
+  width: "default",
+  maxWidth: "373px",
   imageSrc: null,
   imageAlt: "",
   contentText: null,
 })
 
 const headingTag = computed(() => `h${props.titleHeadingLevel}`)
+const widthClass = computed(() => {
+  if (props.width === "fluid") return "content-card--width-fluid"
+  if (props.width === "custom") return "content-card--width-custom"
+  return "content-card--width-default"
+})
+const rootStyle = computed<CSSProperties | undefined>(() => {
+  if (props.width !== "custom") return undefined
+  const value = typeof props.maxWidth === "number" ? `${props.maxWidth}px` : props.maxWidth
+  return { "--content-card-max-width": value } as CSSProperties
+})
 </script>
 
 <template>
   <Primitive
     :as="as"
     :as-child="asChild"
-    :class="cn('content-card', props.class)"
+    :class="cn('content-card', widthClass, props.class)"
+    :style="rootStyle"
     data-slot="content-card"
     v-bind="$attrs"
   >
@@ -84,7 +101,19 @@ const headingTag = computed(() => `h${props.titleHeadingLevel}`)
 @reference "../../../styles.css";
 
 .content-card {
-  @apply flex flex-col items-start relative border border-border bg-card pb-2 w-full max-w-[373px] border-solid min-w-0;
+  @apply flex flex-col items-start relative border border-border bg-card pb-2 w-full border-solid min-w-0;
+}
+
+.content-card--width-default {
+  @apply max-w-[373px];
+}
+
+.content-card--width-fluid {
+  @apply max-w-none;
+}
+
+.content-card--width-custom {
+  max-width: var(--content-card-max-width, 373px);
 }
 
 .content-card__media {

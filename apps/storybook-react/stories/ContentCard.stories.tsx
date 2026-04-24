@@ -89,6 +89,66 @@ export const Responsive: Story = {
   },
 }
 
+export const DefaultWidth: Story = {
+  render: () => (
+    <div className="p-6 bg-background">
+      <div className="w-full max-w-xl">
+        <ContentCard
+          {...requiredProps}
+          width="default"
+          contentText="Default width keeps the original max-width constraint."
+          imageSrc={DEFAULT_CARD_IMAGE_SRC}
+          imageAlt={DEFAULT_ALT_TEXT}
+        />
+      </div>
+    </div>
+  ),
+}
+
+export const FluidWidth: Story = {
+  render: () => (
+    <div className="p-6 bg-background space-y-6">
+      <div className="w-full max-w-xl">
+        <ContentCard
+          {...requiredProps}
+          width="fluid"
+          contentText="Fluid width fills the parent container."
+          imageSrc={DEFAULT_CARD_IMAGE_SRC}
+          imageAlt={DEFAULT_ALT_TEXT}
+        />
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <ContentCard {...requiredProps} width="fluid" contentText="Grid item 1 (fluid)." />
+        <ContentCard {...requiredProps} width="fluid" contentText="Grid item 2 (fluid)." />
+      </div>
+    </div>
+  ),
+}
+
+export const CustomMaxWidth: Story = {
+  render: () => (
+    <div className="p-6 bg-background space-y-6">
+      <div className="w-full max-w-xl">
+        <ContentCard
+          {...requiredProps}
+          width="custom"
+          maxWidth="28rem"
+          contentText="Custom max width set to 28rem."
+        />
+      </div>
+      <div className="w-full max-w-xl">
+        <ContentCard
+          {...requiredProps}
+          width="custom"
+          maxWidth={320}
+          contentText="Custom max width can also be provided as a number (px)."
+        />
+      </div>
+    </div>
+  ),
+}
+
 export const ClickableAsChild: Story = {
   render: () => (
     <div className="p-6 bg-background">

@@ -47,6 +47,26 @@ describe("ContentCard", () => {
     expect(container.querySelector(".content-card__media")).toBeNull()
   })
 
+  it("uses constrained width by default", () => {
+    const { container } = render(<ContentCard {...requiredProps} />)
+    const root = container.querySelector("[data-slot='content-card']")
+    expect(root).toHaveClass("content-card--width-default")
+  })
+
+  it("supports fluid width mode", () => {
+    const { container } = render(<ContentCard {...requiredProps} width="fluid" />)
+    const root = container.querySelector("[data-slot='content-card']")
+    expect(root).toHaveClass("content-card--width-fluid")
+    expect(root).not.toHaveClass("content-card--width-default")
+  })
+
+  it("supports custom max-width mode", () => {
+    const { container } = render(<ContentCard {...requiredProps} width="custom" maxWidth="28rem" />)
+    const root = container.querySelector("[data-slot='content-card']")
+    expect(root).toHaveClass("content-card--width-custom")
+    expect(root).toHaveAttribute("style", expect.stringContaining("--content-card-max-width: 28rem"))
+  })
+
   it("renders as the provided element when asChild is true", () => {
     const { container } = render(
       <ContentCard {...requiredProps} asChild>

@@ -90,8 +90,14 @@ Checkbox with associated **label and optional description** for form layouts.
 export const contentCardDocs = `## Overview
 Card pattern for **teaser or summary** content (title, meta, optional image).
 
+Width behavior:
+- \`width="default"\` keeps the card constrained to the design max width
+- \`width="fluid"\` lets the card fill its container (\`w-full\`)
+- \`width="custom"\` + \`maxWidth\` lets you set a custom max width
+
 ## When to use
 - Listing articles, resources, or items in a grid
+- Carousel/grid layouts where cards must adapt to parent width (prefer \`width="fluid"\`)
 
 ## When not to use
 - Dense data tables (use table primitives)

@@ -36,12 +36,18 @@ export interface ContentCardProps
   footer?: KuatSlotContent | null
 
   children?: KuatSlotContent
+  /** Width behavior for the root card container. */
+  width?: "default" | "fluid" | "custom"
+  /** Used when `width` is `custom`; accepts CSS max-width values. */
+  maxWidth?: React.CSSProperties["maxWidth"]
 }
 
 const ContentCard = React.forwardRef<HTMLDivElement, ContentCardProps>(function ContentCard(
   {
     className,
     asChild = false,
+    width = "default",
+    maxWidth = "373px",
     imageSrc = null,
     imageAlt = "",
     contentText = null,
@@ -53,11 +59,26 @@ const ContentCard = React.forwardRef<HTMLDivElement, ContentCardProps>(function 
     title,
     titleHeadingLevel = 3,
     children,
+    style,
     ...props
   },
   ref
 ) {
   const HeadingTag = (`h${titleHeadingLevel}` as unknown) as keyof JSX.IntrinsicElements
+  const widthClassName =
+    width === "fluid"
+      ? "content-card--width-fluid"
+      : width === "custom"
+        ? "content-card--width-custom"
+        : "content-card--width-default"
+  const resolvedStyle =
+    width === "custom"
+      ? ({
+          ...((style as React.CSSProperties | undefined) ?? {}),
+          "--content-card-max-width":
+            typeof maxWidth === "number" ? `${maxWidth}px` : (maxWidth ?? "373px"),
+        } as React.CSSProperties)
+      : style
 
   const internalMarkup = (
     <>
@@ -112,6 +133,7 @@ const ContentCard = React.forwardRef<HTMLDivElement, ContentCardProps>(function 
 
     const onlyChildElement = onlyChild as React.ReactElement<{
       className?: string
+      style?: React.CSSProperties
       [key: string]: unknown
     }>
 
@@ -121,7 +143,14 @@ const ContentCard = React.forwardRef<HTMLDivElement, ContentCardProps>(function 
         ...(props as unknown as Record<string, unknown>),
         ref,
         "data-slot": "content-card",
-        className: cn("content-card", onlyChildElement.props.className, className),
+        className: cn("content-card", widthClassName, onlyChildElement.props.className, className),
+        style:
+          width === "custom"
+            ? {
+                ...(onlyChildElement.props.style ?? {}),
+                ...(resolvedStyle as React.CSSProperties),
+              }
+            : (resolvedStyle ?? onlyChildElement.props.style),
       } as unknown as Record<string, unknown>,
       internalMarkup
     )
@@ -131,7 +160,8 @@ const ContentCard = React.forwardRef<HTMLDivElement, ContentCardProps>(function 
     <div
       ref={ref}
       data-slot="content-card"
-      className={cn("content-card", className)}
+      className={cn("content-card", widthClassName, className)}
+      style={resolvedStyle}
       {...props}
     >
       {internalMarkup}
