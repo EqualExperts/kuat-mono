@@ -1,6 +1,6 @@
 {
   "name": "@equal-experts/kuat-core",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Core design tokens and CSS variables for the Kuat Design System",
   "license": "MIT",
   "author": "Equal Experts",

@@ -13,7 +13,7 @@ const simpleItems: BreadcrumbItemEntry[] = [
 ];
 
 const meta: Meta<typeof Breadcrumb> = {
-  title: "Components/Breadcrumb",
+  title: "Navigation/Breadcrumb",
   component: Breadcrumb,
   tags: ["autodocs"],
   parameters: {

@@ -16,7 +16,7 @@ import {
 import { selectDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof KuatSelect> = {
-  title: "Components/Select",
+  title: "Form Components/Select",
   component: KuatSelect,
   tags: ["autodocs"],
   parameters: {

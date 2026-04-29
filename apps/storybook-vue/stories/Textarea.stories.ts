@@ -7,7 +7,7 @@ import { Textarea } from '@equal-experts/kuat-vue';
 import { textareaDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof Textarea> = {
-  title: 'Components/Textarea',
+  title: 'Form Components/Textarea',
   component: Textarea,
   tags: ['autodocs'],
   parameters: {

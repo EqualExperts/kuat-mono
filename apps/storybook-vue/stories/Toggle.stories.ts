@@ -3,7 +3,7 @@ import { Toggle, TOGGLE_SIZES, TOGGLE_SKINS } from "@equal-experts/kuat-vue"
 import { toggleDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof Toggle> = {
-  title: "Components/Toggle",
+  title: "Actions/Toggle",
   component: Toggle,
   tags: ["autodocs"],
   parameters: {

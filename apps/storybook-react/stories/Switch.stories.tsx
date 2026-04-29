@@ -4,7 +4,7 @@ import { Switch } from "@equal-experts/kuat-react"
 import { switchDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof Switch> = {
-  title: "Components/Switch",
+  title: "Form Components/Switch",
   component: Switch,
   tags: ["autodocs"],
   parameters: {

@@ -7,7 +7,7 @@ import type { BreadcrumbItemEntry } from "@equal-experts/kuat-react";
 import { breadcrumbDocs } from "../docs/component-docs";
 
 const meta: Meta<typeof Breadcrumb> = {
-  title: "Components/Breadcrumb",
+  title: "Navigation/Breadcrumb",
   component: Breadcrumb,
   tags: ["autodocs"],
   parameters: {

@@ -2,6 +2,21 @@
 
 All notable changes to the published Kuat packages are documented in this file.
 
+## Unreleased
+
+### Changed
+- Reorganized Storybook navigation in both `apps/storybook-react` and `apps/storybook-vue` into intent-based groups (`Form Components`, `Actions`, `Navigation`, `Feedback`, `Data Display`, `Overlays`, and `Blocks`), replacing the legacy `Kuat Blocks` sidebar label.
+
+## Multi-package release - 2026-04-24
+
+### Affected packages
+- @equal-experts/kuat-core@0.12.0
+- @equal-experts/kuat-react@0.12.0
+- @equal-experts/kuat-vue@0.12.0
+
+### Changed
+- Updated Header to support demo logo lockup
+
 ## Multi-package release - 2026-04-24
 
 ### Affected packages

@@ -3,7 +3,7 @@ import { ContentCard, Badge } from "@equal-experts/kuat-vue"
 import { contentCardDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof ContentCard> = {
-  title: "Components/ContentCard",
+  title: "Blocks/ContentCard",
   component: ContentCard,
   tags: ["autodocs"],
   parameters: {

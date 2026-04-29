@@ -8,7 +8,7 @@ import { Button, Input, INPUT_SIZES } from '@equal-experts/kuat-vue';
 import { inputDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof Input> = {
-  title: 'Components/Input',
+  title: 'Form Components/Input',
   component: Input,
   tags: ['autodocs'],
   parameters: {

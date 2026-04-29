@@ -39,6 +39,15 @@ Carousel can be imported from either:
 
 ### Storybook (`apps/storybook-react/stories/`)
 
+Sidebar grouping uses intent-first navigation:
+- `Form Components`: Field, Input, Textarea, Select, Checkbox, CheckboxField, Radio, RadioField, Switch, SwitchField
+- `Actions`: Button, ButtonGroup, Toggle, ToggleGroup
+- `Navigation`: Accordion, Breadcrumb
+- `Feedback`: Sonner
+- `Data Display`: Badge
+- `Overlays`: AlertDialog
+- `Blocks`: KuatHeader, KuatLogoLockup, KuatCarousel, ContentCard, KuatRadialProgress
+
 | Story file | Covered areas |
 |------------|----------------|
 | `Accordion.stories.tsx` | Accordion |
@@ -76,7 +85,7 @@ Carousel can be imported from either:
 
 ### Storybook (`apps/storybook-vue/stories/`)
 
-Mirror of React coverage (same component names, `.stories.ts`).
+Mirror of React coverage and sidebar groups (same component names, `.stories.ts`).
 
 ---
 

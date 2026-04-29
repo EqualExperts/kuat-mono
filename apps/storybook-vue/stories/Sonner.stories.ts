@@ -7,7 +7,7 @@ import { Button, SONNER_POSITIONS, Sonner, toast } from "@equal-experts/kuat-vue
 import { sonnerDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof Sonner> = {
-  title: "Components/Sonner",
+  title: "Feedback/Sonner",
   component: Sonner,
   tags: ["autodocs"],
   parameters: {

@@ -7,7 +7,7 @@ import { BadgeCheckIcon } from "lucide-react";
 import { badgeDocs } from "../docs/component-docs";
 
 const meta: Meta<typeof Badge> = {
-  title: "Components/Badge",
+  title: "Data Display/Badge",
   component: Badge,
   tags: ["autodocs"],
   parameters: {

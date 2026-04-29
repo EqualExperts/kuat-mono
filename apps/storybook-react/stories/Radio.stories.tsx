@@ -6,7 +6,7 @@ import { RadioGroup, RadioGroupItem } from '@equal-experts/kuat-react';
 import { radioDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof RadioGroup> = {
-  title: 'Components/Radio',
+  title: 'Form Components/Radio',
   component: RadioGroup,
   tags: ['autodocs'],
   parameters: {

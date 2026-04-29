@@ -3,7 +3,7 @@ import { KuatLogoLockup } from "@equal-experts/kuat-vue"
 import { kuatLogoLockupDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof KuatLogoLockup> = {
-  title: "Kuat Blocks/KuatLogoLockup",
+  title: "Blocks/KuatLogoLockup",
   component: KuatLogoLockup,
   tags: ["autodocs"],
   parameters: {

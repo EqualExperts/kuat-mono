@@ -23,6 +23,20 @@ const DEVICE_VIEWPORTS = {
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: [
+          "Introduction",
+          "Form Components",
+          "Actions",
+          "Navigation",
+          "Feedback",
+          "Data Display",
+          "Overlays",
+          "Blocks",
+        ],
+      },
+    },
     a11y: {
       test: "error",
       options: {

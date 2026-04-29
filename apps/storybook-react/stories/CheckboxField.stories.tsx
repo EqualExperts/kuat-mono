@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { checkboxFieldDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof CheckboxField> = {
-  title: 'Components/CheckboxField',
+  title: 'Form Components/CheckboxField',
   component: CheckboxField,
   tags: ['autodocs'],
   parameters: {

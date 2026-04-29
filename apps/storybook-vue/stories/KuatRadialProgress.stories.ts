@@ -3,7 +3,7 @@ import { KuatRadialProgress } from "@equal-experts/kuat-vue"
 import { kuatRadialProgressDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof KuatRadialProgress> = {
-  title: "Components/KuatRadialProgress",
+  title: "Blocks/KuatRadialProgress",
   component: KuatRadialProgress,
   tags: ["autodocs"],
   parameters: {

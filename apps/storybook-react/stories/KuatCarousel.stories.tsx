@@ -11,7 +11,7 @@ import {
 import { kuatCarouselDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof Carousel> = {
-  title: "Components/Carousel",
+  title: "Blocks/KuatCarousel",
   component: Carousel,
   tags: ["autodocs"],
   parameters: {

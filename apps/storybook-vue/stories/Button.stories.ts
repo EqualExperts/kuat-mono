@@ -6,7 +6,7 @@ import { Button } from '@equal-experts/kuat-vue';
 import { buttonDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'Actions/Button',
   component: Button,
   tags: ['autodocs'],
   parameters: {

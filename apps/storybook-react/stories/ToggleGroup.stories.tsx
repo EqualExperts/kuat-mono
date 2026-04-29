@@ -4,7 +4,7 @@ import { ToggleGroup, ToggleGroupItem, TOGGLE_SIZES, TOGGLE_SKINS } from "@equal
 import { toggleGroupDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof ToggleGroup> = {
-  title: "Components/ToggleGroup",
+  title: "Actions/ToggleGroup",
   component: ToggleGroup,
   tags: ["autodocs"],
   parameters: {

@@ -7,7 +7,7 @@ import { RadioField, RadioGroup } from '@equal-experts/kuat-vue';
 import { radioFieldDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof RadioField> = {
-  title: 'Components/RadioField',
+  title: 'Form Components/RadioField',
   component: RadioField,
   tags: ['autodocs'],
   parameters: {

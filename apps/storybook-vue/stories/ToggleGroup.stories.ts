@@ -9,7 +9,7 @@ import {
 import { toggleGroupDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof ToggleGroup> = {
-  title: "Components/ToggleGroup",
+  title: "Actions/ToggleGroup",
   component: ToggleGroup,
   tags: ["autodocs"],
   parameters: {

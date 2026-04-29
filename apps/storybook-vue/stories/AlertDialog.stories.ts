@@ -18,7 +18,7 @@ import {
 import { alertDialogDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof AlertDialog> = {
-  title: 'Components/AlertDialog',
+  title: 'Overlays/AlertDialog',
   component: AlertDialog,
   tags: ['autodocs'],
   parameters: {

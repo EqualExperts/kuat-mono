@@ -26,7 +26,7 @@ import {
 import { fieldDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof Field> = {
-  title: "Components/Field",
+  title: "Form Components/Field",
   component: Field,
   tags: ["autodocs"],
   parameters: {

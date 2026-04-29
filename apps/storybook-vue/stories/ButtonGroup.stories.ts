@@ -4,7 +4,7 @@ import { ArchiveIcon, DownloadIcon, ShareIcon, TrashIcon } from "lucide-vue-next
 import { buttonGroupDocs } from "../docs/component-docs";
 
 const meta: Meta<typeof ButtonGroup> = {
-  title: "Components/ButtonGroup",
+  title: "Actions/ButtonGroup",
   component: ButtonGroup,
   tags: ["autodocs"],
   parameters: {

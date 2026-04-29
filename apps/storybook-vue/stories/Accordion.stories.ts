@@ -12,7 +12,7 @@ import {
 import { accordionDocs } from '../docs/component-docs';
 
 const meta: Meta<typeof Accordion> = {
-  title: 'Components/Accordion',
+  title: 'Navigation/Accordion',
   component: Accordion,
   tags: ['autodocs'],
   parameters: {

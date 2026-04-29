@@ -7,7 +7,7 @@ import { SwitchField } from "@equal-experts/kuat-react"
 import { switchFieldDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof SwitchField> = {
-  title: "Components/SwitchField",
+  title: "Form Components/SwitchField",
   component: SwitchField,
   tags: ["autodocs"],
   parameters: {

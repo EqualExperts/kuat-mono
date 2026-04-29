@@ -4,7 +4,7 @@ import { Menu, ChevronDown, User } from "lucide-react"
 import { kuatHeaderDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof KuatHeader> = {
-  title: "Kuat Blocks/KuatHeader",
+  title: "Blocks/KuatHeader",
   component: KuatHeader,
   tags: ["autodocs"],
   parameters: {
