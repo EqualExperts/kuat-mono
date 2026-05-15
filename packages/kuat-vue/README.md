@@ -1,6 +1,8 @@
 # @equal-experts/kuat-vue
 
-Vue 3 components and blocks for the Kuat Design System: **localized primitives** and **composed blocks**. Use **`@equal-experts/kuat-core`** for tokens and **shadcn-vue** only for UI that Kuat does not ship (for example Dialog, DropdownMenu).
+Vue 3 components and blocks for the Kuat Design System: **localized primitives** (including **IconButton**) and **composed blocks**. Use **`@equal-experts/kuat-core`** for tokens and **shadcn-vue** only for UI that Kuat does not ship (for example Dialog, DropdownMenu).
+
+**IconButton:** `import { IconButton } from "@equal-experts/kuat-vue"` or `@equal-experts/kuat-vue/icon-button`.
 
 **When to import from here vs shadcn-vue:** [Choosing components](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/setup/choosing-components.md) · [Public API inventory](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/setup/public-api-inventory.md)
 

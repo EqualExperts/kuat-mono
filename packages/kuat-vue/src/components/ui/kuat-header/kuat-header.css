@@ -123,22 +123,16 @@
   min-width: 14rem;
 }
 
-/*
- * Portaled menus only get `dropdown-menu-content` + header class — not `.kuat-header`
- * ancestry. Do not use `--popover` (EE marketing black). Match page theme via background/foreground.
- */
-.dropdown-menu-content.kuat-header__dropdown-content {
-  background-color: var(--background);
-  color: var(--foreground);
-  border-color: var(--border);
+.kuat-header__app-switcher-trigger {
+  @apply shrink-0;
 }
 
 .kuat-header__app-switcher-panel {
   @apply max-h-[min(24rem,70vh)] min-w-[18rem] max-w-[calc(100vw-2rem)] overflow-hidden p-1;
 }
 
-.kuat-header__app-switcher-trigger {
-  @apply shrink-0;
+.kuat-header__nav-dropdown-panel--end {
+  @apply start-auto end-0;
 }
 
 .kuat-header__app-switcher-scroll {
@@ -460,4 +454,25 @@
 .ee-logo--mobile {
   height: 39px;
   width: 147px;
+}
+
+.kuat-header__nav-dropdown-wrap {
+  @apply relative inline-block;
+}
+
+.kuat-header__nav-dropdown-panel {
+  @apply absolute start-0 top-full z-50 mt-1 min-w-56 rounded-md border border-border bg-background p-1 text-foreground shadow-md;
+}
+
+.kuat-header__nav {
+  @apply flex items-center;
+}
+
+.kuat-header__actions {
+  @apply flex items-center gap-2;
+}
+
+.kuat-header__logo-wrap,
+.kuat-header__mobile-trigger-wrap {
+  @apply shrink-0;
 }

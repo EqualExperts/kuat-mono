@@ -1,4 +1,4 @@
-import type { Component, VNode } from "vue"
+import type * as React from "react"
 
 export const KUAT_HEADER_VARIANTS = ["default", "bold"] as const
 export type KuatHeaderVariant = (typeof KUAT_HEADER_VARIANTS)[number]
@@ -17,7 +17,7 @@ export interface KuatHeaderApp {
   label: string
   href: string
   description?: string
-  icon?: Component | VNode
+  icon?: React.ReactNode
 }
 
 export interface KuatHeaderAppSwitcherLabels {
@@ -33,7 +33,7 @@ export interface KuatHeaderAppSwitcherConfig {
   loading?: boolean
   empty?: KuatHeaderAppSwitcherEmpty
   emptyMessage?: string
-  linkTarget?: string
+  linkTarget?: React.HTMLAttributeAnchorTarget
   labels?: KuatHeaderAppSwitcherLabels
   onOpen?: () => void
   onSelect?: (app: KuatHeaderApp) => void
@@ -42,7 +42,7 @@ export interface KuatHeaderAppSwitcherConfig {
 export interface KuatHeaderAccountItem {
   label: string
   href: string
-  icon?: Component | VNode
+  icon?: React.ReactNode
 }
 
 export interface KuatHeaderAccountMobileTier {
@@ -81,19 +81,28 @@ export interface KuatHeaderNavItem extends KuatHeaderSubItem {
 export interface KuatHeaderActionItem {
   label: string
   url: string
-  icon?: Component | VNode
+  icon?: React.ReactNode
   items?: KuatHeaderSubItem[]
 }
 
-/** @deprecated Use `KuatHeaderAccountMobileTier` via `account.mobile`. */
-export interface KuatHeaderMobileAccountItem {
-  label: string
-  href: string
+export interface KuatHeaderProps extends React.HTMLAttributes<HTMLElement> {
+  variant?: KuatHeaderVariant
+  title?: string
+  /** Custom logo node. `null` hides logo. Built-in EE logo only when `lockup` is set. */
+  logo?: React.ReactNode | null
+  lockup?: KuatHeaderLockupConfig
+  navigation?: React.ReactNode | KuatHeaderNavItem[]
+  /** Structured account chrome (desktop links + optional mobile tier). */
+  account?: KuatHeaderAccountConfig
+  /** Custom account / actions markup (escape hatch). */
+  accountMarkup?: React.ReactNode
+  appSwitcher?: KuatHeaderAppSwitcherConfig
+  mobileMenuTrigger?: React.ReactNode
+  mobileMenu?: React.ReactNode
+  mobileMenuAriaLabel?: string
 }
 
-/** @deprecated Use `KuatHeaderAccountMobileTier` via `account.mobile`. */
-export interface KuatHeaderMobileAccount {
-  heading: string
-  subtitle?: string
-  items: KuatHeaderMobileAccountItem[]
+export interface EELogoProps {
+  className?: string
+  textColor?: EELogoTextColor
 }

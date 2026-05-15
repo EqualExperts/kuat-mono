@@ -82,6 +82,10 @@
       "import": "./dist/kuat-carousel.js",
       "types": "./dist/kuat-carousel.d.ts"
     },
+    "./icon-button": {
+      "import": "./dist/icon-button.js",
+      "types": "./dist/icon-button.d.ts"
+    },
     "./styles": {
       "types": "./dist/style.css.d.ts",
       "default": "./dist/style.css"

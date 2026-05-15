@@ -1,6 +1,8 @@
 # @equal-experts/kuat-react
 
-React components and blocks for the Kuat Design System: **localized primitives** (forms, actions, feedback) and **composed blocks** (header, carousel, logo lockup, etc.). Use **`@equal-experts/kuat-core`** for tokens and the **shadcn CLI** only for UI that Kuat does not ship (for example Dialog, DropdownMenu, Tabs).
+React components and blocks for the Kuat Design System: **localized primitives** (forms, actions, feedback, **IconButton**) and **composed blocks** (header, carousel, logo lockup, etc.). Use **`@equal-experts/kuat-core`** for tokens and the **shadcn CLI** only for UI that Kuat does not ship (for example Dialog, DropdownMenu, Tabs).
+
+**IconButton** is available from the package root (`import { IconButton } from "@equal-experts/kuat-react"`) and as a subpath entry: `@equal-experts/kuat-react/icon-button`.
 
 **When to import from here vs shadcn:** [Choosing components](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/setup/choosing-components.md) · [Public API inventory](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/setup/public-api-inventory.md)
 

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import { KuatHeader, Button } from "@equal-experts/kuat-vue";
-import { Menu, ChevronDown, User } from "lucide-vue-next";
+import { KuatHeader, Button, IconButton } from "@equal-experts/kuat-vue";
+import { LayoutGrid, Menu, ChevronDown, User } from "lucide-vue-next";
 import { kuatHeaderDocs } from "../docs/component-docs";
 
 const meta: Meta<typeof KuatHeader> = {
@@ -27,9 +27,8 @@ const meta: Meta<typeof KuatHeader> = {
       control: "text",
       description: "The page or application title",
     },
-    hideLogo: {
-      control: "boolean",
-      description: "Hide the default EE logo",
+    lockup: {
+      description: "Built-in EE logo lockup. Omit for title-only (no default logo).",
     },
   },
 };
@@ -358,6 +357,317 @@ export const CustomLogo: Story = {
     docs: {
       description: {
         story: "You can override the default EE logo with a custom logo using the #logo slot.",
+      },
+    },
+  },
+};
+
+const appSwitcherNavigationItems = [
+  { label: "Dashboard", url: "/dashboard" },
+  { label: "Opportunities", url: "/opportunities" },
+  {
+    label: "Settings",
+    url: "#",
+    items: [
+      { label: "Profile", url: "/profile" },
+      { label: "Preferences", url: "/preferences" },
+    ],
+  },
+];
+
+/** Long nav list for mobile sheet scroll / sticky footer overlap testing. */
+const longNavigationItems = [
+  { label: "Dashboard", url: "/dashboard" },
+  { label: "Opportunities", url: "/opportunities" },
+  { label: "Projects", url: "/projects" },
+  { label: "Clients", url: "/clients" },
+  { label: "Contracts", url: "/contracts" },
+  { label: "Invoices", url: "/invoices" },
+  { label: "Reports", url: "/reports" },
+  { label: "Analytics", url: "/analytics" },
+  { label: "Resources", url: "/resources" },
+  { label: "Training", url: "/training" },
+  { label: "Support", url: "/support" },
+  {
+    label: "Settings",
+    url: "/settings",
+    items: [
+      { label: "Profile", url: "/settings/profile" },
+      { label: "Team", url: "/settings/team" },
+      { label: "Notifications", url: "/settings/notifications" },
+      { label: "Security", url: "/settings/security" },
+    ],
+  },
+  { label: "Admin", url: "/admin" },
+];
+
+const appSwitcherAccount = {
+  items: [{ label: "John Doe", href: "/account", icon: User }],
+  mobile: {
+    heading: "Account",
+    subtitle: "Profile and security",
+    items: [
+      { label: "Your profile", href: "/profile" },
+      { label: "Sign out", href: "/sign-out" },
+    ],
+  },
+};
+
+const appSwitcherFew = {
+  apps: [
+    { id: "timesheets", label: "Timesheets", href: "/timesheets", description: "Log time" },
+    { id: "crm", label: "CRM", href: "/crm", description: "Client records" },
+    { id: "wiki", label: "Wiki", href: "/wiki" },
+  ],
+};
+
+function appSwitcherMany() {
+  return {
+    apps: Array.from({ length: 20 }, (_, i) => ({
+      id: `app-${i}`,
+      label: `Application ${i + 1}`,
+      href: `/apps/${i}`,
+      description: `Short description for application ${i + 1}`,
+    })),
+  };
+}
+
+export const AppSwitcherLongNavigation: Story = {
+  render: () => ({
+    components: { KuatHeader, Button, Menu },
+    setup() {
+      return {
+        navigationItems: longNavigationItems,
+        account: appSwitcherAccount,
+        appSwitcher: appSwitcherFew,
+        lockup: { variant: "default" as const },
+      };
+    },
+    template: `
+      <KuatHeader
+        variant="default"
+        title="Timesheets"
+        :lockup="lockup"
+        :navigation-items="navigationItems"
+        :account="account"
+        :app-switcher="appSwitcher"
+      />
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Mobile menu with a long navigation list. Scroll to the last items and confirm they stay visible above the sticky Account / app switcher block.",
+      },
+    },
+  },
+};
+
+export const AppSwitcherStructured: Story = {
+  render: () => ({
+    components: { KuatHeader, Button, Menu },
+    setup() {
+      return {
+        navigationItems: appSwitcherNavigationItems,
+        account: appSwitcherAccount,
+        appSwitcher: appSwitcherFew,
+        lockup: { variant: "default" as const },
+      };
+    },
+    template: `
+      <KuatHeader
+        variant="default"
+        title="Timesheets"
+        :lockup="lockup"
+        :navigation-items="navigationItems"
+        :account="account"
+        :app-switcher="appSwitcher"
+      >
+        <template #mobile-menu-trigger>
+          <Button variant="ghost" size="icon" class="h-10 w-10" aria-label="Open menu">
+            <Menu class="h-6 w-6" />
+          </Button>
+        </template>
+      </KuatHeader>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Structured `navigation-items`, `account`, and `app-switcher` with mobile Account drill-in tier.",
+      },
+    },
+  },
+};
+
+export const AppSwitcherManyApps: Story = {
+  render: () => ({
+    components: { KuatHeader, Button, Menu },
+    setup() {
+      return {
+        navigationItems: appSwitcherNavigationItems,
+        account: appSwitcherAccount,
+        appSwitcher: appSwitcherMany(),
+        lockup: { variant: "default" as const },
+      };
+    },
+    template: `
+      <KuatHeader
+        variant="default"
+        title="Timesheets"
+        :lockup="lockup"
+        :navigation-items="navigationItems"
+        :account="account"
+        :app-switcher="appSwitcher"
+      >
+        <template #mobile-menu-trigger>
+          <Button variant="ghost" size="icon" class="h-10 w-10" aria-label="Open menu">
+            <Menu class="h-6 w-6" />
+          </Button>
+        </template>
+      </KuatHeader>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story: "Scrollable app list when many applications are configured.",
+      },
+    },
+  },
+};
+
+export const AppSwitcherLoading: Story = {
+  render: () => ({
+    components: { KuatHeader, Button, Menu },
+    setup() {
+      return {
+        navigationItems: appSwitcherNavigationItems,
+        account: appSwitcherAccount,
+        appSwitcher: { apps: [], loading: true },
+        lockup: { variant: "default" as const },
+      };
+    },
+    template: `
+      <KuatHeader
+        variant="default"
+        title="Timesheets"
+        :lockup="lockup"
+        :navigation-items="navigationItems"
+        :account="account"
+        :app-switcher="appSwitcher"
+      >
+        <template #mobile-menu-trigger>
+          <Button variant="ghost" size="icon" class="h-10 w-10" aria-label="Open menu">
+            <Menu class="h-6 w-6" />
+          </Button>
+        </template>
+      </KuatHeader>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story: "Skeleton rows while `appSwitcher.loading` is true.",
+      },
+    },
+  },
+};
+
+export const AppSwitcherEmptyMessage: Story = {
+  render: () => ({
+    components: { KuatHeader, Button, Menu },
+    setup() {
+      return {
+        navigationItems: appSwitcherNavigationItems,
+        account: appSwitcherAccount,
+        appSwitcher: {
+          apps: [],
+          empty: "message" as const,
+          emptyMessage: "No EE apps are linked for this environment.",
+        },
+        lockup: { variant: "default" as const },
+      };
+    },
+    template: `
+      <KuatHeader
+        variant="default"
+        title="Timesheets"
+        :lockup="lockup"
+        :navigation-items="navigationItems"
+        :account="account"
+        :app-switcher="appSwitcher"
+      >
+        <template #mobile-menu-trigger>
+          <Button variant="ghost" size="icon" class="h-10 w-10" aria-label="Open menu">
+            <Menu class="h-6 w-6" />
+          </Button>
+        </template>
+      </KuatHeader>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story: "Empty catalog with `appSwitcher.empty: \"message\"` shows copy instead of hiding the switcher.",
+      },
+    },
+  },
+};
+
+export const AppSwitcherNoSwitcher: Story = {
+  render: () => ({
+    components: { KuatHeader, Button, Menu },
+    setup() {
+      return {
+        navigationItems: appSwitcherNavigationItems,
+        account: appSwitcherAccount,
+        lockup: { variant: "default" as const },
+      };
+    },
+    template: `
+      <KuatHeader
+        variant="default"
+        title="Timesheets"
+        :lockup="lockup"
+        :navigation-items="navigationItems"
+        :account="account"
+      >
+        <template #mobile-menu-trigger>
+          <Button variant="ghost" size="icon" class="h-10 w-10" aria-label="Open menu">
+            <Menu class="h-6 w-6" />
+          </Button>
+        </template>
+      </KuatHeader>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story: "When `app-switcher` is omitted, the waffle trigger is not shown.",
+      },
+    },
+  },
+};
+
+export const IconButtonFromPackageRoot: Story = {
+  render: () => ({
+    components: { IconButton, LayoutGrid },
+    template: `
+      <div class="p-4 flex items-center gap-2">
+        <IconButton variant="ghost" color="ee-blue" aria-label="Equal Experts apps (subpath smoke)">
+          <LayoutGrid class="h-5 w-5" aria-hidden />
+        </IconButton>
+        <span class="text-sm text-muted-foreground">Imported from <code>@equal-experts/kuat-vue</code> package root.</span>
+      </div>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story: "Smoke check that `IconButton` is exported from the package root entry.",
       },
     },
   },

@@ -139,14 +139,27 @@ Carousel built with **Embla**. Use \`basis\` for default sizing and \`basisSm\`/
 Long-form product guidance: [carousel.md](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/rules/components/carousel.md) in this repo.`;
 
 export const kuatHeaderDocs = `## Overview
-Application **header** with brand logo slot, navigation area, and actions.
+Application **header** with brand lockup, navigation, account chrome, and an optional **Equal Experts app switcher**.
+
+## Structured navigation (Vue)
+Use \`navigation-items\` and \`account\` props for built-in desktop nav, mobile sheet, and account chrome. Use \`app-switcher\` for the EE apps catalog. Slots \`#navigation\`, \`#account-markup\` (or legacy \`#actions\`), and \`#mobile-menu-trigger\` remain for custom markup.
+
+## App switcher
+- Pass \`:app-switcher="{ apps, loading?, empty?, emptyMessage?, linkTarget?, labels?, onOpen?, onSelect? }"\`. **Catalog ownership stays with the product**.
+- \`onOpen\` fires on desktop menu open and mobile apps tier open. \`onSelect\` fires when an app link is chosen.
+- Omit \`app-switcher\` to hide the switcher.
+
+## Account
+- \`:account="{ items: [{ label, href, icon? }], mobile?: { heading, subtitle?, items }, labels? }"\` — desktop dropdown when one primary row plus \`mobile.items\`; optional mobile drill-in tier.
 
 ## When to use
 - Product chrome at the top of every page
 
 ## When not to use
 - Marketing-only landing heroes without app chrome
-- Embedded widgets where full header chrome is wrong`;
+- Embedded widgets where full header chrome is wrong
+
+**IconButton:** \`import { IconButton } from "@equal-experts/kuat-vue"\` or subpath \`@equal-experts/kuat-vue/icon-button\`.`;
 
 export const kuatLogoLockupDocs = `## Overview
 **Logo + service title** lockup for Equal Experts branded surfaces (modes and use cases per design review).
