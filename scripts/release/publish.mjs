@@ -38,6 +38,7 @@ function parseArgs(argv) {
     package: "all",
     bump: undefined,
     notesFile: undefined,
+    otp: undefined,
     yes: false,
     dryRun: false,
     skipLint: false,
@@ -64,6 +65,9 @@ function parseArgs(argv) {
       i += 1;
     } else if (arg === "--notes-file") {
       parsed.notesFile = argv[i + 1];
+      i += 1;
+    } else if (arg === "--otp") {
+      parsed.otp = argv[i + 1];
       i += 1;
     }
   }
@@ -474,9 +478,11 @@ async function main() {
     }
 
     currentStage = "changelog input";
-    const notes = args.yes
-      ? { added: [], changed: [], fixed: [] }
-      : await collectNotes(rl, args);
+    const notes = args.notesFile
+      ? await collectNotes(rl, args)
+      : args.yes
+        ? { added: [], changed: [], fixed: [] }
+        : await collectNotes(rl, args);
 
     let runLint = !args.skipLint;
     if (!args.skipLint && !args.yes) {
@@ -548,7 +554,9 @@ async function main() {
     if (!args.dryRun) {
       currentStage = "npm publish";
       for (const item of releasePlan) {
-        run("npm", ["publish", "--access", "public"], { cwd: path.join(repoRoot, item.pkg.dir) });
+        const publishArgs = ["publish", "--access", "public"];
+        if (args.otp) publishArgs.push(`--otp=${args.otp}`);
+        run("npm", publishArgs, { cwd: path.join(repoRoot, item.pkg.dir) });
       }
     }
 

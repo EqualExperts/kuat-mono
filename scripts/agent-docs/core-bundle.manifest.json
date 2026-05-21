@@ -14,6 +14,18 @@
       "target": "kuat-docs/rules/scenarios"
     },
     {
+      "source": "kuat-docs/components",
+      "target": "components"
+    },
+    {
+      "source": "external/kuat-agent-rules/kuat-docs/rules/foundations/brand.md",
+      "target": "external/kuat-agent-rules/kuat-docs/rules/foundations/brand.md"
+    },
+    {
+      "source": "external/kuat-agent-rules/kuat-docs/rules/foundations/accessibility.md",
+      "target": "external/kuat-agent-rules/kuat-docs/rules/foundations/accessibility.md"
+    },
+    {
       "source": "external/kuat-agent-rules/kuat-docs/rules/LOADING.md",
       "target": "external/kuat-agent-rules/kuat-docs/rules/LOADING.md"
     },

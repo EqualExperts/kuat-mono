@@ -98,26 +98,46 @@ export const SelectComposition: Story = {
   ),
 }
 
+/** Canonical composition from shadcn registry `field-checkbox` (via MCP). */
 export const CheckboxGroupComposition: Story = {
   render: () => (
-    <FieldSet>
-      <FieldLegend>Desktop items</FieldLegend>
-      <FieldDescription>Select the items you want to show on the desktop.</FieldDescription>
+    <div className="w-full max-w-md">
       <FieldGroup>
+        <FieldSet>
+          <FieldLegend variant="label">Show these items on the desktop</FieldLegend>
+          <FieldDescription>Select the items you want to show on the desktop.</FieldDescription>
+          <FieldGroup className="flex flex-col gap-3">
+            <Field orientation="horizontal">
+              <Checkbox id="desktop-hard-disks" defaultChecked />
+              <FieldLabel htmlFor="desktop-hard-disks">Hard disks</FieldLabel>
+            </Field>
+            <Field orientation="horizontal">
+              <Checkbox id="desktop-external-disks" />
+              <FieldLabel htmlFor="desktop-external-disks">External disks</FieldLabel>
+            </Field>
+            <Field orientation="horizontal">
+              <Checkbox id="desktop-cds-dvds" />
+              <FieldLabel htmlFor="desktop-cds-dvds">CDs, DVDs, and iPods</FieldLabel>
+            </Field>
+            <Field orientation="horizontal">
+              <Checkbox id="desktop-connected-servers" />
+              <FieldLabel htmlFor="desktop-connected-servers">Connected servers</FieldLabel>
+            </Field>
+          </FieldGroup>
+        </FieldSet>
+        <FieldSeparator />
         <Field orientation="horizontal">
-          <Checkbox id="desktop-hard-disks" />
+          <Checkbox id="desktop-sync-folders" defaultChecked />
           <FieldContent>
-            <FieldLabel htmlFor="desktop-hard-disks">Hard disks</FieldLabel>
-          </FieldContent>
-        </Field>
-        <Field orientation="horizontal">
-          <Checkbox id="desktop-external-disks" />
-          <FieldContent>
-            <FieldLabel htmlFor="desktop-external-disks">External disks</FieldLabel>
+            <FieldLabel htmlFor="desktop-sync-folders">Sync Desktop &amp; Documents folders</FieldLabel>
+            <FieldDescription>
+              Your Desktop &amp; Documents folders are being synced with iCloud Drive. You can access
+              them from other devices.
+            </FieldDescription>
           </FieldContent>
         </Field>
       </FieldGroup>
-    </FieldSet>
+    </div>
   ),
 }
 
