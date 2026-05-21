@@ -1,8 +1,10 @@
-import { resolve } from "path";
+import { dirname, resolve } from "path";
+import { fileURLToPath } from "node:url";
 import { defineConfig, mergeConfig } from "vite";
 import dts from "vite-plugin-dts";
 import { kuatVueLibraryViteConfig } from "./vite.shared";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 export default mergeConfig(
   kuatVueLibraryViteConfig(),
   defineConfig({
@@ -39,6 +41,7 @@ export default mergeConfig(
           sonner: resolve(__dirname, "src/sonner.ts"),
           toggle: resolve(__dirname, "src/toggle.ts"),
           "toggle-group": resolve(__dirname, "src/toggle-group.ts"),
+          "icon-button": resolve(__dirname, "src/icon-button.ts"),
         },
         formats: ["es"],
         fileName: (_format, entryName) => `${entryName}.js`,

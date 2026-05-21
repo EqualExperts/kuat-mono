@@ -1,6 +1,6 @@
 {
   "name": "@equal-experts/kuat-vue",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -78,6 +78,10 @@
       "import": "./dist/kuat-carousel.js",
       "types": "./dist/kuat-carousel.d.ts"
     },
+    "./icon-button": {
+      "import": "./dist/icon-button.js",
+      "types": "./dist/icon-button.d.ts"
+    },
     "./styles": {
       "types": "./dist/style.css.d.ts",
       "default": "./dist/style.css"
@@ -85,7 +89,8 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "agent-docs"
   ],
   "keywords": [
     "vue",
@@ -103,6 +108,7 @@
     "directory": "packages/kuat-vue"
   },
   "scripts": {
+    "prepack": "node ../../scripts/agent-docs/bundle-for-core.mjs",
     "build": "node scripts/concat-component-styles.mjs && NODE_OPTIONS=--max-old-space-size=12288 vite build && node -e \"const fs=require('node:fs');fs.writeFileSync('dist/style.css.d.ts','declare const stylesheet: string;\\\\nexport default stylesheet;\\\\n');\"",
     "dev": "node scripts/concat-component-styles.mjs && NODE_OPTIONS=--max-old-space-size=12288 vite build --watch",
     "lint": "eslint . --max-warnings 0",

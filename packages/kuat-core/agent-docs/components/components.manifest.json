@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "components": {
+    "shadcn:button": {
+      "slug": "button",
+      "path": "components/button.md",
+      "sources": ["shadcn:button", "@equal-experts/kuat-core"]
+    },
+    "kuat:button-group": {
+      "slug": "button-group",
+      "path": "components/button-group.md",
+      "sources": ["@equal-experts/kuat-react", "@equal-experts/kuat-vue"]
+    },
+    "kuat:kuat-header": {
+      "slug": "kuat-header",
+      "path": "components/kuat-header.md",
+      "sources": ["@equal-experts/kuat-react", "@equal-experts/kuat-vue"]
+    }
+  }
+}

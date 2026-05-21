@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { KuatHeader, Button } from "@equal-experts/kuat-react"
-import { Menu, ChevronDown, User } from "lucide-react"
+import { KuatHeader, Button, IconButton } from "@equal-experts/kuat-react"
+import { Menu, ChevronDown, User, LayoutGrid } from "lucide-react"
 import { kuatHeaderDocs } from "../docs/component-docs"
 
 const meta: Meta<typeof KuatHeader> = {
@@ -26,14 +26,8 @@ const meta: Meta<typeof KuatHeader> = {
       control: "text",
       description: "The page or application title",
     },
-    hideLogo: {
-      control: "boolean",
-      description: "Hide the default EE logo",
-    },
-    lockupVariant: {
-      control: "select",
-      options: ["default", "demo"],
-      description: "Logo/title lockup mode in the header",
+    lockup: {
+      description: "Built-in EE logo lockup. Omit for title-only (no default logo).",
     },
   },
 }
@@ -54,17 +48,63 @@ const navigationItems = [
   },
 ]
 
-const actionItems = [
+/** Long nav list for mobile sheet scroll / sticky footer overlap testing. */
+const longNavigationItems = [
+  { label: "Dashboard", url: "/dashboard" },
+  { label: "Opportunities", url: "/opportunities" },
+  { label: "Projects", url: "/projects" },
+  { label: "Clients", url: "/clients" },
+  { label: "Contracts", url: "/contracts" },
+  { label: "Invoices", url: "/invoices" },
+  { label: "Reports", url: "/reports" },
+  { label: "Analytics", url: "/analytics" },
+  { label: "Resources", url: "/resources" },
+  { label: "Training", url: "/training" },
+  { label: "Support", url: "/support" },
   {
-    label: "John Doe",
-    url: "/account",
-    icon: <User className="h-4 w-4" />,
+    label: "Settings",
+    url: "/settings",
     items: [
-      { label: "Account", url: "/account" },
-      { label: "Sign out", url: "/sign-out" },
+      { label: "Profile", url: "/settings/profile" },
+      { label: "Team", url: "/settings/team" },
+      { label: "Notifications", url: "/settings/notifications" },
+      { label: "Security", url: "/settings/security" },
     ],
   },
+  { label: "Admin", url: "/admin" },
 ]
+
+const account = {
+  items: [
+    {
+      label: "John Doe",
+      href: "/account",
+      icon: <User className="h-4 w-4" />,
+    },
+  ],
+  mobile: {
+    heading: "Account",
+    subtitle: "Profile and security",
+    items: [
+      { label: "Your profile", href: "#account-profile" },
+      { label: "Sign out", href: "#sign-out" },
+    ],
+  },
+}
+
+const sampleApps = [
+  { id: "1", label: "Timesheets", href: "#ts", description: "Log time and expenses" },
+  { id: "2", label: "Procurement", href: "#proc", description: "Purchase requests" },
+  { id: "3", label: "Equal Experts Profile", href: "#profile", description: "Your EE profile" },
+  { id: "4", label: "Nexus", href: "#nx", description: "Internal directory" },
+]
+
+const manyApps = Array.from({ length: 20 }, (_, i) => ({
+  id: `app-${i}`,
+  label: `Application ${i + 1}`,
+  href: `#app-${i}`,
+  description: "Short description for scanning",
+}))
 
 const LegacyNavItems = ({ variant = "default" }: { variant?: "default" | "bold" }) => (
   <div className="flex items-center gap-1">
@@ -116,36 +156,35 @@ const LegacyMobileMenuTrigger = ({
 export const Default: Story = {
   args: {
     variant: "default",
-    lockupVariant: "default",
+    lockup: { variant: "default" },
     title: "Timesheets",
     navigation: navigationItems,
-    actions: actionItems,
+    account,
   },
 }
 
 export const Bold: Story = {
   args: {
     variant: "bold",
-    lockupVariant: "default",
+    lockup: { variant: "default" },
     title: "Timesheets",
     navigation: navigationItems,
-    actions: actionItems,
+    account,
   },
 }
 
 export const WithoutNavigation: Story = {
   args: {
     variant: "default",
-    lockupVariant: "default",
+    lockup: { variant: "default" },
     title: "Dashboard",
-    actions: actionItems,
+    account,
   },
 }
 
 export const MinimalHeader: Story = {
   args: {
     variant: "default",
-    lockupVariant: "default",
     title: "My App",
   },
 }
@@ -153,20 +192,20 @@ export const MinimalHeader: Story = {
 export const DemoLockupDefaultVariant: Story = {
   args: {
     variant: "default",
-    lockupVariant: "demo",
+    lockup: { variant: "demo" },
     title: "Kuat Demo",
     navigation: navigationItems,
-    actions: actionItems,
+    account,
   },
 }
 
 export const DemoLockupBoldVariant: Story = {
   args: {
     variant: "bold",
-    lockupVariant: "demo",
+    lockup: { variant: "demo" },
     title: "Kuat Demo",
     navigation: navigationItems,
-    actions: actionItems,
+    account,
   },
 }
 
@@ -175,11 +214,23 @@ export const AllVariants: Story = {
     <div className="flex flex-col gap-8">
       <div>
         <h3 className="mb-2 px-4 text-sm font-medium">Default Variant</h3>
-        <KuatHeader variant="default" title="Timesheets" navigation={navigationItems} actions={actionItems} />
+        <KuatHeader
+          variant="default"
+          title="Timesheets"
+          lockup={{ variant: "default" }}
+          navigation={navigationItems}
+          account={account}
+        />
       </div>
       <div>
         <h3 className="mb-2 px-4 text-sm font-medium">Bold Variant</h3>
-        <KuatHeader variant="bold" title="Timesheets" navigation={navigationItems} actions={actionItems} />
+        <KuatHeader
+          variant="bold"
+          title="Timesheets"
+          lockup={{ variant: "default" }}
+          navigation={navigationItems}
+          account={account}
+        />
       </div>
     </div>
   ),
@@ -190,10 +241,16 @@ export const ResponsiveDemo: Story = {
     <div className="space-y-4">
       <p className="px-4 text-sm text-muted-foreground">
         Resize your browser window to see the responsive behavior. Desktop shows
-        full navigation, mobile shows a full-screen menu sheet with actions fixed
-        at the bottom.
+        full navigation, mobile shows a full-screen menu sheet with account links
+        fixed at the bottom.
       </p>
-      <KuatHeader variant="default" title="Timesheets" navigation={navigationItems} actions={actionItems} />
+      <KuatHeader
+        variant="default"
+        title="Timesheets"
+        lockup={{ variant: "default" }}
+        navigation={navigationItems}
+        account={account}
+      />
     </div>
   ),
 }
@@ -207,10 +264,10 @@ export const ResponsiveDemoLockup: Story = {
       </p>
       <KuatHeader
         variant="default"
-        lockupVariant="demo"
+        lockup={{ variant: "demo" }}
         title="Kuat Demo"
         navigation={navigationItems}
-        actions={actionItems}
+        account={account}
       />
     </div>
   ),
@@ -225,8 +282,109 @@ export const LegacySlots: Story = {
     <KuatHeader
       {...args}
       navigation={<LegacyNavItems variant={args.variant} />}
-      actions={<LegacyUserMenu variant={args.variant} />}
+      accountMarkup={<LegacyUserMenu variant={args.variant} />}
       mobileMenuTrigger={<LegacyMobileMenuTrigger variant={args.variant} />}
     />
   ),
+}
+
+export const IconButtonFromPackageRoot: Story = {
+  render: () => (
+    <div className="flex items-center gap-4 p-6">
+      <p className="text-sm text-muted-foreground">
+        IconButton imported from <code>@equal-experts/kuat-react</code> (same export as the header waffle).
+      </p>
+      <IconButton type="button" variant="ghost" color="ee-blue" aria-label="Demo icon button">
+        <LayoutGrid className="h-5 w-5" aria-hidden />
+      </IconButton>
+    </div>
+  ),
+}
+
+export const WithAppSwitcher: Story = {
+  args: {
+    variant: "default",
+    lockup: { variant: "default" },
+    title: "Timesheets",
+    navigation: navigationItems,
+    account,
+    appSwitcher: { apps: sampleApps },
+  },
+}
+
+export const WithAppSwitcherLongNavigation: Story = {
+  args: {
+    variant: "default",
+    lockup: { variant: "default" },
+    title: "Timesheets",
+    navigation: longNavigationItems,
+    account,
+    appSwitcher: { apps: sampleApps },
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Mobile menu with a long navigation list. Scroll to the last items and confirm they stay visible above the sticky Account / app switcher block.",
+      },
+    },
+  },
+}
+
+export const WithAppSwitcherBold: Story = {
+  args: {
+    variant: "bold",
+    lockup: { variant: "default" },
+    title: "Timesheets",
+    navigation: navigationItems,
+    account,
+    appSwitcher: { apps: sampleApps },
+  },
+}
+
+export const WithAppSwitcherManyApps: Story = {
+  args: {
+    variant: "default",
+    lockup: { variant: "default" },
+    title: "Timesheets",
+    navigation: navigationItems,
+    account,
+    appSwitcher: { apps: manyApps },
+  },
+}
+
+export const WithAppSwitcherLoading: Story = {
+  args: {
+    variant: "default",
+    lockup: { variant: "default" },
+    title: "Timesheets",
+    navigation: navigationItems,
+    account,
+    appSwitcher: { apps: [], loading: true },
+  },
+}
+
+export const WithAppSwitcherEmptyMessage: Story = {
+  args: {
+    variant: "default",
+    lockup: { variant: "default" },
+    title: "Timesheets",
+    navigation: navigationItems,
+    account,
+    appSwitcher: {
+      apps: [],
+      empty: "message",
+      emptyMessage: "No applications configured for this environment.",
+    },
+  },
+}
+
+export const AppsOnlyMobileSheet: Story = {
+  args: {
+    variant: "default",
+    title: "EE Apps",
+    lockup: { variant: "default" },
+    appSwitcher: { apps: sampleApps },
+    mobileMenuAriaLabel: "Equal Experts apps menu",
+  },
 }

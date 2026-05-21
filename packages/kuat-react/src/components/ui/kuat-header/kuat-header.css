@@ -123,8 +123,66 @@
   min-width: 14rem;
 }
 
+/*
+ * Portaled menus only get `dropdown-menu-content` + header class — not `.kuat-header`
+ * ancestry. Do not use `--popover` (EE marketing black). Match page theme via background/foreground.
+ */
+.dropdown-menu-content.kuat-header__dropdown-content {
+  background-color: var(--background);
+  color: var(--foreground);
+  border-color: var(--border);
+}
+
+.kuat-header__app-switcher-panel {
+  @apply max-h-[min(24rem,70vh)] min-w-[18rem] max-w-[calc(100vw-2rem)] overflow-hidden p-1;
+}
+
+.kuat-header__app-switcher-trigger {
+  @apply shrink-0;
+}
+
+.kuat-header__app-switcher-scroll {
+  @apply max-h-[min(22rem,65vh)] overflow-y-auto;
+}
+
+.kuat-header__app-switcher-item {
+  @apply cursor-pointer rounded-sm outline-none;
+}
+
+.kuat-header__app-switcher-link {
+  @apply flex min-h-11 w-full items-start gap-3 rounded-sm px-3 py-2.5 text-left no-underline transition-colors;
+}
+
+.kuat-header__app-switcher-link:hover {
+  @apply bg-accent text-accent-foreground;
+}
+
+.kuat-header__app-switcher-icon {
+  @apply mt-0.5 inline-flex shrink-0;
+}
+
+.kuat-header__app-switcher-text {
+  @apply flex min-w-0 flex-1 flex-col gap-0.5;
+}
+
+.kuat-header__app-switcher-label {
+  @apply text-sm font-semibold leading-tight text-foreground;
+}
+
+.kuat-header__app-switcher-desc {
+  @apply text-xs leading-snug text-muted-foreground;
+}
+
+.kuat-header__app-switcher-skeleton {
+  @apply mx-2 my-2 h-11 animate-pulse rounded-md bg-muted;
+}
+
+.kuat-header__app-switcher-skeleton--mobile {
+  @apply mx-0 my-2 h-12;
+}
+
 .kuat-header__dropdown-link {
-  @apply block w-full;
+  @apply block w-full text-inherit;
 }
 
 .kuat-header__mobile {
@@ -205,11 +263,120 @@
 }
 
 .kuat-header__mobile-sheet-header {
-  @apply flex justify-end p-3;
+  @apply flex items-center justify-end gap-2 p-3;
 }
 
-.kuat-header__mobile-close {
+.kuat-header__mobile-sheet-header--split {
+  @apply justify-between;
+}
+
+.kuat-header__mobile-sheet-header-spacer {
+  @apply min-w-0 flex-1;
+}
+
+.kuat-header__mobile-back {
+  @apply -ms-1 inline-flex h-11 min-w-0 items-center gap-1 rounded-md px-2 text-base font-medium text-sidebar-foreground;
+}
+
+.kuat-header__mobile-back:hover {
+  background-color: color-mix(in srgb, var(--sidebar-foreground) 14%, transparent);
+}
+
+.kuat-header__mobile-back-text {
+  @apply truncate;
+}
+
+.kuat-header__mobile-panel {
+  @apply flex min-h-0 min-w-0 flex-1 flex-col;
+}
+
+.kuat-header__mobile-panel--hidden {
+  @apply hidden;
+}
+
+.kuat-header__mobile-panel-inner {
+  @apply flex min-h-0 min-w-0 flex-1 flex-col;
+}
+
+.kuat-header__mobile-sheet-sticky {
+  @apply mt-auto flex shrink-0 flex-col px-4 py-4;
+}
+
+.kuat-header__mobile-app-teaser-wrap {
+  @apply shrink-0;
+}
+
+.kuat-header__mobile-app-teaser-wrap + .kuat-header__mobile-app-teaser-wrap {
+  border-top: 1px solid color-mix(in srgb, var(--sidebar-foreground) 22%, transparent);
+}
+
+.kuat-header__mobile-app-teaser {
+  @apply flex min-h-11 w-full items-center gap-3 rounded-md py-2.5 text-left transition-colors;
   color: var(--sidebar-foreground);
+}
+
+.kuat-header__mobile-app-teaser:hover {
+  background-color: color-mix(in srgb, var(--sidebar-foreground) 14%, transparent);
+}
+
+.kuat-header__mobile-app-teaser-icon {
+  color: color-mix(in srgb, var(--sidebar-foreground) 90%, transparent);
+}
+
+.kuat-header__mobile-app-teaser-text {
+  @apply flex min-w-0 flex-1 flex-col gap-0.5 text-left;
+}
+
+.kuat-header__mobile-app-teaser-title {
+  @apply text-sm font-medium leading-tight;
+}
+
+.kuat-header__mobile-app-teaser-desc {
+  @apply text-[11px] leading-snug;
+  color: color-mix(in srgb, var(--sidebar-foreground) 72%, transparent);
+}
+
+.kuat-header__mobile-app-teaser-chevron {
+  color: color-mix(in srgb, var(--sidebar-foreground) 75%, transparent);
+}
+
+.kuat-header__mobile-panel--apps {
+  @apply flex-1 overflow-y-auto px-4 pb-24;
+}
+
+.kuat-header__mobile-apps-heading {
+  @apply px-3 pb-2 pt-1 text-lg font-semibold;
+  color: var(--sidebar-foreground);
+}
+
+.kuat-header__mobile-apps-nav {
+  @apply pb-8;
+}
+
+.kuat-header__mobile-app-link {
+  @apply flex min-h-11 w-full items-start gap-2 rounded-md px-3 py-3 text-base no-underline transition-colors;
+  color: var(--sidebar-foreground);
+}
+
+.kuat-header__mobile-app-link:hover {
+  background-color: color-mix(in srgb, var(--sidebar-foreground) 14%, transparent);
+}
+
+.kuat-header__mobile-app-link-text {
+  @apply flex min-w-0 flex-1 flex-col gap-0.5;
+}
+
+.kuat-header__mobile-app-link-label {
+  @apply font-medium leading-tight;
+}
+
+.kuat-header__mobile-app-link-desc {
+  @apply text-sm leading-snug;
+  color: color-mix(in srgb, var(--sidebar-foreground) 82%, transparent);
+}
+
+.kuat-header__mobile-apps-empty {
+  @apply py-2;
 }
 
 .kuat-header__mobile-sheet-nav {
@@ -240,7 +407,7 @@
 }
 
 .kuat-header__mobile-sub-link {
-  @apply inline-flex rounded-md px-3 py-2 text-sm no-underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring;
+  @apply inline-flex min-h-11 items-center rounded-md px-3 py-2 text-sm no-underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring;
   color: color-mix(in srgb, var(--sidebar-foreground) 85%, transparent);
 }
 

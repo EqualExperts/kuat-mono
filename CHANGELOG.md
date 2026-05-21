@@ -2,6 +2,18 @@
 
 All notable changes to the published Kuat packages are documented in this file.
 
+## Multi-package release - 2026-05-18
+
+### Affected packages
+- @equal-experts/kuat-core@0.13.0
+- @equal-experts/kuat-react@0.13.0
+- @equal-experts/kuat-vue@0.13.0
+
+### Changed
+- KuatHeader app switcher with nested account and lockup API
+- IconButton component (React and Vue)
+- Header demo logo lockup support
+
 ## Unreleased
 
 ### Changed

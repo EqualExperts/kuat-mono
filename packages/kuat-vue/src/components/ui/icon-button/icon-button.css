@@ -1,0 +1,29 @@
+@reference "../../../styles.css";
+
+.icon-button {
+  @apply inline-flex shrink-0 items-center justify-center gap-0 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+}
+
+.icon-button--size-mini {
+  @apply h-6 w-6 text-xs;
+}
+
+.icon-button--size-small {
+  @apply h-8 w-8 text-sm;
+}
+
+.icon-button--size-regular {
+  @apply h-10 w-10;
+}
+
+.icon-button--size-large {
+  @apply h-12 w-12;
+}
+
+.icon-button--roundness-default {
+  @apply rounded-md;
+}
+
+.icon-button--roundness-round {
+  @apply rounded-full;
+}

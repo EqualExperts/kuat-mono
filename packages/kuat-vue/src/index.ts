@@ -42,7 +42,38 @@ export { ContentCard } from "./components/ui/content-card";
 // Pre-built compositions of components for common patterns
 // =============================================================================
 export { KuatHeader, kuatHeaderVariants, EELogo } from "./components/ui/kuat-header";
-export type { KuatHeaderVariants } from "./components/ui/kuat-header";
+export type {
+  KuatHeaderVariants,
+  KuatHeaderVariant,
+  KuatHeaderLockupVariant,
+  KuatHeaderApp,
+  KuatHeaderAppSwitcherConfig,
+  KuatHeaderAccountConfig,
+  KuatHeaderAccountItem,
+  KuatHeaderNavItem,
+  KuatHeaderLockupConfig,
+  KuatHeaderMobileAccount,
+  KuatHeaderMobileAccountItem,
+} from "./components/ui/kuat-header";
+export {
+  shouldShowAppSwitcher,
+  resolveAppSwitcherLabels,
+  resolveHeaderLockup,
+} from "./components/ui/kuat-header";
+export {
+  IconButton,
+  iconButtonVariants,
+  ICON_BUTTON_SIZES,
+  ICON_BUTTON_ROUNDNESS,
+  ICON_BUTTON_VARIANT_DEFAULT_ALIAS,
+  ICON_BUTTON_SIZE_SM_ALIAS,
+  ICON_BUTTON_SIZE_LG_ALIAS,
+} from "./components/ui/icon-button";
+export type {
+  IconButtonVariants,
+  IconButtonSize,
+  IconButtonRoundness,
+} from "./components/ui/icon-button";
 
 export {
   Carousel,

@@ -54,6 +54,7 @@ export default defineConfig({
         sonner: resolve(__dirname, "src/sonner.ts"),
         toggle: resolve(__dirname, "src/toggle.ts"),
         "toggle-group": resolve(__dirname, "src/toggle-group.ts"),
+        "icon-button": resolve(__dirname, "src/icon-button.ts"),
       },
       formats: ["es"],
       fileName: (format, entryName) => `${entryName}.js`,

@@ -139,20 +139,30 @@ Carousel built with **Embla**. Use \`basis\` for default sizing and \`basisSm\`/
 Long-form product guidance: [carousel.md](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/rules/components/carousel.md) in this repo.`;
 
 export const kuatHeaderDocs = `## Overview
-Application **header** with brand logo slot, navigation area, and actions.
+Application **header** with brand lockup, navigation, account chrome, and an optional **Equal Experts app switcher** (desktop waffle menu + mobile sheet drill-in).
 
-## Logo lockup modes
-- \`lockupVariant="default"\`: Existing lockup (EE logo with title treatment used today)
-- \`lockupVariant="demo"\`: Client demo lockup where the title is primary and a smaller EE logo sits beneath
+## App switcher
+- Pass \`appSwitcher={{ apps, loading?, empty?, emptyMessage?, linkTarget?, labels?, onOpen?, onSelect? }}\`. **Your team owns the catalog**; Kuat only renders what you pass.
+- \`onOpen\` fires when the desktop menu opens and when the mobile apps tier opens.
+- \`onSelect\` fires when an app link is chosen on desktop or mobile.
+- Omit \`appSwitcher\` entirely to hide the switcher. Use \`empty: "message"\` for an empty-state message when \`apps\` is empty.
 
-If a custom \`logo\` is passed, it overrides internal lockup rendering.
+## Account
+- \`account={{ items: [{ label, href, icon? }], mobile?: { heading, subtitle?, items }, labels? }}\` — desktop shows a **dropdown** (single primary row + \`mobile.items\`); optional mobile drill-in tier uses the same menu items.
+- \`accountMarkup\` (React) or \`account-markup\` slot (Vue) for custom account UI.
+
+## Logo lockup
+- \`lockup={{ variant: "default" | "demo" }}\` — built-in EE logo. Omit \`lockup\` for title-only (no default logo).
+- Custom \`logo\` node (React) or \`logo\` slot (Vue) overrides built-in lockup. \`logo={null}\` (React) hides logo.
 
 ## When to use
 - Product chrome at the top of every page
 
 ## When not to use
 - Marketing-only landing heroes without app chrome
-- Embedded widgets where full header chrome is wrong`;
+- Embedded widgets where full header chrome is wrong
+
+**IconButton** is published from this package for the waffle trigger and other icon-only actions: \`import { IconButton } from "@equal-experts/kuat-react"\` or subpath \`@equal-experts/kuat-react/icon-button\`.`;
 
 export const kuatLogoLockupDocs = `## Overview
 **Logo + service title** lockup for Equal Experts branded surfaces (modes and use cases per design review).

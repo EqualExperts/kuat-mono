@@ -1,11 +1,12 @@
 "use client"
 
 import * as React from "react"
-import { ChevronDown, Menu, User, X } from "lucide-react"
+import { ChevronDown, ChevronLeft, ChevronRight, LayoutGrid, Menu, User, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
+import { IconButton } from "@/components/ui/icon-button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,26 +15,71 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+import {
+  shouldShowAppSwitcher,
+  resolveAppSwitcherLabels,
+  resolveAppSwitcherEmptyMessage,
+  resolveHeaderLockup,
+  resolveAccountLabels,
+  shouldShowAccountMobileTier,
+  hasStructuredAccount,
+  resolveMobileSheetAriaLabel,
+  resolveDesktopAccountMenuItems,
+  shouldUseDesktopAccountDropdown,
+} from "./kuat-header.logic"
+
+import type {
+  EELogoProps,
+  EELogoTextColor,
+  KuatHeaderAccountConfig,
+  KuatHeaderAccountItem,
+  KuatHeaderApp,
+  KuatHeaderAppSwitcherConfig,
+  KuatHeaderNavItem,
+  KuatHeaderProps,
+  KuatHeaderSubItem,
+  KuatHeaderVariant,
+} from "./kuat-header.types"
+
+export type {
+  EELogoProps,
+  EELogoTextColor,
+  KuatHeaderAccountConfig,
+  KuatHeaderAccountItem,
+  KuatHeaderAccountLabels,
+  KuatHeaderAccountMobileTier,
+  KuatHeaderActionItem,
+  KuatHeaderApp,
+  KuatHeaderAppSwitcherConfig,
+  KuatHeaderAppSwitcherEmpty,
+  KuatHeaderAppSwitcherLabels,
+  KuatHeaderLockupConfig,
+  KuatHeaderLockupVariant,
+  KuatHeaderNavItem,
+  KuatHeaderProps,
+  KuatHeaderSubItem,
+  KuatHeaderVariant,
+} from "./kuat-header.types"
+
+export {
+  KUAT_HEADER_VARIANTS,
+  KUAT_HEADER_LOCKUP_VARIANTS,
+  EE_LOGO_TEXT_COLORS,
+  KUAT_HEADER_APP_SWITCHER_EMPTY,
+} from "./kuat-header.types"
+
+export {
+  shouldShowAppSwitcher,
+  resolveAppSwitcherLabels,
+  resolveHeaderLockup,
+} from "./kuat-header.logic"
+
 import "./kuat-header.css"
-
-export const KUAT_HEADER_VARIANTS = ["default", "bold"] as const
-export type KuatHeaderVariant = (typeof KUAT_HEADER_VARIANTS)[number]
-
-export const KUAT_HEADER_LOCKUP_VARIANTS = ["default", "demo"] as const
-export type KuatHeaderLockupVariant = (typeof KUAT_HEADER_LOCKUP_VARIANTS)[number]
-
-export const EE_LOGO_TEXT_COLORS = ["grey", "white"] as const
-export type EELogoTextColor = (typeof EE_LOGO_TEXT_COLORS)[number]
 
 /**
  * Equal Experts Logo component
  * Source: https://github.com/EqualExperts/brand-assets/blob/main/logo/logo-colour.svg
  */
-export interface EELogoProps {
-  className?: string
-  /** Text color variant - grey for default, white for bold */
-  textColor?: EELogoTextColor
-}
 
 function EELogo({ className, textColor = "grey" }: EELogoProps) {
   return (
@@ -75,40 +121,7 @@ function EELogo({ className, textColor = "grey" }: EELogoProps) {
   )
 }
 
-export interface KuatHeaderProps
-  extends React.HTMLAttributes<HTMLElement> {
-  /** Logo element - defaults to EE logo if not provided. Set to `null` to hide. */
-  logo?: React.ReactNode
-  /** Page or application title */
-  title?: string
-  /** Navigation items or legacy navigation node. */
-  navigation?: React.ReactNode | KuatHeaderNavItem[]
-  /** Right-side actions or legacy action node. */
-  actions?: React.ReactNode | KuatHeaderActionItem[]
-  /** Mobile menu trigger button (e.g., hamburger icon) */
-  mobileMenuTrigger?: React.ReactNode
-  /** Mobile menu content (typically a Sheet or Drawer) */
-  mobileMenu?: React.ReactNode
-  /** Hide the default EE logo */
-  hideLogo?: boolean
-  /** Brand lockup layout in header. */
-  lockupVariant?: KuatHeaderLockupVariant
-  variant?: KuatHeaderVariant
-}
-
-export interface KuatHeaderSubItem {
-  label: string
-  url: string
-}
-
-export interface KuatHeaderNavItem extends KuatHeaderSubItem {
-  items?: KuatHeaderSubItem[]
-}
-
-export interface KuatHeaderActionItem extends KuatHeaderSubItem {
-  icon?: React.ReactNode
-  items?: KuatHeaderSubItem[]
-}
+const APP_SWITCHER_MENU_ID = "kuat-header-app-switcher-menu"
 
 const defaultLinkRenderer = (
   item: KuatHeaderSubItem,
@@ -125,15 +138,31 @@ function isNavConfig(
   return Array.isArray(value)
 }
 
-function isActionConfig(
-  value: KuatHeaderProps["actions"]
-): value is KuatHeaderActionItem[] {
-  return Array.isArray(value)
+function HeaderDropdownPanel({
+  align = "start",
+  className,
+  id,
+  children,
+}: {
+  align?: "start" | "end" | "center"
+  className?: string
+  id?: string
+  children: React.ReactNode
+}) {
+  return (
+    <DropdownMenuContent
+      id={id}
+      align={align}
+      className={cn("kuat-header__dropdown-content", className)}
+    >
+      {children}
+    </DropdownMenuContent>
+  )
 }
 
 function HeaderDropdownItems({ items }: { items: KuatHeaderSubItem[] }) {
   return (
-    <DropdownMenuContent align="start" className="kuat-header__dropdown-content">
+    <HeaderDropdownPanel>
       <DropdownMenuGroup>
         {items.map((item) => (
           <DropdownMenuItem key={`${item.label}-${item.url}`} asChild>
@@ -141,7 +170,7 @@ function HeaderDropdownItems({ items }: { items: KuatHeaderSubItem[] }) {
           </DropdownMenuItem>
         ))}
       </DropdownMenuGroup>
-    </DropdownMenuContent>
+    </HeaderDropdownPanel>
   )
 }
 
@@ -187,48 +216,140 @@ function HeaderDesktopNav({ items, variant }: { items: KuatHeaderNavItem[]; vari
   )
 }
 
-function HeaderDesktopActions({ items, variant }: { items: KuatHeaderActionItem[]; variant: KuatHeaderVariant }) {
+function HeaderDesktopAccount({
+  account,
+  variant,
+}: {
+  account: KuatHeaderAccountConfig
+  variant: KuatHeaderVariant
+}) {
+  const useDropdown = shouldUseDesktopAccountDropdown(account)
+  const dropdownItems = resolveDesktopAccountMenuItems(account)
+
   return (
     <div className="kuat-header__actions-items">
-      {items.map((item) => {
+      {account.items.map((item, index) => {
         const icon = item.icon ?? <User className="h-4 w-4" aria-hidden />
-        if (!item.items?.length) {
+        if (useDropdown && index === 0) {
           return (
-            <a
-              key={`${item.label}-${item.url}`}
-              href={item.url}
-              className={cn(
-                "kuat-header__action-link",
-                variant === "bold" && "kuat-header__action-link--bold"
-              )}
-            >
-              {icon}
-              <span>{item.label}</span>
-            </a>
+            <DropdownMenu key={`${item.label}-${item.href}`}>
+              <DropdownMenuTrigger asChild>
+                <button
+                  type="button"
+                  className={cn(
+                    "kuat-header__action-trigger",
+                    variant === "bold" && "kuat-header__action-trigger--bold"
+                  )}
+                  aria-haspopup="menu"
+                >
+                  {icon}
+                  <span className="hidden sm:inline">{item.label}</span>
+                  <ChevronDown className="h-4 w-4" aria-hidden />
+                </button>
+              </DropdownMenuTrigger>
+              <HeaderDropdownItems items={dropdownItems} />
+            </DropdownMenu>
           )
         }
-
         return (
-          <DropdownMenu key={`${item.label}-${item.url}`}>
-            <DropdownMenuTrigger asChild>
-              <button
-                type="button"
-                className={cn(
-                  "kuat-header__action-trigger",
-                  variant === "bold" && "kuat-header__action-trigger--bold"
-                )}
-                aria-haspopup="menu"
-              >
-                {icon}
-                <span className="hidden sm:inline">{item.label}</span>
-                <ChevronDown className="h-4 w-4" aria-hidden />
-              </button>
-            </DropdownMenuTrigger>
-            <HeaderDropdownItems items={item.items} />
-          </DropdownMenu>
+          <a
+            key={`${item.label}-${item.href}`}
+            href={item.href}
+            className={cn(
+              "kuat-header__action-link",
+              variant === "bold" && "kuat-header__action-link--bold"
+            )}
+          >
+            {icon}
+            <span>{item.label}</span>
+          </a>
         )
       })}
     </div>
+  )
+}
+
+function AppSwitcherDesktopMenu({
+  config,
+  labels,
+}: {
+  config: KuatHeaderAppSwitcherConfig
+  labels: ReturnType<typeof resolveAppSwitcherLabels>
+}) {
+  const emptyMessage = resolveAppSwitcherEmptyMessage(config)
+  const apps = config.apps
+  const appsLoading = config.loading
+  const appSwitcherEmpty = config.empty ?? "hide"
+  const appLinkTarget = config.linkTarget
+  const onAppSelect = config.onSelect
+  const onAppSwitcherOpen = config.onOpen
+
+  return (
+    <DropdownMenu
+      onOpenChange={(open) => {
+        if (open) {
+          onAppSwitcherOpen?.()
+        }
+      }}
+    >
+      <DropdownMenuTrigger asChild>
+        <IconButton
+          type="button"
+          variant="ghost"
+          color="ee-blue"
+          size="regular"
+          className="kuat-header__app-switcher-trigger"
+          aria-label={labels.trigger}
+          aria-haspopup="menu"
+          aria-controls={APP_SWITCHER_MENU_ID}
+        >
+          <LayoutGrid className="h-5 w-5" aria-hidden />
+        </IconButton>
+      </DropdownMenuTrigger>
+      <HeaderDropdownPanel
+        id={APP_SWITCHER_MENU_ID}
+        align="end"
+        className="kuat-header__app-switcher-panel"
+      >
+        <DropdownMenuGroup className="kuat-header__app-switcher-scroll">
+          {appsLoading ? (
+            <>
+              <div className="kuat-header__app-switcher-skeleton" aria-hidden />
+              <div className="kuat-header__app-switcher-skeleton" aria-hidden />
+              <div className="kuat-header__app-switcher-skeleton" aria-hidden />
+            </>
+          ) : apps?.length ? (
+            apps.map((app) => (
+              <DropdownMenuItem key={app.id} asChild className="kuat-header__app-switcher-item p-0 focus:bg-accent">
+                <a
+                  href={app.href}
+                  target={appLinkTarget ?? "_self"}
+                  rel={appLinkTarget === "_blank" ? "noopener noreferrer" : undefined}
+                  className="kuat-header__app-switcher-link"
+                  onClick={() => onAppSelect?.(app)}
+                >
+                  {app.icon ? (
+                    <span className="kuat-header__app-switcher-icon" aria-hidden>
+                      {app.icon}
+                    </span>
+                  ) : null}
+                  <span className="kuat-header__app-switcher-text">
+                    <span className="kuat-header__app-switcher-label">{app.label}</span>
+                    {app.description ? (
+                      <span className="kuat-header__app-switcher-desc">{app.description}</span>
+                    ) : null}
+                  </span>
+                </a>
+              </DropdownMenuItem>
+            ))
+          ) : appSwitcherEmpty === "message" ? (
+            <div className="kuat-header__app-switcher-empty px-3 py-3 text-sm text-muted-foreground">
+              {emptyMessage}
+            </div>
+          ) : null}
+        </DropdownMenuGroup>
+      </HeaderDropdownPanel>
+    </DropdownMenu>
   )
 }
 
@@ -240,22 +361,55 @@ const KuatHeader = React.forwardRef<HTMLElement, KuatHeaderProps>(
       logo,
       title,
       navigation,
-      actions,
+      account,
+      accountMarkup,
       mobileMenuTrigger,
       mobileMenu,
-      hideLogo,
-      lockupVariant = "default",
+      lockup,
+      appSwitcher,
+      mobileMenuAriaLabel,
       children,
       ...props
     },
     ref
   ) => {
+    const accountLabels = resolveAccountLabels(account)
+    const hasAccountMobileTier = shouldShowAccountMobileTier(account)
+    const structuredAccount = hasStructuredAccount(account)
+    const appSwitcherLabels = resolveAppSwitcherLabels(appSwitcher)
+    const showSwitcher = shouldShowAppSwitcher(appSwitcher)
+    const lockupState = resolveHeaderLockup({ logo, lockup })
+
     const isStructuredNavigation = isNavConfig(navigation)
-    const isStructuredActions = isActionConfig(actions)
-    const hasStructuredMenus = isStructuredNavigation || isStructuredActions
+    const hasStructuredMenus =
+      isStructuredNavigation || structuredAccount || Boolean(accountMarkup)
+    const useBuiltInMobileSheet =
+      !mobileMenu &&
+      (hasStructuredMenus || showSwitcher || hasAccountMobileTier)
+    const sheetAriaLabel = resolveMobileSheetAriaLabel({
+      mobileMenuAriaLabel,
+      showAppSwitcher: showSwitcher,
+      hasStructuredNavigation: isStructuredNavigation,
+      hasAccountMobileTier,
+    })
+
     const [isMobileOpen, setIsMobileOpen] = React.useState(false)
+    const [mobileSheetView, setMobileSheetView] = React.useState<
+      "main" | "apps" | "account"
+    >("main")
     const mobileTriggerRef = React.useRef<HTMLButtonElement | null>(null)
     const mobileSheetRef = React.useRef<HTMLDivElement | null>(null)
+    const mobileTeaserRef = React.useRef<HTMLButtonElement | null>(null)
+    const mobileAccountTeaserRef = React.useRef<HTMLButtonElement | null>(null)
+    const mobileMainPanelRef = React.useRef<HTMLDivElement | null>(null)
+    const mobileAppsPanelRef = React.useRef<HTMLDivElement | null>(null)
+    const mobileAccountPanelRef = React.useRef<HTMLDivElement | null>(null)
+
+    React.useEffect(() => {
+      if (!isMobileOpen) {
+        setMobileSheetView("main")
+      }
+    }, [isMobileOpen])
 
     React.useEffect(() => {
       if (!isMobileOpen) {
@@ -264,12 +418,64 @@ const KuatHeader = React.forwardRef<HTMLElement, KuatHeaderProps>(
       const body = document.body
       const previousOverflow = body.style.overflow
       body.style.overflow = "hidden"
-      const previousFocused = document.activeElement as HTMLElement | null
-      const firstInteractive = mobileSheetRef.current?.querySelector<HTMLElement>(
-        "button, a, [tabindex]:not([tabindex='-1'])"
-      )
-      firstInteractive?.focus()
+      return () => {
+        body.style.overflow = previousOverflow
+        if (mobileTriggerRef.current) {
+          mobileTriggerRef.current.focus()
+        }
+      }
+    }, [isMobileOpen])
 
+    React.useEffect(() => {
+      if (!isMobileOpen) {
+        return
+      }
+      const id = window.requestAnimationFrame(() => {
+        const root = mobileSheetRef.current
+        root
+          ?.querySelector<HTMLElement>("button, a, [tabindex]:not([tabindex='-1'])")
+          ?.focus()
+      })
+      return () => window.cancelAnimationFrame(id)
+    }, [isMobileOpen, mobileSheetView])
+
+    React.useEffect(() => {
+      const main = mobileMainPanelRef.current
+      const apps = mobileAppsPanelRef.current
+      const account = mobileAccountPanelRef.current
+      if (!isMobileOpen) {
+        main?.removeAttribute("inert")
+        apps?.removeAttribute("inert")
+        account?.removeAttribute("inert")
+        return
+      }
+      if (main) {
+        if (mobileSheetView !== "main") {
+          main.setAttribute("inert", "")
+        } else {
+          main.removeAttribute("inert")
+        }
+      }
+      if (apps) {
+        if (mobileSheetView !== "apps") {
+          apps.setAttribute("inert", "")
+        } else {
+          apps.removeAttribute("inert")
+        }
+      }
+      if (account) {
+        if (mobileSheetView !== "account") {
+          account.setAttribute("inert", "")
+        } else {
+          account.removeAttribute("inert")
+        }
+      }
+    }, [isMobileOpen, mobileSheetView])
+
+    React.useEffect(() => {
+      if (!isMobileOpen) {
+        return
+      }
       const onKeyDown = (event: KeyboardEvent) => {
         if (event.key === "Escape") {
           event.preventDefault()
@@ -297,41 +503,49 @@ const KuatHeader = React.forwardRef<HTMLElement, KuatHeaderProps>(
       }
       document.addEventListener("keydown", onKeyDown)
       return () => {
-        body.style.overflow = previousOverflow
         document.removeEventListener("keydown", onKeyDown)
-        if (mobileTriggerRef.current) {
-          mobileTriggerRef.current.focus()
-        } else {
-          previousFocused?.focus()
-        }
       }
-    }, [isMobileOpen])
+    }, [isMobileOpen, mobileSheetView])
+
+    const logoColor = variant === "bold" ? "white" : "grey"
+    const builtInLogo =
+      lockupState.mode === "builtin" ? (
+        <EELogo
+          className="ee-logo--desktop shrink-0"
+          textColor={logoColor}
+        />
+      ) : null
+    const builtInMobileLogo =
+      lockupState.mode === "builtin" ? (
+        <EELogo className="ee-logo--mobile shrink-0" textColor={logoColor} />
+      ) : null
 
     const logoElement =
-      logo !== undefined
+      lockupState.mode === "custom"
         ? logo
-        : !hideLogo && (
-            <EELogo
-              className="ee-logo--desktop shrink-0"
-              textColor={variant === "bold" ? "white" : "grey"}
-            />
-          )
+        : lockupState.mode === "builtin"
+          ? builtInLogo
+          : null
 
     const mobileLogoElement =
-      logo !== undefined
+      lockupState.mode === "custom"
         ? logo
-        : !hideLogo && (
-            <EELogo
-              className="ee-logo--mobile shrink-0"
-              textColor={variant === "bold" ? "white" : "grey"}
-            />
-          )
+        : lockupState.mode === "builtin"
+          ? builtInMobileLogo
+          : null
 
-    const effectiveLockupVariant = logo !== undefined ? "default" : lockupVariant
-    const showDefaultDesktopLockup = logoElement && effectiveLockupVariant === "default"
-    const showDefaultMobileLockup = mobileLogoElement && effectiveLockupVariant === "default"
-    const showDemoDesktopLockup = logoElement && effectiveLockupVariant === "demo"
-    const showDemoMobileLockup = mobileLogoElement && effectiveLockupVariant === "demo"
+    const effectiveLockupVariant = lockupState.lockupVariant
+    const showDefaultDesktopLockup =
+      Boolean(logoElement) && effectiveLockupVariant === "default"
+    const showDefaultMobileLockup =
+      Boolean(mobileLogoElement) && effectiveLockupVariant === "default"
+    const showDemoDesktopLockup =
+      Boolean(logoElement) && effectiveLockupVariant === "demo"
+    const showDemoMobileLockup =
+      Boolean(mobileLogoElement) && effectiveLockupVariant === "demo"
+
+    const emptyAppsMessage = resolveAppSwitcherEmptyMessage(appSwitcher)
+    const mobileAccountItems = account?.mobile?.items
 
     return (
       <header
@@ -383,14 +597,20 @@ const KuatHeader = React.forwardRef<HTMLElement, KuatHeaderProps>(
             ) : navigation ? (
               <nav className="flex items-center">{navigation}</nav>
             ) : null}
-            {isStructuredActions ? (
-              actions.length > 0 && (
-                <div className="flex items-center gap-2">
-                  <HeaderDesktopActions items={actions} variant={variant} />
-                </div>
-              )
-            ) : actions ? (
-              <div className="flex items-center gap-2">{actions}</div>
+            {showSwitcher && appSwitcher ? (
+              <div className="kuat-header__nav-dropdown-wrap">
+                <AppSwitcherDesktopMenu
+                  config={appSwitcher}
+                  labels={appSwitcherLabels}
+                />
+              </div>
+            ) : null}
+            {structuredAccount && account ? (
+              <div className="flex items-center gap-2">
+                <HeaderDesktopAccount account={account} variant={variant} />
+              </div>
+            ) : accountMarkup ? (
+              <div className="flex items-center gap-2">{accountMarkup}</div>
             ) : null}
           </div>
         </div>
@@ -419,7 +639,7 @@ const KuatHeader = React.forwardRef<HTMLElement, KuatHeaderProps>(
           </div>
           {mobileMenuTrigger ? (
             <div className="shrink-0">{mobileMenuTrigger}</div>
-          ) : hasStructuredMenus ? (
+          ) : useBuiltInMobileSheet ? (
             <Button
               ref={mobileTriggerRef}
               variant="ghost"
@@ -438,7 +658,7 @@ const KuatHeader = React.forwardRef<HTMLElement, KuatHeaderProps>(
           ) : null}
         </div>
 
-        {hasStructuredMenus ? (
+        {useBuiltInMobileSheet ? (
           isMobileOpen && (
             <div
               id="kuat-header-mobile-menu"
@@ -446,9 +666,39 @@ const KuatHeader = React.forwardRef<HTMLElement, KuatHeaderProps>(
               className="kuat-header__mobile-sheet"
               role="dialog"
               aria-modal="true"
-              aria-label="Navigation menu"
+              aria-label={sheetAriaLabel}
             >
-              <div className="kuat-header__mobile-sheet-header">
+              <div
+                className={cn(
+                  "kuat-header__mobile-sheet-header",
+                  (mobileSheetView === "apps" || mobileSheetView === "account") &&
+                    "kuat-header__mobile-sheet-header--split"
+                )}
+              >
+                {mobileSheetView === "apps" || mobileSheetView === "account" ? (
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    className="kuat-header__mobile-back"
+                    aria-label="Back to main menu"
+                    onClick={() => {
+                      const from = mobileSheetView
+                      setMobileSheetView("main")
+                      requestAnimationFrame(() => {
+                        if (from === "apps") {
+                          mobileTeaserRef.current?.focus()
+                        } else {
+                          mobileAccountTeaserRef.current?.focus()
+                        }
+                      })
+                    }}
+                  >
+                    <ChevronLeft className="h-6 w-6" aria-hidden />
+                    <span className="kuat-header__mobile-back-text">Back</span>
+                  </Button>
+                ) : (
+                  <span aria-hidden className="kuat-header__mobile-sheet-header-spacer" />
+                )}
                 <Button
                   variant="ghost"
                   size="icon"
@@ -459,57 +709,210 @@ const KuatHeader = React.forwardRef<HTMLElement, KuatHeaderProps>(
                   <X className="h-6 w-6" aria-hidden />
                 </Button>
               </div>
-              <div className="kuat-header__mobile-sheet-nav">
-                {isStructuredNavigation && navigation.length > 0 && (
-                  <nav aria-label="Primary navigation">
+
+              <div
+                ref={mobileMainPanelRef}
+                className={cn(
+                  "kuat-header__mobile-panel",
+                  mobileSheetView !== "main" && "kuat-header__mobile-panel--hidden"
+                )}
+                aria-hidden={mobileSheetView !== "main"}
+              >
+                <div className="kuat-header__mobile-panel-inner">
+                  <div className="kuat-header__mobile-sheet-nav">
+                    {isStructuredNavigation && navigation.length > 0 && (
+                      <nav aria-label="Primary navigation">
+                        <ul className="kuat-header__mobile-list">
+                          {navigation.map((item) => (
+                            <li key={`${item.label}-${item.url}`}>
+                              <a href={item.url} className="kuat-header__mobile-link">
+                                {item.label}
+                              </a>
+                              {item.items?.length ? (
+                                <ul className="kuat-header__mobile-sub-list">
+                                  {item.items.map((subItem) => (
+                                    <li key={`${subItem.label}-${subItem.url}`}>
+                                      <a href={subItem.url} className="kuat-header__mobile-sub-link">
+                                        {subItem.label}
+                                      </a>
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : null}
+                            </li>
+                          ))}
+                        </ul>
+                      </nav>
+                    )}
+                  </div>
+                  {(hasAccountMobileTier || showSwitcher) ? (
+                    <div className="kuat-header__mobile-sheet-sticky">
+                      {hasAccountMobileTier ? (
+                        <div className="kuat-header__mobile-app-teaser-wrap">
+                          <button
+                            ref={mobileAccountTeaserRef}
+                            type="button"
+                            className="kuat-header__mobile-app-teaser"
+                            aria-label={
+                              accountLabels.teaserDescription
+                                ? `${accountLabels.teaserTitle}, ${accountLabels.teaserDescription}`
+                                : accountLabels.teaserTitle
+                            }
+                            onClick={() => {
+                              setMobileSheetView("account")
+                              requestAnimationFrame(() => {
+                                const first =
+                                  mobileAccountPanelRef.current?.querySelector<HTMLElement>(
+                                    "a"
+                                  )
+                                first?.focus()
+                              })
+                            }}
+                          >
+                            <span className="kuat-header__mobile-app-teaser-icon shrink-0" aria-hidden>
+                              {account?.items[0]?.icon ?? (
+                                <User className="h-6 w-6" aria-hidden />
+                              )}
+                            </span>
+                            <span className="kuat-header__mobile-app-teaser-text">
+                              <span className="kuat-header__mobile-app-teaser-title">
+                                {accountLabels.teaserTitle}
+                              </span>
+                              {accountLabels.teaserDescription ? (
+                                <span className="kuat-header__mobile-app-teaser-desc">
+                                  {accountLabels.teaserDescription}
+                                </span>
+                              ) : null}
+                            </span>
+                            <ChevronRight
+                              className="kuat-header__mobile-app-teaser-chevron h-5 w-5 shrink-0"
+                              aria-hidden
+                            />
+                          </button>
+                        </div>
+                      ) : null}
+                      {showSwitcher ? (
+                        <div className="kuat-header__mobile-app-teaser-wrap">
+                          <button
+                            ref={mobileTeaserRef}
+                            type="button"
+                            className="kuat-header__mobile-app-teaser"
+                            aria-label={`${appSwitcherLabels.teaserTitle}, ${appSwitcherLabels.teaserDescription}`}
+                            onClick={() => {
+                              appSwitcher?.onOpen?.()
+                              setMobileSheetView("apps")
+                              requestAnimationFrame(() => {
+                                const first = mobileAppsPanelRef.current?.querySelector<HTMLElement>(
+                                  "a, button"
+                                )
+                                first?.focus()
+                              })
+                            }}
+                          >
+                            <LayoutGrid className="kuat-header__mobile-app-teaser-icon h-6 w-6 shrink-0" aria-hidden />
+                            <span className="kuat-header__mobile-app-teaser-text">
+                              <span className="kuat-header__mobile-app-teaser-title">{appSwitcherLabels.teaserTitle}</span>
+                              <span className="kuat-header__mobile-app-teaser-desc">{appSwitcherLabels.teaserDescription}</span>
+                            </span>
+                            <ChevronRight className="kuat-header__mobile-app-teaser-chevron h-5 w-5 shrink-0" aria-hidden />
+                          </button>
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : null}
+                </div>
+                {structuredAccount && account && !hasAccountMobileTier ? (
+                  <div className="kuat-header__mobile-sheet-actions">
                     <ul className="kuat-header__mobile-list">
-                      {navigation.map((item) => (
-                        <li key={`${item.label}-${item.url}`}>
-                          <a href={item.url} className="kuat-header__mobile-link">
+                      {account.items.map((item) => (
+                        <li key={`${item.label}-${item.href}`}>
+                          <a href={item.href} className="kuat-header__mobile-link">
+                            <span className="kuat-header__mobile-action-icon">
+                              {item.icon ?? <User className="h-4 w-4" aria-hidden />}
+                            </span>
                             {item.label}
                           </a>
-                          {item.items?.length ? (
-                            <ul className="kuat-header__mobile-sub-list">
-                              {item.items.map((subItem) => (
-                                <li key={`${subItem.label}-${subItem.url}`}>
-                                  <a href={subItem.url} className="kuat-header__mobile-sub-link">
-                                    {subItem.label}
-                                  </a>
-                                </li>
-                              ))}
-                            </ul>
-                          ) : null}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+              </div>
+
+              {showSwitcher && appSwitcher ? (
+                <div
+                  ref={mobileAppsPanelRef}
+                  className={cn(
+                    "kuat-header__mobile-panel kuat-header__mobile-panel--apps",
+                    mobileSheetView !== "apps" && "kuat-header__mobile-panel--hidden"
+                  )}
+                  aria-hidden={mobileSheetView !== "apps"}
+                >
+                  <div className="kuat-header__mobile-apps-heading">{appSwitcherLabels.title}</div>
+                  <nav aria-label={appSwitcherLabels.nav} className="kuat-header__mobile-apps-nav">
+                    {appSwitcher.loading ? (
+                      <ul className="kuat-header__mobile-list">
+                        <li className="kuat-header__app-switcher-skeleton kuat-header__app-switcher-skeleton--mobile" aria-hidden />
+                        <li className="kuat-header__app-switcher-skeleton kuat-header__app-switcher-skeleton--mobile" aria-hidden />
+                      </ul>
+                    ) : appSwitcher.apps.length ? (
+                      <ul className="kuat-header__mobile-list">
+                        {appSwitcher.apps.map((app) => (
+                          <li key={app.id}>
+                            <a
+                              href={app.href}
+                              className="kuat-header__mobile-app-link"
+                              target={appSwitcher.linkTarget ?? "_self"}
+                              rel={appSwitcher.linkTarget === "_blank" ? "noopener noreferrer" : undefined}
+                              onClick={() => appSwitcher.onSelect?.(app)}
+                            >
+                              {app.icon ? (
+                                <span className="kuat-header__mobile-action-icon" aria-hidden>
+                                  {app.icon}
+                                </span>
+                              ) : null}
+                              <span className="kuat-header__mobile-app-link-text">
+                                <span className="kuat-header__mobile-app-link-label">{app.label}</span>
+                                {app.description ? (
+                                  <span className="kuat-header__mobile-app-link-desc">{app.description}</span>
+                                ) : null}
+                              </span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (appSwitcher.empty ?? "hide") === "message" ? (
+                      <p className="kuat-header__mobile-apps-empty px-3 text-sm text-muted-foreground">
+                        {emptyAppsMessage}
+                      </p>
+                    ) : null}
+                  </nav>
+                </div>
+              ) : null}
+
+              {hasAccountMobileTier && mobileAccountItems ? (
+                <div
+                  ref={mobileAccountPanelRef}
+                  className={cn(
+                    "kuat-header__mobile-panel kuat-header__mobile-panel--apps kuat-header__mobile-panel--account",
+                    mobileSheetView !== "account" && "kuat-header__mobile-panel--hidden"
+                  )}
+                  aria-hidden={mobileSheetView !== "account"}
+                >
+                  <div className="kuat-header__mobile-apps-heading">{accountLabels.title}</div>
+                  <nav aria-label={accountLabels.nav} className="kuat-header__mobile-apps-nav">
+                    <ul className="kuat-header__mobile-list">
+                      {mobileAccountItems.map((row) => (
+                        <li key={`${row.label}-${row.href}`}>
+                          <a href={row.href} className="kuat-header__mobile-app-link">
+                            <span className="kuat-header__mobile-app-link-text">
+                              <span className="kuat-header__mobile-app-link-label">{row.label}</span>
+                            </span>
+                          </a>
                         </li>
                       ))}
                     </ul>
                   </nav>
-                )}
-              </div>
-              {isStructuredActions && actions.length > 0 ? (
-                <div className="kuat-header__mobile-sheet-actions">
-                  <ul className="kuat-header__mobile-list">
-                    {actions.map((action) => (
-                      <li key={`${action.label}-${action.url}`}>
-                        <a href={action.url} className="kuat-header__mobile-link">
-                          <span className="kuat-header__mobile-action-icon">
-                            {action.icon ?? <User className="h-4 w-4" aria-hidden />}
-                          </span>
-                          {action.label}
-                        </a>
-                        {action.items?.length ? (
-                          <ul className="kuat-header__mobile-sub-list">
-                            {action.items.map((subItem) => (
-                              <li key={`${subItem.label}-${subItem.url}`}>
-                                <a href={subItem.url} className="kuat-header__mobile-sub-link">
-                                  {subItem.label}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        ) : null}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               ) : null}
             </div>
