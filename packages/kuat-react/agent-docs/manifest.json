@@ -1,8 +1,8 @@
 {
-  "packageVersion": "0.13.0",
+  "packageVersion": "0.13.1",
   "rules": {
-    "snapshotRef": "80317888a5396bd56b5e708015bf2156276a23b6",
-    "snapshotDate": "2026-05-21T11:08:33.795Z",
+    "snapshotRef": "67fc215fe87c22084c245d97429837b2b6ed65bd",
+    "snapshotDate": "2026-05-21T11:23:24.813Z",
     "sourceRepo": "equalexperts/kuat-agent-docs",
     "loadingPath": "agent-docs/rules/LOADING-consumer.md"
   }

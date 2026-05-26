@@ -2,6 +2,17 @@
 
 All notable changes to the published Kuat packages are documented in this file.
 
+## Multi-package release - 2026-05-21
+
+### Affected packages
+- @equal-experts/kuat-core@0.13.1
+- @equal-experts/kuat-react@0.13.1
+- @equal-experts/kuat-vue@0.13.1
+
+### Changed
+- Expanded consumer agent-docs bundles (component guides, layout/scenario rules, LOADING-consumer entry)
+- Clearer upstream vs overlay ownership in published AGENTS.md
+
 ## Multi-package release - 2026-05-18
 
 ### Affected packages
