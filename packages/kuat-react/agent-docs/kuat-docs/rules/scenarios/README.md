@@ -71,7 +71,7 @@ When building a specific page type:
 1. Load the relevant scenario file
 2. Follow the recommended base layout from `rules/design/layouts.md`
 3. Reference accessibility requirements from `rules/accessibility/`
-4. Use design tokens from the EE foundations linked in [`rules/README.md`](../README.md) (e.g. `foundations/design/colours.md`, `typography.md` under `external/kuat-agent-rules`)
+4. Use design tokens from the EE foundations linked in [`rules/README.md`](../README.md) (e.g. `design-language/colours.md`, `typography.md` under `external/kuat-agent-rules/reference`)
 
 ---
 
