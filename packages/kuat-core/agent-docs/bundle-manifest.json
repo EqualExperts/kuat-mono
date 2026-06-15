@@ -18,36 +18,28 @@
       "target": "components"
     },
     {
-      "source": "external/kuat-agent-rules/kuat-docs/rules/foundations/brand.md",
-      "target": "external/kuat-agent-rules/kuat-docs/rules/foundations/brand.md"
+      "source": "external/kuat-agent-rules/reference/brand",
+      "target": "external/kuat-agent-rules/reference/brand"
     },
     {
-      "source": "external/kuat-agent-rules/kuat-docs/rules/foundations/accessibility.md",
-      "target": "external/kuat-agent-rules/kuat-docs/rules/foundations/accessibility.md"
+      "source": "external/kuat-agent-rules/reference/accessibility",
+      "target": "external/kuat-agent-rules/reference/accessibility"
     },
     {
-      "source": "external/kuat-agent-rules/kuat-docs/rules/LOADING.md",
-      "target": "external/kuat-agent-rules/kuat-docs/rules/LOADING.md"
+      "source": "external/kuat-agent-rules/reference/design-language",
+      "target": "external/kuat-agent-rules/reference/design-language"
     },
     {
-      "source": "external/kuat-agent-rules/kuat-docs/rules/foundations/design",
-      "target": "external/kuat-agent-rules/kuat-docs/rules/foundations/design"
+      "source": "external/kuat-agent-rules/reference/content",
+      "target": "external/kuat-agent-rules/reference/content"
     },
     {
-      "source": "external/kuat-agent-rules/kuat-docs/rules/foundations/content",
-      "target": "external/kuat-agent-rules/kuat-docs/rules/foundations/content"
+      "source": "external/kuat-agent-rules/reference/media-types/web-product",
+      "target": "external/kuat-agent-rules/reference/media-types/web-product"
     },
     {
-      "source": "external/kuat-agent-rules/kuat-docs/rules/foundations/logo.md",
-      "target": "external/kuat-agent-rules/kuat-docs/rules/foundations/logo.md"
-    },
-    {
-      "source": "external/kuat-agent-rules/kuat-docs/rules/types/web/product",
-      "target": "external/kuat-agent-rules/kuat-docs/rules/types/web/product"
-    },
-    {
-      "source": "external/kuat-agent-rules/kuat-docs/rules/types/web/marketing",
-      "target": "external/kuat-agent-rules/kuat-docs/rules/types/web/marketing"
+      "source": "external/kuat-agent-rules/reference/media-types/web-marketing",
+      "target": "external/kuat-agent-rules/reference/media-types/web-marketing"
     }
   ],
   "denyPathSegments": [

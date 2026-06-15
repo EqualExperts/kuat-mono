@@ -5,11 +5,9 @@ import { fileURLToPath } from "node:url";
 const scriptDir = resolve(fileURLToPath(new URL(".", import.meta.url)));
 const repoRoot = resolve(scriptDir, "../..");
 
-const TEMPLATE_DIR = resolve(repoRoot, "scripts/agent-rules/templates");
-const AGENTS_TEMPLATE = resolve(TEMPLATE_DIR, "AGENTS.local.md");
-const CURSORRULES_TEMPLATE = resolve(TEMPLATE_DIR, "cursorrules.local.md");
-
-const AGENTS_OUT = resolve(repoRoot, "AGENTS.md");
+// AGENTS.md is hand-maintained (it owns the contributor load order and migration
+// notes); only .cursorrules is generated from a template. CLAUDE.md is a symlink to
+// AGENTS.md.
 const CURSORRULES_OUT = resolve(repoRoot, ".cursorrules");
 const CLAUDE_PATH = resolve(repoRoot, "CLAUDE.md");
 
@@ -39,19 +37,16 @@ function ensureFile(path, expected) {
   }
 }
 
-const agentsExpected = render("scripts/agent-rules/templates/AGENTS.local.md");
 const cursorrulesExpected = render(
   "scripts/agent-rules/templates/cursorrules.local.md",
 );
 
 if (mode === "check") {
-  ensureFile(AGENTS_OUT, agentsExpected);
   ensureFile(CURSORRULES_OUT, cursorrulesExpected);
   console.log("Agent entrypoints are up to date.");
 } else {
-  writeFileSync(AGENTS_OUT, agentsExpected, "utf8");
   writeFileSync(CURSORRULES_OUT, cursorrulesExpected, "utf8");
-  console.log("Regenerated AGENTS.md and .cursorrules from templates.");
+  console.log("Regenerated .cursorrules from template.");
 }
 
 try {
