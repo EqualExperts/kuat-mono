@@ -3,16 +3,19 @@
   "components": {
     "shadcn:button": {
       "slug": "button",
+      "displayName": "Button",
       "path": "components/button.md",
       "sources": ["shadcn:button", "@equal-experts/kuat-core"]
     },
     "kuat:button-group": {
       "slug": "button-group",
+      "displayName": "ButtonGroup",
       "path": "components/button-group.md",
       "sources": ["@equal-experts/kuat-react", "@equal-experts/kuat-vue"]
     },
     "kuat:kuat-header": {
       "slug": "kuat-header",
+      "displayName": "KuatHeader",
       "path": "components/kuat-header.md",
       "sources": ["@equal-experts/kuat-react", "@equal-experts/kuat-vue"]
     }

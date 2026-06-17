@@ -1,8 +1,8 @@
-# Phase 1b migration log — kuat-mono
+# kuat-mono migration log
 
-Dated record of the downstream sync update (`kuat-docs/rules/` → upstream `reference/`).
-Runs in lockstep with the upstream **kuat-agent-rules Phase 1** PR
-(branch `migration/phase-1-reference-refactor`).
+Dated record of the kuat-mono side of the design-system migration. First entry is the Phase 1b
+downstream sync update (`kuat-docs/rules/` → upstream `reference/`); later entries continue the
+migration (Phase 7 contributor skills, etc.).
 
 ---
 
@@ -56,3 +56,57 @@ Runs in lockstep with the upstream **kuat-agent-rules Phase 1** PR
 - Untouched (historical): `kuat review/*`, `CHANGELOG.md`.
 - Upstream Phase-1 feedback: `MIGRATION-MAP.md` covered every path this repo consumed — no gaps.
 - **Merge gate:** hold this PR until the upstream Phase-1 PR is ready; merge together.
+
+---
+
+## 2026-06-17 — Phase 7 Run B execution (contributor skills)
+
+**Branch (this repo):** `feature/phase-7-contributor`
+**Plan:** [phase-7-kuat-mono-handoff.md](phase-7-kuat-mono-handoff.md) (Run B), [phase-7-contributor-skills.md](phase-7-contributor-skills.md)
+**Scope decision (Ed):** "unblocked parts now" — build **B1** + **B3**, **defer B2** (token SoT not synced).
+
+### Context / correction
+- `/kuat-phase 7 run b` invoked the `kuat-phase` skill, which is **hardwired to Phase 1b** and
+  re-emitted its 1b prompt regardless of args. **Phase 1b is already merged** (PR #20). Did **not**
+  re-run 1b; executed Phase 7 Run B instead, per branch + args.
+- Phase 7 planning docs were on `migration/phase-7-planning-docs` (commit `694f880`); cherry-picked
+  onto this branch so it is self-contained.
+
+### Decisions
+- **Skill placement = repo-local.** `add-kuat-component` lives in `kuat-mono/.claude/skills/`
+  (project scope). Never packaged, never in the marketplace — enforced by a new guard.
+- **Registry: manifest is the SoT; the `.md` table stays upstream-owned.** The registry's
+  **Source** prose and **Upstream refs** links are curated, *not* mechanical transforms of the
+  manifest `sources`. So the generator emits the manifest-derived rows (ID / display name /
+  derived source / doc path) and the drift check enforces **ID-set parity + doc-path + display-name**
+  only — curated columns excluded.
+- **Manifest schema += `displayName`** so the display column is derivable.
+- **Drift check targets the committed bundled registry** (`packages/kuat-core/agent-docs/.../component-registry.md`)
+  — always present, deterministic in CI (the `external/` sync is gitignored).
+- **No turbo task.** These are repo-level (not per-package) checks, so they are root npm scripts
+  (`components:registry:check`, `components:verify-no-leak`, aggregate `contributor:check`),
+  CI-ready once a CI config exists. No `.github/workflows` in this repo today.
+
+### Changes
+- **New** `scripts/components/{lib,generate-registry,check-registry,verify-no-skill-leak}.mjs`.
+- **New** `.claude/skills/add-kuat-component/SKILL.md` (repo-local contributor skill).
+- **New** `scripts/components/registry.generated.md` (generated artifact; deliberately outside
+  `kuat-docs/components/` so the bundle never ships it).
+- `kuat-docs/components/components.manifest.json` — added `displayName` to all 3 entries.
+- `package.json` — added `components:registry:generate|check`, `components:verify-no-leak`, `contributor:check`.
+- Regenerated `packages/{kuat-core,kuat-react,kuat-vue}/agent-docs` (manifest now carries `displayName`).
+- **Deferred:** B2 documented in [phase-7-b2-deferred.md](phase-7-b2-deferred.md); no code.
+
+### Verification
+- `pnpm components:registry:generate` → 3 rows; `pnpm components:registry:check` → **green** (3 in sync).
+- Drift check **bites**: temporary manifest entry with no registry row → check exits non-zero with first-diff message; reverted → green.
+- `pnpm components:verify-no-leak` → **green** (`.claude/skills/` absent from packages, agent-docs, `files`, and the bundle).
+- `node scripts/agent-docs/bundle-for-core.mjs` → manifest (with `displayName`) propagated to all 3 packages.
+- `pnpm build` → **5/5 turbo tasks** green; `pnpm test:run` → green.
+- End-to-end eval: scaffolded a throwaway component via the skill (code → doc → manifest → registry → bundle → build/test/check) then reverted — no unrequested component committed.
+
+### Follow-ups
+- **B2** once Run A's token SoT is synced (see [phase-7-b2-deferred.md](phase-7-b2-deferred.md)).
+- Wire `contributor:check` into real CI when a workflow exists.
+- Align `registry.generated.md` column format with Run A's final `component-registry.md` once synced.
+- **Merge gate:** Run B depends on Run A; coordinate so they land together (B2 stays deferred meanwhile).
