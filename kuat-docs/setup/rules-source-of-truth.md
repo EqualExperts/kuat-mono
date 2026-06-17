@@ -11,10 +11,10 @@ Defines where agents and humans should get guidance when similar topics exist in
 
 | Topic | Upstream canonical | Local canonical | Decision |
 |---|---|---|---|
-| Brand/design/content foundations | `external/kuat-agent-rules/kuat-docs/rules/foundations/**` | [`kuat-docs/rules/README.md`](../rules/README.md) | Upstream is canonical. This repo uses one index file plus `external/` links; no per-topic stubs under `rules/design/` or `rules/content/` except README pointers. |
-| Web marketing/product design/content scenarios | `external/kuat-agent-rules/kuat-docs/rules/types/web/**` | `kuat-docs/rules/scenarios/**` | Keep local scenarios only when they add Kuat-specific implementation context; otherwise reference upstream task loading. |
+| Brand/design/content foundations | `external/kuat-agent-rules/reference/{brand,design-language,content,accessibility}/**` | [`kuat-docs/rules/README.md`](../rules/README.md) | Upstream is canonical. This repo uses one index file plus `external/` links; no per-topic stubs under `rules/design/` or `rules/content/` except README pointers. |
+| Web marketing/product design/content scenarios | `external/kuat-agent-rules/reference/media-types/web-{product,marketing}/**` | `kuat-docs/rules/scenarios/**` | Keep local scenarios only when they add Kuat-specific implementation context; otherwise reference upstream patterns. |
 | Component implementation patterns | Not authoritative for this monorepo | `kuat-docs/rules/components/**`, `contribution-docs/**`, `.cursor/agents/**` | Local is canonical. |
-| Agent load order and conflict policy | `external/kuat-agent-rules/kuat-docs/rules/LOADING.md` | `AGENTS.md` (generated from template) | Use both: upstream first, local overlay second. |
+| Agent load order and conflict policy | `external/kuat-agent-rules/reference/README.md` | `AGENTS.md` (generated from template) | Use both: upstream first, local overlay second. |
 
 ## Authoring policy
 
@@ -26,6 +26,6 @@ When editing local rules:
 
 ## Reference links
 
-- Upstream loading index: `external/kuat-agent-rules/kuat-docs/rules/LOADING.md`
-- Upstream rules index: `external/kuat-agent-rules/kuat-docs/rules/README.md`
+- Upstream reference index: `external/kuat-agent-rules/reference/README.md`
+- Upstream old→new path map: `external/kuat-agent-rules/reference/MIGRATION-MAP.md`
 - Local canonical agent rules: `AGENTS.md`

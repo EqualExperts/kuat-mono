@@ -2,13 +2,13 @@
 
 **Package:** @equal-experts/kuat-core (and mirrored in kuat-react / kuat-vue agent-docs)
 
-**Snapshot:** 80317888a539
+**Snapshot:** 67fc215fe87c
 
 ## Default load (web product / marketing UI)
 
-1. `external/kuat-agent-rules/kuat-docs/rules/foundations/` (design, content, brand, logo, accessibility)
-2. `external/kuat-agent-rules/kuat-docs/rules/types/web/product/` — core files + scenarios + content (examples excluded)
-3. `external/kuat-agent-rules/kuat-docs/rules/types/web/marketing/`
+1. `external/kuat-agent-rules/reference/` foundations — `brand/` (brand, logo, voice and tone), `design-language/`, `content/`, `accessibility/`
+2. `external/kuat-agent-rules/reference/media-types/web-product/` — core files + patterns + content (examples excluded)
+3. `external/kuat-agent-rules/reference/media-types/web-marketing/`
 4. `kuat-docs/rules/design/layouts.md` — Kuat layout primitives
 5. `kuat-docs/rules/scenarios/` — Kuat scenario overlays
 6. Component guides on demand: `components/{slug}.md` via `components.manifest.json`
@@ -24,4 +24,4 @@ Set `KUAT_RULES_PATH` to a `kuat-agent-docs` git clone for slides, graphics, and
 ## Related
 
 - [README.md](../README.md)
-- Upstream [LOADING.md](../external/kuat-agent-rules/kuat-docs/rules/LOADING.md)
+- Upstream [reference index](../external/kuat-agent-rules/reference/README.md)

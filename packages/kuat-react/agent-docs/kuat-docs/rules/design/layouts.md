@@ -4,7 +4,7 @@ Reusable layout building blocks for the Kuat Design System. This document define
 
 For scenario-specific guidance (dashboards, authentication, marketing pages), see [Scenarios](../scenarios/).
 
-**Upstream (brand layout scenarios):** Product interfaces and dashboards follow [`types/web/product/design.md`](../../../external/kuat-agent-rules/kuat-docs/rules/types/web/product/design.md). Marketing sites and campaigns follow [`types/web/marketing/website.md`](../../../external/kuat-agent-rules/kuat-docs/rules/types/web/marketing/website.md). This file focuses on **Kuat layout primitives** used in code, not on replacing those scenario guides.
+**Upstream (brand layout patterns):** Product interfaces and dashboards follow [`media-types/web-product/design.md`](../../../external/kuat-agent-rules/reference/media-types/web-product/design.md). Marketing sites and campaigns follow [`media-types/web-marketing/website.md`](../../../external/kuat-agent-rules/reference/media-types/web-marketing/website.md). This file focuses on **Kuat layout primitives** used in code, not on replacing those pattern guides.
 
 ---
 

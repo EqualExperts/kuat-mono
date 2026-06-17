@@ -118,7 +118,7 @@ For `@equal-experts/kuat-core`, expected docs bundle contents include:
 - `agent-docs/kuat-docs/rules/README.md`
 - `agent-docs/kuat-docs/rules/design/layouts.md`
 - `agent-docs/kuat-docs/rules/scenarios/`
-- `agent-docs/external/kuat-agent-rules/kuat-docs/rules/foundations/`
+- `agent-docs/external/kuat-agent-rules/reference/` (brand, design-language, content, accessibility, media-types)
 
 ### 6. Test in a Clean Project
 

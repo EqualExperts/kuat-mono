@@ -88,7 +88,7 @@ Technology-agnostic specifications: **[`rules/README.md`](./rules/README.md)** i
 | [rules/accessibility/](./rules/accessibility/) | WCAG-oriented guides |
 | [rules/scenarios/](./rules/scenarios/) | Page-type patterns |
 
-**Also load:** `external/kuat-agent-rules/kuat-docs/rules/` for full EE text (colours, typography, voice and tone, product/marketing content, …).
+**Also load:** `external/kuat-agent-rules/reference/` for full EE text (colours, typography, voice and tone, product/marketing content, …).
 
 **Key files:**
 - `rules/README.md` - Canonical index

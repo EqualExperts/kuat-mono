@@ -1,6 +1,6 @@
 # kuat-mono overlay loading index
 
-Load **after** upstream `external/kuat-agent-rules/kuat-docs/rules/LOADING.md`.
+Load **after** the upstream `external/kuat-agent-rules/reference/` library (see its [README](../external/kuat-agent-rules/reference/README.md)).
 
 ---
 

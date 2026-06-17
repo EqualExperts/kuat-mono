@@ -2,7 +2,7 @@
 
 ## Load order
 
-1. **Upstream:** `external/kuat-agent-rules` (or `KUAT_RULES_PATH` → `kuat-agent-docs` clone) — [LOADING.md](external/kuat-agent-rules/kuat-docs/rules/LOADING.md)
+1. **Upstream:** `external/kuat-agent-rules` (or `KUAT_RULES_PATH` → `kuat-agent-docs` clone) — [reference/](external/kuat-agent-rules/reference/README.md)
 2. **Overlay:** `kuat-docs/` — layout primitives, scenarios, component guides (`KUAT_RULES_OVERLAY_PATH`)
 3. **Skills:** Symlink `kuat-review` / `kuat-create` from agent-docs repo — [skills/INSTALL.md](https://github.com/equalexperts/kuat-agent-docs/blob/main/skills/INSTALL.md)
 
