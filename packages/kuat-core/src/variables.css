@@ -52,6 +52,7 @@
     --black: oklch(0.0 0.0 0.0); /* #000000 */
     --white: oklch(1.0 0.0 0.0); /* #ffffff */
 
+    /* GENERATED:brand-palettes (from colors.tokens.json — do not hand-edit; run `pnpm tokens:generate`) */
     /* EE Blue palette */
     --ee-blue-50: oklch(0.945 0.028 237.5); /* #e6f5fc */
     --ee-blue-100: oklch(0.885 0.055 237.5); /* #b3e2f7 */
@@ -103,6 +104,7 @@
     --equal-ember-800: oklch(0.325 0.140 65.0); /* #603100 */
     --equal-ember-900: oklch(0.225 0.120 65.0); /* #301900 */
     --equal-ember-950: oklch(0.125 0.100 65.0); /* #180c00 */
+    /* /GENERATED:brand-palettes */
 
     /* Brand color aliases */
     --brand-ee-blue: var(--ee-blue-500);

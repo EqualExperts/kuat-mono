@@ -1,6 +1,10 @@
-# Phase 7 Run B — B2 `generate-tokens` (downstream) — DEFERRED
+# Phase 7 Run B — B2 `generate-tokens` (downstream) — ✅ RESOLVED
 
-**Status:** deferred at the start of Run B (2026-06-17). No code written.
+**Status:** ~~deferred (2026-06-17)~~ → **RESOLVED 2026-06-19.** Run A was synced into `external/`, so the
+token SoT became available and B2 was implemented. See the
+[2026-06-19 B2 entry in LOG.md](LOG.md) and [report-phase-7.md](report-phase-7.md).
+
+> The history below records why it was originally deferred (kept for context).
 
 ## Why deferred
 
