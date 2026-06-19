@@ -3,7 +3,9 @@ node_modules
 .pnp
 .pnpm-store
 .pnp.js
-.claude
+# Ignore local Claude Code settings, but commit repo-local contributor skills.
+.claude/*
+!.claude/skills/
 # Testing
 coverage
 

@@ -14,7 +14,13 @@
     "agent-rules:sync:upstream": "./scripts/agent-rules/sync-upstream.sh",
     "agent-rules:generate": "node ./scripts/agent-rules/generate-entrypoints.mjs",
     "agent-rules:check": "node ./scripts/agent-rules/generate-entrypoints.mjs --check",
-    "agent-rules:sync": "pnpm agent-rules:sync:upstream && pnpm agent-rules:generate"
+    "agent-rules:sync": "pnpm agent-rules:sync:upstream && pnpm agent-rules:generate",
+    "components:registry:generate": "node ./scripts/components/generate-registry.mjs",
+    "components:registry:check": "node ./scripts/components/check-registry.mjs",
+    "components:verify-no-leak": "node ./scripts/components/verify-no-skill-leak.mjs",
+    "tokens:generate": "node ./scripts/tokens/generate-variables.mjs",
+    "tokens:check": "node ./scripts/tokens/generate-variables.mjs --check",
+    "contributor:check": "pnpm components:registry:check && pnpm components:verify-no-leak && pnpm tokens:check"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
