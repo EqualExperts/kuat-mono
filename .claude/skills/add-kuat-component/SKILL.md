@@ -116,5 +116,9 @@ pnpm contributor:check  # registry drift check + no-skill-leak guard both green
 - `pnpm build`, `pnpm test:run`, `pnpm contributor:check` all green.
 - Nothing under `.claude/skills/` reached a package or the bundle (the guard enforces this).
 
+## Related
+
+- Part of the [contribution model](https://github.com/EqualExperts/kuat-agent-rules/blob/main/contribute/overview.md) — this is the **Light/Medium · component** path ([proposing a component](https://github.com/EqualExperts/kuat-agent-rules/blob/main/contribute/proposing-a-component.md)).
+
 ---
 _Phase 7 Run B · contributor skill · v1 (2026-06-17)_

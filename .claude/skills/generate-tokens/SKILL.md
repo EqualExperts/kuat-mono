@@ -66,5 +66,9 @@ source-of-truth**, closing the `#0066CC` drift vector for the CSS.
 - Only the sentinel block is generated; if a brand *scale* is ever added upstream, also extend the
   `@theme inline` brand mappings (hand-owned `var()` indirection) — scale steps are otherwise fixed 50…950.
 
+## Related
+
+- Part of the [contribution model](https://github.com/EqualExperts/kuat-agent-rules/blob/main/contribute/overview.md) — this is the **Medium · token** path (Heavy for token *structure*) ([proposing a token change](https://github.com/EqualExperts/kuat-agent-rules/blob/main/contribute/proposing-a-token-change.md)).
+
 ---
 _Phase 7 Run B · B2 · contributor skill · v1 (2026-06-19)_
