@@ -176,3 +176,48 @@ upstream `generate-tokens.mjs` now present; upstream `colours.md` is now generat
 - **Upstream reconciliation (Run A):** `brand.the-cloud` token is `#f5f5f5` but kuat-core uses
   `slate-100` (`#f1f5f9`); `brand.dark-data` token has hex-only (no oklch). Decide upstream whether the
   tokens or the local mappings are authoritative; until then the alias block stays hand-owned downstream.
+
+---
+
+## 2026-06-23 — Contribution model rollout (kuat-mono half)
+
+**Branch (this repo):** `feature/contribution-model`
+**Brief:** `docs/migration/contribution-model-rollout-prompt.md` · **Model:** `docs/migration/kuat-contribution-model.md`
+**Report:** `docs/migration/report-contribution-model.md`
+
+### Context
+- Publishing the Kuat contribution model (hybrid custodians + federated network; Fix/Light/Medium/Heavy;
+  skill-mediated, gate-enforced). The upstream `kuat-agent-rules` half (`CONTRIBUTING.md`, the `contribute/`
+  section, `AGENTS.md`, 7 skill pointers) was already built on its own `feature/contribution-model` branch;
+  this run is the **kuat-mono half** (deliverables 5 + 6 + skill pointers).
+
+### Decisions
+- **Augment `CONTRIBUTING.md` in place**, don't restructure: a new "How Kuat contributions work" section
+  frames the existing component-build how-to as the model's "Collaborate" step rather than duplicating the
+  canonical model.
+- **Cross-repo links use the upstream GitHub URL on `main`** (`…/kuat-agent-rules/blob/main/contribute/…`) —
+  kuat-mono has no local `contribute/` (the synced `external/` cache is gitignored). These resolve once the
+  upstream PR merges to `main` (merge-ordering dependency, see Follow-ups).
+- **`AGENTS.md` edited directly** (hand-maintained; only `.cursorrules` is generated) — no regeneration needed.
+- **Did not run `build:plugins`** in the sibling (its `plugins/` is tracked, would dirty the tree); confirmed
+  the payload guardrail read-only instead.
+
+### Changes
+- `CONTRIBUTING.md` — new "How Kuat contributions work" section (hybrid model, contribution-vs-participation,
+  four sizes, 5-step process incl. Slack #design-system, `add-kuat-component`/`generate-tokens` paths, canonical link).
+- `AGENTS.md` — new "Contributing" section linking `CONTRIBUTING.md` + upstream `contribute/overview.md`.
+- `.claude/skills/add-kuat-component/SKILL.md` — `## Related` pointer (Light/Medium · component path).
+- `.claude/skills/generate-tokens/SKILL.md` — `## Related` pointer (Medium · token path; Heavy for structure).
+- New `docs/migration/report-contribution-model.md`; this LOG entry.
+
+### Verification
+- `pnpm agent-rules:check` → up to date (AGENTS.md edit didn't desync `.cursorrules`).
+- Upstream `reference:check` → ALL REFERENCE CHECKS PASSED (`contribute/` is outside `reference/`).
+- Upstream `verify:plugins` (read-only, committed payloads) → ALL CHECKS PASSED; distribution guard kept
+  7 repo-local skills out; `find plugins -type d -name contribute` → none (payload dirs are skills/reference/[assets]/commands only).
+
+### Follow-ups
+- **Merge ordering:** the kuat-mono links target upstream `main`; merge the upstream `kuat-agent-rules`
+  contribution-model PR first or together (Phase-1 lockstep convention) so the links resolve.
+- **Deprecation guidelines (Phase-5 fast-follow):** `contribute/deprecation-guidelines.md` stub upstream is
+  designed against the first real case — retiring `kuat-create`/`kuat-review` in Phase 5.

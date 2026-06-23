@@ -28,6 +28,10 @@ Regenerate bundles: `node scripts/agent-docs/bundle-for-core.mjs`
 
 Design/content intent → upstream. Implementation/API/component usage → mono overlay + package component docs.
 
+## Contributing
+
+How to propose, build, review, and release changes to Kuat — the hybrid model, the four sizes (Fix/Light/Medium/Heavy), and a per-surface "Proposing a…" page for each contributor skill + gate — starts at this repo's [CONTRIBUTING.md](CONTRIBUTING.md) (front door; component + token focus) and the canonical [contribute/overview.md](https://github.com/EqualExperts/kuat-agent-rules/blob/main/contribute/overview.md) in kuat-agent-rules (full model). The `contribute/` docs are governance/how-to and sit **outside** the passive `reference/` library, so they are never bundled into a consumer plugin. In this repo the component path is the [`add-kuat-component`](.claude/skills/add-kuat-component/SKILL.md) skill and the downstream token path is [`generate-tokens`](.claude/skills/generate-tokens/SKILL.md).
+
 ---
 
 ## Design-system migration (active)

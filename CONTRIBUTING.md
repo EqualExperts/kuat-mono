@@ -4,6 +4,51 @@ Guide for contributing to the Kuat Design System packages.
 
 ---
 
+## How Kuat contributions work
+
+Kuat is the Equal Experts design system, and anyone across the EE network can improve it. This
+repo (`kuat-mono`) owns the **component library** and the **downstream token CSS**. The full
+model, the per-surface "Proposing a…" pages, and the decision log live in the canonical
+**[contribute/ section in `kuat-agent-rules`](https://github.com/EqualExperts/kuat-agent-rules/blob/main/contribute/overview.md)** — this section is the kuat-mono front door into it.
+
+**Hybrid model.** A small **Kuat design system team** (custodians) owns the sources of truth and
+maintains the tooling, gates, and release cadence. The **wider EE network** (consultants, product
+engineers, designers) does the bulk of the fixes and light additions. Custodians don't build
+everything — they curate, gate, and enable.
+
+**Contribution vs participation.** A *contribution* is code, a design, a doc, or an asset released
+through the system for others to reuse — a new/updated component, a token change, a reference
+pattern. Asking which component to use or giving review feedback is valuable *participation*, but
+not a contribution.
+
+**Sizes** — contributions are sized so the small lane stays fast:
+
+| Size | What | How |
+|------|------|-----|
+| **Fix** | A defect in code, design, doc, or asset | Fast, self-directed via the relevant skill + gate |
+| **Light** | A non-breaking addition (e.g. a new component variant or state) | Mostly autonomous via skill + gate; light custodian touch |
+| **Medium** | Extends an existing feature (e.g. a token-value change affecting consumers) | Proposal + custodian review |
+| **Heavy** | A new component, a breaking change, or a foundational one (e.g. token *structure*) | Custodian-led; proposal kick-off |
+
+**The process** (scales with size):
+
+1. **Request** — start an open conversation in Slack **[#design-system](https://equalexperts.slack.com/archives/C0BCFBB4EK0)**: what problem are you solving? This avoids duplicate work and surfaces existing solutions.
+2. **Proposal kick-off** *(Medium/Heavy only)* — agree scope and delivery with a custodian.
+3. **Collaborate** — do the work **through the matching contributor skill**, not raw files. In this repo:
+   - **Components** → the [`add-kuat-component`](.claude/skills/add-kuat-component/SKILL.md) skill (Light/Medium path) scaffolds React + Vue, a story, tests, the doc, the manifest, the regenerated registry, and the agent-docs bundle. The [Component Decision Tree](#component-decision-tree), [Creating New Components or Blocks](#creating-new-components-or-blocks), and [New Component Checklist](#new-component-checklist) below are the detailed "how" for this step.
+   - **Tokens** → the [`generate-tokens`](.claude/skills/generate-tokens/SKILL.md) skill (Medium path) regenerates the kuat-core `variables.css` brand block from the upstream colour token source-of-truth and runs the drift gate. Colours change **upstream first**, then you sync and regenerate here.
+4. **Review** — the **gates run automatically** (registry + token drift via `pnpm contributor:check`, plus `pnpm build` / `pnpm test:run`, and the upstream passive/link/token gates). Fix/Light can pass on green gates; Medium/Heavy add custodian sign-off. *(Launch posture: custodians review every contribution while the model matures — see the [overview](https://github.com/EqualExperts/kuat-agent-rules/blob/main/contribute/overview.md).)*
+5. **Release** — pinned semver, `beta` → `stable` channels; regenerate the artifacts; communicate the change and log the decision.
+
+**Other surfaces** — reference guidelines, slide assets, icons/imagery, and skills are contributed
+**upstream** in `kuat-agent-rules`. See the full model and per-type pages:
+[overview](https://github.com/EqualExperts/kuat-agent-rules/blob/main/contribute/overview.md) ·
+[component](https://github.com/EqualExperts/kuat-agent-rules/blob/main/contribute/proposing-a-component.md) ·
+[token change](https://github.com/EqualExperts/kuat-agent-rules/blob/main/contribute/proposing-a-token-change.md) ·
+[reference change](https://github.com/EqualExperts/kuat-agent-rules/blob/main/contribute/proposing-a-reference-change.md).
+
+---
+
 ## Quick Start
 
 ### Prerequisites
