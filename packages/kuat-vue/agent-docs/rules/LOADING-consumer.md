@@ -2,7 +2,7 @@
 
 **Package:** @equal-experts/kuat-core (and mirrored in kuat-react / kuat-vue agent-docs)
 
-**Snapshot:** 07fc6874aff0
+**Snapshot:** 538afc80d437
 
 ## Default load (web product / marketing UI)
 

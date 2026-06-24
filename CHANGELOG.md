@@ -2,6 +2,20 @@
 
 All notable changes to the published Kuat packages are documented in this file.
 
+## Pre-release 0.14.0-beta.0 - 2026-06-24
+
+### Affected packages
+- @equal-experts/kuat-core@0.14.0-beta.0
+- @equal-experts/kuat-react@0.14.0-beta.0
+- @equal-experts/kuat-vue@0.14.0-beta.0
+
+### Notes
+- Beta published under the npm `beta` dist-tag for consumer testing. The `latest` tag remains 0.13.1; testers opt in with `@beta` or the exact version.
+
+### Changed
+- Regenerated consumer `agent-docs/` bundles to the new upstream `reference/` layout (Phase 1b).
+- kuat-core: brand-colour block in `variables.css` regenerated from the token source-of-truth (Phase 7).
+
 ## Multi-package release - 2026-05-18
 
 ### Affected packages
