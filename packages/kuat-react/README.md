@@ -124,63 +124,52 @@ import { KuatCarousel } from '@equal-experts/kuat-react/kuat-carousel';
 
 ## Recommended setup
 
-### 1. Tailwind
+### 1. Tailwind v4 + Kuat tokens (CSS-first)
 
-```typescript
-// tailwind.config.ts
-import type { Config } from 'tailwindcss';
-import kuatPreset from '@equal-experts/kuat-core';
-
-export default {
-  presets: [kuatPreset],
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@equal-experts/kuat-react/**/*.{js,ts,jsx,tsx}',
-  ],
-} satisfies Config;
-```
-
-### 2. Tailwind runtime stylesheet (required for Tailwind v4)
-
-Create a global stylesheet and load Tailwind:
+Add the Tailwind v4 plugin to your build (e.g. `@tailwindcss/vite`), then create
+a global stylesheet that imports Tailwind and the Kuat tokens. The tokens must
+be pulled in **through Tailwind** (a CSS `@import`) so the `@theme` block in
+`variables.css` is processed and the token utilities (`bg-primary`,
+`text-foreground`, `rounded-lg`, …) are generated:
 
 ```css
-/* src/tailwind.css */
+/* src/index.css */
+@import "@equal-experts/kuat-core/fonts.css"; /* fonts; or a <link> — see kuat-core README */
 @import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
 ```
 
-### 3. Design tokens and Kuat styles (once per app entrypoint)
+> A plain JS `import "@equal-experts/kuat-core/variables.css"` loads the raw
+> variables but does **not** feed the `@theme` block to Tailwind, so the token
+> utilities never generate (with no error). Always `@import` the tokens through
+> Tailwind, as above.
+>
+> The legacy JS preset (`presets: [kuatPreset]`) is **deprecated** and is not
+> auto-loaded by Tailwind v4 — don't use it. See the kuat-core README.
+
+### 2. Component styles (once per app entrypoint)
+
+Kuat component CSS is pre-compiled, so a JS import is correct here:
 
 ```typescript
 // main.tsx
-import '@equal-experts/kuat-core/variables.css';
-import '@equal-experts/kuat-react/styles';
-import './tailwind.css';
-import './app.css';
+import '@equal-experts/kuat-react/styles'; // pre-compiled component CSS
+import './index.css';                       // Tailwind + Kuat tokens (from step 1)
+import './app.css';                          // your app styles, last
 ```
 
-Import order matters: load Kuat tokens and Kuat styles before app-specific styles.
+Import order matters: load Kuat styles before app-specific styles.
 
 If you scaffolded from a starter template (for example Vite), remove or neutralize template CSS that resets fonts/layout globally (for example `src/index.css` with `:root { font: ... }`, `body { ... }`, `#root { ... }`). These rules can override Kuat typography and spacing.
 
-Typical cleanup for a smoke setup:
-
-```typescript
-// Keep in main.tsx
-import '@equal-experts/kuat-core/variables.css';
-import '@equal-experts/kuat-react/styles';
-import './tailwind.css';
-// Remove template global CSS import if it overrides root/body fonts or layout
-```
-
-### 4. shadcn for gaps only
+### 3. shadcn for gaps only
 
 ```bash
 npx shadcn@latest init
 npx shadcn@latest add dialog dropdown-menu   # examples — skip `button` if you use Kuat Button
 ```
 
-### 5. Use Kuat + shadcn together
+### 4. Use Kuat + shadcn together
 
 ```tsx
 import { Button, ButtonGroup, Field } from '@equal-experts/kuat-react';
@@ -242,7 +231,7 @@ Use this quick smoke test after installation to verify imports, styles, and Tail
 ### 1. Add a smoke component
 
 ```tsx
-import { Button, Field, KuatCarousel, KuatCarouselContent, KuatCarouselItem } from '@equal-experts/kuat-react';
+import { Button, Field, FieldLabel, Input, KuatCarousel, KuatCarouselContent, KuatCarouselItem } from '@equal-experts/kuat-react';
 
 export function KuatInstallSmoke() {
   return (
@@ -250,8 +239,8 @@ export function KuatInstallSmoke() {
       <h1 className="text-4xl font-bold">Kuat install smoke test</h1>
 
       <Field>
-        <label htmlFor="name">Name</label>
-        <input id="name" placeholder="Test input" />
+        <FieldLabel htmlFor="name">Name</FieldLabel>
+        <Input id="name" placeholder="Test input" />
       </Field>
 
       <Button variant="primary">Primary action</Button>

@@ -81,6 +81,7 @@ export default defineConfig({
 
 ```css
 /* src/index.css — your Tailwind entry, processed by the plugin above */
+@import "@equal-experts/kuat-core/fonts.css"; /* Lexend/Lora/JetBrains Mono — first, or use a <link> */
 @import "tailwindcss";
 @import "@equal-experts/kuat-core/variables.css";
 ```
@@ -146,10 +147,27 @@ document.documentElement.style.setProperty('--primary', 'your-value');
 
 ---
 
+## Fonts
+
+The Kuat type stack (Lexend / Lora / JetBrains Mono) ships as a separate
+import so its remote `@import` can sit at the very top of your bundle:
+
+- **Using `@equal-experts/kuat-react` or `@equal-experts/kuat-vue`?** Fonts load
+  automatically via the package stylesheet — nothing to do.
+- **Using `kuat-core` only?** Add `@import "@equal-experts/kuat-core/fonts.css"`
+  **first** (before `@import "tailwindcss"`), as in the Vite recipe above, or
+  drop a `<link>` to the same Google Fonts URL in your HTML `<head>`.
+
+`variables.css` deliberately carries no remote `@import`, so importing it
+through Tailwind never triggers an `@import`-ordering warning.
+
+---
+
 ## Framework Integration Examples
 
 All frameworks use the same CSS-first wiring: add the Tailwind v4 plugin to
-your build, then `@import` Tailwind and the Kuat tokens in your entry CSS.
+your build, then `@import` Tailwind and the Kuat tokens in your entry CSS
+(plus the fonts import — see [Fonts](#fonts)).
 
 ### Next.js (App Router)
 

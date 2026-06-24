@@ -9,7 +9,9 @@ import { cn } from "@/lib/utils"
 import "./carousel.css"
 
 type CarouselApi = UseEmblaCarouselType[1]
-type CarouselOptions = UseEmblaCarouselType[0]
+// useEmblaCarousel(options, plugins): options is the first parameter, not
+// UseEmblaCarouselType[0] (which is the viewport ref of the *return* tuple).
+type CarouselOptions = Parameters<typeof useEmblaCarousel>[0]
 type CarouselPlugins = Parameters<typeof useEmblaCarousel>[1]
 type CarouselOrientation = "horizontal" | "vertical"
 
