@@ -4,7 +4,7 @@ Rules for this install live under `agent-docs/` in `@equal-experts/kuat-core`, `
 
 1. Run `ensure-rules.sh` from kuat-agent-docs skills (symlinked) — expect `RULES_SOURCE=package` when cwd has node_modules.
 2. Load `agent-docs/rules/LOADING-consumer.md`.
-3. Load component guides via `agent-docs/components.manifest.json`.
+3. Load component guides via `agent-docs/components/components.manifest.json`.
 4. Skills: `kuat-review`, `kuat-create` from [kuat-agent-docs](https://github.com/equalexperts/kuat-agent-docs).
 
-**Version:** 0.14.0-beta.0 · **Rules snapshot:** 538afc80d437
+**Version:** 0.14.0-beta.0 · **Rules snapshot:** d5faaaa02f5b

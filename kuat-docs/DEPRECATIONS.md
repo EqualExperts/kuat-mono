@@ -14,6 +14,21 @@ Audit for redundant guides after multi-entry rules architecture.
 
 ---
 
+## Package / API deprecations
+
+| API | Deprecated in | Removal target | Replacement |
+|-----|---------------|----------------|-------------|
+| `@equal-experts/kuat-core` default export — the Tailwind JS preset (`tailwind.config.ts`, also exported as `./tailwind-preset`) | 0.14.0-beta (2026-06-24) | Next major (`1.0.0`) | CSS-first: `@import "tailwindcss"; @import "@equal-experts/kuat-core/variables.css";` — the `@theme` block in `variables.css` registers the token utilities |
+
+**Why:** the JS preset predates the move to OKLCH color tokens. It wrapped tokens in `hsl(var(--token))`, which is invalid against OKLCH values and is silently dropped by the browser. Tailwind v4 also does not auto-load JS configs. The preset now references `var(--token)` directly so it still works for consumers loading it via Tailwind's `@config` directive, and stays exported for backward compatibility until the next major.
+
+**Keep in sync (remove together when the export is dropped):**
+- `@deprecated` JSDoc in `packages/kuat-core/tailwind.config.ts`
+- README "Usage Patterns" / "Extending the Theme" / "API Reference" deprecation notes in `packages/kuat-core/README.md`
+- this row
+
+---
+
 ## Intentional mirrors (not deprecated)
 
 | Path | Role |

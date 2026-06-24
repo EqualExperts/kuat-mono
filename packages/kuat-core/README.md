@@ -7,7 +7,7 @@ Core design tokens and CSS variables for the Kuat Design System by Equal Experts
 `@equal-experts/kuat-core` provides framework-agnostic design tokens that can be used with any JavaScript framework or vanilla CSS. It includes:
 
 - **CSS Variables** - All design tokens as CSS custom properties
-- **Tailwind CSS Preset** - Pre-configured theme extensions for Tailwind CSS v4
+- **Tailwind v4 `@theme` tokens** - Design-token utilities (`bg-primary`, `rounded-lg`, …) via a single CSS import
 - **Dark Mode Support** - Automatic light/dark mode via the `.dark` class
 
 ### Bundled agent docs
@@ -44,41 +44,50 @@ yarn add @equal-experts/kuat-core
 
 ### Peer Dependencies
 
-If using the Tailwind CSS preset, you'll need Tailwind CSS v4:
+For the Tailwind v4 setup, you'll need Tailwind CSS v4 and its build plugin:
 
 ```bash
 pnpm add -D tailwindcss@^4.0.0 @tailwindcss/vite
 ```
 
+(Use `@tailwindcss/postcss` instead of `@tailwindcss/vite` for PostCSS-based builds.)
+
 ---
 
 ## Usage Patterns
 
-### 1. With Tailwind CSS (Recommended)
+### 1. With Tailwind CSS v4 (Recommended)
 
-The recommended approach is to use kuat-core as a Tailwind CSS preset.
+kuat-core is built for Tailwind v4's CSS-first config. Import the tokens into
+your Tailwind entry CSS — the `@theme` block in `variables.css` registers the
+design-token utilities (`bg-primary`, `text-foreground`, `rounded-lg`, …). No
+JavaScript `tailwind.config` or preset is required.
 
-#### Step 1: Configure Tailwind
-
-```typescript
-// tailwind.config.ts
-import type { Config } from 'tailwindcss';
-import kuatPreset from '@equal-experts/kuat-core';
-
-export default {
-  presets: [kuatPreset],
-  content: [
-    './src/**/*.{html,js,ts,jsx,tsx,vue,svelte}',
-  ],
-} satisfies Config;
-```
-
-#### Step 2: Import CSS Variables
+#### Step 1: Add the Tailwind plugin to your build
 
 ```typescript
-// main.ts or app entry point
-import '@equal-experts/kuat-core/variables.css';
+// vite.config.ts
+import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
+
+export default defineConfig({
+  plugins: [tailwindcss()],
+});
 ```
+
+(For PostCSS-based setups, use `@tailwindcss/postcss` instead.)
+
+#### Step 2: Import Tailwind and the Kuat tokens in your CSS
+
+```css
+/* src/index.css — your Tailwind entry, processed by the plugin above */
+@import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
+```
+
+> Import the tokens **through Tailwind** (a CSS `@import`), not as a JS
+> side-effect `import "...variables.css"`. The `@theme` block only registers
+> utilities when Tailwind processes the file.
 
 #### Step 3: Use Design Tokens
 
@@ -89,6 +98,12 @@ import '@equal-experts/kuat-core/variables.css';
   </button>
 </div>
 ```
+
+> **Deprecated:** earlier versions documented a JS preset
+> (`presets: [kuatPreset]`). Tailwind v4 does not auto-load JS configs and the
+> tokens are now OKLCH values, so the preset is deprecated — prefer the
+> CSS-first setup above. See
+> [DEPRECATIONS](https://github.com/equalexperts/kuat-mono/blob/master/kuat-docs/DEPRECATIONS.md).
 
 ### 2. CSS Variables Only (Vanilla JS / Any Framework)
 
@@ -133,25 +148,19 @@ document.documentElement.style.setProperty('--primary', 'your-value');
 
 ## Framework Integration Examples
 
+All frameworks use the same CSS-first wiring: add the Tailwind v4 plugin to
+your build, then `@import` Tailwind and the Kuat tokens in your entry CSS.
+
 ### Next.js (App Router)
 
-```typescript
-// tailwind.config.ts
-import type { Config } from 'tailwindcss';
-import kuatPreset from '@equal-experts/kuat-core';
-
-export default {
-  presets: [kuatPreset],
-  content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-  ],
-} satisfies Config;
+```css
+/* app/globals.css */
+@import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
 ```
 
-```typescript
+```tsx
 // app/layout.tsx
-import '@equal-experts/kuat-core/variables.css';
 import './globals.css';
 
 export default function RootLayout({ children }) {
@@ -177,29 +186,23 @@ export default defineConfig({
 });
 ```
 
-```typescript
-// main.ts
-import '@equal-experts/kuat-core/variables.css';
-import './style.css';
+```css
+/* src/style.css — imported from your entry (e.g. main.ts) */
+@import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
 ```
 
 ### SvelteKit
 
-```typescript
-// tailwind.config.ts
-import type { Config } from 'tailwindcss';
-import kuatPreset from '@equal-experts/kuat-core';
-
-export default {
-  presets: [kuatPreset],
-  content: ['./src/**/*.{html,js,svelte,ts}'],
-} satisfies Config;
+```css
+/* src/app.css */
+@import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
 ```
 
 ```svelte
 <!-- src/routes/+layout.svelte -->
 <script>
-  import '@equal-experts/kuat-core/variables.css';
   import '../app.css';
 </script>
 
@@ -210,21 +213,16 @@ export default {
 
 ### Astro
 
-```typescript
-// tailwind.config.ts
-import type { Config } from 'tailwindcss';
-import kuatPreset from '@equal-experts/kuat-core';
-
-export default {
-  presets: [kuatPreset],
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-} satisfies Config;
+```css
+/* src/styles/global.css */
+@import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
 ```
 
 ```astro
 ---
 // src/layouts/Layout.astro
-import '@equal-experts/kuat-core/variables.css';
+import '../styles/global.css';
 ---
 
 <!DOCTYPE html>
@@ -241,21 +239,10 @@ import '@equal-experts/kuat-core/variables.css';
 
 ### Angular
 
-```typescript
-// angular.json - add to styles array
-{
-  "styles": [
-    "node_modules/@equal-experts/kuat-core/src/variables.css",
-    "src/styles.css"
-  ]
-}
-```
-
 ```css
 /* src/styles.css */
 @import 'tailwindcss';
-
-/* Your custom styles */
+@import '@equal-experts/kuat-core/variables.css';
 ```
 
 ---
@@ -376,29 +363,25 @@ Override any design token in your own CSS:
 }
 ```
 
-### Extending the Tailwind Preset
+### Extending the Theme
 
-```typescript
-// tailwind.config.ts
-import type { Config } from 'tailwindcss';
-import kuatPreset from '@equal-experts/kuat-core';
+Add your own tokens alongside Kuat's in your Tailwind entry CSS using a
+`@theme` block:
 
-export default {
-  presets: [kuatPreset],
-  content: ['./src/**/*.{html,js,ts,jsx,tsx}'],
-  theme: {
-    extend: {
-      // Add your own extensions
-      colors: {
-        custom: 'var(--custom-color)',
-      },
-      spacing: {
-        '18': '4.5rem',
-      },
-    },
-  },
-} satisfies Config;
+```css
+@import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
+
+@theme {
+  --color-custom: var(--custom-color);
+  --spacing-18: 4.5rem;
+}
 ```
+
+> **Deprecated:** the JS preset (`presets: [kuatPreset]`) is deprecated in
+> favour of the CSS-first setup above. It is still exported for backward
+> compatibility (load it via Tailwind's `@config` directive) but will be
+> removed in a future major release.
 
 ---
 
@@ -419,9 +402,9 @@ These packages include kuat-core internally, so you don't need to install it sep
 
 | Export Path | Description |
 |-------------|-------------|
-| `@equal-experts/kuat-core` | Tailwind CSS preset (default export) |
-| `@equal-experts/kuat-core/variables.css` | CSS variables file |
-| `@equal-experts/kuat-core/tailwind-preset` | Alias for Tailwind preset |
+| `@equal-experts/kuat-core/variables.css` | CSS variables + Tailwind v4 `@theme` tokens — **import this** |
+| `@equal-experts/kuat-core` | Tailwind CSS preset (default export) — **deprecated**, prefer the CSS-first setup |
+| `@equal-experts/kuat-core/tailwind-preset` | Alias for the deprecated Tailwind preset |
 
 ### CSS Variables
 
@@ -433,9 +416,9 @@ All CSS variables are defined in the `:root` selector and scoped dark mode varia
 
 ### Styles Not Applying
 
-1. **Check CSS import order**: Import `variables.css` before your own styles
-2. **Verify Tailwind config**: Ensure the preset is included in `presets` array
-3. **Check content paths**: Make sure your files are included in Tailwind's `content` array
+1. **Import tokens through Tailwind**: `@import "@equal-experts/kuat-core/variables.css"` must live in the CSS that Tailwind processes (the file with `@import "tailwindcss"`), not a JS `import`. Otherwise the `@theme` block never registers the token utilities.
+2. **Check the Tailwind plugin**: ensure `@tailwindcss/vite` (or `@tailwindcss/postcss`) is wired into your build.
+3. **Not using the JS preset?** The `presets: [kuatPreset]` approach is deprecated and not auto-loaded by Tailwind v4 — use the CSS-first setup.
 
 ### Dark Mode Not Working
 
