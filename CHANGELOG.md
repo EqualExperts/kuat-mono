@@ -2,6 +2,25 @@
 
 All notable changes to the published Kuat packages are documented in this file.
 
+## Pre-release 0.14.0-beta.1 - 2026-06-25
+
+### Affected packages
+- @equal-experts/kuat-core@0.14.0-beta.1
+- @equal-experts/kuat-react@0.14.0-beta.1
+- @equal-experts/kuat-vue@0.14.0-beta.1
+
+### Notes
+- Second beta under the npm `beta` dist-tag; `latest` remains 0.13.1. Hardening from the consumer beta-setup field report.
+
+### Fixed
+- Dark-mode foreground/surface tokens that rendered invisible text (card, accent, muted, and sidebar accent/primary). Added a WCAG AA contrast guardrail (`pnpm tokens:contrast-check`) to the contributor gate.
+- `CarouselProps['opts']` was typed as the Embla viewport ref instead of the options object, breaking `opts={{ loop: true }}`.
+- Build warning from the Google Fonts `@import` inside `variables.css` — fonts moved to `@equal-experts/kuat-core/fonts.css` (loaded first; component packages still ship fonts out of the box).
+
+### Changed
+- Tailwind v4 CSS-first is now the documented/recommended setup across the package READMEs, agent-docs, and `kuat-docs/setup` guides; the JS preset (`presets: [kuatPreset]`) is deprecated.
+- kuat-react README gains an accurate per-component peer-dependency matrix.
+
 ## Pre-release 0.14.0-beta.0 - 2026-06-24
 
 ### Affected packages
