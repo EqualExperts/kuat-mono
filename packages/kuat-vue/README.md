@@ -117,50 +117,49 @@ import { KuatCarousel } from '@equal-experts/kuat-vue';
 
 ## Recommended setup
 
-### 1. Tailwind
+### 1. Tailwind v4 + Kuat tokens (CSS-first)
 
-```typescript
-// tailwind.config.ts
-import type { Config } from 'tailwindcss';
-import kuatPreset from '@equal-experts/kuat-core';
-
-export default {
-  presets: [kuatPreset],
-  content: [
-    './src/**/*.{vue,js,ts}',
-    './node_modules/@equal-experts/kuat-vue/**/*.{vue,js,ts}',
-  ],
-} satisfies Config;
-```
-
-### 2. Tailwind runtime stylesheet (required for Tailwind v4)
-
-Create a global stylesheet and load Tailwind:
+Add the Tailwind v4 plugin to your build (e.g. `@tailwindcss/vite`), then create
+a global stylesheet that imports Tailwind and the Kuat tokens. The tokens must
+be pulled in **through Tailwind** (a CSS `@import`) so the `@theme` block in
+`variables.css` is processed and the token utilities (`bg-primary`,
+`text-foreground`, `rounded-lg`, …) are generated:
 
 ```css
-/* src/tailwind.css */
+/* src/index.css */
+@import "@equal-experts/kuat-core/fonts.css"; /* fonts; or a <link> — see kuat-core README */
 @import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
 ```
 
-### 3. Design tokens and Kuat styles
+> A plain JS `import "@equal-experts/kuat-core/variables.css"` loads the raw
+> variables but does **not** feed the `@theme` block to Tailwind, so the token
+> utilities never generate (with no error). Always `@import` the tokens through
+> Tailwind, as above.
+>
+> The legacy JS preset (`presets: [kuatPreset]`) is **deprecated** and is not
+> auto-loaded by Tailwind v4 — don't use it. See the kuat-core README.
+
+### 2. Component styles (once per app entrypoint)
+
+Kuat component CSS is pre-compiled, so a JS import is correct here:
 
 ```typescript
 // main.ts
-import '@equal-experts/kuat-core/variables.css';
-import '@equal-experts/kuat-vue/styles';
-import './tailwind.css';
+import '@equal-experts/kuat-vue/styles'; // pre-compiled component CSS
+import './index.css';                     // Tailwind + Kuat tokens (from step 1)
 ```
 
 If you scaffolded from a starter template (for example Vite), remove or neutralize template CSS that resets fonts/layout globally (for example `src/style.css` with `:root { font: ... }`, `body { ... }`, `#app { ... }`). These rules can override Kuat typography and spacing.
 
-### 4. shadcn-vue for gaps
+### 3. shadcn-vue for gaps
 
 ```bash
 npx shadcn-vue@latest init
 npx shadcn-vue@latest add dialog dropdown-menu
 ```
 
-### 5. Use Kuat + shadcn-vue together
+### 4. Use Kuat + shadcn-vue together
 
 ```vue
 <script setup lang="ts">
@@ -228,6 +227,8 @@ Use this quick smoke test after installation to verify imports, styles, and Tail
 import {
   Button,
   Field,
+  FieldLabel,
+  Input,
   KuatCarousel,
   KuatCarouselContent,
   KuatCarouselItem,
@@ -241,8 +242,8 @@ import {
     <h1 class="text-4xl font-bold">Kuat install smoke test</h1>
 
     <Field>
-      <label for="name">Name</label>
-      <input id="name" placeholder="Test input" />
+      <FieldLabel for="name">Name</FieldLabel>
+      <Input id="name" placeholder="Test input" />
     </Field>
 
     <Button variant="primary">Primary action</Button>

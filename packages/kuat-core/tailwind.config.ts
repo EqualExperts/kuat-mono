@@ -1,27 +1,31 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Kuat Design System - Tailwind CSS Preset
+ * Kuat Design System - Tailwind CSS Preset (legacy)
  *
- * This configuration provides the Equal Experts design tokens as Tailwind CSS
- * theme extensions. Use it as a preset in your tailwind.config.ts file.
+ * @deprecated Prefer the Tailwind v4 CSS-first setup. Import the tokens into
+ * your Tailwind entry CSS so the `@theme` block in `variables.css` registers
+ * the design-token utilities for you — no JS config required:
  *
- * ## Usage as a Preset
- *
- * ```ts
- * // tailwind.config.ts
- * import kuatPreset from '@equal-experts/kuat-core';
- *
- * export default {
- *   presets: [kuatPreset],
- *   content: ['./src/**\/*.{html,js,ts,jsx,tsx,vue,svelte}'],
- * } satisfies Config;
+ * ```css
+ * @import "tailwindcss";
+ * @import "@equal-experts/kuat-core/variables.css";
  * ```
+ *
+ * This JS preset predates the move to OKLCH color tokens. It is kept as the
+ * package's default export for backward compatibility (e.g. consumers loading
+ * it via Tailwind's `@config` directive). It now references the raw token
+ * custom properties directly (`var(--primary)`) rather than wrapping them in
+ * `hsl(...)`, which produced invalid colors against the current OKLCH tokens.
+ * It will be removed in a future major release.
+ *
+ * See README "Usage Patterns" and `kuat-docs/DEPRECATIONS.md`.
  *
  * ## Important: CSS Variables Required
  *
  * This preset references CSS variables defined in `variables.css`. You must
- * import the CSS variables in your application entry point:
+ * import them in your application (via the CSS `@import` above, or
+ * `import '@equal-experts/kuat-core/variables.css'` for the raw variables):
  *
  * ```ts
  * import '@equal-experts/kuat-core/variables.css';
@@ -68,6 +72,9 @@ const config: Config = {
        * These colors reference CSS custom properties defined in variables.css.
        * They automatically adapt to light/dark mode via the `.dark` class.
        *
+       * Tokens resolve to OKLCH color values (see variables.css), so they are
+       * referenced directly via `var(--token)` — do NOT wrap them in `hsl()`.
+       *
        * Brand colors available via variables.css:
        * - EE Blue (#1795d4) - Primary brand color
        * - Tech Blue (#22567c) - Technical/professional contexts
@@ -76,68 +83,68 @@ const config: Config = {
        */
       colors: {
         /** Page background color */
-        background: "hsl(var(--background))",
+        background: "var(--background)",
         /** Primary text color */
-        foreground: "hsl(var(--foreground))",
+        foreground: "var(--foreground)",
 
         /** Card/surface colors */
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
         },
 
         /** Popover/dropdown colors */
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "var(--popover)",
+          foreground: "var(--popover-foreground)",
         },
 
         /** Primary action colors (EE Blue) */
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "var(--primary)",
+          foreground: "var(--primary-foreground)",
         },
 
         /** Secondary action colors (Transform Teal) */
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "var(--secondary)",
+          foreground: "var(--secondary-foreground)",
         },
 
         /** Muted/disabled state colors */
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "var(--muted)",
+          foreground: "var(--muted-foreground)",
         },
 
         /** Accent/highlight colors */
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "var(--accent)",
+          foreground: "var(--accent-foreground)",
         },
 
         /** Destructive/error action colors */
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "var(--destructive)",
+          foreground: "var(--destructive-foreground)",
         },
 
         /** Border color for dividers and outlines */
-        border: "hsl(var(--border))",
+        border: "var(--border)",
 
         /** Input field background color */
-        input: "hsl(var(--input))",
+        input: "var(--input)",
 
         /** Focus ring color */
-        ring: "hsl(var(--ring))",
+        ring: "var(--ring)",
 
         /** Chart/data visualization colors */
         chart: {
-          "1": "hsl(var(--chart-1))",
-          "2": "hsl(var(--chart-2))",
-          "3": "hsl(var(--chart-3))",
-          "4": "hsl(var(--chart-4))",
-          "5": "hsl(var(--chart-5))",
+          "1": "var(--chart-1)",
+          "2": "var(--chart-2)",
+          "3": "var(--chart-3)",
+          "4": "var(--chart-4)",
+          "5": "var(--chart-5)",
         },
       },
 

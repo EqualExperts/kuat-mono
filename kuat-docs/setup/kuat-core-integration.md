@@ -2,12 +2,27 @@
 
 This guide covers using `@equal-experts/kuat-core` design tokens. This is the foundation of the Kuat Design System and works with any framework.
 
+> **Tailwind v4 is CSS-first.** Import the tokens through Tailwind so the
+> `@theme` block in `variables.css` generates the utilities:
+>
+> ```css
+> @import "@equal-experts/kuat-core/fonts.css";
+> @import "tailwindcss";
+> @import "@equal-experts/kuat-core/variables.css";
+> ```
+>
+> The legacy JS preset (`presets: [kuatPreset]`) is **deprecated** and not
+> auto-loaded by v4. The canonical, maintained setup lives in the package
+> READMEs ([kuat-core](../../packages/kuat-core/README.md),
+> [kuat-react](../../packages/kuat-react/README.md),
+> [kuat-vue](../../packages/kuat-vue/README.md)); this guide mirrors them.
+
 ## Overview
 
 `@equal-experts/kuat-core` provides:
 
 - **CSS Variables** - All design tokens as CSS custom properties
-- **Tailwind CSS Preset** - Pre-configured theme extensions
+- **Tailwind v4 `@theme` tokens** - Design-token utilities via a CSS import
 - **Dark Mode Support** - Automatic light/dark mode via `.dark` class
 
 ---
@@ -35,19 +50,11 @@ npx shadcn@latest init
 npx shadcn@latest add button dialog
 ```
 
-```typescript
-// tailwind.config.ts
-import kuatPreset from '@equal-experts/kuat-core';
-
-export default {
-  presets: [kuatPreset],
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
-};
-```
-
-```typescript
-// main.tsx - Import design tokens
-import '@equal-experts/kuat-core/variables.css';
+```css
+/* src/index.css — add @tailwindcss/vite to your build first */
+@import "@equal-experts/kuat-core/fonts.css";
+@import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
 ```
 
 Components installed via shadcn CLI will automatically use Kuat's brand colors, typography, and spacing.
@@ -79,29 +86,22 @@ pnpm add -D tailwindcss@^4.0.0 @tailwindcss/vite
 
 ## Integration Patterns
 
-### Tailwind CSS (Any Framework)
+### Tailwind CSS v4 (Any Framework)
 
-The recommended approach is to use kuat-core as a Tailwind preset.
+**Step 1: Add the Tailwind v4 plugin** to your build (`@tailwindcss/vite`, or `@tailwindcss/postcss`).
 
-**Step 1: Configure Tailwind**
+**Step 2: Import Tailwind and the Kuat tokens in your entry CSS**
 
-```typescript
-// tailwind.config.ts
-import type { Config } from 'tailwindcss';
-import kuatPreset from '@equal-experts/kuat-core';
-
-export default {
-  presets: [kuatPreset],
-  content: ['./src/**/*.{html,js,ts,jsx,tsx,vue,svelte,astro}'],
-} satisfies Config;
+```css
+/* src/index.css */
+@import "@equal-experts/kuat-core/fonts.css";
+@import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
 ```
 
-**Step 2: Import CSS Variables**
-
-```typescript
-// main.ts or app entry point
-import '@equal-experts/kuat-core/variables.css';
-```
+Pull the tokens in **through Tailwind** (a CSS `@import`) so the `@theme` block
+in `variables.css` registers the token utilities. A plain JS
+`import "…/variables.css"` loads the raw variables but won't generate utilities.
 
 **Step 3: Use Design Tokens**
 
@@ -165,25 +165,17 @@ document.documentElement.style.setProperty('--primary', 'oklch(0.6 0.2 250)');
 
 ### Next.js (App Router)
 
-**tailwind.config.ts**
+**app/globals.css**
 
-```typescript
-import type { Config } from 'tailwindcss';
-import kuatPreset from '@equal-experts/kuat-core';
-
-export default {
-  presets: [kuatPreset],
-  content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-} satisfies Config;
+```css
+@import "@equal-experts/kuat-core/fonts.css";
+@import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
 ```
 
 **app/layout.tsx**
 
 ```tsx
-import '@equal-experts/kuat-core/variables.css';
 import './globals.css';
 
 export default function RootLayout({
@@ -206,8 +198,7 @@ export default function RootLayout({
 **pages/_app.tsx**
 
 ```tsx
-import '@equal-experts/kuat-core/variables.css';
-import '../styles/globals.css';
+import '../styles/globals.css'; // @import "tailwindcss" + Kuat tokens (see App Router globals.css)
 import type { AppProps } from 'next/app';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -233,12 +224,19 @@ export default defineConfig({
 });
 ```
 
+**src/index.css**
+
+```css
+@import "@equal-experts/kuat-core/fonts.css";
+@import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
+```
+
 **src/main.tsx**
 
 ```tsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import '@equal-experts/kuat-core/variables.css';
 import './index.css';
 import App from './App';
 
@@ -251,23 +249,18 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 ### SvelteKit
 
-**tailwind.config.ts**
+**src/app.css**
 
-```typescript
-import type { Config } from 'tailwindcss';
-import kuatPreset from '@equal-experts/kuat-core';
-
-export default {
-  presets: [kuatPreset],
-  content: ['./src/**/*.{html,js,svelte,ts}'],
-} satisfies Config;
+```css
+@import "@equal-experts/kuat-core/fonts.css";
+@import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
 ```
 
 **src/routes/+layout.svelte**
 
 ```svelte
 <script>
-  import '@equal-experts/kuat-core/variables.css';
   import '../app.css';
 </script>
 
@@ -296,23 +289,18 @@ export default {
 
 ### Astro
 
-**tailwind.config.ts**
+**src/styles/global.css**
 
-```typescript
-import type { Config } from 'tailwindcss';
-import kuatPreset from '@equal-experts/kuat-core';
-
-export default {
-  presets: [kuatPreset],
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-} satisfies Config;
+```css
+@import "@equal-experts/kuat-core/fonts.css";
+@import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
 ```
 
 **src/layouts/Layout.astro**
 
 ```astro
 ---
-import '@equal-experts/kuat-core/variables.css';
 import '../styles/global.css';
 
 interface Props {
@@ -347,7 +335,6 @@ const { title } = Astro.props;
         "build": {
           "options": {
             "styles": [
-              "node_modules/@equal-experts/kuat-core/src/variables.css",
               "src/styles.css"
             ]
           }
@@ -361,7 +348,9 @@ const { title } = Astro.props;
 **src/styles.css**
 
 ```css
+@import "@equal-experts/kuat-core/fonts.css";
 @import 'tailwindcss';
+@import '@equal-experts/kuat-core/variables.css';
 
 /* Your custom styles */
 ```
@@ -399,11 +388,18 @@ export default defineConfig({
 });
 ```
 
+**src/style.css**
+
+```css
+@import "@equal-experts/kuat-core/fonts.css";
+@import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
+```
+
 **src/main.ts**
 
 ```typescript
 import { createApp } from 'vue';
-import '@equal-experts/kuat-core/variables.css';
 import './style.css';
 import App from './App.vue';
 
@@ -568,9 +564,9 @@ function setTheme(theme: 'light' | 'dark' | 'system') {
 
 ### Styles Not Applying
 
-1. **Check CSS import order**: Import `variables.css` before your own styles
-2. **Verify Tailwind config**: Ensure the preset is included in `presets` array
-3. **Check content paths**: Make sure your files are included in Tailwind's `content` array
+1. **Import tokens through Tailwind**: `@import "@equal-experts/kuat-core/variables.css"` must live in the CSS that Tailwind processes (the file with `@import "tailwindcss"`), not a JS `import` — otherwise the `@theme` block never registers the token utilities
+2. **Check the Tailwind plugin**: ensure `@tailwindcss/vite` (or `@tailwindcss/postcss`) is wired into your build
+3. **Not the JS preset**: `presets: [kuatPreset]` is deprecated and not auto-loaded by Tailwind v4 — use the CSS-first setup
 4. **Clear cache**: Run `rm -rf .turbo node_modules/.cache` and rebuild
 
 ### Dark Mode Not Working
@@ -583,8 +579,7 @@ function setTheme(theme: 'light' | 'dark' | 'system') {
 ### TypeScript Errors
 
 1. **Install types**: Ensure `tailwindcss` is installed for type definitions
-2. **Check import syntax**: Use `import kuatPreset from '@equal-experts/kuat-core'`
-3. **Verify tsconfig**: Ensure `moduleResolution` is set to `bundler` or `node16`
+2. **Verify tsconfig**: Ensure `moduleResolution` is set to `bundler` or `node16`
 
 ### Build Errors
 

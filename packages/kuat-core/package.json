@@ -29,6 +29,10 @@
       "style": "./src/variables.css",
       "default": "./src/variables.css"
     },
+    "./fonts.css": {
+      "style": "./src/fonts.css",
+      "default": "./src/fonts.css"
+    },
     "./button-variables.css": {
       "style": "./src/button-variables.css",
       "default": "./src/button-variables.css"

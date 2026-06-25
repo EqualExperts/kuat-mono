@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "@equal-experts/kuat-core/variables.css";
+// Tokens are imported through Tailwind in index.css (@import) so the @theme
+// block in variables.css registers the design-token utilities.
 import "./index.css";
 import App from "./App";
 

@@ -1,0 +1,18 @@
+/* Kuat web fonts — Lexend (sans), Lora (serif), JetBrains Mono (mono).
+ *
+ * Kept separate from variables.css so this remote @import can sit at the very
+ * top of your bundle. A remote @import that ends up after other rules triggers
+ * a "@import rules must precede all rules" warning and may be dropped by the
+ * bundler — which is what happens if the fonts live inside a file you @import
+ * through Tailwind.
+ *
+ * Load this FIRST, before `@import "tailwindcss"`:
+ *
+ *   @import "@equal-experts/kuat-core/fonts.css";
+ *   @import "tailwindcss";
+ *   @import "@equal-experts/kuat-core/variables.css";
+ *
+ * …or skip it and add a <link> to the same Google Fonts URL in your HTML head.
+ * Consumers of @equal-experts/kuat-react / kuat-vue already get these fonts via
+ * the package's bundled stylesheet. */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');

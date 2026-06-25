@@ -24,6 +24,7 @@ export default defineConfig({
     alias: {
       "@": resolve(__dirname, "./src"),
       // @tailwindcss/vite uses enhanced-resolve; explicit targets avoid export-map gaps during build.
+      "@equal-experts/kuat-core/fonts.css": require.resolve("@equal-experts/kuat-core/fonts.css"),
       "@equal-experts/kuat-core/variables.css": require.resolve("@equal-experts/kuat-core/variables.css"),
       "@equal-experts/kuat-core/button-variables.css": require.resolve(
         "@equal-experts/kuat-core/button-variables.css",
