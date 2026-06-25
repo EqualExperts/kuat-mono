@@ -428,6 +428,12 @@ These packages include kuat-core internally, so you don't need to install it sep
 
 All CSS variables are defined in the `:root` selector and scoped dark mode variants under `.dark`. See the [Design Token Reference](#design-token-reference) for the complete list.
 
+> **Base tokens vs `--color-*`:** in hand-written CSS, reference the **base**
+> tokens (`var(--foreground)`, `var(--card)`, …) — those are what the `.dark`
+> selector redefines, so they flip with the theme. The `--color-*` names (e.g.
+> `--color-foreground`) are the Tailwind `@theme` registrations that back the
+> utility classes (`text-foreground`); don't use them directly in custom CSS.
+
 ---
 
 ## Troubleshooting

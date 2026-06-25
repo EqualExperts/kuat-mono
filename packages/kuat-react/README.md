@@ -53,23 +53,34 @@ Add this to your project `AGENTS.md` (or `.cursorrules`) so agent workflows stay
 ### Peer dependencies
 
 Install peers for the components you use before running `dev` or `build`.
+`react`/`react-dom` are always required. Embla (carousel) and Sonner ship as
+bundled dependencies, so you don't install those.
 
-| Components you use | Required peers |
+| Components you use | Peers to install |
 |---|---|
-| `Button`, `KuatHeader` | `@radix-ui/react-slot`, `lucide-react` |
-| `Accordion` | `@radix-ui/react-accordion` |
+| `Button`, `ButtonGroup`, `IconButton` | `@radix-ui/react-slot` |
+| `Accordion` | `@radix-ui/react-accordion`, `lucide-react` |
 | `AlertDialog` | `@radix-ui/react-alert-dialog` |
-| `Select` / `KuatSelect` | `@radix-ui/react-select`, `@radix-ui/react-separator` |
-| `Checkbox` / `CheckboxField` | `@radix-ui/react-checkbox` |
-| `RadioGroup` / `RadioField` | `@radix-ui/react-radio-group` |
+| `Select` | `@radix-ui/react-select`, `lucide-react` |
+| `DropdownMenu` | `@radix-ui/react-dropdown-menu`, `lucide-react` |
+| `Checkbox` / `CheckboxField` | `@radix-ui/react-checkbox`, `lucide-react` |
+| `Radio` / `RadioField` | `@radix-ui/react-radio-group` |
 | `Switch` / `SwitchField` | `@radix-ui/react-switch` |
-| `Toggle` / `ToggleGroup` | `@radix-ui/react-toggle`, `@radix-ui/react-toggle-group` |
-| `Sonner` | `sonner` |
+| `Toggle`, `ToggleGroup` | `@radix-ui/react-toggle`, `@radix-ui/react-toggle-group` |
+| `Separator` | `@radix-ui/react-separator` |
+| `Carousel`, `KuatCarousel` | `lucide-react` |
+| `Breadcrumb`, `KuatHeader` | `lucide-react` |
+| `Sonner` | — (bundled, no peer to install) |
+| `Badge`, `Field`, `Input`, `Textarea`, `ContentCard`, `KuatRadialProgress` | none |
+
+> **Tip:** if you use the Kuat agent plugin in Claude Code, run
+> `/kuat-add <component>` to add a component and install its peers automatically,
+> instead of wiring the table above by hand.
 
 Example peer install for a broad setup:
 
 ```bash
-pnpm add @radix-ui/react-slot @radix-ui/react-accordion @radix-ui/react-alert-dialog @radix-ui/react-select @radix-ui/react-separator @radix-ui/react-checkbox @radix-ui/react-radio-group @radix-ui/react-switch @radix-ui/react-toggle @radix-ui/react-toggle-group lucide-react sonner
+pnpm add @radix-ui/react-slot @radix-ui/react-accordion @radix-ui/react-alert-dialog @radix-ui/react-select @radix-ui/react-dropdown-menu @radix-ui/react-separator @radix-ui/react-checkbox @radix-ui/react-radio-group @radix-ui/react-switch @radix-ui/react-toggle @radix-ui/react-toggle-group lucide-react
 ```
 
 ---

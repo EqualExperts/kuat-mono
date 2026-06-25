@@ -20,7 +20,7 @@ The Kuat Design System uses a layered architecture:
 ├─────────────────────────────────────────────────────┤
 │  shadcn-only UI (Dialog, DropdownMenu, …)           │  ← Installed in your repo via CLI
 ├─────────────────────────────────────────────────────┤
-│  kuat-core (design tokens, Tailwind preset)         │  ← Foundation
+│  kuat-core (design tokens, Tailwind @theme)         │  ← Foundation
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -69,40 +69,33 @@ Install required peers for components you use (example set):
 pnpm add @radix-ui/react-slot @radix-ui/react-accordion @radix-ui/react-alert-dialog @radix-ui/react-select @radix-ui/react-separator @radix-ui/react-checkbox @radix-ui/react-radio-group @radix-ui/react-switch @radix-ui/react-toggle @radix-ui/react-toggle-group lucide-react sonner
 ```
 
-### Step 2: Configure Tailwind CSS
+### Step 2: Add the Tailwind v4 plugin
 
-Include Kuat package paths in `content` so Tailwind sees component classes.
+Add `@tailwindcss/vite` (or `@tailwindcss/postcss`) to your build. No
+`tailwind.config.ts` or preset is needed — Tailwind v4 auto-detects content, and
+the Kuat tokens come from the `@theme` block in `variables.css`.
 
-```typescript
-// tailwind.config.ts
-import type { Config } from 'tailwindcss';
-import kuatPreset from '@equal-experts/kuat-core';
-
-export default {
-  presets: [kuatPreset],
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@equal-experts/kuat-react/**/*.{js,ts,jsx,tsx}',
-  ],
-} satisfies Config;
-```
-
-### Step 3: Add Tailwind runtime stylesheet (required for Tailwind v4)
-
-Create `src/tailwind.css`:
+### Step 3: Import Tailwind and Kuat tokens in your entry CSS
 
 ```css
+/* src/index.css */
+@import "@equal-experts/kuat-core/fonts.css";
 @import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
 ```
 
-### Step 4: Import tokens and Kuat styles
+Pull the tokens in **through Tailwind** (a CSS `@import`), not a JS
+`import "…/variables.css"` — otherwise the `@theme` block never generates the
+token utilities. The legacy `presets: [kuatPreset]` is deprecated and not
+auto-loaded by Tailwind v4.
+
+### Step 4: Import component styles in your entrypoint
 
 ```typescript
-// main.tsx or App.tsx
-import '@equal-experts/kuat-core/variables.css';
-import '@equal-experts/kuat-react/styles';
-import './tailwind.css';
-import './styles.css'; // Your app styles
+// main.tsx
+import '@equal-experts/kuat-react/styles'; // pre-compiled component CSS
+import './index.css';                        // Tailwind + Kuat tokens (step 3)
+import './styles.css';                        // your app styles, last
 ```
 
 If your template includes global starter CSS (for example Vite `src/index.css`), remove it or strip any root/body/app font and layout resets that override Kuat styles.
@@ -186,38 +179,31 @@ pnpm add vue @equal-experts/kuat-core @equal-experts/kuat-vue
 pnpm add radix-vue reka-ui lucide-vue-next vue-sonner
 ```
 
-### Step 2: Configure Tailwind CSS
+### Step 2: Add the Tailwind v4 plugin
 
-```typescript
-// tailwind.config.ts
-import type { Config } from 'tailwindcss';
-import kuatPreset from '@equal-experts/kuat-core';
+Add `@tailwindcss/vite` (or `@tailwindcss/postcss`) to your build. No
+`tailwind.config.ts` or preset is needed — Tailwind v4 auto-detects content, and
+the Kuat tokens come from the `@theme` block in `variables.css`.
 
-export default {
-  presets: [kuatPreset],
-  content: [
-    './src/**/*.{vue,js,ts}',
-    './node_modules/@equal-experts/kuat-vue/**/*.{vue,js,ts}',
-  ],
-} satisfies Config;
-```
-
-### Step 3: Add Tailwind runtime stylesheet (required for Tailwind v4)
-
-Create `src/tailwind.css`:
+### Step 3: Import Tailwind and Kuat tokens in your entry CSS
 
 ```css
+/* src/index.css */
+@import "@equal-experts/kuat-core/fonts.css";
 @import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
 ```
 
-### Step 4: Import design tokens and Kuat styles
+Pull the tokens in **through Tailwind** (a CSS `@import`), not a JS
+`import "…/variables.css"`. The legacy `presets: [kuatPreset]` is deprecated and
+not auto-loaded by Tailwind v4.
+
+### Step 4: Import component styles in your entrypoint
 
 ```typescript
 // main.ts
-import '@equal-experts/kuat-core/variables.css';
-import '@equal-experts/kuat-vue/styles';
-import './tailwind.css';
-import './style.css';
+import '@equal-experts/kuat-vue/styles'; // pre-compiled component CSS
+import './index.css';                     // Tailwind + Kuat tokens (step 3)
 import { createApp } from 'vue';
 import App from './App.vue';
 
@@ -274,7 +260,7 @@ your-project/
 │   │   └── utils.ts         # cn() from shadcn init
 │   ├── App.tsx
 │   └── main.tsx
-├── tailwind.config.ts       # kuatPreset
+├── vite.config.ts           # @tailwindcss/vite (no tailwind.config needed in v4)
 ├── components.json          # shadcn CLI config
 └── package.json             # includes @equal-experts/kuat-core and kuat-react or kuat-vue
 ```
@@ -287,7 +273,7 @@ You **do not** need a local `button.tsx` if you import `Button` from Kuat only�
 
 | Need | Source | Examples |
 |------|--------|----------|
-| Design tokens | `@equal-experts/kuat-core` | `variables.css`, Tailwind preset |
+| Design tokens | `@equal-experts/kuat-core` | `variables.css` (`@theme` tokens) |
 | Kuat primitives and blocks | `@equal-experts/kuat-react` / `@equal-experts/kuat-vue` | `Button`, `Field`, `Select`, `KuatHeader`, `ButtonGroup`, … |
 | shadcn-only UI | CLI into your repo | `Dialog`, `DropdownMenu`, `Tabs`, … |
 | App-specific | Your code | Business views, routes |
@@ -298,8 +284,8 @@ You **do not** need a local `button.tsx` if you import `Button` from Kuat only�
 
 Components stay on-brand when you:
 
-1. Import `@equal-experts/kuat-core/variables.css` before app styles.
-2. Use the Kuat Tailwind preset.
+1. `@import "@equal-experts/kuat-core/variables.css"` through Tailwind (in the CSS that has `@import "tailwindcss"`), so the `@theme` block generates the token utilities.
+2. Load `@equal-experts/<package>/styles` for the pre-compiled component CSS.
 
 Applies to Kuat components and to shadcn copies that use the same CSS variables.
 
@@ -393,19 +379,17 @@ Fail criteria:
 
 ### Components not styled correctly
 
-1. Import `@equal-experts/kuat-core/variables.css` before other styles.
-2. Ensure `kuatPreset` is in Tailwind `presets`.
-3. Ensure both `src/**` and `node_modules/@equal-experts/kuat-react/**` (or `kuat-vue`) are in `content`.
-4. For shadcn files under `src/components/ui`, keep those paths in `content`.
+1. `@import "@equal-experts/kuat-core/variables.css"` must be in the CSS that Tailwind processes (the file with `@import "tailwindcss"`), not a JS `import` — otherwise the `@theme` block never registers the token utilities.
+2. Ensure `@tailwindcss/vite` (or `@tailwindcss/postcss`) is wired into your build. The `presets: [kuatPreset]` JS preset is deprecated and not auto-loaded by Tailwind v4.
+3. Ensure `@equal-experts/<package>/styles` is imported in your entrypoint.
 
 ### Fonts or spacing look like template defaults
 
 1. Check for starter-template global CSS (`src/index.css`, `src/style.css`, or similar).
 2. Remove or neutralize rules that set `font`/`font-family` on `:root`, `html`, `body`, `#root`, or `#app`.
 3. Keep this import order in app entry:
-   - `@equal-experts/kuat-core/variables.css`
    - `@equal-experts/<package>/styles`
-   - `./tailwind.css`
+   - `./index.css` (which `@import`s `tailwindcss` + Kuat tokens)
    - app-specific overrides last
 4. If needed, restart the dev server after removing starter CSS overrides.
 

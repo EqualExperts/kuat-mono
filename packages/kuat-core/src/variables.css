@@ -158,7 +158,7 @@
     --sidebar: var(--brand-tech-blue); /* {brand.tech-blue} */
     --sidebar-foreground: var(--brand-byte-white); /* {brand.byte-white} */
     --sidebar-primary: var(--brand-ee-blue); /* {brand.ee-blue} */
-    --sidebar-primary-foreground: var(--brand-ee-blue-accent); /* {brand.ee-blue-accent} */
+    --sidebar-primary-foreground: var(--brand-byte-white); /* white on ee-blue active item */
     --sidebar-accent: var(--slate-200); /* {slate.200} */
     --sidebar-accent-foreground: var(--brand-tech-blue); /* {brand.tech-blue} */
     --sidebar-border: var(--slate-200); /* {slate.200} */
@@ -232,9 +232,9 @@
     --sidebar: var(--tech-blue-700); /* {brand.tech-blue.700} */
     --sidebar-foreground: var(--brand-byte-white); /* {brand.byte-white} */
     --sidebar-primary: var(--brand-ee-blue); /* {brand.ee-blue} */
-    --sidebar-primary-foreground: var(--brand-ee-blue-accent); /* {brand.ee-blue-accent} */
+    --sidebar-primary-foreground: var(--brand-byte-white); /* white on ee-blue active item */
     --sidebar-accent: var(--ee-blue-700); /* {brand.ee-blue.700} */
-    --sidebar-accent-foreground: var(--brand-tech-blue); /* {brand.tech-blue} */
+    --sidebar-accent-foreground: var(--brand-byte-white); /* white on dark accent */
     --sidebar-border: var(--slate-200); /* {slate.200} */
     --sidebar-ring: var(--slate-100); /* {slate.100} */
 
