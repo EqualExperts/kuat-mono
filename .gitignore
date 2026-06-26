@@ -52,6 +52,11 @@ lerna-debug.log*
 # Temporary files
 .tmp
 
+# Design-sync working dirs + output bundle (regenerable artifacts)
+.design-sync/
+.ds-sync/
+ds-bundle/
+
 # External files
 external/
 packages/kuat-react/equal-experts-kuat-react-*.tgz
