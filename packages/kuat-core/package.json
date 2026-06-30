@@ -41,12 +41,14 @@
       "types": "./tailwind.config.d.ts",
       "default": "./tailwind.config.ts"
     },
+    "./token-contract.json": "./token-contract.json",
     "./package.json": "./package.json"
   },
   "files": [
     "src",
     "tailwind.config.ts",
     "tailwind.config.d.ts",
+    "token-contract.json",
     "README.md",
     "agent-docs"
   ],

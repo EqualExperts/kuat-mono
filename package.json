@@ -21,7 +21,10 @@
     "tokens:generate": "node ./scripts/tokens/generate-variables.mjs",
     "tokens:check": "node ./scripts/tokens/generate-variables.mjs --check",
     "tokens:contrast-check": "node ./scripts/tokens/contrast-check.mjs",
-    "contributor:check": "pnpm components:registry:check && pnpm components:verify-no-leak && pnpm tokens:check && pnpm tokens:contrast-check"
+    "tokens:contract:generate": "node ./scripts/tokens/generate-token-contract.mjs",
+    "tokens:contract:check": "node ./scripts/tokens/generate-token-contract.mjs --check",
+    "shadcn:audit": "node ./scripts/shadcn/audit-coverage.mjs",
+    "contributor:check": "pnpm components:registry:check && pnpm components:verify-no-leak && pnpm tokens:check && pnpm tokens:contrast-check && pnpm tokens:contract:check"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
