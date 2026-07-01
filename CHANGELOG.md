@@ -2,6 +2,19 @@
 
 All notable changes to the published Kuat packages are documented in this file.
 
+## Pre-release 0.14.0-beta.3 - 2026-07-01
+
+### Affected packages
+- @equal-experts/kuat-core@0.14.0-beta.3
+- @equal-experts/kuat-react@0.14.0-beta.3
+- @equal-experts/kuat-vue@0.14.0-beta.3
+
+### Fixed
+- **shadcn theme override.** kuat-core's semantic `:root`/`.dark` tokens were wrapped in `@layer base`; a third party's unlayered `:root` (e.g. what `shadcn init` generates) silently won the cascade — unlayered rules always beat layered ones regardless of import order — so the app rendered shadcn's theme instead of Kuat's. The semantic token block is now **unlayered**, so importing `@equal-experts/kuat-core/variables.css` last wins. (`@theme inline`, base `body`/`*` rules, and the brand scales stay layered.)
+
+### Notes
+- Third-and-a-half beta under the `beta` tag; `latest` remains 0.13.1. react/vue are version-aligned only (no code changes since beta.1).
+
 ## Pre-release 0.14.0-beta.2 - 2026-07-01
 
 ### Affected packages

@@ -1,8 +1,13 @@
 # Prevention spike — stop `shadcn init` from clobbering the Kuat theme
 
-**Status:** spike for Step 2 (`adopt-kuat` preset). Validates the mechanism deterministically in-repo;
-the open question is a shadcn *CLI behaviour* only a real app can answer (see "What the new-app test
-proves"). Companion to the detection gate `shadcn:audit-theme`.
+**Status: RESOLVED (2026-07-01).** New-app test confirmed the redirect is honoured by the shadcn CLI
+(it wrote 100% of its theme into the sacrificial file, never touched the entry) — but the app still
+rendered grey. Root cause: **CSS cascade layers.** kuat-core's semantic tokens were wrapped in
+`@layer base`; shadcn's generated `:root` is unlayered; per spec **unlayered always beats layered**
+regardless of import order, so "import kuat-core last" could never win. Fixed in kuat-core (this repo)
+by **unlayering the semantic `:root`/`.dark` block** in `packages/kuat-core/src/variables.css` (ships in
+`0.14.0-beta.3`). With both sides unlayered, source order decides and the preset's "import kuat-core
+last" wins. Companion detection gate: `shadcn:audit-theme`.
 
 ## The problem (from the beta.2 consumer test)
 

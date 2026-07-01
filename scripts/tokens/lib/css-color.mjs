@@ -17,6 +17,10 @@
  * matching is depth-aware so nested `{ … }` (e.g. @theme inline) is handled.
  */
 export function stripDarkBlock(css) {
+  // Drop comments first so a `.dark` / `:root` mentioned in prose can't be
+  // mistaken for a selector. Downstream only reads `--x: y;` decls, so removing
+  // comments is safe and keeps parsing robust.
+  css = css.replace(/\/\*[\s\S]*?\*\//g, "");
   const start = css.indexOf(".dark");
   if (start === -1) return { light: css, dark: "" };
   const brace = css.indexOf("{", start);

@@ -1,7 +1,7 @@
 {
   "$generated": "DO NOT HAND-EDIT — generated from packages/kuat-core/src/variables.css. Run `pnpm tokens:contract:generate`.",
   "source": "packages/kuat-core/src/variables.css",
-  "version": "0.14.0-beta.2",
+  "version": "0.14.0-beta.3",
   "semanticVocabulary": [
     "background",
     "foreground",

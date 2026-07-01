@@ -1,5 +1,25 @@
 # shadcn integration — work log (kuat-mono)
 
+## 2026-07-01 (eve) — ROOT-CAUSE FIX: unlayer kuat-core semantic tokens (→ beta.3)
+
+New-app test (Ed) with the full preset (redirect + import-last) STILL rendered grey. Redirect was
+honoured (shadcn wrote 100% into the sacrificial file, never touched the entry) — but the real cause
+is **CSS cascade layers**: kuat-core's semantic tokens sat in `@layer base`, shadcn's `:root` is
+unlayered, and unlayered always beats layered regardless of import order. So import-last could never win.
+
+- Fix (report's Option 1): **unlayered the semantic `:root`/`.dark` block** in
+  `packages/kuat-core/src/variables.css` (kept `@theme inline`, `body`, brand scales, and the
+  `* { border }` / `body { bg }` base rules layered). Now both sides are unlayered → source order
+  decides → the preset's "import kuat-core last" wins.
+- Hardened `lib/css-color.mjs` `stripDarkBlock` to strip comments first — my fix's comment contained
+  the literal `.dark`, which the naive `indexOf(".dark")` mis-read as the dark block and swapped
+  light/dark in the contract. Now robust; contract regenerated **identical** to before (values
+  unchanged), contrast identical, build + contributor:check green.
+- Real package change ⇒ cut `0.14.0-beta.3` (core/react/vue). Contract version stamp → beta.3.
+- Carried finding (other repo): the `kuat-react` skill's first-time-setup runs `shadcn init` against
+  the real stylesheet with no redirect and imports kuat-core before Tailwind — needs the preset
+  pattern; flagged in the Part C patch for the kuat-agent-rules / kuat-claude-plugin PR.
+
 ## 2026-07-01 (pm) — prevention spike + order-aware audit-theme
 
 Decided (Ed): prevention over write-locking. Write-locking rejected — not clone-durable (git
