@@ -120,9 +120,16 @@ function classify(token, contract) {
 
 function main() {
   const argv = process.argv.slice(2);
-  const flagIdx = argv.indexOf("--contract");
-  const contractFlag = flagIdx !== -1 ? argv[flagIdx + 1] : null;
-  const targets = argv.filter((a, i) => a !== "--contract" && i !== flagIdx + 1 && !a.startsWith("--"));
+  let contractFlag = null;
+  const targets = [];
+  for (let i = 0; i < argv.length; i += 1) {
+    const a = argv[i];
+    if (a === "--contract") {
+      contractFlag = argv[(i += 1)]; // consume the flag's value
+    } else if (a !== "--" && !a.startsWith("--")) {
+      targets.push(a); // bare positional (`--` separator and unknown flags ignored)
+    }
+  }
 
   if (!targets.length) fail("audit: no target path given.\n  Usage: pnpm shadcn:audit -- <file-or-dir> [--contract <path>]");
 
