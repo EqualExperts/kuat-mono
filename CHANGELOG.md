@@ -2,6 +2,19 @@
 
 All notable changes to the published Kuat packages are documented in this file.
 
+## Pre-release 0.14.0-beta.2 - 2026-07-01
+
+### Affected packages
+- @equal-experts/kuat-core@0.14.0-beta.2
+- @equal-experts/kuat-react@0.14.0-beta.2
+- @equal-experts/kuat-vue@0.14.0-beta.2
+
+### Notes
+- Third beta under the npm `beta` dist-tag; `latest` remains 0.13.1. Cut to test the new shadcn token contract in a real npm install. react/vue are version-aligned only (no code changes since beta.1).
+
+### Added
+- `@equal-experts/kuat-core` now ships `token-contract.json` (exported at `@equal-experts/kuat-core/token-contract.json`) — the generated, drift-checked list of the shadcn semantic tokens Kuat defines in light and dark, the `--color-*` utility each backs, and the full authored kuat-core vocabulary. Backs the shadcn/third-party token-coverage audit.
+
 ## Pre-release 0.14.0-beta.1 - 2026-06-25
 
 ### Affected packages
