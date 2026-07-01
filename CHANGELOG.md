@@ -2,6 +2,32 @@
 
 All notable changes to the published Kuat packages are documented in this file.
 
+## Pre-release 0.14.0-beta.3 - 2026-07-01
+
+### Affected packages
+- @equal-experts/kuat-core@0.14.0-beta.3
+- @equal-experts/kuat-react@0.14.0-beta.3
+- @equal-experts/kuat-vue@0.14.0-beta.3
+
+### Fixed
+- **shadcn theme override.** kuat-core's semantic `:root`/`.dark` tokens were wrapped in `@layer base`; a third party's unlayered `:root` (e.g. what `shadcn init` generates) silently won the cascade — unlayered rules always beat layered ones regardless of import order — so the app rendered shadcn's theme instead of Kuat's. The semantic token block is now **unlayered**, so importing `@equal-experts/kuat-core/variables.css` last wins. (`@theme inline`, base `body`/`*` rules, and the brand scales stay layered.)
+
+### Notes
+- Third-and-a-half beta under the `beta` tag; `latest` remains 0.13.1. react/vue are version-aligned only (no code changes since beta.1).
+
+## Pre-release 0.14.0-beta.2 - 2026-07-01
+
+### Affected packages
+- @equal-experts/kuat-core@0.14.0-beta.2
+- @equal-experts/kuat-react@0.14.0-beta.2
+- @equal-experts/kuat-vue@0.14.0-beta.2
+
+### Notes
+- Third beta under the npm `beta` dist-tag; `latest` remains 0.13.1. Cut to test the new shadcn token contract in a real npm install. react/vue are version-aligned only (no code changes since beta.1).
+
+### Added
+- `@equal-experts/kuat-core` now ships `token-contract.json` (exported at `@equal-experts/kuat-core/token-contract.json`) — the generated, drift-checked list of the shadcn semantic tokens Kuat defines in light and dark, the `--color-*` utility each backs, and the full authored kuat-core vocabulary. Backs the shadcn/third-party token-coverage audit.
+
 ## Pre-release 0.14.0-beta.1 - 2026-06-25
 
 ### Affected packages

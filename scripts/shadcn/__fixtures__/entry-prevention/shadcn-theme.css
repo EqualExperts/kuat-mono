@@ -1,0 +1,4 @@
+/* What `shadcn init` writes when components.json points tailwind.css HERE.
+   Imported before kuat-core, so kuat-core wins the cascade and this is inert. */
+:root { --background: oklch(1 0 0); --primary: oklch(0.205 0 0); --popover: oklch(1 0 0); --card: oklch(1 0 0); }
+.dark { --primary: oklch(0.922 0 0); --card: oklch(0.205 0 0); }

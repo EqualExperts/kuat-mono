@@ -1,0 +1,4 @@
+/* Prevention entry: shadcn's theme file first, kuat-core LAST → kuat-core wins. */
+@import "tailwindcss";
+@import "./shadcn-theme.css";
+@import "@equal-experts/kuat-core/variables.css";
