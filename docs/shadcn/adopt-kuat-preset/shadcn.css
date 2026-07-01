@@ -1,0 +1,4 @@
+/* shadcn's sacrificial theme file (the `tailwind.css` target in components.json).
+ * Starts empty. Whatever `shadcn init`/`add` writes here is imported BEFORE
+ * kuat-core in index.css, so kuat-core's values win — this file never overrides
+ * Kuat's theme. Do NOT import this after kuat-core. */

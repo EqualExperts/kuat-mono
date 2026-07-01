@@ -9,19 +9,23 @@
  * resolves to shadcn's default theme instead of Kuat's — while name-coverage stays
  * green (the "shadowed token" failure; see docs/shadcn/report-shadcn-step-1.md).
  *
- * This check resolves the consumer's EFFECTIVE `:root`/`.dark` values (kuat-core
- * baseline + the consumer's own blocks, last-declaration-wins) and diffs each
+ * This check resolves the consumer's EFFECTIVE `:root`/`.dark` values and diffs each
  * semantic token against the authored value the contract ships
  * (semanticTokens[t].light / .dark). Comparison is by resolved COLOUR, not text,
  * so oklch(1 0 0) vs oklch(1.0 0.0 0.0) is correctly "intact".
  *
- * Reports ✅ intact / ⚠️ OVERRIDDEN (authored → effective) per token+mode, and
- * exits non-zero if anything overrides Kuat's authored value. Remediation: don't
- * run `shadcn init` in a Kuat app (it writes a rival theme) — use the Kuat
- * components.json preset, or strip shadcn's appended :root/.dark blocks.
+ * TWO MODES — because theme integrity is all about CASCADE ORDER:
+ *   --entry <css>   Resolve @imports in true document order (kuat-core is one of
+ *                   them). This is the ACCURATE mode and the only one that can
+ *                   verify the "import kuat-core last so it wins" prevention setup.
+ *   <file|dir>      Simpler mode: kuat-core baseline FIRST, then the target file's
+ *                   own blocks — models "kuat imported first, something appended
+ *                   after" (the classic shadcn-init clobber). Use when you don't
+ *                   have/entry the full import chain.
  *
- * Zero runtime deps; CI-runnable.
- *   Usage:  pnpm shadcn:audit-theme -- <global-css-file-or-dir> [--contract <path>]
+ * Exits non-zero on any override. Zero runtime deps; CI-runnable.
+ *   Usage:  pnpm shadcn:audit-theme -- --entry src/index.css
+ *           pnpm shadcn:audit-theme -- <global-css-file-or-dir>
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -31,16 +35,16 @@ import { parseDecls, resolve, toLinearRgb } from "../tokens/lib/css-color.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
+const require_ = createRequire(path.join(process.cwd(), "noop.js"));
 
 function fail(msg) {
   console.error(msg);
   process.exit(2);
 }
 
-/** Resolve a file via the consumer's node_modules, with a repo fallback. */
 function resolveFrom(specifier, repoFallback) {
   try {
-    return createRequire(path.join(process.cwd(), "noop.js")).resolve(specifier);
+    return require_.resolve(specifier);
   } catch {
     return fs.existsSync(repoFallback) ? repoFallback : null;
   }
@@ -54,43 +58,55 @@ function loadContract(flagPath) {
   return { contract: JSON.parse(fs.readFileSync(p, "utf8")), from: p };
 }
 
-function loadBaselineCss() {
-  const p = resolveFrom(
-    "@equal-experts/kuat-core/variables.css",
-    path.join(REPO_ROOT, "packages/kuat-core/src/variables.css"),
-  );
-  if (!p || !fs.existsSync(p)) fail("audit-theme: could not resolve @equal-experts/kuat-core/variables.css (the authored baseline).");
-  return fs.readFileSync(p, "utf8");
+/** Inline every `@import` in document order (packages via node_modules, relative via fs). */
+function expandImports(file, seen = new Set()) {
+  const abs = path.resolve(file);
+  if (seen.has(abs) || !fs.existsSync(abs)) return "";
+  seen.add(abs);
+  const dir = path.dirname(abs);
+  return fs.readFileSync(abs, "utf8").replace(/@import\s+(?:url\()?["']([^"']+)["']\)?[^;]*;/g, (_m, spec) => {
+    if (spec === "tailwindcss" || /^https?:/.test(spec)) return `/* skipped @import ${spec} */`;
+    let target = null;
+    if (spec.startsWith(".")) target = path.resolve(dir, spec);
+    else {
+      try {
+        target = require_.resolve(spec); // consumer app: kuat-core is in node_modules
+      } catch {
+        // Repo fallback: @equal-experts/kuat-core isn't a root dep here, so map its
+        // subpath exports (./variables.css → src/variables.css) to the workspace source.
+        if (spec.startsWith("@equal-experts/kuat-core/"))
+          target = path.join(REPO_ROOT, "packages/kuat-core/src", spec.slice("@equal-experts/kuat-core/".length));
+      }
+    }
+    return target && fs.existsSync(target) ? expandImports(target, seen) : `/* unresolved @import ${spec} */`;
+  });
 }
 
-/** Return the body of every `selector { … }` block, in document order. Depth-aware. */
-function findBlocks(css, selector) {
-  const bodies = [];
+/** Ordered list of `:root`/`.dark` block bodies, in document order. Depth-aware. */
+function scanBlocks(css) {
+  const out = [];
   let from = 0;
   for (;;) {
-    const at = css.indexOf(selector, from);
-    if (at === -1) break;
+    const r = css.indexOf(":root", from);
+    const d = css.indexOf(".dark", from);
+    if (r === -1 && d === -1) break;
+    const [at, type] = d === -1 || (r !== -1 && r < d) ? [r, ":root"] : [d, ".dark"];
     const brace = css.indexOf("{", at);
     if (brace === -1) break;
-    // Only whitespace/commas may sit between the selector and its brace, so
-    // `.dark {` matches but `.darker {` / `--dark: …` do not.
-    if (!/^[\s,]*$/.test(css.slice(at + selector.length, brace))) {
-      from = at + selector.length;
+    if (!/^[\s,]*$/.test(css.slice(at + type.length, brace))) {
+      from = at + type.length;
       continue;
     }
     let depth = 0;
     let i = brace;
     for (; i < css.length; i += 1) {
       if (css[i] === "{") depth += 1;
-      else if (css[i] === "}") {
-        depth -= 1;
-        if (depth === 0) break;
-      }
+      else if (css[i] === "}" && (depth -= 1) === 0) break;
     }
-    bodies.push(css.slice(brace + 1, i));
+    out.push({ type, body: css.slice(brace + 1, i) });
     from = i + 1;
   }
-  return bodies;
+  return out;
 }
 
 /** Same resolved colour? Compare in linear RGB so oklch(1 0 0) == oklch(1.0 0.0 0.0). */
@@ -105,80 +121,78 @@ function sameColour(a, b) {
 function main() {
   const argv = process.argv.slice(2);
   let contractFlag = null;
+  let entry = null;
   const targets = [];
   for (let i = 0; i < argv.length; i += 1) {
     const a = argv[i];
     if (a === "--contract") contractFlag = argv[(i += 1)];
+    else if (a === "--entry") entry = argv[(i += 1)];
     else if (a !== "--" && !a.startsWith("--")) targets.push(a);
   }
-  if (!targets.length) fail("audit-theme: no target CSS given.\n  Usage: pnpm shadcn:audit-theme -- <global-css-file-or-dir>");
 
   const { contract, from } = loadContract(contractFlag);
-  const baseline = loadBaselineCss();
 
-  // Gather the consumer's own CSS (the file(s) that import kuat-core and may carry
-  // rival :root/.dark blocks).
-  const cssFiles = [];
-  for (const t of targets) {
-    if (!fs.existsSync(t)) fail(`audit-theme: target not found: ${t}`);
-    if (fs.statSync(t).isFile()) cssFiles.push(t);
-    else
-      cssFiles.push(
-        ...fs
-          .readdirSync(t, { recursive: true })
-          .map((r) => path.join(t, r))
-          .filter((p) => path.extname(p) === ".css" && fs.statSync(p).isFile()),
-      );
+  // Build the CSS to scan, in cascade order.
+  let cssToScan;
+  let sourceLabel;
+  if (entry) {
+    if (!fs.existsSync(entry)) fail(`audit-theme: --entry file not found: ${entry}`);
+    cssToScan = expandImports(entry);
+    sourceLabel = `entry ${path.relative(process.cwd(), entry)} (imports resolved in order)`;
+    if (!/--ee-blue-500\s*:/.test(cssToScan))
+      console.warn(`⚠ ${entry} doesn't appear to import @equal-experts/kuat-core/variables.css — can't verify Kuat's theme is applied.`);
+  } else {
+    if (!targets.length) fail("audit-theme: no target.\n  Usage: pnpm shadcn:audit-theme -- --entry src/index.css   (or a css file/dir)");
+    const baseline = fs.readFileSync(
+      resolveFrom("@equal-experts/kuat-core/variables.css", path.join(REPO_ROOT, "packages/kuat-core/src/variables.css")) ??
+        fail("audit-theme: could not resolve kuat-core variables.css (the authored baseline)."),
+      "utf8",
+    );
+    const files = [];
+    for (const t of targets) {
+      if (!fs.existsSync(t)) fail(`audit-theme: target not found: ${t}`);
+      if (fs.statSync(t).isFile()) files.push(t);
+      else files.push(...fs.readdirSync(t, { recursive: true }).map((r) => path.join(t, r)).filter((p) => path.extname(p) === ".css" && fs.statSync(p).isFile()));
+    }
+    if (!files.length) fail("audit-theme: no .css files found in target.");
+    // kuat-core baseline first, then the target's own blocks (models kuat-imported-first).
+    cssToScan = baseline + "\n" + files.map((f) => fs.readFileSync(f, "utf8")).join("\n");
+    sourceLabel = `${files.length} css file(s): ${files.map((f) => path.relative(process.cwd(), f)).join(", ")}`;
   }
-  if (!cssFiles.length) fail("audit-theme: no .css files found in target.");
-  const consumerCss = cssFiles.map((f) => fs.readFileSync(f, "utf8")).join("\n");
 
-  // Cascade order: kuat-core baseline first, then the consumer's blocks.
-  const baseRoot = findBlocks(baseline, ":root");
-  const baseDark = findBlocks(baseline, ".dark");
-  const consRoot = findBlocks(consumerCss, ":root");
-  const consDark = findBlocks(consumerCss, ".dark");
-
-  const build = (blocks) => {
+  const blocks = scanBlocks(cssToScan);
+  const apply = (bodies) => {
     const m = new Map();
-    for (const b of blocks) for (const [k, v] of parseDecls(b)) m.set(k, v); // last wins
+    for (const b of bodies) for (const [k, v] of parseDecls(b)) m.set(k, v);
     return m;
   };
-  // Light mode: all :root, in order. Dark mode: all :root then all .dark, in order.
-  const lightMap = build([...baseRoot, ...consRoot]);
-  const darkMap = build([...baseRoot, ...baseDark, ...consRoot, ...consDark]);
+  const lightMap = apply(blocks.filter((b) => b.type === ":root").map((b) => b.body));
+  const darkMap = apply(blocks.map((b) => b.body)); // :root then .dark, in document order
 
-  // Which semantic tokens did the CONSUMER redeclare (the smoking gun)?
-  const consumerDeclared = new Set([...build(consRoot).keys(), ...build(consDark).keys()]);
-
-  const results = [];
+  const drift = [];
   for (const token of contract.semanticVocabulary) {
-    const authored = contract.semanticTokens[token];
     for (const mode of ["light", "dark"]) {
       const eff = resolve(token, mode === "light" ? lightMap : darkMap);
-      const intact = sameColour(authored[mode], eff);
-      results.push({ token, mode, authored: authored[mode], eff, intact, redeclared: consumerDeclared.has(token) });
+      if (!sameColour(contract.semanticTokens[token][mode], eff))
+        drift.push({ token, mode, authored: contract.semanticTokens[token][mode], eff });
     }
   }
 
-  const drift = results.filter((r) => !r.intact);
-  console.log(`shadcn theme-integrity audit — ${cssFiles.length} css file(s): ${cssFiles.map((f) => path.relative(process.cwd(), f)).join(", ")}`);
+  console.log(`shadcn theme-integrity audit — ${sourceLabel}`);
   console.log(`  contract: ${path.relative(process.cwd(), from)} (kuat-core ${contract.version})\n`);
 
   if (!drift.length) {
     console.log(`✓ all ${contract.semanticVocabulary.length} semantic tokens resolve to Kuat's authored values in light and dark.`);
     return;
   }
-
-  for (const r of drift.sort((a, b) => a.token.localeCompare(b.token) || a.mode.localeCompare(b.mode))) {
+  for (const r of drift.sort((a, b) => a.token.localeCompare(b.token) || a.mode.localeCompare(b.mode)))
     console.log(`  ⚠️  --${r.token.padEnd(30)} [${r.mode.padEnd(5)}] OVERRIDDEN  Kuat: ${r.authored ?? "(none)"}  →  now: ${r.eff ?? "(unresolved)"}`);
-  }
   const tokens = [...new Set(drift.map((r) => r.token))];
   console.error(
     `\n✗ ${tokens.length} semantic token(s) no longer resolve to Kuat's theme: ${tokens.join(", ")}.\n` +
-      `  Something (usually \`shadcn init\`) redeclared them AFTER the kuat-core import and won the cascade.\n` +
-      `  Fix: don't run \`shadcn init\` in a Kuat app — use the Kuat components.json preset, or remove the\n` +
-      `  rival :root/.dark blocks from your global stylesheet so kuat-core's values apply.`,
+      `  Something (usually \`shadcn init\`) redeclared them and won the cascade. Fix: don't run\n` +
+      `  \`shadcn init\` in a Kuat app — use the Kuat components.json preset (import kuat-core last),\n` +
+      `  or remove the rival :root/.dark blocks so kuat-core's values apply.`,
   );
   process.exit(1);
 }

@@ -1,0 +1,15 @@
+/* Reference global stylesheet for a Kuat app that also uses shadcn gap items.
+ *
+ * The ORDER is the prevention: shadcn's theme file (src/shadcn.css — the write
+ * target set in components.json) is imported BEFORE kuat-core, so kuat-core's
+ * variables.css is the LAST :root/.dark declared and wins the cascade. Anything
+ * `shadcn init`/`add` writes to shadcn.css becomes inert — the app renders Kuat's
+ * theme, not shadcn's.
+ *
+ * Verify with:  pnpm shadcn:audit-theme -- --entry src/index.css   (expect 0 drift)
+ */
+@import "@equal-experts/kuat-core/fonts.css";
+@import "tailwindcss";
+@import "./shadcn.css"; /* shadcn's write target — imported first, so it can't win */
+@import "@equal-experts/kuat-core/variables.css"; /* LAST → Kuat wins the cascade */
+@import "@equal-experts/kuat-react/styles";

@@ -1,5 +1,21 @@
 # shadcn integration — work log (kuat-mono)
 
+## 2026-07-01 (pm) — prevention spike + order-aware audit-theme
+
+Decided (Ed): prevention over write-locking. Write-locking rejected — not clone-durable (git
+drops the bit), needs a re-apply hook, blocks legit edits, blunt.
+
+- Made `audit-theme.mjs` **import-order-aware**: new `--entry <css>` mode expands `@import`s in
+  true document order (kuat-core resolved from node_modules, repo fallback for the workspace),
+  so it can verify cascade-order setups. Kept the baseline-first file/dir mode for simple checks.
+- Prevention mechanism (Step-2 `adopt-kuat` preset): redirect shadcn's write target
+  (`components.json` → `tailwind.css: src/shadcn.css`) + import kuat-core **last** so it wins the
+  cascade. Reference preset in `docs/shadcn/adopt-kuat-preset/`; write-up in
+  `docs/shadcn/prevention-spike.md`.
+- Verified deterministically: fixture `entry-prevention/` (kuat last) → 32/32 intact, exit 0;
+  `entry-clobber/` (kuat first) → overrides flagged, exit 1. The remaining unknown is a shadcn
+  CLI behaviour (does `init` honour the `css` redirect?) — that's what the new-app test answers.
+
 ## 2026-07-01 — theme-integrity check (beta.2 consumer-test feedback)
 
 Ed tested `kuat-core@0.14.0-beta.2` in a fresh Vite+React+Kuat app. Name-coverage audit
