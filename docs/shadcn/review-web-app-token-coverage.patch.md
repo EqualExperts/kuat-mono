@@ -49,6 +49,33 @@ the prose **guides**; the `shadcn:audit` script is the programmatic **backstop**
 > A consumer repo can run it against `node_modules/@equal-experts/kuat-core/token-contract.json`.
 > _(An editor-time ESLint rule wrapping this is tracked as R4 — still an open decision; the script
 > is the seam.)_
+>
+> ### Theme integrity — did something shadow Kuat's values?
+>
+> Name-coverage is necessary but **not sufficient**. A component can consume all-correct token
+> *names* while the app renders the wrong *colours*, because a rival `:root`/`.dark` block later in
+> the global stylesheet won the cascade. Run the companion check on the consumer's global stylesheet:
+>
+> `pnpm shadcn:audit-theme -- <global-css>` — resolves the effective `:root`/`.dark` (kuat-core
+> baseline + the consumer's own blocks, last-declaration-wins) and diffs each semantic token against
+> the value the contract ships, **by resolved colour**. ⚠️ OVERRIDDEN = the app no longer renders
+> Kuat's theme for that token. This is the check that catches the `shadcn init` clobber below.
+>
+> ### ⚠️ `shadcn init` overwrites your Kuat theme — do not run it in a Kuat app
+>
+> **`npx shadcn init` appends its own `:root`/`.dark` token blocks to your global stylesheet**, after
+> the kuat-core import. At equal specificity the later declaration wins, so `--primary`, `--popover`,
+> `--card`, the dark-mode surfaces, etc. silently switch to shadcn's default theme — your buttons stop
+> being EE Blue even though every component still references the right token names. `shadcn init --force`
+> re-does it on every run; file permissions (`chmod 444`) are **not** a durable guard (git doesn't
+> preserve them across clones).
+>
+> - **Don't run `shadcn init`.** Kuat components/blocks ship via npm; for a gap item you only need
+>   `shadcn add`, which does not rewrite the theme. Setup (the `components.json` that lets `add` inherit
+>   kuat-core) is the job of the `adopt-kuat` skill/preset — not `init`.
+> - If `init` was already run: delete the appended `:root`/`.dark` blocks (and any `tw-animate-css` /
+>   `shadcn/tailwind.css` / stray font imports it added) so kuat-core's `variables.css` applies again,
+>   then confirm with `shadcn:audit-theme`.
 
 ---
 

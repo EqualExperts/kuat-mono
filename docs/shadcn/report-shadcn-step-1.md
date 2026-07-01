@@ -74,3 +74,49 @@ should set, at minimum:
 The audit is the acceptance check for that preset: after `shadcn add` of a gap item with the preset,
 `shadcn:audit` on the new file should exit 0 with everything ✅ inherited. Any ⚠️ is a preset miss or a
 genuine kuat-core token gap to resolve.
+
+---
+
+## Update — 2026-07-01: theme-integrity check (from beta.2 consumer test)
+
+Ed test-drove `kuat-core@0.14.0-beta.2` in a fresh Vite + React + Kuat app
+([feedback](https://github.com/EqualExperts/kuat-mono) — `FEEDBACK-kuat-token-contract.md`). Result: the
+name-coverage audit behaved correctly on every case, **including a real unmodified shadcn `Dialog`
+(100% ✅ inherited)** — good validation. But it surfaced a scope gap the coverage audit can't see.
+
+### The shadowed-token failure
+`npx shadcn init` keeps the kuat-core `@import` at the top of the global stylesheet but **appends its own
+`:root`/`.dark` blocks after it**. At equal specificity the later declaration wins, so every semantic
+token silently resolves to shadcn's neutral "Nova" theme — `--primary` renders grey, not EE Blue — while
+`shadcn:audit` stays green, because the token *names* are all still defined in the contract. This is
+**worse** than the missing-token case the coverage audit was built for: missing is loud (exit 1),
+shadowed is silent-green. It's the same "external generator recreates brand foundations from its own
+defaults" pattern the original review named.
+
+### Resolution shipped in this branch — `shadcn:audit-theme`
+The contract **already ships the authored per-mode values** (`semanticTokens[t].light/.dark`), so the fix
+was small: a companion **theme-integrity** check, [audit-theme.mjs](../../scripts/shadcn/audit-theme.mjs)
+(`pnpm shadcn:audit-theme -- <global-css>`), that resolves the consumer's **effective** `:root`/`.dark`
+(kuat-core baseline + the consumer's own blocks, last-declaration-wins) and diffs each semantic token
+against the contract's authored value — **by resolved colour, not text**, so `oklch(1 0 0)` vs
+`oklch(1.0 0.0 0.0)` is correctly "intact". It reports ✅ intact / ⚠️ OVERRIDDEN (authored → effective)
+and exits non-zero on drift. Verified: a clean import-only stylesheet passes (32/32 intact); the
+`shadcn init` clobber fails, flagging `--primary`, `--popover`, dark surfaces, etc. — and correctly
+**not** flagging `--background`/`--card` in light (still white).
+
+So the two audits are complementary:
+- **`shadcn:audit`** — token **names**: does the component consume anything Kuat doesn't define?
+- **`shadcn:audit-theme`** — token **values**: does the app's global CSS still resolve to Kuat's theme,
+  or has something (usually `shadcn init`) shadowed it?
+
+### Still open / carried to Step 2
+- **Prevention > detection.** The real fix for the clobber is the Step-2 `adopt-kuat` preset: ship a Kuat
+  `components.json` so consumers **never run `shadcn init`** (the command that writes the rival theme).
+  `audit-theme` is the universal backstop for when they do anyway.
+- **Docs (feedback rec 1).** The `shadcn init` clobber needs a loud warning in the `kuat-react` skill /
+  setup README next to "Compose with shadcn" — captured in the Part C patch
+  ([review-web-app-token-coverage.patch.md](review-web-app-token-coverage.patch.md)) for the
+  `kuat-agent-rules` PR, since those docs live upstream.
+- **Reference guard (feedback rec 3).** `audit-theme` is exactly the content-based check the feedback
+  asked teams not to have to reinvent; wiring it as a consumer CI step / the R4 ESLint rule is the
+  remaining packaging decision (how the script reaches consumers — it isn't published yet).

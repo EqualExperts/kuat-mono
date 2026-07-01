@@ -1,0 +1,25 @@
+/* Fixture: what `shadcn init` does to a Kuat consumer's global stylesheet — it
+   keeps the kuat-core import but APPENDS its own :root/.dark, which win the cascade
+   and replace Kuat's authored token values with shadcn's neutral defaults.
+   `pnpm shadcn:audit-theme -- <this>` must FAIL (exit 1), flagging --primary etc.
+   Note: --background/--card stay white (oklch(1 0 0)) so they must NOT flag —
+   proves the check compares colour, not text. */
+@import "@equal-experts/kuat-core/variables.css";
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --muted: oklch(0.97 0 0);
+  --border: oklch(0.922 0 0);
+}
+.dark {
+  --background: oklch(0.145 0 0);
+  --primary: oklch(0.922 0 0);
+  --card: oklch(0.205 0 0);
+}

@@ -1,0 +1,6 @@
+/* Fixture: a correct Kuat consumer global stylesheet — it only IMPORTS kuat-core
+   and declares no rival :root/.dark. `pnpm shadcn:audit-theme -- <this>` passes. */
+@import "@equal-experts/kuat-core/fonts.css";
+@import "tailwindcss";
+@import "@equal-experts/kuat-core/variables.css";
+@import "@equal-experts/kuat-react/styles";

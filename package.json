@@ -24,6 +24,7 @@
     "tokens:contract:generate": "node ./scripts/tokens/generate-token-contract.mjs",
     "tokens:contract:check": "node ./scripts/tokens/generate-token-contract.mjs --check",
     "shadcn:audit": "node ./scripts/shadcn/audit-coverage.mjs",
+    "shadcn:audit-theme": "node ./scripts/shadcn/audit-theme.mjs",
     "contributor:check": "pnpm components:registry:check && pnpm components:verify-no-leak && pnpm tokens:check && pnpm tokens:contrast-check && pnpm tokens:contract:check"
   },
   "devDependencies": {

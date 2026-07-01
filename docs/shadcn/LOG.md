@@ -1,5 +1,24 @@
 # shadcn integration — work log (kuat-mono)
 
+## 2026-07-01 — theme-integrity check (beta.2 consumer-test feedback)
+
+Ed tested `kuat-core@0.14.0-beta.2` in a fresh Vite+React+Kuat app. Name-coverage audit
+behaved correctly on every case incl. a real shadcn `Dialog` (100% inherited). But he found
+the **shadowed-token** gap: `npx shadcn init` appends its own `:root`/`.dark` after the
+kuat-core import, winning the cascade — the app renders shadcn's theme while name-coverage
+stays green.
+
+- Added `scripts/shadcn/audit-theme.mjs` (`pnpm shadcn:audit-theme -- <global-css>`): resolves
+  the consumer's effective `:root`/`.dark` (kuat-core baseline + consumer blocks, last-wins),
+  diffs each semantic token against the contract's authored value **by resolved colour**, not
+  text. Reports ✅ intact / ⚠️ OVERRIDDEN; exits 1 on drift. No contract change needed — the
+  authored light/dark values already ship (feedback rec 2's data half was done in beta.1).
+- Fixtures `__fixtures__/{clean,clobbered}-theme.css`. Verified: clean → 32/32 intact (exit 0);
+  clobbered → flags primary/popover/dark surfaces (exit 1), correctly leaves light
+  background/card intact (white == white by colour).
+- Documented in report (theme vs coverage = values vs names) + Part C patch (shadcn-init
+  warning for the upstream skill). Prevention (never run `shadcn init`) is Step 2's preset.
+
 ## 2026-06-30 — Step 1: token contract + coverage audit
 
 Branch `feature/shadcn-token-contract`. Source of intent:
