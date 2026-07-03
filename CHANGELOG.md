@@ -2,6 +2,28 @@
 
 All notable changes to the published Kuat packages are documented in this file.
 
+## 0.14.0 - 2026-07-01
+
+First stable release of the 0.14 line (promotes 0.14.0-beta.0 → beta.3 to the `latest`
+dist-tag). Highlights since 0.13.1:
+
+### Added
+- **shadcn token contract.** `@equal-experts/kuat-core` ships `token-contract.json` (exported at
+  `@equal-experts/kuat-core/token-contract.json`): the generated, drift-checked list of the shadcn
+  semantic tokens Kuat defines in light and dark, the `--color-*` utility each backs, and the full
+  authored kuat-core vocabulary. Backs the shadcn/third-party token-coverage + theme-integrity audits.
+
+### Fixed
+- **shadcn theme override (cascade layers).** kuat-core's semantic `:root`/`.dark` tokens are now
+  **unlayered**, so importing `@equal-experts/kuat-core/variables.css` last reliably wins over a third
+  party's unlayered `:root` (e.g. what `shadcn init` generates). Previously they sat in `@layer base`
+  and lost the cascade regardless of import order, silently rendering shadcn's theme.
+- **Dark-mode contrast.** Foreground/surface tokens that rendered invisible text in dark mode were
+  corrected, with a WCAG AA contrast guardrail added to the contributor gate.
+
+### Changed
+- Tailwind v4 CSS-first is the documented/recommended setup; the JS preset is deprecated.
+
 ## Pre-release 0.14.0-beta.3 - 2026-07-01
 
 ### Affected packages
