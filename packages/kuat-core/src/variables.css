@@ -106,6 +106,149 @@
     --equal-ember-800: oklch(0.325 0.140 65.0); /* #603100 */
     --equal-ember-900: oklch(0.225 0.120 65.0); /* #301900 */
     --equal-ember-950: oklch(0.125 0.100 65.0); /* #180c00 */
+
+    /* Index Indigo palette */
+    --index-indigo-50: oklch(0.955 0.018 292.7); /* #f0eefb */
+    --index-indigo-100: oklch(0.875 0.029 292.7); /* #d6d3e8 */
+    --index-indigo-200: oklch(0.795 0.040 292.7); /* #bcb8d4 */
+    --index-indigo-300: oklch(0.715 0.051 292.7); /* #a49ec1 */
+    --index-indigo-400: oklch(0.635 0.061 292.7); /* #8b84ad */
+    --index-indigo-500: oklch(0.555 0.072 292.7); /* #746b9a */
+    --index-indigo-600: oklch(0.475 0.083 292.7); /* #5e5387 */
+    --index-indigo-700: oklch(0.395 0.094 292.7); /* #493b74 */
+    --index-indigo-800: oklch(0.315 0.105 292.7); /* #352361 */
+    --index-indigo-900: oklch(0.223 0.070 292.7); /* #1d1338 */
+    --index-indigo-950: oklch(0.130 0.036 292.7); /* #080514 */
+
+    /* Packet Plum palette */
+    --packet-plum-50: oklch(0.955 0.022 332.9); /* #faebf6 */
+    --packet-plum-100: oklch(0.875 0.039 332.9); /* #e7cde1 */
+    --packet-plum-200: oklch(0.796 0.057 332.9); /* #d3afcc */
+    --packet-plum-300: oklch(0.716 0.074 332.9); /* #c092b8 */
+    --packet-plum-400: oklch(0.636 0.092 332.9); /* #ad76a3 */
+    --packet-plum-500: oklch(0.557 0.109 332.9); /* #995a8f */
+    --packet-plum-600: oklch(0.477 0.127 332.9); /* #853d7b */
+    --packet-plum-700: oklch(0.390 0.106 332.9); /* #652c5d */
+    --packet-plum-800: oklch(0.303 0.085 332.9); /* #471b41 */
+    --packet-plum-900: oklch(0.217 0.064 332.9); /* #2a0c26 */
+    --packet-plum-950: oklch(0.130 0.043 332.9); /* #11020e */
+
+    /* Runtime Red palette */
+    --runtime-red-50: oklch(0.955 0.022 20.7); /* #ffebea */
+    --runtime-red-100: oklch(0.873 0.053 20.7); /* #f7c8c6 */
+    --runtime-red-200: oklch(0.790 0.077 20.7); /* #e8a7a6 */
+    --runtime-red-300: oklch(0.708 0.101 20.7); /* #d98786 */
+    --runtime-red-400: oklch(0.626 0.125 20.7); /* #c86667 */
+    --runtime-red-500: oklch(0.543 0.149 20.7); /* #b64349 */
+    --runtime-red-600: oklch(0.461 0.173 20.7); /* #a3152b */
+    --runtime-red-700: oklch(0.378 0.144 20.7); /* #7d0a1e */
+    --runtime-red-800: oklch(0.295 0.116 20.7); /* #590211 */
+    --runtime-red-900: oklch(0.213 0.086 20.7); /* #370006 */
+    --runtime-red-950: oklch(0.130 0.054 20.7); /* #180001 */
+
+    /* Uptime Green palette */
+    --uptime-green-50: oklch(0.955 0.028 143.6); /* #e5f5e4 */
+    --uptime-green-100: oklch(0.870 0.056 143.6); /* #bfdebd */
+    --uptime-green-200: oklch(0.785 0.084 143.6); /* #99c797 */
+    --uptime-green-300: oklch(0.699 0.112 143.6); /* #72b070 */
+    --uptime-green-400: oklch(0.614 0.139 143.6); /* #4a9949 */
+    --uptime-green-500: oklch(0.529 0.167 143.6); /* #11821b */
+    --uptime-green-600: oklch(0.449 0.145 143.6); /* #056810 */
+    --uptime-green-700: oklch(0.369 0.122 143.6); /* #004f07 */
+    --uptime-green-800: oklch(0.290 0.095 143.6); /* #003603 */
+    --uptime-green-900: oklch(0.210 0.070 143.6); /* #002001 */
+    --uptime-green-950: oklch(0.130 0.045 143.6); /* #000b00 */
+
+    /* Server Slate palette */
+    --server-slate-50: oklch(0.955 0.002 217.7); /* #eef0f1 */
+    --server-slate-100: oklch(0.870 0.004 217.7); /* #d1d5d6 */
+    --server-slate-200: oklch(0.785 0.006 217.7); /* #b5babb */
+    --server-slate-300: oklch(0.700 0.008 217.7); /* #99a0a2 */
+    --server-slate-400: oklch(0.615 0.010 217.7); /* #7e8689 */
+    --server-slate-500: oklch(0.530 0.012 217.7); /* #646e70 */
+    --server-slate-600: oklch(0.445 0.014 217.7); /* #4c5659 */
+    --server-slate-700: oklch(0.366 0.012 217.7); /* #384043 */
+    --server-slate-800: oklch(0.287 0.009 217.7); /* #262c2e */
+    --server-slate-900: oklch(0.209 0.007 217.7); /* #15191a */
+    --server-slate-950: oklch(0.130 0.005 217.7); /* #060808 */
+
+    /* Logic Lime palette */
+    --logic-lime-50: oklch(0.955 0.033 122.4); /* #ecf4dc */
+    --logic-lime-100: oklch(0.912 0.086 122.4); /* #d8ecac */
+    --logic-lime-200: oklch(0.870 0.140 122.4); /* #c4e376 */
+    --logic-lime-300: oklch(0.827 0.193 122.4); /* #b1d923 */
+    --logic-lime-400: oklch(0.727 0.175 122.4); /* #94b70d */
+    --logic-lime-500: oklch(0.628 0.153 122.4); /* #799600 */
+    --logic-lime-600: oklch(0.528 0.129 122.4); /* #5f7600 */
+    --logic-lime-700: oklch(0.429 0.105 122.4); /* #465800 */
+    --logic-lime-800: oklch(0.329 0.081 122.4); /* #2e3b00 */
+    --logic-lime-900: oklch(0.230 0.057 122.4); /* #182100 */
+    --logic-lime-950: oklch(0.130 0.034 122.4); /* #050900 */
+
+    /* Edge Blue palette */
+    --edge-blue-50: oklch(0.955 0.009 237.6); /* #ebf1f6 */
+    --edge-blue-100: oklch(0.884 0.032 237.6); /* #c6dcec */
+    --edge-blue-200: oklch(0.813 0.055 237.6); /* #a1c8e2 */
+    --edge-blue-300: oklch(0.728 0.050 237.6); /* #8aacc3 */
+    --edge-blue-400: oklch(0.642 0.046 237.6); /* #7391a6 */
+    --edge-blue-500: oklch(0.557 0.041 237.6); /* #5d7889 */
+    --edge-blue-600: oklch(0.471 0.037 237.6); /* #485f6e */
+    --edge-blue-700: oklch(0.386 0.032 237.6); /* #344753 */
+    --edge-blue-800: oklch(0.301 0.028 237.6); /* #21303a */
+    --edge-blue-900: oklch(0.215 0.023 237.6); /* #0f1b23 */
+    --edge-blue-950: oklch(0.130 0.019 237.6); /* #02080e */
+
+    /* Signal Yellow palette */
+    --signal-yellow-50: oklch(0.955 0.029 95.2); /* #f6f0db */
+    --signal-yellow-100: oklch(0.934 0.077 95.2); /* #f9eaae */
+    --signal-yellow-200: oklch(0.913 0.125 95.2); /* #fce27c */
+    --signal-yellow-300: oklch(0.892 0.173 95.2); /* #ffd930 */
+    --signal-yellow-400: oklch(0.783 0.157 95.2); /* #d8b618 */
+    --signal-yellow-500: oklch(0.674 0.139 95.2); /* #b19500 */
+    --signal-yellow-600: oklch(0.565 0.116 95.2); /* #8b7400 */
+    --signal-yellow-700: oklch(0.457 0.094 95.2); /* #675600 */
+    --signal-yellow-800: oklch(0.348 0.072 95.2); /* #463900 */
+    --signal-yellow-900: oklch(0.239 0.050 95.2); /* #261e00 */
+    --signal-yellow-950: oklch(0.130 0.028 95.2); /* #0b0700 */
+
+    /* Cursor Coral palette */
+    --cursor-coral-50: oklch(0.955 0.022 23.9); /* #ffebe9 */
+    --cursor-coral-100: oklch(0.889 0.058 23.9); /* #ffccc8 */
+    --cursor-coral-200: oklch(0.823 0.099 23.9); /* #ffaca6 */
+    --cursor-coral-300: oklch(0.757 0.145 23.9); /* #ff8882 */
+    --cursor-coral-400: oklch(0.691 0.199 23.9); /* #ff5c5c */
+    --cursor-coral-500: oklch(0.597 0.177 23.9); /* #d44849 */
+    --cursor-coral-600: oklch(0.504 0.155 23.9); /* #ab3436 */
+    --cursor-coral-700: oklch(0.410 0.133 23.9); /* #842124 */
+    --cursor-coral-800: oklch(0.317 0.111 23.9); /* #5e0f13 */
+    --cursor-coral-900: oklch(0.223 0.090 23.9); /* #3b0005 */
+    --cursor-coral-950: oklch(0.130 0.055 23.9); /* #180001 */
+
+    /* Patch Peach palette */
+    --patch-peach-50: oklch(0.955 0.024 64.8); /* #fcede0 */
+    --patch-peach-100: oklch(0.903 0.064 64.8); /* #fed7b3 */
+    --patch-peach-200: oklch(0.850 0.104 64.8); /* #fec084 */
+    --patch-peach-300: oklch(0.798 0.144 64.8); /* #fca84e */
+    --patch-peach-400: oklch(0.703 0.130 64.8); /* #d68c3c */
+    --patch-peach-500: oklch(0.607 0.117 64.8); /* #b2722a */
+    --patch-peach-600: oklch(0.512 0.103 64.8); /* #8f5819 */
+    --patch-peach-700: oklch(0.416 0.090 64.8); /* #6d4007 */
+    --patch-peach-800: oklch(0.321 0.072 64.8); /* #4c2a00 */
+    --patch-peach-900: oklch(0.225 0.051 64.8); /* #2c1600 */
+    --patch-peach-950: oklch(0.130 0.031 64.8); /* #0f0500 */
+
+    /* Neutral palette */
+    --neutral-50: oklch(1.000 0.0000 214.4); /* #ffffff */
+    --neutral-100: oklch(0.970 0.0000 214.4); /* #f5f5f5 */
+    --neutral-200: oklch(0.891 0.0007 214.4); /* #dbdbdb */
+    --neutral-300: oklch(0.813 0.0014 214.4); /* #c1c2c2 */
+    --neutral-400: oklch(0.734 0.0020 214.4); /* #a7a9a9 */
+    --neutral-500: oklch(0.655 0.0027 214.4); /* #8f9192 */
+    --neutral-600: oklch(0.576 0.0034 214.4); /* #777a7a */
+    --neutral-700: oklch(0.497 0.0041 214.4); /* #606364 */
+    --neutral-800: oklch(0.418 0.0047 214.4); /* #4a4d4e */
+    --neutral-900: oklch(0.340 0.0054 214.4); /* #35393a */
+    --neutral-950: oklch(0.261 0.0061 214.4); /* #212526 */
     /* /GENERATED:brand-palettes */
 
     /* Brand color aliases */
@@ -113,10 +256,28 @@
     --brand-tech-blue: var(--tech-blue-500);
     --brand-transform-teal: var(--transform-teal-500);
     --brand-equal-ember: var(--equal-ember-500);
-    --brand-dark-data: oklch(0.208 0.010 240.0); /* #212526 */
-    --brand-the-cloud: var(--slate-100); /* #f5f5f5 - using slate-100 */
+    /* Fixed: was oklch(0.208 0.010 240.0), which actually resolves to #14191c, not the
+       #212526 the old comment claimed. Now aliased into the EE neutral scale, which is
+       generated directly from the upstream hex and resolves exactly. */
+    --brand-dark-data: var(--neutral-950); /* #212526 */
+    /* Fixed: was slate-100 (#f1f5f9) as a stand-in; now the real The Cloud value (#f5f5f5)
+       via the EE neutral scale. */
+    --brand-the-cloud: var(--neutral-100); /* #f5f5f5 */
     --brand-byte-white: var(--white); /* #ffffff */
     --brand-ee-blue-accent: var(--ee-blue-50);
+    --brand-overcast: var(--neutral-600); /* #777a7a — 4th named EE neutral point */
+
+    /* Brand color aliases - extended palette (June 2026 colours lockdown) */
+    --brand-index-indigo: var(--index-indigo-800);
+    --brand-packet-plum: var(--packet-plum-600);
+    --brand-runtime-red: var(--runtime-red-600);
+    --brand-uptime-green: var(--uptime-green-500);
+    --brand-server-slate: var(--server-slate-600);
+    --brand-logic-lime: var(--logic-lime-300);
+    --brand-edge-blue: var(--edge-blue-200);
+    --brand-signal-yellow: var(--signal-yellow-300);
+    --brand-cursor-coral: var(--cursor-coral-400);
+    --brand-patch-peach: var(--patch-peach-300);
   }
 }
 
@@ -129,24 +290,33 @@
 :root {
     /* General colors - from ee-light.json */
     --background: var(--brand-byte-white); /* {brand.byte-white} */
-    --foreground: var(--slate-950); /* {slate.950} */
+    --foreground: var(--neutral-950); /* {neutral.950} = Dark Data — was slate-950 */
     --primary: var(--brand-ee-blue); /* {brand.ee-blue} */
     --primary-foreground: var(--brand-byte-white); /* {brand.byte-white} */
     --secondary: var(--brand-transform-teal); /* {brand.transform-teal} */
     --secondary-foreground: var(--brand-byte-white); /* {brand.byte-white} */
-    --muted: var(--slate-100); /* {slate.100} */
-    --muted-foreground: var(--slate-500); /* {slate.500} */
+    --muted: var(--neutral-100); /* {neutral.100} = The Cloud — was slate-100 */
+    --muted-foreground: var(--neutral-700); /* {neutral.700} — was slate-500 (4.34:1); bumped a step so muted/muted-foreground clears 4.5:1 AA (5.56:1) instead of regressing to 2.9:1 */
     --accent: var(--brand-ee-blue-accent); /* {brand.ee-blue-accent} = ee-blue-50 */
-    --accent-foreground: var(--slate-950); /* {slate.950} */
-    --destructive: var(--red-600); /* {red.600} */
+    --accent-foreground: var(--neutral-950); /* {neutral.950} — was slate-950 */
+    --destructive: var(--brand-runtime-red); /* {brand.runtime-red} — was red-600; June 2026 colours lockdown */
     --destructive-foreground: var(--brand-byte-white); /* standard white on destructive */
-    --border: var(--slate-200); /* {slate.200} */
+    --border: var(--neutral-200); /* {neutral.200} — was slate-200 */
     --input: var(--brand-byte-white); /* {white} */
     --ring: var(--indigo-300); /* focus ring — Tailwind indigo-300 */
 
+    /* Semantic / RAG colours — June 2026 colours lockdown. Always paired with an
+       icon/shape/label by consumers (WCAG 1.4.1 — never colour alone). */
+    --error: var(--brand-runtime-red); /* white text, 7.8:1 AAA */
+    --warning: var(--brand-equal-ember); /* Dark Data text required — white FAILS (2.8:1) */
+    --success: var(--brand-uptime-green); /* white text, 5.0:1 AA */
+    --info: var(--brand-index-indigo); /* white text, 13.4:1 AAA */
+    --link: oklch(0.573 0.132 240.6); /* #0080be — WIP, ~97% of AA on white; see colour-usage.md */
+    --interaction-state: var(--brand-edge-blue); /* hover/active; Dark Data text */
+
     /* Card colors - from ee-light.json */
     --card: var(--brand-byte-white); /* {white} */
-    --card-foreground: var(--slate-950); /* {slate.950} */
+    --card-foreground: var(--neutral-950); /* {neutral.950} — was slate-950 */
 
     /* Popover colors - from ee-light.json */
     --popover: var(--black); /* {black} */
@@ -164,20 +334,20 @@
     --sidebar-foreground: var(--brand-byte-white); /* {brand.byte-white} */
     --sidebar-primary: var(--brand-ee-blue); /* {brand.ee-blue} */
     --sidebar-primary-foreground: var(--brand-byte-white); /* white on ee-blue active item */
-    --sidebar-accent: var(--slate-200); /* {slate.200} */
+    --sidebar-accent: var(--neutral-200); /* {neutral.200} — was slate-200 */
     --sidebar-accent-foreground: var(--brand-tech-blue); /* {brand.tech-blue} */
-    --sidebar-border: var(--slate-200); /* {slate.200} */
-    --sidebar-ring: var(--slate-100); /* {slate.100} */
+    --sidebar-border: var(--neutral-200); /* {neutral.200} — was slate-200 */
+    --sidebar-ring: var(--neutral-100); /* {neutral.100} — was slate-100 */
 
     /* Kuat Header - Default variant (light) */
     --kuat-header-default-background: var(--white);
-    --kuat-header-default-foreground: var(--slate-700); /* #334155 */
-    --kuat-header-default-foreground-secondary: var(--slate-500); /* #94a3b8 */
+    --kuat-header-default-foreground: var(--neutral-700); /* was slate-700 */
+    --kuat-header-default-foreground-secondary: var(--neutral-500); /* was slate-500 */
 
     /* Kuat Header - Bold variant (dark header on light page) */
     --kuat-header-bold-background: var(--tech-blue-500); /* #22567c */
-    --kuat-header-bold-foreground: var(--slate-100); /* #f1f5f9 */
-    --kuat-header-bold-foreground-secondary: var(--slate-300); /* #cbd5e1 */
+    --kuat-header-bold-foreground: var(--neutral-100); /* was slate-100 */
+    --kuat-header-bold-foreground-secondary: var(--neutral-300); /* was slate-300 */
 
     /* Kuat Radial Progress - bar colours (light mode) */
     --kuat-radial-progress-background-bar: var(--muted);
@@ -202,21 +372,32 @@
   
   .dark {
     /* General colors - from ee-dark.json */
-    --background: var(--slate-900); /* {slate.900} */
+    /* Deliberate: Dark Data (neutral-950), the brand's canonical dark surface, rather than
+       a straight slate-900 rank-swap — matches Dark Data's use everywhere else in the brand
+       (decks, product dark fills). See colour-usage.md. */
+    --background: var(--neutral-950); /* {neutral.950} = Dark Data — was slate-900 */
     --foreground: var(--brand-byte-white); /* {brand.byte-white} */
     --primary: var(--brand-ee-blue); /* {brand.ee-blue} */
     --primary-foreground: var(--brand-byte-white); /* {brand.byte-white} */
     --secondary: var(--brand-transform-teal); /* {brand.transform-teal} */
     --secondary-foreground: var(--brand-byte-white); /* {brand.byte-white} */
-    --muted: var(--slate-800); /* {slate.800} — dark surface so muted-foreground (slate-300) is legible */
-    --muted-foreground: var(--slate-300); /* {slate.300} */
+    --muted: var(--neutral-800); /* {neutral.800} — was slate-800; dark surface so muted-foreground is legible */
+    --muted-foreground: var(--neutral-300); /* {neutral.300} — was slate-300 */
     --accent: var(--ee-blue-800); /* {brand.ee-blue.800} */
     --accent-foreground: var(--brand-byte-white); /* white on dark accent */
-    --destructive: var(--red-600); /* {red.600} */
+    --destructive: var(--brand-runtime-red); /* {brand.runtime-red} — was red-600 */
     --destructive-foreground: var(--brand-byte-white); /* standard white on destructive */
-    --border: var(--slate-700); /* {slate.700} */
-    --input: var(--slate-600); /* {slate.600} */
+    --border: var(--neutral-700); /* {neutral.700} — was slate-700 */
+    --input: var(--neutral-600); /* {neutral.600} = Overcast — was slate-600 */
     --ring: var(--indigo-300); /* focus ring — Tailwind indigo-300 */
+
+    /* Semantic / RAG colours (dark) — on-dark-surface variants (lighter steps for legible text) */
+    --error: var(--runtime-red-300);
+    --warning: var(--brand-equal-ember); /* same both modes */
+    --success: var(--uptime-green-300);
+    --info: var(--index-indigo-300);
+    --link: var(--brand-edge-blue); /* dark-mode link = Edge Blue, per the source review */
+    --interaction-state: var(--brand-edge-blue); /* same both modes */
 
     /* Card colors - from ee-dark.json */
     --card: var(--tech-blue-800); /* {brand.tech-blue.800} */
@@ -240,17 +421,17 @@
     --sidebar-primary-foreground: var(--brand-byte-white); /* white on ee-blue active item */
     --sidebar-accent: var(--ee-blue-700); /* {brand.ee-blue.700} */
     --sidebar-accent-foreground: var(--brand-byte-white); /* white on dark accent */
-    --sidebar-border: var(--slate-200); /* {slate.200} */
-    --sidebar-ring: var(--slate-100); /* {slate.100} */
+    --sidebar-border: var(--neutral-200); /* {neutral.200} — was slate-200 */
+    --sidebar-ring: var(--neutral-100); /* {neutral.100} — was slate-100 */
 
     /* Kuat Header - Default variant adapts to dark mode */
-    --kuat-header-default-background: var(--slate-900);
-    --kuat-header-default-foreground: var(--slate-100);
-    --kuat-header-default-foreground-secondary: var(--slate-400);
+    --kuat-header-default-background: var(--neutral-950); /* Dark Data — was slate-900, matches --background */
+    --kuat-header-default-foreground: var(--neutral-100); /* was slate-100 */
+    --kuat-header-default-foreground-secondary: var(--neutral-400); /* was slate-400 */
     /* Bold variant typically remains unchanged in dark mode */
 
     /* Kuat Radial Progress - bar colours (dark mode) */
-    --kuat-radial-progress-background-bar: var(--slate-700);
+    --kuat-radial-progress-background-bar: var(--neutral-700); /* was slate-700 */
     --kuat-radial-progress-foreground-bar: var(--ee-blue-400);
 
     /* Typography - same as light mode */
@@ -314,6 +495,14 @@
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
+
+    /* Semantic / RAG colours */
+    --color-error: var(--error);
+    --color-warning: var(--warning);
+    --color-success: var(--success);
+    --color-info: var(--info);
+    --color-link: var(--link);
+    --color-interaction-state: var(--interaction-state);
 
     /* Kuat Header colors */
     --color-kuat-header-default-background: var(--kuat-header-default-background);
@@ -405,6 +594,140 @@
     --color-equal-ember-900: var(--equal-ember-900);
     --color-equal-ember-950: var(--equal-ember-950);
 
+    /* Extended palette (June 2026 colours lockdown) */
+    --color-index-indigo-50: var(--index-indigo-50);
+    --color-index-indigo-100: var(--index-indigo-100);
+    --color-index-indigo-200: var(--index-indigo-200);
+    --color-index-indigo-300: var(--index-indigo-300);
+    --color-index-indigo-400: var(--index-indigo-400);
+    --color-index-indigo-500: var(--index-indigo-500);
+    --color-index-indigo-600: var(--index-indigo-600);
+    --color-index-indigo-700: var(--index-indigo-700);
+    --color-index-indigo-800: var(--index-indigo-800);
+    --color-index-indigo-900: var(--index-indigo-900);
+    --color-index-indigo-950: var(--index-indigo-950);
+
+    --color-packet-plum-50: var(--packet-plum-50);
+    --color-packet-plum-100: var(--packet-plum-100);
+    --color-packet-plum-200: var(--packet-plum-200);
+    --color-packet-plum-300: var(--packet-plum-300);
+    --color-packet-plum-400: var(--packet-plum-400);
+    --color-packet-plum-500: var(--packet-plum-500);
+    --color-packet-plum-600: var(--packet-plum-600);
+    --color-packet-plum-700: var(--packet-plum-700);
+    --color-packet-plum-800: var(--packet-plum-800);
+    --color-packet-plum-900: var(--packet-plum-900);
+    --color-packet-plum-950: var(--packet-plum-950);
+
+    --color-runtime-red-50: var(--runtime-red-50);
+    --color-runtime-red-100: var(--runtime-red-100);
+    --color-runtime-red-200: var(--runtime-red-200);
+    --color-runtime-red-300: var(--runtime-red-300);
+    --color-runtime-red-400: var(--runtime-red-400);
+    --color-runtime-red-500: var(--runtime-red-500);
+    --color-runtime-red-600: var(--runtime-red-600);
+    --color-runtime-red-700: var(--runtime-red-700);
+    --color-runtime-red-800: var(--runtime-red-800);
+    --color-runtime-red-900: var(--runtime-red-900);
+    --color-runtime-red-950: var(--runtime-red-950);
+
+    --color-uptime-green-50: var(--uptime-green-50);
+    --color-uptime-green-100: var(--uptime-green-100);
+    --color-uptime-green-200: var(--uptime-green-200);
+    --color-uptime-green-300: var(--uptime-green-300);
+    --color-uptime-green-400: var(--uptime-green-400);
+    --color-uptime-green-500: var(--uptime-green-500);
+    --color-uptime-green-600: var(--uptime-green-600);
+    --color-uptime-green-700: var(--uptime-green-700);
+    --color-uptime-green-800: var(--uptime-green-800);
+    --color-uptime-green-900: var(--uptime-green-900);
+    --color-uptime-green-950: var(--uptime-green-950);
+
+    --color-server-slate-50: var(--server-slate-50);
+    --color-server-slate-100: var(--server-slate-100);
+    --color-server-slate-200: var(--server-slate-200);
+    --color-server-slate-300: var(--server-slate-300);
+    --color-server-slate-400: var(--server-slate-400);
+    --color-server-slate-500: var(--server-slate-500);
+    --color-server-slate-600: var(--server-slate-600);
+    --color-server-slate-700: var(--server-slate-700);
+    --color-server-slate-800: var(--server-slate-800);
+    --color-server-slate-900: var(--server-slate-900);
+    --color-server-slate-950: var(--server-slate-950);
+
+    --color-logic-lime-50: var(--logic-lime-50);
+    --color-logic-lime-100: var(--logic-lime-100);
+    --color-logic-lime-200: var(--logic-lime-200);
+    --color-logic-lime-300: var(--logic-lime-300);
+    --color-logic-lime-400: var(--logic-lime-400);
+    --color-logic-lime-500: var(--logic-lime-500);
+    --color-logic-lime-600: var(--logic-lime-600);
+    --color-logic-lime-700: var(--logic-lime-700);
+    --color-logic-lime-800: var(--logic-lime-800);
+    --color-logic-lime-900: var(--logic-lime-900);
+    --color-logic-lime-950: var(--logic-lime-950);
+
+    --color-edge-blue-50: var(--edge-blue-50);
+    --color-edge-blue-100: var(--edge-blue-100);
+    --color-edge-blue-200: var(--edge-blue-200);
+    --color-edge-blue-300: var(--edge-blue-300);
+    --color-edge-blue-400: var(--edge-blue-400);
+    --color-edge-blue-500: var(--edge-blue-500);
+    --color-edge-blue-600: var(--edge-blue-600);
+    --color-edge-blue-700: var(--edge-blue-700);
+    --color-edge-blue-800: var(--edge-blue-800);
+    --color-edge-blue-900: var(--edge-blue-900);
+    --color-edge-blue-950: var(--edge-blue-950);
+
+    --color-signal-yellow-50: var(--signal-yellow-50);
+    --color-signal-yellow-100: var(--signal-yellow-100);
+    --color-signal-yellow-200: var(--signal-yellow-200);
+    --color-signal-yellow-300: var(--signal-yellow-300);
+    --color-signal-yellow-400: var(--signal-yellow-400);
+    --color-signal-yellow-500: var(--signal-yellow-500);
+    --color-signal-yellow-600: var(--signal-yellow-600);
+    --color-signal-yellow-700: var(--signal-yellow-700);
+    --color-signal-yellow-800: var(--signal-yellow-800);
+    --color-signal-yellow-900: var(--signal-yellow-900);
+    --color-signal-yellow-950: var(--signal-yellow-950);
+
+    --color-cursor-coral-50: var(--cursor-coral-50);
+    --color-cursor-coral-100: var(--cursor-coral-100);
+    --color-cursor-coral-200: var(--cursor-coral-200);
+    --color-cursor-coral-300: var(--cursor-coral-300);
+    --color-cursor-coral-400: var(--cursor-coral-400);
+    --color-cursor-coral-500: var(--cursor-coral-500);
+    --color-cursor-coral-600: var(--cursor-coral-600);
+    --color-cursor-coral-700: var(--cursor-coral-700);
+    --color-cursor-coral-800: var(--cursor-coral-800);
+    --color-cursor-coral-900: var(--cursor-coral-900);
+    --color-cursor-coral-950: var(--cursor-coral-950);
+
+    --color-patch-peach-50: var(--patch-peach-50);
+    --color-patch-peach-100: var(--patch-peach-100);
+    --color-patch-peach-200: var(--patch-peach-200);
+    --color-patch-peach-300: var(--patch-peach-300);
+    --color-patch-peach-400: var(--patch-peach-400);
+    --color-patch-peach-500: var(--patch-peach-500);
+    --color-patch-peach-600: var(--patch-peach-600);
+    --color-patch-peach-700: var(--patch-peach-700);
+    --color-patch-peach-800: var(--patch-peach-800);
+    --color-patch-peach-900: var(--patch-peach-900);
+    --color-patch-peach-950: var(--patch-peach-950);
+
+    /* EE neutral scale */
+    --color-neutral-50: var(--neutral-50);
+    --color-neutral-100: var(--neutral-100);
+    --color-neutral-200: var(--neutral-200);
+    --color-neutral-300: var(--neutral-300);
+    --color-neutral-400: var(--neutral-400);
+    --color-neutral-500: var(--neutral-500);
+    --color-neutral-600: var(--neutral-600);
+    --color-neutral-700: var(--neutral-700);
+    --color-neutral-800: var(--neutral-800);
+    --color-neutral-900: var(--neutral-900);
+    --color-neutral-950: var(--neutral-950);
+
     /* Brand color aliases */
     --color-brand-ee-blue: var(--brand-ee-blue);
     --color-brand-tech-blue: var(--brand-tech-blue);
@@ -414,6 +737,17 @@
     --color-brand-the-cloud: var(--brand-the-cloud);
     --color-brand-byte-white: var(--brand-byte-white);
     --color-brand-ee-blue-accent: var(--brand-ee-blue-accent);
+    --color-brand-overcast: var(--brand-overcast);
+    --color-brand-index-indigo: var(--brand-index-indigo);
+    --color-brand-packet-plum: var(--brand-packet-plum);
+    --color-brand-runtime-red: var(--brand-runtime-red);
+    --color-brand-uptime-green: var(--brand-uptime-green);
+    --color-brand-server-slate: var(--brand-server-slate);
+    --color-brand-logic-lime: var(--brand-logic-lime);
+    --color-brand-edge-blue: var(--brand-edge-blue);
+    --color-brand-signal-yellow: var(--brand-signal-yellow);
+    --color-brand-cursor-coral: var(--brand-cursor-coral);
+    --color-brand-patch-peach: var(--brand-patch-peach);
 
     --color-black: var(--black);
     --color-white: var(--white);

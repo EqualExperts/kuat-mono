@@ -2,6 +2,53 @@
 
 All notable changes to the published Kuat packages are documented in this file.
 
+## Pre-release 0.15.0-beta.0 - 2026-07-03
+
+### Affected packages
+- @equal-experts/kuat-core@0.15.0-beta.0
+- @equal-experts/kuat-react@0.15.0-beta.0
+- @equal-experts/kuat-vue@0.15.0-beta.0
+
+First beta synced from the upstream June 2026 colours lockdown (`kuat-agent-rules`
+`colors.tokens.json`). react/vue are version-aligned only (no code changes; both re-import
+`@equal-experts/kuat-core/variables.css`).
+
+### Added
+- **Extended colour palette.** 10 new brand scales (Index Indigo, Packet Plum, Runtime Red,
+  Uptime Green, Server Slate, Logic Lime, Edge Blue, Signal Yellow, Cursor Coral, Patch Peach),
+  each a full 50–950 scale plus a `--brand-*` alias, registered as `--color-<scale>-<step>`
+  Tailwind utilities. Exception-only — see the upstream `colour-usage.md` for the tier model.
+- **EE neutral scale.** `--neutral-50…950` (monotonic Byte White → Dark Data), plus
+  `--brand-overcast` (`--neutral-600`). Distinct from Server Slate, which stays a separate brand
+  grey.
+- **Semantic/RAG layer.** `--error`, `--warning`, `--success`, `--info`, `--link`,
+  `--interaction-state` (light + dark), each mirrored as a `--color-*` Tailwind utility and added
+  to `token-contract.json`'s `semanticVocabulary`. `--link` is **WIP** — a deliberately
+  just-under-AA accessible EE Blue (`#0080be`), flagged for validation; consumers should reference
+  the token, not hard-code the hex.
+
+### Changed
+- **`--destructive` is now Runtime Red** (`#a3152b`), replacing the old Tailwind `red-600`
+  (`#dc2626`), in both light and dark.
+- **shadcn semantic roles backed by the new neutral scale, not the internal `slate` support
+  scale**, for every role that previously resolved through `slate-*`
+  (`foreground`, `muted`/`muted-foreground`, `accent-foreground`, `card-foreground`, `border`,
+  `input` (dark), `sidebar-accent`/`sidebar-border`/`sidebar-ring`, `kuat-header-*`). Values shift
+  slightly (e.g. dark-mode `background` now resolves to Dark Data, the brand's canonical dark
+  surface, rather than an intermediate slate); `muted-foreground` was bumped a neutral step over a
+  straight rank-swap to keep `muted`/`muted-foreground` at 4.5:1+ AA (5.56:1) instead of
+  regressing below the 3:1 floor. Full contrast reverified via `pnpm tokens:contrast-check` — no
+  pair sits below the 3:1 hard floor after this change.
+- `token-contract.json`'s `semanticVocabulary` now includes Kuat's own semantic roles alongside
+  the shadcn v4 set (see Added, above).
+
+### Fixed
+- **`--brand-dark-data` colour drift.** The old hand-authored value
+  (`oklch(0.208 0.010 240.0)`) actually rendered `#14191c`, not the `#212526` its comment
+  claimed. Now aliased to `--neutral-950`, which resolves exactly to `#212526`.
+- **`--brand-the-cloud` colour drift.** Previously aliased to `slate-100` (`#f1f5f9`) as a
+  stand-in; now aliased to `--neutral-100`, the real The Cloud value (`#f5f5f5`).
+
 ## 0.14.0 - 2026-07-01
 
 First stable release of the 0.14 line (promotes 0.14.0-beta.0 → beta.3 to the `latest`

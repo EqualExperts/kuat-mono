@@ -41,11 +41,23 @@ const CLOSE = "    /* /GENERATED:brand-palettes */";
 const INDENT = "    ";
 
 // Brand scales (order + display names match the existing variables.css block).
+// Extended palette + neutral scale added for the June 2026 colours lockdown (WS5).
 const SCALES = [
   { key: "ee-blue", name: "EE Blue" },
   { key: "tech-blue", name: "Tech Blue" },
   { key: "transform-teal", name: "Transform Teal" },
   { key: "equal-ember", name: "Equal Ember" },
+  { key: "index-indigo", name: "Index Indigo" },
+  { key: "packet-plum", name: "Packet Plum" },
+  { key: "runtime-red", name: "Runtime Red" },
+  { key: "uptime-green", name: "Uptime Green" },
+  { key: "server-slate", name: "Server Slate" },
+  { key: "logic-lime", name: "Logic Lime" },
+  { key: "edge-blue", name: "Edge Blue" },
+  { key: "signal-yellow", name: "Signal Yellow" },
+  { key: "cursor-coral", name: "Cursor Coral" },
+  { key: "patch-peach", name: "Patch Peach" },
+  { key: "neutral", name: "Neutral" },
 ];
 const STEPS = ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900", "950"];
 

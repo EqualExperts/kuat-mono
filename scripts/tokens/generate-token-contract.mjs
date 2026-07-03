@@ -72,6 +72,15 @@ const SHADCN_SEMANTIC = [
   "sidebar-accent-foreground",
   "sidebar-border",
   "sidebar-ring",
+  // Kuat's own semantic/RAG layer (June 2026 colours lockdown) — not part of shadcn v4's
+  // core vocabulary, but authored the same way (light/dark :root pair) so they belong in
+  // this contract for the coverage/theme-integrity audits.
+  "error",
+  "warning",
+  "success",
+  "info",
+  "link",
+  "interaction-state",
 ];
 
 function die(msg) {
