@@ -18,6 +18,12 @@
       "displayName": "KuatHeader",
       "path": "components/kuat-header.md",
       "sources": ["@equal-experts/kuat-react", "@equal-experts/kuat-vue"]
+    },
+    "kuat:callout": {
+      "slug": "callout",
+      "displayName": "Callout",
+      "path": "components/callout.md",
+      "sources": ["@equal-experts/kuat-react", "@equal-experts/kuat-vue"]
     }
   }
 }

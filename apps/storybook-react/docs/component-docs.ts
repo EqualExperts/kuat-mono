@@ -103,6 +103,17 @@ Width behavior:
 - Dense data tables (use table primitives)
 - Full-width hero sections (use layout blocks)`;
 
+export const calloutDocs = `## Overview
+Inline banner for surfacing **info, positive, warning, or issue** messages with an optional description and link action.
+
+## When to use
+- Persistent, in-page status messages tied to a section of content
+- Confirmations, warnings, or errors that should stay visible until the user navigates away
+
+## When not to use
+- Transient, self-dismissing notifications (use \`Sonner\`)
+- Form field-level validation (use \`Field\`'s error slot)`;
+
 export const fieldDocs = `## Overview
 Composable **Field** primitives for labels, descriptions, grouping, and errors (\`Field\`, \`FieldLabel\`, \`FieldError\`, …).
 

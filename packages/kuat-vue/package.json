@@ -30,6 +30,10 @@
       "import": "./dist/button-group.js",
       "types": "./dist/button-group.d.ts"
     },
+    "./callout": {
+      "import": "./dist/callout.js",
+      "types": "./dist/callout.d.ts"
+    },
     "./textarea": {
       "import": "./dist/textarea.js",
       "types": "./dist/textarea.d.ts"
