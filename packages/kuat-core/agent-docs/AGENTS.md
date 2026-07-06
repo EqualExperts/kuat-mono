@@ -7,4 +7,4 @@ Rules for this install live under `agent-docs/` in `@equal-experts/kuat-core`, `
 3. Load component guides via `agent-docs/components/components.manifest.json`.
 4. Skills: `kuat-review`, `kuat-create` from [kuat-agent-docs](https://github.com/equalexperts/kuat-agent-docs).
 
-**Version:** 0.15.0-beta.0 · **Rules snapshot:** e78781ef6660
+**Version:** 0.15.0-beta.0 · **Rules snapshot:** 24ebd2dee5cc
