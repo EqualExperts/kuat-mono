@@ -52,6 +52,13 @@ export type {
 export { ContentCard } from "./components/ui/content-card";
 export type { ContentCardProps } from "./components/ui/content-card";
 
+export { Callout, CALLOUT_TYPES } from "./components/ui/callout";
+export type {
+  CalloutProps,
+  CalloutType,
+  CalloutAction,
+} from "./components/ui/callout";
+
 // =============================================================================
 // KUAT BLOCKS (Composed Patterns)
 // Pre-built compositions of components for common patterns

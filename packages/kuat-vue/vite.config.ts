@@ -29,6 +29,7 @@ export default mergeConfig(
           "alert-dialog": resolve(__dirname, "src/alert-dialog.ts"),
           badge: resolve(__dirname, "src/badge.ts"),
           "button-group": resolve(__dirname, "src/button-group.ts"),
+          callout: resolve(__dirname, "src/callout.ts"),
           carousel: resolve(__dirname, "src/carousel.ts"),
           "kuat-carousel": resolve(__dirname, "src/kuat-carousel.ts"),
           textarea: resolve(__dirname, "src/textarea.ts"),

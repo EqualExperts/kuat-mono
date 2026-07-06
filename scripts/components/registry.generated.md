@@ -12,3 +12,4 @@ reconciling the curated "Source" prose and "Upstream refs" links by hand. The
 | `shadcn:button` | Button | `shadcn:button` / `@equal-experts/kuat-core` | `components/button.md` | — |
 | `kuat:button-group` | ButtonGroup | `@equal-experts/kuat-react` / `@equal-experts/kuat-vue` | `components/button-group.md` | — |
 | `kuat:kuat-header` | KuatHeader | `@equal-experts/kuat-react` / `@equal-experts/kuat-vue` | `components/kuat-header.md` | — |
+| `kuat:callout` | Callout | `@equal-experts/kuat-react` / `@equal-experts/kuat-vue` | `components/callout.md` | — |

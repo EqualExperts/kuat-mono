@@ -353,6 +353,22 @@
     --kuat-radial-progress-background-bar: var(--muted);
     --kuat-radial-progress-foreground-bar: var(--ee-blue-500);
 
+    /* Callout - background/foreground pairs per type (light). Bumped info/warning
+       one palette step (500->600) vs the literal Figma value: --ee-blue-500 and
+       --equal-ember-500 land at 3.00:1 / 2.53:1 against their own -50 tint, at or
+       under the 3:1 hard floor in tokens/contrast-check.mjs. Same fix pattern as
+       --muted-foreground above. Positive/issue already match Figma exactly via
+       the existing --success/--error tokens. */
+    --callout-info: var(--ee-blue-50);
+    --callout-info-foreground: var(--ee-blue-600);
+    --callout-positive: var(--uptime-green-50);
+    --callout-positive-foreground: var(--success);
+    --callout-warning: var(--equal-ember-50);
+    --callout-warning-foreground: var(--equal-ember-600);
+    --callout-issue: var(--runtime-red-50);
+    --callout-issue-foreground: var(--error);
+    --callout-link: var(--ee-blue-700);
+
     /* Shadows - keeping existing values, not in JSON */
     --shadow-x: 0px;
     --shadow-y: 4px;
@@ -433,6 +449,17 @@
     /* Kuat Radial Progress - bar colours (dark mode) */
     --kuat-radial-progress-background-bar: var(--neutral-700); /* was slate-700 */
     --kuat-radial-progress-foreground-bar: var(--ee-blue-400);
+
+    /* Callout - background/foreground pairs per type (dark) */
+    --callout-info: var(--ee-blue-900);
+    --callout-info-foreground: var(--ee-blue-300);
+    --callout-positive: var(--uptime-green-900);
+    --callout-positive-foreground: var(--success); /* uptime-green-300 in dark */
+    --callout-warning: var(--equal-ember-900);
+    --callout-warning-foreground: var(--warning); /* equal-ember-500, same both modes */
+    --callout-issue: var(--runtime-red-900);
+    --callout-issue-foreground: var(--error); /* runtime-red-300 in dark */
+    --callout-link: var(--ee-blue-300);
 
     /* Typography - same as light mode */
     --font-sans: Lexend, ui-sans-serif, sans-serif, system-ui;
@@ -519,7 +546,18 @@
     --kuat-radial-progress-size-large: 128px;
     --color-kuat-radial-progress-background-bar: var(--kuat-radial-progress-background-bar);
     --color-kuat-radial-progress-foreground-bar: var(--kuat-radial-progress-foreground-bar);
-  
+
+    /* Callout colors */
+    --color-callout-info: var(--callout-info);
+    --color-callout-info-foreground: var(--callout-info-foreground);
+    --color-callout-positive: var(--callout-positive);
+    --color-callout-positive-foreground: var(--callout-positive-foreground);
+    --color-callout-warning: var(--callout-warning);
+    --color-callout-warning-foreground: var(--callout-warning-foreground);
+    --color-callout-issue: var(--callout-issue);
+    --color-callout-issue-foreground: var(--callout-issue-foreground);
+    --color-callout-link: var(--callout-link);
+
     --radius-xs: 2px;
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
