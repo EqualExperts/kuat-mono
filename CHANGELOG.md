@@ -2,6 +2,24 @@
 
 All notable changes to the published Kuat packages are documented in this file.
 
+## Pre-release 0.15.0-beta.1 - 2026-07-06
+
+### Affected packages
+- @equal-experts/kuat-core@0.15.0-beta.1
+- @equal-experts/kuat-react@0.15.0-beta.1
+- @equal-experts/kuat-vue@0.15.0-beta.1
+
+### Added
+- **`Callout` component**, in both `@equal-experts/kuat-react` and `@equal-experts/kuat-vue`.
+  Inline banner for info/positive/warning/issue status messages with a required title, optional
+  description, a per-type icon (shown by default, togglable), and an optional link-style action.
+  Import from the package root or the `/callout` subpath.
+- **`--callout-*` design tokens** in `kuat-core` (`--callout-info`, `--callout-positive`,
+  `--callout-warning`, `--callout-issue`, each with a `-foreground` pair, plus `--callout-link`),
+  light + dark, mirrored as `--color-callout-*` Tailwind utilities. Info and warning accent colours
+  sit one palette step darker than the literal Figma value (`-600` instead of `-500`) to clear the
+  3:1 WCAG floor enforced by `pnpm tokens:contrast-check` — see `token-contract.json`.
+
 ## Pre-release 0.15.0-beta.0 - 2026-07-03
 
 ### Affected packages
