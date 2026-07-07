@@ -209,6 +209,73 @@ export const Sizes: Story = {
 };
 ```
 
+### Step 4: Add a Figma Code Connect mapping
+
+> **Needs a human.** This step cannot be completed from the code alone — someone has to supply
+> the real Figma node URL and confirm the mapping actually corresponds to the design. Do not
+> guess property names or invent a mapping; if the Figma component's shape doesn't match the code
+> component closely enough, document that mismatch instead of forcing it (see
+> `packages/kuat-react/src/components/ui/button-group/button-group.figma.tsx` for a case where the
+> Figma node models something different from the container component it's named after, and
+> `content-card/content-card.figma.tsx` for a partial-match case with required props that Figma
+> doesn't drive).
+
+1. Get the Figma node URL for the matching design component (`https://www.figma.com/design/<fileKey>?node-id=<nodeId>`).
+2. Pull the real property/variant list for that node — e.g. via the Figma MCP
+   `get_context_for_code_connect` tool — rather than guessing. Figma property names are
+   case-sensitive and must match exactly.
+3. Create `packages/kuat-react/src/components/ui/my-component/my-component.figma.tsx`:
+
+```tsx
+import figma from "@figma/code-connect";
+
+import { MyComponent } from ".";
+
+figma.connect(
+  MyComponent,
+  "https://www.figma.com/design/<fileKey>?node-id=<nodeId>",
+  {
+    props: {
+      variant: figma.enum("Variant", {
+        Default: "default",
+        Outline: "outline",
+      }),
+      size: figma.enum("Size", {
+        Default: "default",
+        Small: "sm",
+        Large: "lg",
+      }),
+      label: figma.textContent("Label"),
+    },
+    example: ({ variant, size, label }) => (
+      <MyComponent variant={variant} size={size}>
+        {label}
+      </MyComponent>
+    ),
+  },
+);
+```
+
+4. Add the component's folder to the root `figma.config.json`'s `codeConnect.importPaths` map, so
+   the snippet shown in Figma Dev Mode uses the public import path rather than the internal
+   relative one:
+
+```json
+"packages/kuat-react/src/components/ui/my-component/**": "@equal-experts/kuat-react/my-component"
+```
+
+   Use the root barrel `@equal-experts/kuat-react` instead if the component has no package
+   subpath export (check `packages/kuat-react/package.json` `exports`).
+
+5. Verify it parses before committing:
+
+```bash
+npx figma connect publish --dry-run
+```
+
+   The component should appear under "Files that would be published" with no `ParserError`. This
+   only validates parsing/prop-mapping — it does not need a Figma access token.
+
 ### Using Kuat agents (optional)
 
 When the Kuat agents are available in your environment (e.g. Cursor with `.cursor/agents/`), you are encouraged to use **kuat-qa** to plan and generate test specs and test code, **kuat-component-dev** to implement the component and add Storybook stories, and **kuat-verify** to run the tests. Optionally use **kuat-documentation** to audit or update Storybook and `kuat-docs` after implementation or before release. See [CONTRIBUTING.md](../CONTRIBUTING.md) Development Workflow for the full flow.
@@ -289,3 +356,4 @@ pnpm build
 - [Component Patterns](../kuat-docs/rules/components/patterns.md) - Naming, accessibility
 - [Design rules index](../kuat-docs/rules/README.md) - EE foundations and Kuat notes
 - [React Examples](../kuat-docs/examples/react/components.md) - Additional patterns
+- [figma.config.json](../figma.config.json) - Figma Code Connect config (`codeConnect.importPaths`)

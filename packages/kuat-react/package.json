@@ -132,6 +132,7 @@
   },
   "devDependencies": {
     "@equal-experts/kuat-core": "workspace:*",
+    "@figma/code-connect": "^1.4.9",
     "@tailwindcss/vite": "^4.0.0",
     "@testing-library/jest-dom": "^6.6.0",
     "@testing-library/react": "^16.0.0",

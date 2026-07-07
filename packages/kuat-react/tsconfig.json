@@ -21,6 +21,7 @@
     }
   },
   "include": ["src"],
+  "exclude": ["src/**/*.figma.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
 
