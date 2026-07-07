@@ -28,6 +28,7 @@
     "contributor:check": "pnpm components:registry:check && pnpm components:verify-no-leak && pnpm tokens:check && pnpm tokens:contrast-check && pnpm tokens:contract:check"
   },
   "devDependencies": {
+    "@figma/code-connect": "^1.4.9",
     "@types/node": "^20.11.0",
     "eslint": "^9.39.4",
     "globals": "^17.5.0",

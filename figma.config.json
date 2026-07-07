@@ -1,0 +1,25 @@
+{
+  "codeConnect": {
+    "parser": "react",
+    "include": ["packages/kuat-react/src/components/ui/**/*.{ts,tsx}"],
+    "importPaths": {
+      "packages/kuat-react/src/components/ui/button/**": "@equal-experts/kuat-react/button",
+      "packages/kuat-react/src/components/ui/icon-button/**": "@equal-experts/kuat-react/icon-button",
+      "packages/kuat-react/src/components/ui/input/**": "@equal-experts/kuat-react/input",
+      "packages/kuat-react/src/components/ui/textarea/**": "@equal-experts/kuat-react/textarea",
+      "packages/kuat-react/src/components/ui/select/**": "@equal-experts/kuat-react/select",
+      "packages/kuat-react/src/components/ui/checkbox/**": "@equal-experts/kuat-react/checkbox",
+      "packages/kuat-react/src/components/ui/radio/**": "@equal-experts/kuat-react/radio",
+      "packages/kuat-react/src/components/ui/switch/**": "@equal-experts/kuat-react/switch",
+      "packages/kuat-react/src/components/ui/badge/**": "@equal-experts/kuat-react/badge",
+      "packages/kuat-react/src/components/ui/accordion/**": "@equal-experts/kuat-react/accordion",
+      "packages/kuat-react/src/components/ui/breadcrumb/**": "@equal-experts/kuat-react",
+      "packages/kuat-react/src/components/ui/content-card/**": "@equal-experts/kuat-react",
+      "packages/kuat-react/src/components/ui/carousel/**": "@equal-experts/kuat-react/carousel",
+      "packages/kuat-react/src/components/ui/toggle/**": "@equal-experts/kuat-react/toggle",
+      "packages/kuat-react/src/components/ui/button-group/**": "@equal-experts/kuat-react/button-group",
+      "packages/kuat-react/src/components/ui/alert-dialog/**": "@equal-experts/kuat-react/alert-dialog",
+      "packages/kuat-react/src/components/ui/sonner/**": "@equal-experts/kuat-react/sonner"
+    }
+  }
+}

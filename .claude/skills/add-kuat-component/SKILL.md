@@ -1,6 +1,6 @@
 ---
 name: add-kuat-component
-description: Scaffold a new Kuat design-system component end-to-end in kuat-mono — React + Vue implementations, Storybook stories, tests, the component doc, the manifest entry, the regenerated component registry, and the agent-docs bundle. Use when a DS-team contributor is adding (or renaming) a component to @equal-experts/kuat-react / kuat-vue. Repo-local contributor skill — never packaged or distributed.
+description: Scaffold a new Kuat design-system component end-to-end in kuat-mono — React + Vue implementations, the React Figma Code Connect mapping, Storybook stories, tests, the component doc, the manifest entry, the regenerated component registry, and the agent-docs bundle. Use when a DS-team contributor is adding (or renaming) a component to @equal-experts/kuat-react / kuat-vue. Repo-local contributor skill — never packaged or distributed.
 ---
 
 # Add a Kuat component
@@ -67,14 +67,36 @@ Work top to bottom. Substitute `<slug>` / `<Pascal>` / `<Name>` throughout.
 - `<slug>.ts` top-level re-export + add to `index.ts`.
 - **Build wiring (don't skip):** add the entry to `vite.config.ts` `build.lib.entry` and the CSS `@import` to `src/components-bundles/bundle-*.css` (same as React).
 
-### 3. Storybook
+### 3. Figma Code Connect (React) — `packages/kuat-react/src/components/ui/<slug>/<slug>.figma.tsx`
+- Create `<slug>.figma.tsx` next to the component, mapping it to its Figma node. Mirror the
+  patterns already in the repo — `button/button.figma.tsx` for `figma.enum`/`figma.boolean`/
+  `figma.instance`, `input/input.figma.tsx` for `figma.nestedProps`, `button-group/button-group.figma.tsx`
+  for a case where the Figma node's shape doesn't match the container component 1:1.
+- Add an entry to the root [`figma.config.json`](../../../figma.config.json) `codeConnect.importPaths`
+  map for the new folder → its public import path (`@equal-experts/kuat-react/<slug>`, or the root
+  barrel `@equal-experts/kuat-react` if the component has no package subpath export).
+- **This step needs a human (or an agent with live Figma MCP access) — do not invent the mapping:**
+  - Get the actual Figma node URL for the matching design component from the person who requested it.
+  - Pull the real property/variant list for that node (e.g. via the Figma MCP `get_context_for_code_connect`
+    tool) rather than guessing names — Figma property names are case-sensitive and must match exactly.
+  - Only map a Figma variant/property to a code prop where a genuine correspondence exists. If the
+    Figma component's shape doesn't match any code component closely enough (see `content-card.figma.tsx`
+    for a partial-match example, or the intentionally-skipped `Alert` — it is *not* the same component
+    as `Callout`), say so explicitly instead of forcing a mapping or skipping silently.
+- Verify:
+  ```bash
+  npx figma connect publish --dry-run
+  ```
+  The new component should appear in "Files that would be published" with no `ParserError`.
+
+### 4. Storybook
 - `apps/storybook-react/stories/<Name>.stories.ts`
 - `apps/storybook-vue/stories/<Name>.stories.ts`
 
-### 4. Component doc
+### 5. Component doc
 - `kuat-docs/components/<slug>.md` — copy `kuat-docs/components/_template.md` and fill every section.
 
-### 5. Manifest — `kuat-docs/components/components.manifest.json`
+### 6. Manifest — `kuat-docs/components/components.manifest.json`
 Add an entry (all four fields are required by the registry check):
 ```json
 "kuat:<slug>": {
@@ -85,35 +107,40 @@ Add an entry (all four fields are required by the registry check):
 }
 ```
 
-### 6. Registry (generated — never hand-edit the table)
+### 7. Registry (generated — never hand-edit the table)
 ```bash
 pnpm components:registry:generate
 ```
 This writes `scripts/components/registry.generated.md`. The authoritative
 `component-registry.md` is **upstream** (kuat-agent-rules) — paste your new row from the
 generated file into it, then fill the curated **Source** prose and **Upstream refs** links by
-hand. (When the upstream tree is synced into `external/`, re-running the bundle in step 7 brings
+hand. (When the upstream tree is synced into `external/`, re-running the bundle in step 8 brings
 the updated registry back down.)
 
-### 7. Bundle
+### 8. Bundle
 ```bash
 node scripts/agent-docs/bundle-for-core.mjs
 ```
 Propagates the manifest + doc into all three packages' `agent-docs/`.
 
-### 8. Verify (definition of done)
+### 9. Verify (definition of done)
 ```bash
 pnpm build            # 5/5 turbo tasks green
 pnpm test:run         # new component tests pass
 pnpm contributor:check  # registry drift check + no-skill-leak guard both green
+npx figma connect publish --dry-run  # new Code Connect file parses, no ParserError
 ```
 
 ## Definition of done
 
 - Component exported from both packages, with a story, tests, a filled doc.
+- `<slug>.figma.tsx` added for the React component and wired into `figma.config.json`
+  `importPaths` — or, if no matching Figma node exists yet or the shapes genuinely don't
+  correspond, that gap is called out explicitly rather than skipped silently.
 - Manifest entry added; `registry.generated.md` regenerated and the row reconciled into the
   upstream registry.
 - `pnpm build`, `pnpm test:run`, `pnpm contributor:check` all green.
+- `npx figma connect publish --dry-run` shows the new component with no `ParserError`.
 - Nothing under `.claude/skills/` reached a package or the bundle (the guard enforces this).
 
 ## Related
@@ -121,4 +148,4 @@ pnpm contributor:check  # registry drift check + no-skill-leak guard both green
 - Part of the [contribution model](https://github.com/EqualExperts/kuat-agent-rules/blob/main/contribute/overview.md) — this is the **Light/Medium · component** path ([proposing a component](https://github.com/EqualExperts/kuat-agent-rules/blob/main/contribute/proposing-a-component.md)).
 
 ---
-_Phase 7 Run B · contributor skill · v1 (2026-06-17)_
+_Phase 7 Run B · contributor skill · v2 — added Figma Code Connect step (2026-07-07)_

@@ -188,12 +188,22 @@ If not in Kuat, either add a local version to Kuat or recommend installing from 
    - Vue version in `packages/kuat-vue`
    - See framework-specific guides below
 
-4. **Add Storybook Stories**
+4. **Add a Figma Code Connect mapping (React)**
+   - Create `packages/kuat-react/src/components/ui/<slug>/<slug>.figma.tsx` mapping the component
+     to its Figma node, and add the folder to `figma.config.json`'s `codeConnect.importPaths`.
+   - **A human is required for this step** — an agent cannot invent the Figma mapping. Whoever
+     requests the component must supply the actual Figma node URL, and the mapping must be pulled
+     from the real property/variant list for that node (not guessed). Only map a Figma
+     variant/property to a code prop where a genuine correspondence exists — if the shapes don't
+     match closely enough, say so explicitly instead of forcing or silently skipping it.
+   - Verify with `npx figma connect publish --dry-run` (see [contribution-docs/react.md](./contribution-docs/react.md#step-4-add-a-figma-code-connect-mapping)).
+
+5. **Add Storybook Stories**
    - React: `apps/storybook-react/stories/`
    - Vue: `apps/storybook-vue/stories/`
    - Story meta must include `parameters.a11y.test = "error"` (or a documented per-story override where needed)
 
-5. **Document in kuat-docs**
+6. **Document in kuat-docs**
    - Add usage documentation describing when and how to use the component
    - Include examples in `kuat-docs/examples/react/` and `kuat-docs/examples/vue/`
 
@@ -249,6 +259,7 @@ chore: upgrade Tailwind to v4.1
 2. Run `pnpm build`
 3. Verify components work in light and dark themes
 4. Ensure both React and Vue versions exist (for components)
+5. Run `npx figma connect publish --dry-run` if you added or changed a `.figma.tsx` file
 
 ### Pull Request Process
 
@@ -267,6 +278,9 @@ chore: upgrade Tailwind to v4.1
 - [ ] Reviewed `kuat-docs/rules/README.md` (and linked upstream files as needed)
 - [ ] Created React version
 - [ ] Created Vue version
+- [ ] Added a Figma Code Connect mapping (`<slug>.figma.tsx` + `figma.config.json` entry) for the
+      React version, using a real Figma node URL supplied by a human — or explicitly noted why one
+      doesn't exist/apply yet
 - [ ] Added Storybook stories (both frameworks)
 - [ ] Storybook story meta includes `parameters.a11y.test = "error"` (or documented exception)
 - [ ] Added documentation to `kuat-docs/`
