@@ -26,6 +26,8 @@ Modal dialog for **destructive or consequential** actions that need explicit con
 - Frequent low-risk actions (avoid modal fatigue)`;
 
 export const badgeDocs = `## Overview
+**Deprecated** — use StatusBadge (status), Tag (categorisation), or CounterBadge (counts). Removal target: next major.
+
 Small label for status, category, or count next to other content.
 
 ## When to use
@@ -286,3 +288,46 @@ Opinionated toast notifications built on Sonner with Kuat styling and API wrappe
 ## When not to use
 - Critical flows that require user focus and immediate action (use dialog patterns)
 - Replacing inline form validation or field-level guidance`;
+
+export const statusBadgeDocs = `## Overview
+Non-interactive status indicator: five semantic types (success, warning, error, info, neutral), two sizes, icon + label, solid fill.
+
+## When to use
+- RAG/status states on rows, cards, or progress trackers (completed, needs attention, failed)
+- Neutral metadata chips where no status colour applies
+
+## When not to use
+- Decorative or promotional labels ("New feature", "Popular") — status colour is reserved for status
+- Categorisation a user filters by (use Tag)
+- Numeric counts (use CounterBadge)`;
+
+export const tagDocs = `## Overview
+Categorisation pill on the extended Data/Digital palette: nine colour categories, tint fill, optional toggle (multi-select filter) or dismiss (removable) interaction.
+
+## When to use
+- Zero-to-many category labels per item (skills, technologies, topics)
+- Filter chips (toggle mode) or applied-filter chips (dismiss mode)
+
+## When not to use
+- Status indication (use StatusBadge — one per item, status colours)
+- Mixing toggle and dismiss tags in the same group — pick one interaction model per group`;
+
+export const tagGroupDocs = `## Overview
+Thin accessibility wrapper for a set of Tags: group role + label, flex-wrap layout, and an aria-live region that announces tag removal.
+
+## When to use
+- Any set of related Tags, especially dismissible or toggle filter groups
+
+## When not to use
+- A single standalone Tag
+- Collections of 8–10+ tags without curation (consider a "+N more" collapse)`;
+
+export const counterBadgeDocs = `## Overview
+Digits-only count pill ("99+" above the cap), designed to overlay the top-right of an icon or avatar.
+
+## When to use
+- Unread/notification counts on icons, tabs, or navigation items
+
+## When not to use
+- Text labels of any kind (use StatusBadge or Tag)
+- Counts the user needs exactly beyond the cap (show the full number in content instead)`;

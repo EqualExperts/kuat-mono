@@ -24,6 +24,30 @@
       "displayName": "Callout",
       "path": "components/callout.md",
       "sources": ["@equal-experts/kuat-react", "@equal-experts/kuat-vue"]
+    },
+    "kuat:status-badge": {
+      "slug": "status-badge",
+      "displayName": "StatusBadge",
+      "path": "components/status-badge.md",
+      "sources": ["@equal-experts/kuat-react", "@equal-experts/kuat-vue"]
+    },
+    "kuat:tag": {
+      "slug": "tag",
+      "displayName": "Tag",
+      "path": "components/tag.md",
+      "sources": ["@equal-experts/kuat-react", "@equal-experts/kuat-vue"]
+    },
+    "kuat:tag-group": {
+      "slug": "tag-group",
+      "displayName": "TagGroup",
+      "path": "components/tag-group.md",
+      "sources": ["@equal-experts/kuat-react", "@equal-experts/kuat-vue"]
+    },
+    "kuat:counter-badge": {
+      "slug": "counter-badge",
+      "displayName": "CounterBadge",
+      "path": "components/counter-badge.md",
+      "sources": ["@equal-experts/kuat-react", "@equal-experts/kuat-vue"]
     }
   }
 }

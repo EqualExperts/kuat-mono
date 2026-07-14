@@ -369,6 +369,55 @@
     --callout-issue-foreground: var(--error);
     --callout-link: var(--ee-blue-700);
 
+    /* Tag - per-category semantic tokens (light), mirroring the Figma "semantic colors"
+       collection (ee-light mode): foreground/border = ramp 700, background = 50,
+       hover = 100, selected = 200. "base" maps to the EE neutral ramp. */
+    --tag-base-foreground: var(--neutral-700);
+    --tag-base-background: var(--neutral-100);
+    --tag-base-background-hover: var(--neutral-200);
+    --tag-base-background-selected: var(--neutral-200);
+    --tag-base-border: var(--neutral-700);
+    --tag-index-indigo-foreground: var(--index-indigo-700);
+    --tag-index-indigo-background: var(--index-indigo-50);
+    --tag-index-indigo-background-hover: var(--index-indigo-100);
+    --tag-index-indigo-background-selected: var(--index-indigo-200);
+    --tag-index-indigo-border: var(--index-indigo-700);
+    --tag-transform-teal-foreground: var(--transform-teal-700);
+    --tag-transform-teal-background: var(--transform-teal-50);
+    --tag-transform-teal-background-hover: var(--transform-teal-100);
+    --tag-transform-teal-background-selected: var(--transform-teal-200);
+    --tag-transform-teal-border: var(--transform-teal-700);
+    --tag-packet-plum-foreground: var(--packet-plum-700);
+    --tag-packet-plum-background: var(--packet-plum-50);
+    --tag-packet-plum-background-hover: var(--packet-plum-100);
+    --tag-packet-plum-background-selected: var(--packet-plum-200);
+    --tag-packet-plum-border: var(--packet-plum-700);
+    --tag-server-slate-foreground: var(--server-slate-700);
+    --tag-server-slate-background: var(--server-slate-50);
+    --tag-server-slate-background-hover: var(--server-slate-100);
+    --tag-server-slate-background-selected: var(--server-slate-200);
+    --tag-server-slate-border: var(--server-slate-700);
+    --tag-logic-lime-foreground: var(--logic-lime-700);
+    --tag-logic-lime-background: var(--logic-lime-50);
+    --tag-logic-lime-background-hover: var(--logic-lime-100);
+    --tag-logic-lime-background-selected: var(--logic-lime-200);
+    --tag-logic-lime-border: var(--logic-lime-700);
+    --tag-signal-yellow-foreground: var(--signal-yellow-700);
+    --tag-signal-yellow-background: var(--signal-yellow-50);
+    --tag-signal-yellow-background-hover: var(--signal-yellow-100);
+    --tag-signal-yellow-background-selected: var(--signal-yellow-200);
+    --tag-signal-yellow-border: var(--signal-yellow-700);
+    --tag-cursor-coral-foreground: var(--cursor-coral-700);
+    --tag-cursor-coral-background: var(--cursor-coral-50);
+    --tag-cursor-coral-background-hover: var(--cursor-coral-100);
+    --tag-cursor-coral-background-selected: var(--cursor-coral-200);
+    --tag-cursor-coral-border: var(--cursor-coral-700);
+    --tag-patch-peach-foreground: var(--patch-peach-700);
+    --tag-patch-peach-background: var(--patch-peach-50);
+    --tag-patch-peach-background-hover: var(--patch-peach-100);
+    --tag-patch-peach-background-selected: var(--patch-peach-200);
+    --tag-patch-peach-border: var(--patch-peach-700);
+
     /* Shadows - keeping existing values, not in JSON */
     --shadow-x: 0px;
     --shadow-y: 4px;
@@ -460,6 +509,55 @@
     --callout-issue: var(--runtime-red-900);
     --callout-issue-foreground: var(--error); /* runtime-red-300 in dark */
     --callout-link: var(--ee-blue-300);
+
+    /* Tag - per-category semantic tokens (dark), mirroring the Figma "semantic colors"
+       collection (ee-dark mode): foreground/border = ramp 100, background = 700,
+       hover = 600, selected = 500. */
+    --tag-base-foreground: var(--neutral-100);
+    --tag-base-background: var(--neutral-700);
+    --tag-base-background-hover: var(--neutral-600);
+    --tag-base-background-selected: var(--neutral-500);
+    --tag-base-border: var(--neutral-100);
+    --tag-index-indigo-foreground: var(--index-indigo-100);
+    --tag-index-indigo-background: var(--index-indigo-700);
+    --tag-index-indigo-background-hover: var(--index-indigo-600);
+    --tag-index-indigo-background-selected: var(--index-indigo-500);
+    --tag-index-indigo-border: var(--index-indigo-100);
+    --tag-transform-teal-foreground: var(--transform-teal-100);
+    --tag-transform-teal-background: var(--transform-teal-700);
+    --tag-transform-teal-background-hover: var(--transform-teal-600);
+    --tag-transform-teal-background-selected: var(--transform-teal-500);
+    --tag-transform-teal-border: var(--transform-teal-100);
+    --tag-packet-plum-foreground: var(--packet-plum-100);
+    --tag-packet-plum-background: var(--packet-plum-700);
+    --tag-packet-plum-background-hover: var(--packet-plum-600);
+    --tag-packet-plum-background-selected: var(--packet-plum-500);
+    --tag-packet-plum-border: var(--packet-plum-100);
+    --tag-server-slate-foreground: var(--server-slate-100);
+    --tag-server-slate-background: var(--server-slate-700);
+    --tag-server-slate-background-hover: var(--server-slate-600);
+    --tag-server-slate-background-selected: var(--server-slate-500);
+    --tag-server-slate-border: var(--server-slate-100);
+    --tag-logic-lime-foreground: var(--logic-lime-100);
+    --tag-logic-lime-background: var(--logic-lime-700);
+    --tag-logic-lime-background-hover: var(--logic-lime-600);
+    --tag-logic-lime-background-selected: var(--logic-lime-500);
+    --tag-logic-lime-border: var(--logic-lime-100);
+    --tag-signal-yellow-foreground: var(--signal-yellow-100);
+    --tag-signal-yellow-background: var(--signal-yellow-700);
+    --tag-signal-yellow-background-hover: var(--signal-yellow-600);
+    --tag-signal-yellow-background-selected: var(--signal-yellow-500);
+    --tag-signal-yellow-border: var(--signal-yellow-100);
+    --tag-cursor-coral-foreground: var(--cursor-coral-100);
+    --tag-cursor-coral-background: var(--cursor-coral-700);
+    --tag-cursor-coral-background-hover: var(--cursor-coral-600);
+    --tag-cursor-coral-background-selected: var(--cursor-coral-500);
+    --tag-cursor-coral-border: var(--cursor-coral-100);
+    --tag-patch-peach-foreground: var(--patch-peach-100);
+    --tag-patch-peach-background: var(--patch-peach-700);
+    --tag-patch-peach-background-hover: var(--patch-peach-600);
+    --tag-patch-peach-background-selected: var(--patch-peach-500);
+    --tag-patch-peach-border: var(--patch-peach-100);
 
     /* Typography - same as light mode */
     --font-sans: Lexend, ui-sans-serif, sans-serif, system-ui;
@@ -557,6 +655,52 @@
     --color-callout-issue: var(--callout-issue);
     --color-callout-issue-foreground: var(--callout-issue-foreground);
     --color-callout-link: var(--callout-link);
+
+    --color-tag-base-foreground: var(--tag-base-foreground);
+    --color-tag-base-background: var(--tag-base-background);
+    --color-tag-base-background-hover: var(--tag-base-background-hover);
+    --color-tag-base-background-selected: var(--tag-base-background-selected);
+    --color-tag-base-border: var(--tag-base-border);
+    --color-tag-index-indigo-foreground: var(--tag-index-indigo-foreground);
+    --color-tag-index-indigo-background: var(--tag-index-indigo-background);
+    --color-tag-index-indigo-background-hover: var(--tag-index-indigo-background-hover);
+    --color-tag-index-indigo-background-selected: var(--tag-index-indigo-background-selected);
+    --color-tag-index-indigo-border: var(--tag-index-indigo-border);
+    --color-tag-transform-teal-foreground: var(--tag-transform-teal-foreground);
+    --color-tag-transform-teal-background: var(--tag-transform-teal-background);
+    --color-tag-transform-teal-background-hover: var(--tag-transform-teal-background-hover);
+    --color-tag-transform-teal-background-selected: var(--tag-transform-teal-background-selected);
+    --color-tag-transform-teal-border: var(--tag-transform-teal-border);
+    --color-tag-packet-plum-foreground: var(--tag-packet-plum-foreground);
+    --color-tag-packet-plum-background: var(--tag-packet-plum-background);
+    --color-tag-packet-plum-background-hover: var(--tag-packet-plum-background-hover);
+    --color-tag-packet-plum-background-selected: var(--tag-packet-plum-background-selected);
+    --color-tag-packet-plum-border: var(--tag-packet-plum-border);
+    --color-tag-server-slate-foreground: var(--tag-server-slate-foreground);
+    --color-tag-server-slate-background: var(--tag-server-slate-background);
+    --color-tag-server-slate-background-hover: var(--tag-server-slate-background-hover);
+    --color-tag-server-slate-background-selected: var(--tag-server-slate-background-selected);
+    --color-tag-server-slate-border: var(--tag-server-slate-border);
+    --color-tag-logic-lime-foreground: var(--tag-logic-lime-foreground);
+    --color-tag-logic-lime-background: var(--tag-logic-lime-background);
+    --color-tag-logic-lime-background-hover: var(--tag-logic-lime-background-hover);
+    --color-tag-logic-lime-background-selected: var(--tag-logic-lime-background-selected);
+    --color-tag-logic-lime-border: var(--tag-logic-lime-border);
+    --color-tag-signal-yellow-foreground: var(--tag-signal-yellow-foreground);
+    --color-tag-signal-yellow-background: var(--tag-signal-yellow-background);
+    --color-tag-signal-yellow-background-hover: var(--tag-signal-yellow-background-hover);
+    --color-tag-signal-yellow-background-selected: var(--tag-signal-yellow-background-selected);
+    --color-tag-signal-yellow-border: var(--tag-signal-yellow-border);
+    --color-tag-cursor-coral-foreground: var(--tag-cursor-coral-foreground);
+    --color-tag-cursor-coral-background: var(--tag-cursor-coral-background);
+    --color-tag-cursor-coral-background-hover: var(--tag-cursor-coral-background-hover);
+    --color-tag-cursor-coral-background-selected: var(--tag-cursor-coral-background-selected);
+    --color-tag-cursor-coral-border: var(--tag-cursor-coral-border);
+    --color-tag-patch-peach-foreground: var(--tag-patch-peach-foreground);
+    --color-tag-patch-peach-background: var(--tag-patch-peach-background);
+    --color-tag-patch-peach-background-hover: var(--tag-patch-peach-background-hover);
+    --color-tag-patch-peach-background-selected: var(--tag-patch-peach-background-selected);
+    --color-tag-patch-peach-border: var(--tag-patch-peach-border);
 
     --radius-xs: 2px;
     --radius-sm: calc(var(--radius) - 4px);

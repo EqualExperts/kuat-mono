@@ -1,0 +1,17 @@
+@reference "../../../styles.css";
+
+/* CounterBadge – CSS-first variants. Tokens from @equal-experts/kuat-core.
+   Digits-only pill, designed to overlay the top-right of an icon or avatar. min-width keeps
+   single digits circular. */
+
+.counter-badge {
+  @apply inline-flex min-w-5 items-center justify-center rounded-full px-1.5 py-0.5 text-xs font-semibold leading-4 text-white tabular-nums;
+}
+
+.counter-badge--primary {
+  @apply bg-primary;
+}
+
+.counter-badge--attention {
+  @apply bg-destructive;
+}

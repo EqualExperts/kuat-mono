@@ -145,9 +145,38 @@ export {
   AlertDialogTrigger,
 } from "./components/ui/alert-dialog";
 
-// Badge (localized UI component – import from Kuat)
+// Badge (deprecated – use StatusBadge, Tag, or CounterBadge)
 export { Badge, badgeVariants, BADGE_VARIANTS, BADGE_ROUNDNESS } from "./components/ui/badge";
 export type { BadgeVariants, BadgeVariant, BadgeRoundness } from "./components/ui/badge";
+
+// StatusBadge (localized UI component – import from Kuat)
+export {
+  StatusBadge,
+  statusBadgeVariants,
+  STATUS_BADGE_TYPES,
+  STATUS_BADGE_SIZES,
+} from "./components/ui/status-badge";
+export type {
+  StatusBadgeVariants,
+  StatusBadgeType,
+  StatusBadgeSize,
+} from "./components/ui/status-badge";
+
+// Tag (localized UI component – import from Kuat)
+export { Tag, tagVariants, TAG_COLORS, TAG_MODES } from "./components/ui/tag";
+export type { TagVariants, TagColor, TagMode } from "./components/ui/tag";
+
+// TagGroup (localized UI component – import from Kuat)
+export { TagGroup, TAG_GROUP_INJECTION_KEY } from "./components/ui/tag-group";
+export type { TagGroupContextValue } from "./components/ui/tag-group";
+
+// CounterBadge (localized UI component – import from Kuat)
+export {
+  CounterBadge,
+  counterBadgeVariants,
+  COUNTER_BADGE_TYPES,
+} from "./components/ui/counter-badge";
+export type { CounterBadgeVariants, CounterBadgeType } from "./components/ui/counter-badge";
 
 // Breadcrumb (localized UI component – import from Kuat)
 export { Breadcrumb } from "./components/ui/breadcrumb";

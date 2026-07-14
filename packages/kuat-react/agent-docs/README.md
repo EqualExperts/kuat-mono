@@ -14,4 +14,4 @@ Curated agent docs bundled with `@equal-experts/kuat-core`, `@equal-experts/kuat
 node scripts/agent-docs/bundle-for-core.mjs
 ```
 
-Built against upstream ref: `038a985b57fe`
+Built against upstream ref: `e32bea877eac`
