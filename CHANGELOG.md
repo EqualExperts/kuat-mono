@@ -2,6 +2,38 @@
 
 All notable changes to the published Kuat packages are documented in this file.
 
+## Multi-package release 0.15.1 - 2026-07-14
+
+### Affected packages
+- @equal-experts/kuat-core@0.15.1
+- @equal-experts/kuat-react@0.15.1
+- @equal-experts/kuat-vue@0.15.1
+
+### Added
+- **`StatusBadge` component** (`kuat:status-badge`) in both `@equal-experts/kuat-react` and
+  `@equal-experts/kuat-vue`. Non-interactive status indicator: five semantic types
+  (success/warning/error/info/neutral) with per-type icons, two sizes, solid fills, square
+  corners. Import from the package root or the `/status-badge` subpath.
+- **`Tag` component** (`kuat:tag`). Categorisation pill with nine colour categories from the
+  extended Data/Digital palette, three interaction modes (display `<span>`, toggle and dismiss
+  `<button>`s), `aria-pressed` toggle state, and a 44px invisible touch target. `/tag` subpath.
+- **`TagGroup` component** (`kuat:tag-group`). Thin accessibility wrapper for Tag sets:
+  `role="group"` + `aria-label`, flex-wrap layout, and an `aria-live` region announcing tag
+  removal. `/tag-group` subpath.
+- **`CounterBadge` component** (`kuat:counter-badge`). Digits-only count pill with `{max}+`
+  overflow (99 by default) and `primary`/`attention` types. `/counter-badge` subpath.
+- **`--tag-*` design tokens** in `kuat-core`: per-category background / background-hover /
+  background-selected / foreground / border, with dedicated light and dark values mirroring the
+  Figma "semantic colors" collection, mirrored as `--color-tag-*` Tailwind utilities.
+
+### Changed
+- **`Badge` is deprecated** in both packages (kept exported and functional, with a one-time dev
+  console warning). Use `StatusBadge` (status), `Tag` (categorisation), or `CounterBadge`
+  (counts). Removal target: next major — see `kuat-docs/DEPRECATIONS.md` for the variant
+  migration map.
+- Component registry, decision tree, and packaged `agent-docs/` updated with the four new
+  components (lockstep with kuat-agent-rules#16).
+
 ## Pre-release 0.15.0-beta.1 - 2026-07-06
 
 ### Affected packages
