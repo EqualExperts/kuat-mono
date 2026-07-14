@@ -1,0 +1,42 @@
+@reference "../../../styles.css";
+
+/* StatusBadge – CSS-first variants. Tokens from @equal-experts/kuat-core.
+   Non-interactive (no focus state). Fills are the raw brand ramps behind Callout's bar
+   colours, not the mode-flipping --callout-* aliases: no dark-mode spec exists yet, so the
+   badge renders identically in both modes. */
+
+.status-badge {
+  @apply inline-flex items-center justify-center gap-1.5 rounded-none px-2 py-[3px] font-semibold;
+}
+
+.status-badge--size-base {
+  @apply text-xs leading-4 tracking-[0.18px];
+}
+
+.status-badge--size-large {
+  @apply text-sm leading-[21px] tracking-[0.07px];
+}
+
+.status-badge__icon {
+  @apply size-3 shrink-0;
+}
+
+.status-badge--success {
+  @apply bg-uptime-green-500 text-white;
+}
+
+.status-badge--warning {
+  @apply bg-equal-ember-500 text-white;
+}
+
+.status-badge--error {
+  @apply bg-runtime-red-600 text-white;
+}
+
+.status-badge--info {
+  @apply bg-ee-blue-500 text-white;
+}
+
+.status-badge--neutral {
+  @apply bg-server-slate-200 text-neutral-950;
+}

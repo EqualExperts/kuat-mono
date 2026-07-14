@@ -1,0 +1,9 @@
+@reference "../../../styles.css";
+
+/* TagGroup – thin accessibility wrapper. Wrapping/reflow is plain flex-wrap (8px gap in
+   both axes per the Figma exploration); the component's job is the group role, label, and
+   the aria-live dismissal announcements. */
+
+.tag-group {
+  @apply flex flex-wrap gap-2;
+}

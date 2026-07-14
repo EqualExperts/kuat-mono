@@ -1,3 +1,11 @@
+<script lang="ts">
+/**
+ * @deprecated Use `StatusBadge` for status indication, `Tag` for categorisation, or
+ * `CounterBadge` for numeric counts. See kuat-docs/DEPRECATIONS.md. Removal target: next major.
+ */
+let warnedDeprecated = false
+</script>
+
 <script setup lang="ts">
 import type { PrimitiveProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
@@ -16,6 +24,13 @@ const props = withDefaults(defineProps<Props>(), {
   variant: "default",
   roundness: "default",
 })
+
+if (import.meta.env.DEV && !warnedDeprecated) {
+  warnedDeprecated = true
+  console.warn(
+    "[kuat-vue] Badge is deprecated - use StatusBadge (status), Tag (categorisation), or CounterBadge (counts). See kuat-docs/DEPRECATIONS.md."
+  )
+}
 </script>
 
 <template>

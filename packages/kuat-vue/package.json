@@ -26,6 +26,22 @@
       "import": "./dist/badge.js",
       "types": "./dist/badge.d.ts"
     },
+    "./status-badge": {
+      "import": "./dist/status-badge.js",
+      "types": "./dist/status-badge.d.ts"
+    },
+    "./tag": {
+      "import": "./dist/tag.js",
+      "types": "./dist/tag.d.ts"
+    },
+    "./tag-group": {
+      "import": "./dist/tag-group.js",
+      "types": "./dist/tag-group.d.ts"
+    },
+    "./counter-badge": {
+      "import": "./dist/counter-badge.js",
+      "types": "./dist/counter-badge.d.ts"
+    },
     "./button-group": {
       "import": "./dist/button-group.js",
       "types": "./dist/button-group.d.ts"
