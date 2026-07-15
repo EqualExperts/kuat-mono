@@ -4,7 +4,7 @@
 
 .button {
   @apply inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium outline-none transition-colors;
-  border-radius: 6px;
+  border-radius: var(--radius-md); /* interactive element radius, 6px */
   border: 1px solid transparent;
   box-shadow: none;
   transition-duration: 150ms;

@@ -5,7 +5,7 @@
   @apply inline-flex items-center justify-center gap-2 whitespace-nowrap outline-none transition-[background-color,border-color,box-shadow,color,opacity] duration-150 ease-in-out;
   min-height: 36px;
   padding: 7px 8px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm); /* input-scale radius, 4px */
   border: 1px solid transparent;
   background: transparent;
   color: #020617;

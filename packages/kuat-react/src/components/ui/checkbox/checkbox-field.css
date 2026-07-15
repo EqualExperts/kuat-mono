@@ -11,7 +11,7 @@
 }
 
 .checkbox-field--appearance-card .checkbox-field__label {
-  @apply rounded-[10px] border border-solid border-border bg-card px-3 py-2;
+  @apply rounded-sm border border-solid border-border bg-card px-3 py-2;
 }
 
 .checkbox-field--disabled .checkbox-field__label {

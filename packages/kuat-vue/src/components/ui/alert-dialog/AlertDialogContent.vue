@@ -61,7 +61,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
 
 @media (min-width: 640px) {
   .alert-dialog-content {
-    @apply rounded-lg;
+    @apply rounded-none;
   }
 }
 

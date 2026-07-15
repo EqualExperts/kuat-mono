@@ -10,7 +10,7 @@
 
 .toggle-group--horizontal > .toggle-group-item:only-child,
 .toggle-group--vertical > .toggle-group-item:only-child {
-  border-radius: 4px;
+  border-radius: var(--radius-sm); /* input-scale radius, 4px */
 }
 
 .toggle-group--horizontal > .toggle-group-item:first-child {
