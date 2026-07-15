@@ -2,6 +2,16 @@
 
 All notable changes to the published Kuat packages are documented in this file.
 
+## Multi-package release - 2026-07-15
+
+### Affected packages
+- @equal-experts/kuat-core@0.15.2
+- @equal-experts/kuat-react@0.15.2
+- @equal-experts/kuat-vue@0.15.2
+
+### Changed
+- Cleaned up radius tokens
+
 ## Multi-package release 0.15.1 - 2026-07-14
 
 ### Affected packages
