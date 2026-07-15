@@ -73,7 +73,7 @@ const resolvedToastOptions = computed(() => mergedToastOptions.value as any)
 }
 
 .kuat-sonner__toast {
-  @apply w-[var(--width)] rounded-md border border-border bg-card p-4 text-card-foreground shadow-sm;
+  @apply w-[var(--width)] rounded-none border border-border bg-card p-4 text-card-foreground shadow-sm;
 }
 
 .kuat-sonner__content {
