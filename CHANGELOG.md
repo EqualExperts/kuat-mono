@@ -2,6 +2,18 @@
 
 All notable changes to the published Kuat packages are documented in this file.
 
+## Multi-package release - 2026-08-14
+
+### Affected packages
+- @equal-experts/kuat-core@0.15.3
+- @equal-experts/kuat-react@0.15.3
+- @equal-experts/kuat-vue@0.15.3
+
+### Changed
+- Fixed the `--radius` token base (was `0.3rem`, making `--radius-sm` resolve to 0.8px instead of the intended 4px; now `0.5rem` so `--radius-sm`/`-md`/`-lg`/`-xl` resolve to 4/6/8/12px) and added `--radius-none`. Component CSS in kuat-react and kuat-vue now uses the radius tokens instead of hard-coded values: buttons and menu items use `--radius-md`, inputs/selects/toggles and card-style option fields use `--radius-sm`, and floating overlays (alert dialog, dropdown/select menus, toasts, header nav panel) are flattened to `rounded-none`.
+- Added the `ContentCard` agent-docs component guide (kuat-core, kuat-react, kuat-vue) covering when to use it, variants, states, content guidance, and behaviour. The `ContentCard` component itself already shipped in 0.15.2 — this adds the missing agent-facing documentation and registry entry.
+- Corrected the `tailwind.config.ts` radius-scale comment, which referenced a stale `0.3rem` base and outdated `rounded-lg` guidance for interactive elements.
+
 ## Multi-package release 0.15.1 - 2026-07-14
 
 ### Affected packages

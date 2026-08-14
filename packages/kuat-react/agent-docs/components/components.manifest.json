@@ -48,12 +48,6 @@
       "displayName": "CounterBadge",
       "path": "components/counter-badge.md",
       "sources": ["@equal-experts/kuat-react", "@equal-experts/kuat-vue"]
-    },
-    "kuat:content-card": {
-      "slug": "content-card",
-      "displayName": "ContentCard",
-      "path": "components/content-card.md",
-      "sources": ["@equal-experts/kuat-react", "@equal-experts/kuat-vue"]
     }
   }
 }
