@@ -151,9 +151,12 @@ const config: Config = {
       /**
        * Border Radius Scale
        *
-       * Based on the --radius CSS variable (default: 0.3rem).
-       * Use `rounded-lg` for interactive elements, `rounded-sm` for inputs.
+       * Based on the --radius CSS variable (default: 0.5rem).
+       * Static content & floating overlays: `rounded-none` (0px).
+       * Use `rounded-md` for interactive elements (buttons, clickable cards, tabs).
+       * Use `rounded-sm` for inputs and card-style option fields.
        * Use `rounded-xs` for compact icon buttons (e.g. carousel nav).
+       * `rounded-lg` is reserved, not currently assigned to any component.
        */
       borderRadius: {
         xs: "var(--radius-xs)",
